@@ -5,7 +5,7 @@ import {
     createTheme,
     useMediaQuery,
 } from "@mui/material";
-import { useLocalStorageState } from "../../storage/adapters/useLocalStorageState";
+import { useLocalStorageState } from "../../storage/hooks/useLocalStorageState";
 import { ThemeModeContext } from "./ThemeContext/ThemeModeContext";
 import { EThemeMode } from "./enums/themeMode.enum";
 import { getGlobalStyles } from "./globalStyles";
