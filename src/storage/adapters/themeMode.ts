@@ -1,6 +1,6 @@
+//TODO: delete file
 import { EThemeMode } from "../../app/Theme/enums/themeMode.enum";
 import { setItem, getItem, removeItem } from "../storage";
-
 const ThemeModeStorageName = "theme";
 
 const setThemeMode = (mode: EThemeMode): void => {
