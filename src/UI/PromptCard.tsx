@@ -88,7 +88,7 @@ export const PromptCard = () => {
                                 cursor: "pointer",
                             }}
                         >
-                            {"Midjourney"}
+                            Midjourney
                         </Typography>
                     </Box>
                 </Box>
@@ -146,56 +146,39 @@ export const PromptCard = () => {
                                 paddingTop: "2px",
                             }}
                         >
-                            <Badge
+                            <CardBadge
                                 badgeContent={700}
                                 color="secondary"
                                 max={999}
-                                sx={{
-                                    "& .MuiBadge-badge": {
-                                        fontSize: "0.55rem",
-                                        padding: 0,
-                                    },
-                                }}
                             >
                                 <RemoveRedEyeRoundedIcon
                                     sx={{
                                         fontSize: 19,
                                     }}
                                 />
-                            </Badge>
-                            <Badge
+                            </CardBadge>
+                            <CardBadge
                                 badgeContent={145}
                                 color="secondary"
                                 max={999}
-                                sx={{
-                                    "& .MuiBadge-badge": {
-                                        fontSize: "0.55rem",
-                                        padding: 0,
-                                    },
-                                }}
                             >
                                 <LocalOfferRoundedIcon
                                     sx={{
                                         fontSize: 19,
                                     }}
                                 />
-                            </Badge>
-                            <Badge
+                            </CardBadge>
+                            <CardBadge
                                 badgeContent={4.3}
                                 color="secondary"
-                                sx={{
-                                    "& .MuiBadge-badge": {
-                                        fontSize: "0.55rem",
-                                        padding: 0,
-                                    },
-                                }}
+                                max={5}
                             >
                                 <GradeRoundedIcon
                                     sx={{
                                         fontSize: 19,
                                     }}
                                 />
-                            </Badge>
+                            </CardBadge>
                         </Box>
                         <Typography
                             variant="h6"
@@ -204,7 +187,7 @@ export const PromptCard = () => {
                                 fontSize: "15px",
                             }}
                         >
-                            {"1 500 ₽"}
+                            1 500 ₽
                         </Typography>
                     </Box>
                 </CardContent>
