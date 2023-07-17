@@ -7,10 +7,10 @@ const FlexBox = styled(Box)<BoxProps>(() => ({
     display: "flex",
 }));
 
-const MainContainer = styled("main")<BoxProps>(() => ({
+const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
     flexGrow: 1,
-    bgcolor: "background.default",
-    pt: 10,
+    backgroundColor: theme.palette.background.default,
+    paddingTop: "72px",
     height: "100%",
     overflow: "auto",
 }));
