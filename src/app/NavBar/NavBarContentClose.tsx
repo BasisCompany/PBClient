@@ -1,5 +1,3 @@
-import React from "react";
-import PropTypes from "prop-types";
 import {
     Divider,
     List,
@@ -75,6 +73,7 @@ const menuAdmin = [
                 }}
             />
         ),
+        to: "/login",
     },
     {
         title: "Магазин",
@@ -85,13 +84,14 @@ const menuAdmin = [
                 }}
             />
         ),
+        to: "/login",
     },
 ];
 
-const NavBarContentOpen = () => {
+export const NavBarContentClose = () => {
     return (
         <>
-            <List sx={{}}>
+            <List>
                 {menuUser.map((item) => (
                     <ListItem
                         key={item.title}
@@ -100,6 +100,7 @@ const NavBarContentOpen = () => {
                         disablePadding
                         sx={{
                             textDecoration: "none",
+
                             color: "text.primary",
                             display: "block",
                             "& :hover": {
@@ -110,25 +111,21 @@ const NavBarContentOpen = () => {
                         <StyledListItemButton
                             sx={{
                                 minHeight: 48,
-                                mr: open ? 0.5 : "none",
-                                ml: open ? 0.5 : "none",
-                                justifyContent: open ? "initial" : "center",
                                 px: 2.5,
+                                paddingTop: "10px",
+                                display: "flex",
+                                flexDirection: "column",
                             }}
                         >
                             <ListItemIcon
                                 sx={{
                                     minWidth: 0,
-                                    mr: open ? 3 : "auto",
                                     justifyContent: "center",
                                 }}
                             >
                                 {item.icon}
                             </ListItemIcon>
-                            <ListItemText
-                                primary={item.title}
-                                sx={{ opacity: open ? 1 : 0 }}
-                            />
+                            <ListItemText secondary={item.title} />
                         </StyledListItemButton>
                     </ListItem>
                 ))}
@@ -157,27 +154,20 @@ const NavBarContentOpen = () => {
                         <StyledListItemButton
                             sx={{
                                 minHeight: 48,
-                                mr: open ? 0.5 : "none",
-                                ml: open ? 0.5 : "none",
-                                justifyContent: open ? "initial" : "center",
                                 px: 2.5,
+                                display: "flex",
+                                flexDirection: "column",
                             }}
                         >
                             <ListItemIcon
                                 sx={{
                                     minWidth: 0,
-                                    mr: open ? 3 : "auto",
                                     justifyContent: "center",
                                 }}
                             >
                                 {item.icon}
                             </ListItemIcon>
-                            <ListItemText
-                                primary={item.title}
-                                sx={{
-                                    opacity: open ? 1 : 0,
-                                }}
-                            />
+                            <ListItemText secondary={item.title} />
                         </StyledListItemButton>
                     </ListItem>
                 ))}
@@ -190,9 +180,3 @@ const NavBarContentOpen = () => {
         </>
     );
 };
-
-NavBarContentOpen.propTypes = {
-    children: PropTypes.any,
-};
-
-export default NavBarContentOpen;

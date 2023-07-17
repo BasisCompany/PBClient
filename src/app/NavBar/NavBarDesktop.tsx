@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
 import { Box } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import { Theme, styled } from "@mui/material/styles";
 
-import { NavBarContext } from "./NavBarContext";
-
-import NavBarContentOpen from "./NavBarItems";
-import NavBarContentClose from "./NavBarContentClose";
+import { useAppSelector } from "../../redux/hooks";
+import { selectNavbarStatus } from "../store/navbarSlice";
+import { NavBarContentClose } from "./NavBarContentClose";
+import { NavBarContentOpen } from "./NavBarContentOpen";
 
 const drawerWidth = "240px";
 
@@ -59,24 +57,18 @@ const Drawer = styled(MuiDrawer, {
     }),
 }));
 
-const NavBarDesktop = () => {
-    const open = false; //FIXME
+export const NavBarDesktop = () => {
+    const isOpen = useAppSelector(selectNavbarStatus);
     return (
         <Box sx={{ display: "flex" }}>
             <Drawer
                 variant="permanent"
-                open={open}
+                open={isOpen}
                 sx={{ display: { xs: "none", sm: "block" } }}
             >
                 <DrawerHeader></DrawerHeader>
-                {open ? <NavBarContentOpen /> : <NavBarContentClose />}
+                {isOpen ? <NavBarContentOpen /> : <NavBarContentClose />}
             </Drawer>
         </Box>
     );
 };
-
-NavBarDesktop.propTypes = {
-    children: PropTypes.any,
-};
-
-export default NavBarDesktop;

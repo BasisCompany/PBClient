@@ -15,6 +15,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { SvgIcon } from "@mui/material";
+import { useAppDispatch } from "../../redux/hooks";
+import { toggleNavbar } from "../store/navbarSlice";
 
 const CustomAppBar = styled(MuiAppBar)(({ theme }) => ({
     zIndex: theme.zIndex.drawer + 1,
@@ -62,6 +64,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const AppBar = () => {
+    const dispatch = useAppDispatch();
+
+    const handleButtonClick = () => {
+        dispatch(toggleNavbar());
+    };
+
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
         useState<null | HTMLElement>(null);
@@ -177,6 +185,7 @@ export const AppBar = () => {
                         color="inherit"
                         aria-label="open drawer"
                         sx={{ mr: 2 }}
+                        onClick={handleButtonClick}
                     >
                         <MenuIcon />
                     </IconButton>

@@ -1,12 +1,13 @@
 import { Box, BoxProps, styled } from "@mui/material";
 import { Outlet } from "react-router";
-import { AppBar } from "../AppBar/AppBar";
+import { AppBar } from "./AppBar/AppBar";
+import NavBar from "./NavBar/NavBar";
 
 const FlexBox = styled(Box)<BoxProps>(() => ({
     display: "flex",
 }));
 
-const MainContainer = styled("main", { name: "main" })<BoxProps>(() => ({
+const MainContainer = styled("main")<BoxProps>(() => ({
     flexGrow: 1,
     bgcolor: "background.default",
     pt: 10,
@@ -19,7 +20,7 @@ export const AppLayout = () => {
         <>
             <AppBar />
             <FlexBox>
-                {/* <NavBar /> */}
+                <NavBar />
                 <MainContainer>
                     <Outlet />
                 </MainContainer>

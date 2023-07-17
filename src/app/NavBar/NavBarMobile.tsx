@@ -1,12 +1,9 @@
-import React, { useContext, useRef } from "react";
-import PropTypes from "prop-types";
 import { Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
-
-import { NavBarContext } from "./NavBarContext";
-import NavBarContentClose from "./NavBarContentClose";
-import NavBarContentOpen from "./NavBarItems";
+import { styled } from "@mui/material/styles";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { selectNavbarStatus, setNavbarOpen } from "../store/navbarSlice";
+import { NavBarContentOpen } from "./NavBarContentOpen";
 
 const CustomDrawer = styled(Drawer)(({ theme }) => ({
     "& .MuiDrawer-paper": {
@@ -23,19 +20,21 @@ const DrawerHeader = styled("div")(({ theme }) => ({
     ...theme.mixins.toolbar,
 }));
 
-const NavBarMobile = () => {
-    const drawerRef = useRef(null);
+export const NavBarMobile = () => {
+    const isOpen = useAppSelector(selectNavbarStatus);
+    const dispatch = useAppDispatch();
 
-    const toggleDrawer = (open) => (event) => {
-        if (
-            event.type === "keydown" &&
-            (event.key === "Tab" || event.key === "Shift")
-        ) {
-            return;
-        }
-
-        setOpen(open);
-    };
+    const toggleDrawer =
+        (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+            if (
+                event.type === "keydown" &&
+                ((event as React.KeyboardEvent).key === "Tab" ||
+                    (event as React.KeyboardEvent).key === "Shift")
+            ) {
+                return;
+            }
+            dispatch(setNavbarOpen(open));
+        };
 
     return (
         <Box
@@ -44,21 +43,15 @@ const NavBarMobile = () => {
             onKeyDown={toggleDrawer(false)}
         >
             <CustomDrawer
-                open={false} //TODO: FIX
-                onClose={toggleDrawer(false)}
+                open={isOpen}
+                onClose={toggleDrawer(false)} //FIXME
                 sx={{
                     display: { xs: "block", sm: "none" },
                 }}
             >
-                <DrawerHeader />
-                {false ? <NavBarContentOpen /> : <></>} //TODO: FIX
+                <DrawerHeader></DrawerHeader>
+                {isOpen ? <NavBarContentOpen /> : null}
             </CustomDrawer>
         </Box>
     );
 };
-
-NavBarMobile.propTypes = {
-    children: PropTypes.any,
-};
-
-export default NavBarMobile;

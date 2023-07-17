@@ -1,7 +1,9 @@
-import { Route, Routes } from "react-router";
-import { AppLayout } from "./AppLayout";
+import { FC } from "react";
 
-export const AppRoutes = () => {
+import { Route, Routes } from "react-router";
+import { AppLayout } from "../AppLayout";
+
+export const AppRoutes: FC = () => {
     return (
         <Routes>
             <Route path="/" element={<AppLayout />}>

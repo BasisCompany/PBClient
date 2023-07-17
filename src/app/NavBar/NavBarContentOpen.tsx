@@ -1,5 +1,3 @@
-import React from "react";
-import PropTypes from "prop-types";
 import {
     Divider,
     List,
@@ -14,6 +12,8 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import QuizRoundedIcon from "@mui/icons-material/QuizRounded";
 import { Link as RouterLink } from "react-router-dom";
 import MuiListItemButton from "@mui/material/ListItemButton";
+import { useAppSelector } from "../../redux/hooks";
+import { selectNavbarStatus } from "../store/navbarSlice";
 
 const StyledListItemButton = styled(MuiListItemButton)`
     transition: none !important;
@@ -75,6 +75,7 @@ const menuAdmin = [
                 }}
             />
         ),
+        to: "/login",
     },
     {
         title: "Магазин",
@@ -85,10 +86,12 @@ const menuAdmin = [
                 }}
             />
         ),
+        to: "/login",
     },
 ];
 
-const NavBarContentClose = () => {
+export const NavBarContentOpen = () => {
+    const isOpen = useAppSelector(selectNavbarStatus);
     return (
         <>
             <List sx={{}}>
@@ -100,7 +103,6 @@ const NavBarContentClose = () => {
                         disablePadding
                         sx={{
                             textDecoration: "none",
-
                             color: "text.primary",
                             display: "block",
                             "& :hover": {
@@ -111,21 +113,25 @@ const NavBarContentClose = () => {
                         <StyledListItemButton
                             sx={{
                                 minHeight: 48,
+                                mr: isOpen ? 0.5 : "none",
+                                ml: isOpen ? 0.5 : "none",
+                                justifyContent: isOpen ? "initial" : "center",
                                 px: 2.5,
-                                paddingTop: "10px",
-                                display: "flex",
-                                flexDirection: "column",
                             }}
                         >
                             <ListItemIcon
                                 sx={{
                                     minWidth: 0,
+                                    mr: isOpen ? 3 : "auto",
                                     justifyContent: "center",
                                 }}
                             >
                                 {item.icon}
                             </ListItemIcon>
-                            <ListItemText secondary={item.title} />
+                            <ListItemText
+                                primary={item.title}
+                                sx={{ opacity: isOpen ? 1 : 0 }}
+                            />
                         </StyledListItemButton>
                     </ListItem>
                 ))}
@@ -154,20 +160,27 @@ const NavBarContentClose = () => {
                         <StyledListItemButton
                             sx={{
                                 minHeight: 48,
+                                mr: isOpen ? 0.5 : "none",
+                                ml: isOpen ? 0.5 : "none",
+                                justifyContent: isOpen ? "initial" : "center",
                                 px: 2.5,
-                                display: "flex",
-                                flexDirection: "column",
                             }}
                         >
                             <ListItemIcon
                                 sx={{
                                     minWidth: 0,
+                                    mr: isOpen ? 3 : "auto",
                                     justifyContent: "center",
                                 }}
                             >
                                 {item.icon}
                             </ListItemIcon>
-                            <ListItemText secondary={item.title} />
+                            <ListItemText
+                                primary={item.title}
+                                sx={{
+                                    opacity: isOpen ? 1 : 0,
+                                }}
+                            />
                         </StyledListItemButton>
                     </ListItem>
                 ))}
@@ -180,9 +193,3 @@ const NavBarContentClose = () => {
         </>
     );
 };
-
-NavBarContentClose.propTypes = {
-    children: PropTypes.any,
-};
-
-export default NavBarContentClose;
