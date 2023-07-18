@@ -3,13 +3,15 @@ import { FC } from "react";
 import { Route, Routes } from "react-router";
 import { AppLayout } from "../AppLayout";
 import { TestPage } from "../../trash/TestPage";
+import { ProfilePage } from "../../pages/Profile.page";
 
 export const AppRoutes: FC = () => {
     return (
         <Routes>
             <Route path="/" element={<AppLayout />}>
                 <Route index element={<TestPage />} />
-                <Route path="profile" element={<h1>profile</h1>} />
+                <Route path="profile" element={<ProfilePage />} />
+                <Route path="marketplace" element={<ProfilePage />} />
             </Route>
             <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
