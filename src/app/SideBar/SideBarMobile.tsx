@@ -7,6 +7,7 @@ import { SideBarContent } from "./SideBarContent";
 
 const CustomDrawer = styled(Drawer)({
     "& .MuiDrawer-paper": {
+        backgroundImage: "none",
         width: "240px",
     },
 });
