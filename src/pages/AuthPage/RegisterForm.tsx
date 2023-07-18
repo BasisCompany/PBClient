@@ -482,7 +482,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ setShowLogin }) => {
                             color: "text.primary",
                         }}
                     >
-                        {"Войдите"}
+                        Войдите
                     </Link>
                 </Box>
             </CardContent>

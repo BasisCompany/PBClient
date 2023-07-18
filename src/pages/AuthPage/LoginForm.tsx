@@ -1,3 +1,4 @@
+import { Dispatch, FC, MouseEvent, SetStateAction, useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
@@ -18,8 +19,6 @@ import {
     Typography,
     styled,
 } from "@mui/material";
-import { Dispatch, FC, SetStateAction, useState, MouseEvent } from "react";
-import { Controller, useForm, useFormState } from "react-hook-form";
 
 const CssTextField = styled(TextField)(({ theme }) => ({
     "& label.Mui-focused": {
@@ -156,175 +155,124 @@ export const LoginForm: FC<LoginFormProps> = ({ setShowLogin }) => {
                         </Typography>
                     </Box>
                 </Box>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Controller
-                            control={control}
-                            name="login"
-                            rules={{
-                                required: "Обязательно для заполнения",
-                                validate: (value) => {
-                                    if (
-                                        !value.match(
-                                            /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
-                                        )
-                                    ) {
-                                        return "Email введен некорректно";
-                                    }
-
-                                    return true;
-                                },
-                            }}
-                            render={({ field }) => (
-                                <CssTextField
-                                    fullWidth
-                                    margin="normal"
-                                    onChange={(e) => field.onChange(e)}
-                                    value={field.value}
-                                    error={!!errors.login?.message}
-                                    helperText={
-                                        <Typography
-                                            sx={{
-                                                marginLeft: "-14px",
-                                                fontSize: "15px",
-                                            }}
-                                        >
-                                            {errors.login?.message
-                                                ? errors.login?.message
-                                                : "Ваша почта"}
-                                        </Typography>
-                                    }
-                                    label={
-                                        <Box
-                                            sx={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <MailOutlineRoundedIcon
-                                                sx={{
-                                                    fontSize: 20,
-                                                    color: "action.active",
-                                                    marginRight: "5px",
-                                                    marginBottom: "3px",
-                                                }}
-                                            />
-                                            Email
-                                        </Box>
-                                    }
-                                />
-                            )}
+                        <CssTextField
+                            fullWidth
+                            margin="normal"
+                            helperText={
+                                <Typography
+                                    sx={{
+                                        marginLeft: "-14px",
+                                        fontSize: "15px",
+                                    }}
+                                >
+                                    Ваша почта
+                                </Typography>
+                            }
+                            label={
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    <MailOutlineRoundedIcon
+                                        sx={{
+                                            fontSize: 20,
+                                            color: "action.active",
+                                            marginRight: "5px",
+                                            marginBottom: "3px",
+                                        }}
+                                    />
+                                    Email
+                                </Box>
+                            }
                         />
                     </Box>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Controller
-                            control={control}
-                            name="password"
-                            rules={{
-                                required: "Обязательно для заполнения",
-                                validate: (value) => {
-                                    if (value.length < 6) {
-                                        return "Пароль должен быть больше 6 символов";
-                                    }
-
-                                    return true;
+                        <FormControl
+                            margin="normal"
+                            fullWidth
+                            variant="outlined"
+                            sx={{
+                                "& label.Mui-focused": {
+                                    color: "#FFF",
+                                    left: "-3px",
+                                },
+                                "& .MuiInput-underline:after": {
+                                    borderBottomColor: "#FFF",
+                                },
+                                "& .MuiOutlinedInput-root": {
+                                    "& fieldset": {
+                                        borderColor: "#d1d1dc",
+                                    },
+                                    "&:hover fieldset": {
+                                        borderColor: "#FFF",
+                                    },
+                                    "&.Mui-focused fieldset": {
+                                        borderColor: "#FFF",
+                                    },
                                 },
                             }}
-                            render={({ field }) => (
-                                <FormControl
-                                    margin="normal"
-                                    fullWidth
-                                    variant="outlined"
-                                    onChange={(e) => field.onChange(e)}
-                                    value={field.value}
-                                    error={!!errors.password?.message}
+                        >
+                            <InputLabel htmlFor="outlined-adornment-password">
+                                <Box
                                     sx={{
-                                        "& label.Mui-focused": {
-                                            color: "#FFF",
-                                            left: "-3px",
-                                        },
-                                        "& .MuiInput-underline:after": {
-                                            borderBottomColor: "#FFF",
-                                        },
-                                        "& .MuiOutlinedInput-root": {
-                                            "& fieldset": {
-                                                borderColor: "#d1d1dc",
-                                            },
-                                            "&:hover fieldset": {
-                                                borderColor: "#FFF",
-                                            },
-                                            "&.Mui-focused fieldset": {
-                                                borderColor: "#FFF",
-                                            },
-                                        },
+                                        display: "flex",
+                                        alignItems: "center",
                                     }}
                                 >
-                                    <InputLabel htmlFor="outlined-adornment-password">
-                                        <Box
-                                            sx={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <LockOpenRoundedIcon
-                                                sx={{
-                                                    fontSize: 20,
-                                                    color: "action.active",
-                                                    marginRight: "4px",
-                                                    marginBottom: "4px",
-                                                }}
-                                            />
-                                            <Typography
-                                                sx={{
-                                                    backgroundColor:
-                                                        "primary.dark",
-                                                    width: "65px",
-                                                }}
-                                            >
-                                                Пароль
-                                            </Typography>
-                                        </Box>
-                                    </InputLabel>
-                                    <OutlinedInput
-                                        id="outlined-adornment-password"
-                                        type={
-                                            showPassword ? "text" : "password"
-                                        }
-                                        endAdornment={
-                                            <InputAdornment position="end">
-                                                <IconButton
-                                                    aria-label="toggle password visibility"
-                                                    onClick={
-                                                        handleClickShowPassword
-                                                    }
-                                                    onMouseDown={
-                                                        handleMouseDownPassword
-                                                    }
-                                                    edge="end"
-                                                >
-                                                    {showPassword ? (
-                                                        <VisibilityOff />
-                                                    ) : (
-                                                        <Visibility />
-                                                    )}
-                                                </IconButton>
-                                            </InputAdornment>
-                                        }
-                                        label="Password"
-                                    />
-                                    <FormHelperText
+                                    <LockOpenRoundedIcon
                                         sx={{
-                                            marginLeft: "0px",
-                                            fontSize: "15px",
+                                            fontSize: 20,
+                                            color: "action.active",
+                                            marginRight: "4px",
+                                            marginBottom: "4px",
+                                        }}
+                                    />
+                                    <Typography
+                                        sx={{
+                                            backgroundColor: "primary.dark",
+                                            width: "65px",
                                         }}
                                     >
-                                        {errors.password?.message
-                                            ? errors.password?.message
-                                            : "Ваш пароль"}
-                                    </FormHelperText>
-                                </FormControl>
-                            )}
-                        />
+                                        Пароль
+                                    </Typography>
+                                </Box>
+                            </InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-password"
+                                type={showPassword ? "text" : "password"}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={
+                                                handleMouseDownPassword
+                                            }
+                                            edge="end"
+                                        >
+                                            {showPassword ? (
+                                                <VisibilityOff />
+                                            ) : (
+                                                <Visibility />
+                                            )}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                                label="Password"
+                            />
+                            <FormHelperText
+                                sx={{
+                                    marginLeft: "0px",
+                                    fontSize: "15px",
+                                }}
+                            >
+                                Ваш пароль
+                            </FormHelperText>
+                        </FormControl>
                     </Box>
 
                     {/* <Box
@@ -403,7 +351,7 @@ export const LoginForm: FC<LoginFormProps> = ({ setShowLogin }) => {
                             color: "text.primary",
                         }}
                     >
-                        {"Зарегистрируйтесь"}
+                        Зарегистрируйтесь
                     </Link>
                 </Box>
             </CardContent>
