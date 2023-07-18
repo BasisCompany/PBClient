@@ -53,28 +53,11 @@ const ColorButton = styled(Button)(({ theme }) => ({
     },
 }));
 
-interface FormValues {
-    login: string;
-    password: string;
-}
-
 interface LoginFormProps {
     setShowLogin: Dispatch<SetStateAction<boolean>>;
 }
 
 export const LoginForm: FC<LoginFormProps> = ({ setShowLogin }) => {
-    const { handleSubmit, control } = useForm<FormValues>({
-        defaultValues: {
-            login: "",
-            password: "",
-        },
-    });
-
-    const { errors } = useFormState({
-        control,
-    });
-
-    const onSubmit = (data: any) => console.log(data);
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleClickShowRegister = () => setShowLogin((show) => !show);

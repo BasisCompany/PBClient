@@ -1,7 +1,7 @@
 import { Box, BoxProps, styled } from "@mui/material";
 import { Outlet } from "react-router";
-import { AppBar } from "./AppBar/AppBar";
-import NavBar from "./NavBar/NavBar";
+import { SideBar } from "./SideBar/SideBar";
+import { NavBar } from "./NavBar/NavBar";
 
 const FlexBox = styled(Box)<BoxProps>(() => ({
     display: "flex",
@@ -18,9 +18,9 @@ const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
 export const AppLayout = () => {
     return (
         <>
-            <AppBar />
+            <NavBar />
             <FlexBox>
-                <NavBar />
+                <SideBar />
                 <MainContainer>
                     <Outlet />
                 </MainContainer>

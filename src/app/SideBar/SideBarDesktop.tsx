@@ -4,8 +4,8 @@ import { Theme, styled } from "@mui/material/styles";
 
 import { useAppSelector } from "../../redux/hooks";
 import { selectNavbarStatus } from "../store/navbarSlice";
-import { NavBarContentClose } from "./NavBarContentClose";
-import { NavBarContentOpen } from "./NavBarContentOpen";
+import { SideBarContent } from "./SideBarContent";
+import { SideBarContentMin } from "./SideBarContentMin";
 
 const drawerWidth = "240px";
 
@@ -16,6 +16,7 @@ const openedMixin = (theme: Theme) => ({
     //     duration: theme.transitions.duration.enteringScreen,
     // }),
     overflowX: "hidden",
+    borderRight: "0px",
 });
 
 const closedMixin = (theme: Theme) => ({
@@ -25,6 +26,7 @@ const closedMixin = (theme: Theme) => ({
     // }),
     overflowX: "hidden",
     width: `calc(${theme.spacing(7)} + 12px)`,
+    borderRight: "0px",
 
     [theme.breakpoints.up("sm")]: {
         width: `calc(${theme.spacing(8)} + 12px)`,
@@ -57,17 +59,13 @@ const Drawer = styled(MuiDrawer, {
     }),
 }));
 
-export const NavBarDesktop = () => {
+export const SideBarDesktop = () => {
     const isOpen = useAppSelector(selectNavbarStatus);
     return (
         <Box sx={{ display: "flex" }}>
-            <Drawer
-                variant="permanent"
-                open={isOpen}
-                sx={{ display: { xs: "none", sm: "block" } }}
-            >
-                <DrawerHeader></DrawerHeader>
-                {isOpen ? <NavBarContentOpen /> : <NavBarContentClose />}
+            <Drawer variant="permanent" open={isOpen}>
+                <DrawerHeader />
+                {isOpen ? <SideBarContent /> : <SideBarContentMin />}
             </Drawer>
         </Box>
     );

@@ -70,7 +70,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ setShowLogin }) => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleClickShowLogin = () => setShowLogin((show) => !show);
-    const captchaRef = useRef(null);
+
     const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };

@@ -3,13 +3,13 @@ import Drawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectNavbarStatus, setNavbarOpen } from "../store/navbarSlice";
-import { NavBarContentOpen } from "./NavBarContentOpen";
+import { SideBarContent } from "./SideBarContent";
 
-const CustomDrawer = styled(Drawer)(({ theme }) => ({
+const CustomDrawer = styled(Drawer)({
     "& .MuiDrawer-paper": {
         width: "240px",
     },
-}));
+});
 
 const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
@@ -20,7 +20,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
     ...theme.mixins.toolbar,
 }));
 
-export const NavBarMobile = () => {
+export const SideBarMobile = () => {
     const isOpen = useAppSelector(selectNavbarStatus);
     const dispatch = useAppDispatch();
 
@@ -37,20 +37,10 @@ export const NavBarMobile = () => {
         };
 
     return (
-        <Box
-            sx={{ display: "flex" }}
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
-        >
-            <CustomDrawer
-                open={isOpen}
-                onClose={toggleDrawer(false)} //FIXME
-                sx={{
-                    display: { xs: "block", sm: "none" },
-                }}
-            >
-                <DrawerHeader></DrawerHeader>
-                {isOpen ? <NavBarContentOpen /> : null}
+        <Box sx={{ display: "flex" }} onKeyDown={toggleDrawer(false)}>
+            <CustomDrawer open={isOpen} onClose={toggleDrawer(false)}>
+                <DrawerHeader />
+                {isOpen && <SideBarContent />}
             </CustomDrawer>
         </Box>
     );
