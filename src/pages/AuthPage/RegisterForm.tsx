@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, DispatchWithoutAction, FC, SetStateAction } from "react";
 import {
     Box,
     Card,
@@ -16,12 +16,10 @@ import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 
 interface RegisterFormProps {
-    setShowLogin: Dispatch<SetStateAction<boolean>>;
+    toggleLogin: DispatchWithoutAction;
 }
 
-export const RegisterForm: FC<RegisterFormProps> = ({ setShowLogin }) => {
-    const handleClickShowLogin = () => setShowLogin((show) => !show);
-
+export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
     return (
         <Card
             sx={{
@@ -44,10 +42,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ setShowLogin }) => {
                         paddingLeft: "5px",
                     }}
                     action={
-                        <IconButton
-                            aria-label="back"
-                            onClick={handleClickShowLogin}
-                        >
+                        <IconButton aria-label="back" onClick={toggleLogin}>
                             <KeyboardBackspaceRoundedIcon
                                 sx={{
                                     fontSize: 25,
@@ -211,7 +206,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ setShowLogin }) => {
                         variant="h6"
                         href="#"
                         underline="none"
-                        onClick={handleClickShowLogin}
+                        onClick={toggleLogin}
                         sx={{
                             fontSize: 14,
                             color: "text.primary",

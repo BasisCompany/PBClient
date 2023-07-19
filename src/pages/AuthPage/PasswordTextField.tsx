@@ -9,13 +9,20 @@ import {
 } from "@mui/material";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import { CustomTextField } from "./MyTextField";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 type PasswordTextFieldProps = TextFieldProps & {
     confirm?: boolean;
+    label: string;
+    helperText: string;
+    register: UseFormRegisterReturn;
 };
 
 export const PasswordTextField: FC<PasswordTextFieldProps> = ({
     confirm,
+    label,
+    helperText,
+    register,
     ...props
 }) => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -59,7 +66,7 @@ export const PasswordTextField: FC<PasswordTextFieldProps> = ({
                                 marginBottom: "4px",
                             }}
                         />
-                        {confirm ? "Подтверждение" : "Пароль"}
+                        {confirm ? "Подтверждение" : label}
                     </Box>
                 }
                 helperText={
@@ -70,9 +77,10 @@ export const PasswordTextField: FC<PasswordTextFieldProps> = ({
                             fontSize: "15px",
                         }}
                     >
-                        {confirm ? "Повтор пароля" : "Ваш пароль"}
+                        {confirm ? "Повтор пароля" : helperText}
                     </Typography>
                 }
+                {...register}
                 {...props}
             />
         </Box>

@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, DispatchWithoutAction, FC, SetStateAction } from "react";
 import {
     Box,
     Button,
@@ -12,6 +12,7 @@ import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { PromptBuyIcon } from "../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export const CustomButton = styled(Button)(({ theme }) => ({
     fontSize: 15,
@@ -26,11 +27,24 @@ export const CustomButton = styled(Button)(({ theme }) => ({
 }));
 
 interface LoginFormProps {
-    setShowLogin: Dispatch<SetStateAction<boolean>>;
+    toggleLogin: DispatchWithoutAction;
 }
 
-export const LoginForm: FC<LoginFormProps> = ({ setShowLogin }) => {
-    const handleClickShowRegister = () => setShowLogin((show) => !show);
+interface LoginFormInputs {
+    email: string;
+    password: string;
+}
+
+export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<LoginFormInputs>({ mode: "onBlur" });
+
+    const onSubmit: SubmitHandler<LoginFormInputs> = (data) =>
+        console.log(data);
 
     return (
         <Card
@@ -102,10 +116,10 @@ export const LoginForm: FC<LoginFormProps> = ({ setShowLogin }) => {
                         </Typography>
                     </Box>
                 </Box>
-                <form>
+                <form
+                    onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
+                >
                     <MyTextField
-                        label="Email"
-                        helperText="Ваша почта"
                         icon={
                             <MailOutlineRoundedIcon
                                 sx={{
@@ -116,8 +130,43 @@ export const LoginForm: FC<LoginFormProps> = ({ setShowLogin }) => {
                                 }}
                             />
                         }
+                        register={register("email", {
+                            required: "Пожалуйста, укажите свою почту.",
+                            minLength: {
+                                value: 3,
+                                message:
+                                    "Почта должна содержать больше 3 символов",
+                            },
+                        })}
+                        label="Email"
+                        error={!!errors.email}
+                        helperText={
+                            errors.email
+                                ? errors.email.message || ""
+                                : "Ваша почта"
+                        }
                     />
-                    <PasswordTextField />
+                    <PasswordTextField
+                        register={register("password", {
+                            required: "Пожалуйста, укажите свой пароль.",
+                            minLength: {
+                                value: 8,
+                                message: "Пароль должен быть больше 8 символов",
+                            },
+                            maxLength: {
+                                value: 35,
+                                message:
+                                    "Пароль должен быть меньше 35 символов",
+                            },
+                        })}
+                        label="Пароль"
+                        error={!!errors.password}
+                        helperText={
+                            errors.password
+                                ? errors.password.message || ""
+                                : "Ваш пароль"
+                        }
+                    />
 
                     {/* <Box
                     sx={{
@@ -187,7 +236,7 @@ export const LoginForm: FC<LoginFormProps> = ({ setShowLogin }) => {
                         variant="h6"
                         href="#"
                         underline="none"
-                        onClick={handleClickShowRegister}
+                        onClick={toggleLogin}
                         sx={{
                             fontSize: 14,
                             color: "text.primary",

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { Box, Card, Container } from "@mui/material";
 import { AuthAbout } from "./AuthAbout";
 import { RegisterForm } from "./RegisterForm";
 import { LoginForm } from "./LoginForm";
 
 export const AuthPage = () => {
-    const [showLogin, setShowLogin] = useState<boolean>(true);
+    const [showLogin, toggleLogin] = useReducer((show) => !show, true);
 
     return (
         <Box
@@ -36,9 +36,9 @@ export const AuthPage = () => {
                     <AuthAbout />
                     <Box>
                         {showLogin ? (
-                            <LoginForm setShowLogin={setShowLogin} />
+                            <LoginForm toggleLogin={toggleLogin} />
                         ) : (
-                            <RegisterForm setShowLogin={setShowLogin} />
+                            <RegisterForm toggleLogin={toggleLogin} />
                         )}
                     </Box>
                 </Card>

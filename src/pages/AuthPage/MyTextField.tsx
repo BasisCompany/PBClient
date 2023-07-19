@@ -1,5 +1,12 @@
 import { FC } from "react";
-import { Box, TextField, Typography, styled } from "@mui/material";
+import {
+    Box,
+    TextField,
+    TextFieldProps,
+    Typography,
+    styled,
+} from "@mui/material";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 export const CustomTextField = styled(TextField)(({ theme }) => ({
     "& label.Mui-focused": {
@@ -21,16 +28,18 @@ export const CustomTextField = styled(TextField)(({ theme }) => ({
     },
 }));
 
-interface MyTextFieldProps {
+type MyTextFieldProps = TextFieldProps & {
     label: string;
     helperText: string;
     icon: any;
-}
+    register: UseFormRegisterReturn;
+};
 
 export const MyTextField: FC<MyTextFieldProps> = ({
     label,
     helperText,
     icon,
+    register,
     ...props
 }) => {
     return (
@@ -60,6 +69,7 @@ export const MyTextField: FC<MyTextFieldProps> = ({
                         {label}
                     </Box>
                 }
+                {...register}
                 {...props}
             />
         </Box>
