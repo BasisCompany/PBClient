@@ -64,6 +64,7 @@ export const PasswordTextField: FC<PasswordTextFieldProps> = ({
                 }
                 helperText={
                     <Typography
+                        component="span"
                         sx={{
                             marginLeft: "-14px",
                             fontSize: "15px",

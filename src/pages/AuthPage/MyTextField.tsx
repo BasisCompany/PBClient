@@ -40,6 +40,7 @@ export const MyTextField: FC<MyTextFieldProps> = ({
                 margin="normal"
                 helperText={
                     <Typography
+                        component="span"
                         sx={{
                             marginLeft: "-14px",
                             fontSize: "15px",
