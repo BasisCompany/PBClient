@@ -1,4 +1,5 @@
-import { Dispatch, DispatchWithoutAction, FC, SetStateAction } from "react";
+import { DispatchWithoutAction, FC } from "react";
+import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import {
     Box,
     Button,
@@ -8,11 +9,13 @@ import {
     Typography,
     styled,
 } from "@mui/material";
-import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import * as z from "zod";
 import { PromptBuyIcon } from "../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
-import { SubmitHandler, useForm } from "react-hook-form";
 
 export const CustomButton = styled(Button)(({ theme }) => ({
     fontSize: 15,
@@ -30,10 +33,20 @@ interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;
 }
 
-interface LoginFormInputs {
-    email: string;
-    password: string;
-}
+const loginSchema = z.object({
+    email: z
+        .string()
+        .nonempty("Пожалуйста, укажите свою почту.")
+        .email("Пожалуйста, укажите верную почту")
+        .min(3, "Почта должна содержать больше 3 символов"),
+    password: z
+        .string()
+        .nonempty("Пожалуйста, укажите свой пароль.")
+        .min(8, "Пароль должен быть больше 8 символов")
+        .max(35, "Пароль должен быть меньше 35 символов"),
+});
+
+type LoginSchema = z.infer<typeof loginSchema>;
 
 export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
     const {
@@ -41,10 +54,16 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm<LoginFormInputs>({ mode: "onBlur" });
+    } = useForm<LoginSchema>({
+        mode: "onBlur",
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+        resolver: zodResolver(loginSchema),
+    });
 
-    const onSubmit: SubmitHandler<LoginFormInputs> = (data) =>
+    const onSubmit: SubmitHandler<LoginSchema> = (data) => {
         console.log(data);
+        reset();
+    };
 
     return (
         <Card
@@ -130,40 +149,22 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                                 }}
                             />
                         }
-                        register={register("email", {
-                            required: "Пожалуйста, укажите свою почту.",
-                            minLength: {
-                                value: 3,
-                                message:
-                                    "Почта должна содержать больше 3 символов",
-                            },
-                        })}
+                        register={register("email")}
                         label="Email"
                         error={!!errors.email}
                         helperText={
                             errors.email
-                                ? errors.email.message || ""
+                                ? errors?.email?.message || ""
                                 : "Ваша почта"
                         }
                     />
                     <PasswordTextField
-                        register={register("password", {
-                            required: "Пожалуйста, укажите свой пароль.",
-                            minLength: {
-                                value: 8,
-                                message: "Пароль должен быть больше 8 символов",
-                            },
-                            maxLength: {
-                                value: 35,
-                                message:
-                                    "Пароль должен быть меньше 35 символов",
-                            },
-                        })}
+                        register={register("password")}
                         label="Пароль"
                         error={!!errors.password}
                         helperText={
                             errors.password
-                                ? errors.password.message || ""
+                                ? errors?.password?.message || ""
                                 : "Ваш пароль"
                         }
                     />
