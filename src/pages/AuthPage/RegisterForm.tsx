@@ -1,4 +1,4 @@
-import { Dispatch, DispatchWithoutAction, FC, SetStateAction } from "react";
+import { DispatchWithoutAction, FC } from "react";
 import {
     Box,
     Card,
@@ -8,18 +8,62 @@ import {
     Link,
     Typography,
 } from "@mui/material";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import { CustomButton } from "./LoginForm";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
 }
 
+const registerSchema = z
+    .object({
+        username: z
+            .string()
+            .nonempty("Пожалуйста, укажите свой никнейм.")
+            .min(3, "Никнейм должен быть больше 3 символов")
+            .max(20, "Никнейм должен быть меньше 20 символов"),
+        email: z
+            .string()
+            .nonempty("Пожалуйста, укажите свою почту.")
+            .email("Пожалуйста, укажите верную почту")
+            .min(3, "Почта должна содержать больше 3 символов"),
+        password: z
+            .string()
+            .nonempty("Пожалуйста, укажите свой пароль.")
+            .min(8, "Пароль должен быть больше 8 символов")
+            .max(35, "Пароль должен быть меньше 35 символов"),
+        passwordConfirm: z.string().nonempty("Пожалуйста, подтвердите пароль."),
+    })
+    .refine((data) => data.password === data.passwordConfirm, {
+        message: "Пароли не совпадают",
+        path: ["passwordConfirm"],
+    });
+
+type RegisterSchema = z.infer<typeof registerSchema>;
+
 export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<RegisterSchema>({
+        mode: "onBlur",
+        resolver: zodResolver(registerSchema),
+    });
+
+    const onSubmit: SubmitHandler<RegisterSchema> = (data) => {
+        console.log(data);
+        reset();
+    };
+
     return (
         <Card
             sx={{
@@ -123,10 +167,10 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                         </Typography>
                     </Box>
                 </Box>
-                <form>
+                <form
+                    onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
+                >
                     <MyTextField
-                        label="Никнейм"
-                        helperText="Ваше имя"
                         icon={
                             <PersonOutlineRoundedIcon
                                 sx={{
@@ -137,10 +181,16 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                                 }}
                             />
                         }
+                        register={register("username")}
+                        label="Никнейм"
+                        error={!!errors.username}
+                        helperText={
+                            errors?.username
+                                ? errors?.username?.message || ""
+                                : "Придумайте никнейм"
+                        }
                     />
                     <MyTextField
-                        label="Email"
-                        helperText="Ваша почта"
                         icon={
                             <MailOutlineRoundedIcon
                                 sx={{
@@ -151,10 +201,35 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                                 }}
                             />
                         }
+                        register={register("email")}
+                        label="Email"
+                        error={!!errors.email}
+                        helperText={
+                            errors.email
+                                ? errors?.email?.message || ""
+                                : "Ваша почта"
+                        }
                     />
-                    <PasswordTextField />
-                    <PasswordTextField confirm />
-
+                    <PasswordTextField
+                        register={register("password")}
+                        label="Пароль"
+                        error={!!errors.password}
+                        helperText={
+                            errors.password
+                                ? errors?.password?.message || ""
+                                : "Ваш пароль"
+                        }
+                    />
+                    <PasswordTextField
+                        register={register("passwordConfirm")}
+                        label="Пароль"
+                        error={!!errors.passwordConfirm}
+                        helperText={
+                            errors.passwordConfirm
+                                ? errors?.passwordConfirm?.message || ""
+                                : "Подтвердите пароль"
+                        }
+                    />
                     <Box
                         sx={{
                             border: "1px solid #fff",

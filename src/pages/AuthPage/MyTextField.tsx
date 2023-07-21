@@ -7,7 +7,7 @@ import {
     styled,
 } from "@mui/material";
 import { UseFormRegisterReturn } from "react-hook-form";
-
+//TODO[Артем]: Исправить синий фон при автоподстановке полей ввода
 export const CustomTextField = styled(TextField)(({ theme }) => ({
     "& label.Mui-focused": {
         color: theme.palette.text.primary,

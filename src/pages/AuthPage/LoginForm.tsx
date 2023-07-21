@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import * as z from "zod";
 import { PromptBuyIcon } from "../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
@@ -56,7 +55,6 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
         formState: { errors },
     } = useForm<LoginSchema>({
         mode: "onBlur",
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
         resolver: zodResolver(loginSchema),
     });
 

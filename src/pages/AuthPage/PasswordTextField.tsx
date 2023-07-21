@@ -12,14 +12,12 @@ import { CustomTextField } from "./MyTextField";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 type PasswordTextFieldProps = TextFieldProps & {
-    confirm?: boolean;
     label: string;
     helperText: string;
     register: UseFormRegisterReturn;
 };
 
 export const PasswordTextField: FC<PasswordTextFieldProps> = ({
-    confirm,
     label,
     helperText,
     register,
@@ -66,7 +64,7 @@ export const PasswordTextField: FC<PasswordTextFieldProps> = ({
                                 marginBottom: "4px",
                             }}
                         />
-                        {confirm ? "Подтверждение" : label}
+                        {label}
                     </Box>
                 }
                 helperText={
@@ -77,7 +75,7 @@ export const PasswordTextField: FC<PasswordTextFieldProps> = ({
                             fontSize: "15px",
                         }}
                     >
-                        {confirm ? "Повтор пароля" : helperText}
+                        {helperText}
                     </Typography>
                 }
                 {...register}
