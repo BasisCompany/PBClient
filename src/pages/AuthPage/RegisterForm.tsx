@@ -17,6 +17,7 @@ import { CustomButton } from "./LoginForm";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useRegisterMutation } from "./store/authApi";
 
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -46,7 +47,7 @@ const registerSchema = z
         path: ["passwordConfirm"],
     });
 
-type RegisterSchema = z.infer<typeof registerSchema>;
+export type RegisterSchema = z.infer<typeof registerSchema>;
 
 export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
     const {
@@ -59,9 +60,18 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
         resolver: zodResolver(registerSchema),
     });
 
-    const onSubmit: SubmitHandler<RegisterSchema> = (data) => {
-        console.log(data);
-        reset();
+    const [registerMut] = useRegisterMutation();
+
+    const onSubmit: SubmitHandler<RegisterSchema> = async (data) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { passwordConfirm, ...dataReq } = data;
+        try {
+            await registerMut(dataReq).unwrap();
+            toggleLogin();
+            reset();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -248,7 +258,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                             justifyContent: "end",
                         }}
                     >
-                        <CustomButton variant="outlined">
+                        <CustomButton type="submit" variant="outlined">
                             Зарегистрироваться
                         </CustomButton>
                     </Box>
