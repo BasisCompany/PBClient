@@ -15,6 +15,7 @@ import * as z from "zod";
 import { PromptBuyIcon } from "../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
+import { useLoginMutation } from "./store/authApi";
 
 export const CustomButton = styled(Button)(({ theme }) => ({
     fontSize: 15,
@@ -45,7 +46,7 @@ const loginSchema = z.object({
         .max(35, "Пароль должен быть меньше 35 символов"),
 });
 
-type LoginSchema = z.infer<typeof loginSchema>;
+export type LoginSchema = z.infer<typeof loginSchema>;
 
 export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
     const {
@@ -58,9 +59,15 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
         resolver: zodResolver(loginSchema),
     });
 
-    const onSubmit: SubmitHandler<LoginSchema> = (data) => {
-        console.log(data);
-        reset();
+    const [login] = useLoginMutation();
+    //TODO[Саша]: Добавить загрузку при нажатие на кнопку вход
+    const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
+        try {
+            await login(data).unwrap();
+            reset();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
