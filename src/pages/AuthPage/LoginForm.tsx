@@ -52,7 +52,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
     });
 
     const [login, { isLoading }] = useLoginMutation();
-    //TODO[Саша]: Добавить загрузку при нажатие на кнопку вход
+
     const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
         try {
             await login(data).unwrap();
