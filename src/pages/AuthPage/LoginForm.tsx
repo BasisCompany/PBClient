@@ -16,6 +16,9 @@ import { PromptBuyIcon } from "../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { useLoginMutation } from "./store/authApi";
+import { useAppDispatch } from "../../redux/hooks";
+import { setSnackbar } from "../../UI/Snackbar/snackbarSlice";
+import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
 
 export const CustomButton = styled(Button)(({ theme }) => ({
     fontSize: 15,
@@ -49,6 +52,8 @@ const loginSchema = z.object({
 export type LoginSchema = z.infer<typeof loginSchema>;
 
 export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
+    const [showAlert] = useSnackbar();
+
     const {
         register,
         handleSubmit,
@@ -66,6 +71,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
             await login(data).unwrap();
             reset();
         } catch (error) {
+            showAlert("error", "Произошла ошибка! Повторите попытку позже");
             console.log(error);
         }
     };
