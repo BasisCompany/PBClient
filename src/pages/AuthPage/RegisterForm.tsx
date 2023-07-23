@@ -13,11 +13,11 @@ import * as z from "zod";
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
-import { CustomButton } from "./LoginForm";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRegisterMutation } from "./store/authApi";
+import { LoadingButton } from "../../UI/LoadingButton";
 
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -60,7 +60,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
         resolver: zodResolver(registerSchema),
     });
 
-    const [registerMut] = useRegisterMutation();
+    const [registerMut, { isLoading }] = useRegisterMutation();
 
     const onSubmit: SubmitHandler<RegisterSchema> = async (data) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -258,9 +258,13 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                             justifyContent: "end",
                         }}
                     >
-                        <CustomButton type="submit" variant="outlined">
+                        <LoadingButton
+                            type="submit"
+                            variant="outlined"
+                            isLoading={isLoading}
+                        >
                             Зарегистрироваться
-                        </CustomButton>
+                        </LoadingButton>
                     </Box>
                 </form>
                 <Box

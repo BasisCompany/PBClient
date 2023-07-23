@@ -16,21 +16,8 @@ import { PromptBuyIcon } from "../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { useLoginMutation } from "./store/authApi";
-import { useAppDispatch } from "../../redux/hooks";
-import { setSnackbar } from "../../UI/Snackbar/snackbarSlice";
 import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
-
-export const CustomButton = styled(Button)(({ theme }) => ({
-    fontSize: 15,
-    width: "100%",
-    minHeight: "50px",
-    borderRadius: "15px",
-    color: theme.palette.text.primary,
-    backgroundColor: theme.palette.secondary.main,
-    "&:hover": {
-        backgroundColor: theme.palette.secondary.main,
-    },
-}));
+import { LoadingButton } from "../../UI/LoadingButton";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -64,7 +51,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
         resolver: zodResolver(loginSchema),
     });
 
-    const [login] = useLoginMutation();
+    const [login, { isLoading }] = useLoginMutation();
     //TODO[Саша]: Добавить загрузку при нажатие на кнопку вход
     const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
         try {
@@ -196,9 +183,13 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                             justifyContent: "end",
                         }}
                     >
-                        <CustomButton type="submit" variant="outlined">
+                        <LoadingButton
+                            type="submit"
+                            variant="outlined"
+                            isLoading={isLoading}
+                        >
                             Войти
-                        </CustomButton>
+                        </LoadingButton>
                     </Box>
                 </form>
                 <Box
