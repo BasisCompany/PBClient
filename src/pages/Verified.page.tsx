@@ -66,7 +66,7 @@ export const VerifiedPage = () => {
                                 cursor: "default",
                             }}
                         >
-                            Почта потдверждена
+                            Почта подтверждена
                         </Typography>
 
                         <Typography
@@ -77,7 +77,6 @@ export const VerifiedPage = () => {
                                 visibility: "visible",
                                 maxHeight: "150px",
                                 WebkitLineClamp: "2",
-
                                 WebkitBoxOrient: "vertical",
                                 textOverflow: "ellipsis",
                                 overflow: "hidden",
