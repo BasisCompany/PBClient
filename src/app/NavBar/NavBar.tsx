@@ -1,7 +1,7 @@
 import { Box, AppBar, Toolbar } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useAuth } from "../../hooks/useAuth";
-import { NavBarIconMenu } from "./NavBarIconMenu";
+import { NavBarIconMenu } from "./IconMenu/NavBarIconMenu";
 import { NavBarLogo } from "./NavBarLogo";
 import { NavBarSearch } from "./NavBarSearch";
 import { SideBarButton } from "./SideBarButton";

@@ -51,4 +51,21 @@ export const getGlobalStyles = (mode: EThemeMode) => ({
         mode: mode as "light" | "dark",
         ...(mode === EThemeMode.light ? lightStyles : darkStyles),
     },
+    components: componentsStyleOverrides,
 });
+
+const componentsStyleOverrides = {
+    MuiTooltip: {
+        styleOverrides: {
+            tooltip: () => {
+                return {
+                    "&.MuiTooltip-tooltip": {
+                        "&.MuiTooltip-tooltipPlacementBottom": {
+                            marginTop: "6px",
+                        },
+                    },
+                };
+            },
+        },
+    },
+};
