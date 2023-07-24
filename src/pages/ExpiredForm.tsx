@@ -1,25 +1,6 @@
+import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
-import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    CardHeader,
-    Typography,
-    styled,
-} from "@mui/material";
-
-const ColorButton = styled(Button)(({ theme }) => ({
-    fontSize: 15,
-    width: "100%",
-    minHeight: "50px",
-    borderRadius: "15px",
-    color: theme.palette.text.primary,
-    backgroundColor: theme.palette.secondary.main,
-    "&:hover": {
-        backgroundColor: theme.palette.secondary.main,
-    },
-}));
+import { LinkButton } from "../UI/Buttons/LinkButton";
 
 export const ExpiredForm = () => {
     return (
@@ -54,8 +35,7 @@ export const ExpiredForm = () => {
                     }
                 />
             </Box>
-
-            <CardContent sx={{}}>
+            <CardContent>
                 <Box
                     sx={{
                         display: "flex",
@@ -93,11 +73,10 @@ export const ExpiredForm = () => {
                             cursor: "default",
                         }}
                     >
-                        Пожалуйста, залогиньтесь снова, чтобы получить новое
-                        письмо подтверждения.
+                        Пожалуйста, зарегистрируйтесь снова, чтобы получить
+                        новое письмо подтверждения.
                     </Typography>
                 </Box>
-
                 <Box
                     sx={{
                         marginTop: "30px",
@@ -105,9 +84,9 @@ export const ExpiredForm = () => {
                         justifyContent: "end",
                     }}
                 >
-                    <ColorButton variant="outlined">
+                    <LinkButton to="/login" variant="outlined">
                         Войти в аккаунт
-                    </ColorButton>
+                    </LinkButton>
                 </Box>
             </CardContent>
         </Card>

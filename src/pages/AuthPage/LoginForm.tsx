@@ -1,23 +1,15 @@
-import { DispatchWithoutAction, FC } from "react";
-import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
-import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    Link,
-    Typography,
-    styled,
-} from "@mui/material";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
+import { Box, Card, CardContent, Link, Typography } from "@mui/material";
+import { DispatchWithoutAction, FC } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
+import { LoadingButton } from "../../UI/Buttons/LoadingButton";
+import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
 import { PromptBuyIcon } from "../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { useLoginMutation } from "./store/authApi";
-import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
-import { LoadingButton } from "../../UI/LoadingButton";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -58,6 +50,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
             await login(data).unwrap();
             reset();
         } catch (error) {
+            //TODO[Саша]: Обработка ошибок
             showAlert("error", "Произошла ошибка! Повторите попытку позже");
             console.log(error);
         }
@@ -236,13 +229,14 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                         Нет аккаунта?
                     </Typography>
                     <Link
+                        component="span"
                         variant="h6"
-                        href="#"
                         underline="none"
                         onClick={toggleLogin}
                         sx={{
                             fontSize: 14,
                             color: "text.primary",
+                            cursor: "pointer",
                         }}
                     >
                         Зарегистрируйтесь

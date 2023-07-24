@@ -17,7 +17,8 @@ import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRegisterMutation } from "./store/authApi";
-import { LoadingButton } from "../../UI/LoadingButton";
+import { LoadingButton } from "../../UI/Buttons/LoadingButton";
+import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
 
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -50,6 +51,7 @@ const registerSchema = z
 export type RegisterSchema = z.infer<typeof registerSchema>;
 
 export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
+    const [showAlert] = useSnackbar();
     const {
         register,
         handleSubmit,
@@ -67,9 +69,14 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
         const { passwordConfirm, ...dataReq } = data;
         try {
             await registerMut(dataReq).unwrap();
+            showAlert(
+                "success",
+                `Письмо с подтверждением отправлено на почту: ${dataReq.email}`
+            );
             toggleLogin();
             reset();
         } catch (error) {
+            showAlert("error", "Произошла ошибка! Повторите попытку позже");
             console.log(error);
         }
     };
@@ -292,13 +299,14 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                         Уже есть аккаунт?
                     </Typography>
                     <Link
+                        component="span"
                         variant="h6"
-                        href="#"
                         underline="none"
                         onClick={toggleLogin}
                         sx={{
                             fontSize: 14,
                             color: "text.primary",
+                            cursor: "pointer",
                         }}
                     >
                         Войдите

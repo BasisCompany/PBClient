@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import { Box, Card, Container } from "@mui/material";
 import { AuthAbout } from "./AuthAbout";
 import { RegisterForm } from "./RegisterForm";
