@@ -3,7 +3,7 @@ import { FC } from "react";
 import { Route, Routes } from "react-router";
 import { AppLayout } from "../AppLayout";
 import { TestPage } from "../../trash/TestPage";
-import { ProfilePage } from "../../pages/Profile.page";
+import { ProfilePage } from "../../pages/ProfilePage/Profile.page";
 import { AuthPage } from "../../pages/AuthPage/Auth.page";
 import { ExpiredPage } from "../../pages/Expired.page";
 import { VerifiedPage } from "../../pages/Verified.page";
