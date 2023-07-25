@@ -13,7 +13,7 @@ export const HeaderAbout: React.FC<HeaderAboutProps> = ({ name, status }) => {
             sx={{
                 mt: { xs: "80px", md: "0%" },
                 //bgcolor: "#869",
-                width: { xs: "100%", md: "37%" },
+                width: { xs: "100%", md: "47%" },
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",

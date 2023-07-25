@@ -12,7 +12,7 @@ export const HeaderAvatar: React.FC<HeaderAvatarProps> = ({
             sx={{
                 //bgcolor: "#588",
                 position: "relative",
-                width: { xs: "100%", md: "30%" },
+                width: { xs: "100%", md: "20%" },
                 display: "flex",
                 justifyContent: "center",
             }}
@@ -25,8 +25,8 @@ export const HeaderAvatar: React.FC<HeaderAvatarProps> = ({
 
                     transform: "translateY(-60%)",
 
-                    width: { xs: "25%", md: "60%" },
-                    minWidth: "180px",
+                    width: { xs: "25%", md: "80%" },
+                    minWidth: { xs: "180px", md: "120px" },
                 }}
             >
                 <Avatar
