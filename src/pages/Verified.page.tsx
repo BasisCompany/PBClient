@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
-import { LinkButton } from "../UI/Buttons/LinkButton";
+import { CustomLinkButton } from "../UI/Buttons/LinkButton";
 
 export const VerifiedPage = () => {
     return (
@@ -93,9 +93,9 @@ export const VerifiedPage = () => {
                             justifyContent: "end",
                         }}
                     >
-                        <LinkButton to="/login" variant="outlined">
+                        <CustomLinkButton to="/login" variant="outlined">
                             Войти в аккаунт
-                        </LinkButton>
+                        </CustomLinkButton>
                     </Box>
                 </CardContent>
             </Card>

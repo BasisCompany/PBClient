@@ -1,5 +1,4 @@
 import { styled, Button } from "@mui/material";
-import { LinkProps } from "react-router-dom";
 
 export const CustomButton = styled(Button)(({ theme }) => ({
     fontSize: 15,
