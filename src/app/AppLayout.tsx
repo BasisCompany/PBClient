@@ -2,10 +2,7 @@ import { Box, BoxProps, styled } from "@mui/material";
 import { Outlet } from "react-router";
 import { SideBar } from "./SideBar/SideBar";
 import { NavBar } from "./NavBar/NavBar";
-
-const FlexBox = styled(Box)<BoxProps>(() => ({
-    display: "flex",
-}));
+import { FlexBox } from "../UI/FlexBox";
 
 const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
     flexGrow: 1,

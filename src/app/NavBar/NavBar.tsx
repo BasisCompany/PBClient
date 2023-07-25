@@ -1,20 +1,18 @@
-import { Box, AppBar, Toolbar } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useAuth } from "../../hooks/useAuth";
 import { NavBarIconMenu } from "./IconMenu/NavBarIconMenu";
 import { NavBarLogo } from "./NavBarLogo";
 import { NavBarSearch } from "./NavBarSearch";
 import { SideBarButton } from "./SideBarButton";
+import { Spacer } from "../../UI/Spacer";
+import { NavBarLogin } from "./IconMenu/NavBarLogin";
 
 const CustomAppBar = styled(AppBar)(({ theme }) => ({
     zIndex: theme.zIndex.drawer + 1,
     boxShadow: "none",
     backgroundImage: "none",
 }));
-
-const Spacer = styled(Box)({
-    flexGrow: 1,
-});
 
 export const NavBar = () => {
     const { isUserAuthenticated } = useAuth();
@@ -27,7 +25,7 @@ export const NavBar = () => {
                 <NavBarLogo />
                 <NavBarSearch />
                 <Spacer />
-                <NavBarIconMenu />
+                {isUserAuthenticated ? <NavBarIconMenu /> : <NavBarLogin />}
             </Toolbar>
         </CustomAppBar>
     );
