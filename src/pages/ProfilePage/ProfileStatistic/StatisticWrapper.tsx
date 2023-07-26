@@ -1,4 +1,5 @@
-import { Card, Box } from "@mui/material";
+import { Box } from "@mui/material";
+import { statisticListContent } from "./statisticListContent";
 
 export interface StatisticWrapperProps {
     children: React.ReactNode;
@@ -12,7 +13,10 @@ export const StatisticWrapper: React.FC<StatisticWrapperProps> = ({
             sx={{
                 position: "relative",
                 width: { xs: "100%", lg: "20%" },
-                height: { sm: "75px", lg: "360px" },
+                height: {
+                    sm: "75px",
+                    lg: `${statisticListContent.length * 80 + 40}px`,
+                },
                 display: "flex",
                 flexDirection: { md: "row", lg: "column" },
                 borderRadius: "15px",
