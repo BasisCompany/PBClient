@@ -3,7 +3,7 @@ import { styled, Box, BoxProps } from "@mui/material";
 export const CenterBox = styled(Box)<BoxProps>(({ theme }) => ({
     background: theme.palette.background.default,
     position: "relative",
-    minHeight: "calc(100vh - 80px)",
+    height: "80vh",
     overflow: "hidden",
     display: "flex",
     justifyContent: "center",

@@ -1,11 +1,14 @@
 import { Route, Routes } from "react-router";
 import { AppLayout } from "../Layouts/AppLayout";
-import { TestPage } from "../../trash/TestPage";
+import { AuthLayout } from "../Layouts/AuthLayout";
 import { ProfilePage } from "../../pages/ProfilePage/Profile.page";
 import { AuthPage } from "../../pages/AuthPage/Auth.page";
-import { ExpiredPage } from "../../pages/Expired.page";
-import { VerifiedPage } from "../../pages/Verified.page";
-import { AuthLayout } from "../Layouts/AuthLayout";
+import { ExpiredPage } from "../../pages/AuthPage/Expired.page";
+import { VerifiedPage } from "../../pages/AuthPage/Verified.page";
+import { ForgotPasswordPage } from "../../pages/AuthPage/ForgotPassword.page";
+import { ResetPasswordPage } from "../../pages/AuthPage/ResetPassword.page";
+
+import { TestPage } from "../../trash/TestPage";
 
 export const AppRoutes = () => {
     return (
@@ -18,6 +21,14 @@ export const AppRoutes = () => {
                     <Route path="login" element={<AuthPage />} />
                     <Route path="expired" element={<ExpiredPage />} />
                     <Route path="verified" element={<VerifiedPage />} />
+                    <Route
+                        path="reset-password/:resetToken"
+                        element={<ResetPasswordPage />}
+                    />
+                    <Route
+                        path="forgot-password"
+                        element={<ForgotPasswordPage />}
+                    />
                 </Route>
             </Route>
             <Route path="*" element={<h1>Not Found</h1>} />

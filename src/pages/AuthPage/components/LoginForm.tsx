@@ -4,12 +4,12 @@ import { Box, Card, CardContent, Link, Typography } from "@mui/material";
 import { DispatchWithoutAction, FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
-import { LoadingButton } from "../../UI/Buttons/LoadingButton";
-import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
-import { PromptBuyIcon } from "../../assets/PromptBuyIcon";
+import { LoadingButton } from "../../../UI/Buttons/LoadingButton";
+import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
+import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
-import { useLoginMutation } from "./store/authApi";
+import { useLoginMutation } from "../store/authApi";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;

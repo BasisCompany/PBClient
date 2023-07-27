@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import AuthPageImage from "./../../assets/AuthPageImage.png";
+import AuthPageImage from "./../../../assets/AuthPageImage.png";
 
 export const AuthAbout = () => {
     return (

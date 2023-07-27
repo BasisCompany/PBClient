@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
-import { CenterBox } from "../UI/CenterBox";
-import { CustomLinkButton } from "../UI/Buttons/LinkButton";
+import { CenterBox } from "../../UI/CenterBox";
+import { CustomLinkButton } from "../../UI/Buttons/LinkButton";
 
 export const ExpiredPage: FC = () => {
     return (

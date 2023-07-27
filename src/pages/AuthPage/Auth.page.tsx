@@ -1,8 +1,8 @@
 import { useReducer } from "react";
 import { Box, Card } from "@mui/material";
-import { AuthAbout } from "./AuthAbout";
-import { LoginForm } from "./LoginForm";
-import { RegisterForm } from "./RegisterForm";
+import { AuthAbout } from "./components/AuthAbout";
+import { LoginForm } from "./components/LoginForm";
+import { RegisterForm } from "./components/RegisterForm";
 
 export const AuthPage = () => {
     const [showLogin, toggleLogin] = useReducer((show) => !show, true);

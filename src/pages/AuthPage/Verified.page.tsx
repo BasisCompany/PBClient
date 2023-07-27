@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
-import { CustomLinkButton } from "../UI/Buttons/LinkButton";
-import { CenterBox } from "../UI/CenterBox";
+import { CustomLinkButton } from "../../UI/Buttons/LinkButton";
+import { CenterBox } from "../../UI/CenterBox";
 
 export const VerifiedPage = () => {
     return (
@@ -31,7 +31,7 @@ export const VerifiedPage = () => {
                             <MarkEmailReadOutlinedIcon
                                 sx={{
                                     color: "#00FF00",
-                                    fontSize: 70,
+                                    fontSize: 65,
                                 }}
                             />
                         }

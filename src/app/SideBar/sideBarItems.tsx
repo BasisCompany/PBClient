@@ -3,6 +3,8 @@ import StorefrontRoundedIcon from "@mui/icons-material/StorefrontRounded";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import QuizRoundedIcon from "@mui/icons-material/QuizRounded";
 
+import DeveloperModeIcon from "@mui/icons-material/DeveloperMode";
+
 export const sideBarItems = [
     {
         title: "Главная",
@@ -47,5 +49,49 @@ export const sideBarItems = [
             />
         ),
         to: "/login",
+    },
+    {
+        title: "expired",
+        icon: (
+            <DeveloperModeIcon
+                sx={{
+                    fontSize: 26,
+                }}
+            />
+        ),
+        to: "/expired",
+    },
+    {
+        title: "verified",
+        icon: (
+            <DeveloperModeIcon
+                sx={{
+                    fontSize: 26,
+                }}
+            />
+        ),
+        to: "/verified",
+    },
+    {
+        title: "ForgotPwd",
+        icon: (
+            <DeveloperModeIcon
+                sx={{
+                    fontSize: 26,
+                }}
+            />
+        ),
+        to: "/forgot-password",
+    },
+    {
+        title: "ResetPwd",
+        icon: (
+            <DeveloperModeIcon
+                sx={{
+                    fontSize: 26,
+                }}
+            />
+        ),
+        to: "/reset-password/testtoken",
     },
 ];

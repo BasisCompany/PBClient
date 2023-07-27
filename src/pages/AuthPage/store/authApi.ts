@@ -1,7 +1,8 @@
-import { RegisterSchema } from "./../RegisterForm";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "../../../redux/api/baseQuery";
-import { LoginSchema } from "../LoginForm";
+import { LoginSchema } from "../components/LoginForm";
+import { RegisterSchema } from "../components/RegisterForm";
+import { ResetPasswordSchema } from "../ResetPassword.page";
 
 type LoginResponse = {
     id: number;
@@ -13,6 +14,10 @@ type LoginResponse = {
 type LoginRequest = LoginSchema;
 
 type RegisterRequest = Omit<RegisterSchema, "passwordConfirm">;
+
+type ResetPasswordRequest = {
+    resetPasswordToken: string;
+} & Omit<ResetPasswordSchema, "passwordConfirm">;
 
 export const authApi = createApi({
     reducerPath: "authApi",
@@ -32,7 +37,22 @@ export const authApi = createApi({
                 body,
             }),
         }),
+        forgotPassword: builder.query<void, string>({
+            query: (email) => `auth/forgot-password/${email}`,
+        }),
+        resetPassword: builder.mutation<void, ResetPasswordRequest>({
+            query: (body) => ({
+                url: "auth/reset-password",
+                method: "POST",
+                body,
+            }),
+        }),
     }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const {
+    useLoginMutation,
+    useRegisterMutation,
+    useLazyForgotPasswordQuery,
+    useResetPasswordMutation,
+} = authApi;

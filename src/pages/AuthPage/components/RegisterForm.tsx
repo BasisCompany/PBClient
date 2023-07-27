@@ -16,9 +16,9 @@ import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useRegisterMutation } from "./store/authApi";
-import { LoadingButton } from "../../UI/Buttons/LoadingButton";
-import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
+import { useRegisterMutation } from "../store/authApi";
+import { LoadingButton } from "../../../UI/Buttons/LoadingButton";
+import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
 
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
