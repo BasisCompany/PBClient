@@ -1,20 +1,11 @@
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
 import { CustomLinkButton } from "../UI/Buttons/LinkButton";
+import { CenterBox } from "../UI/CenterBox";
 
 export const VerifiedPage = () => {
     return (
-        <Box
-            sx={{
-                background: "theme.palette.background.default",
-                position: "relative",
-                minHeight: "calc(100vh - 80px)",
-                overflow: "hidden",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-            }}
-        >
+        <CenterBox>
             <Card
                 sx={{
                     margin: "auto",
@@ -99,6 +90,6 @@ export const VerifiedPage = () => {
                     </Box>
                 </CardContent>
             </Card>
-        </Box>
+        </CenterBox>
     );
 };

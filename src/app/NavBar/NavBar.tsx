@@ -16,7 +16,6 @@ const CustomAppBar = styled(AppBar)(({ theme }) => ({
 
 export const NavBar = () => {
     const { isUserAuthenticated } = useAuth();
-    console.log(isUserAuthenticated);
 
     return (
         <CustomAppBar>

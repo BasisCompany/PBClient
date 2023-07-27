@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
@@ -7,7 +6,7 @@ import { AppRoutes } from "./Routes/AppRoutes";
 import { GlobalTheme } from "./Theme/GlobalTheme";
 import { AppSnackbar } from "../UI/Snackbar/AppSnackbar";
 
-export const App: FC = () => {
+export const App = () => {
     return (
         <Provider store={store}>
             <BrowserRouter>
