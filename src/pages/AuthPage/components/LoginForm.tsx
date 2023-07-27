@@ -60,7 +60,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
         <Card
             sx={{
                 width: { xs: "100%", sm: "100%", md: "350px" },
-                height: "830px",
+                height: "810px",
                 borderRadius: "15px",
                 bgcolor: "primary.dark",
             }}
@@ -206,7 +206,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                 </Box>
                 <Box
                     sx={{
-                        marginTop: "140px",
+                        marginTop: "130px",
                         display: "flex",
                         justifyContent: "center",
                     }}

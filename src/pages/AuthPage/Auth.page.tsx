@@ -10,11 +10,11 @@ export const AuthPage = () => {
     return (
         <Card
             sx={{
-                width: "100%",
-                height: "100%",
+                maxHeight: "820px",
                 display: "flex",
                 justifyContent: "center",
                 backgroundImage: "none",
+                boxShadow: "none",
             }}
         >
             <AuthAbout />
