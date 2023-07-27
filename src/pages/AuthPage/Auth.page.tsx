@@ -14,6 +14,7 @@ export const AuthPage = () => {
                 height: "100%",
                 display: "flex",
                 justifyContent: "center",
+                backgroundImage: "none",
             }}
         >
             <AuthAbout />
