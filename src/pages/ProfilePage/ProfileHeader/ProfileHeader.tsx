@@ -11,8 +11,8 @@ export const ProfileHeader = () => {
             <HeaderCover urlCoverImage="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg" />
             <HeaderInformation>
                 <HeaderAvatar urlAvatarImage="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg" />
-                <HeaderAbout name={"Molot"} status={"Flex"} />
-                <HeaderButtons />
+                {/* <HeaderAbout name={"Molot"} status={"Flex"} />
+                <HeaderButtons /> */}
             </HeaderInformation>
         </HeaderWrapper>
     );
