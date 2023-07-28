@@ -1,8 +1,10 @@
+import { LinkProps as RouterLinkProps } from "react-router-dom";
 import { Tab, TabProps } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { LinkBehavior } from "../../../../UI/Route/LinkBehavior";
 
-export const ContentTab = styled((props: TabProps) => (
-    <Tab disableRipple {...props} />
+export const ContentTab = styled((props: TabProps & RouterLinkProps) => (
+    <Tab component={LinkBehavior} disableRipple {...props} />
 ))(({ theme }) => ({
     textTransform: "none",
     paddingLeft: "0",

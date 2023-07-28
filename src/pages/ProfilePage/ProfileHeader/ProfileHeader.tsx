@@ -4,6 +4,7 @@ import { HeaderAvatar } from "./HeaderAvatar";
 import { HeaderAbout } from "./HeaderAbout";
 import { HeaderButtons } from "./HeaderButtons";
 import { HeaderWrapper } from "./HeaderWrapper";
+import { memo } from "react";
 
 export const ProfileHeader = () => {
     return (

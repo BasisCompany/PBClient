@@ -1,17 +1,8 @@
 import { Tabs } from "@mui/material";
-import { tabsClasses } from "@mui/material/Tabs";
+import { TabsProps, tabsClasses } from "@mui/material/Tabs";
 import { styled } from "@mui/material/styles";
 
-interface ContentTabsProps {
-    children?: React.ReactNode;
-    value: number;
-    variant: "standard" | "scrollable" | "fullWidth" | undefined;
-    scrollButtons: boolean | "auto" | undefined;
-    allowScrollButtonsMobile: boolean;
-    onChange: (event: React.SyntheticEvent, newValue: number) => void;
-}
-
-export const ContentTabs = styled((props: ContentTabsProps) => (
+export const ContentTabs = styled((props: TabsProps) => (
     <Tabs
         {...props}
         TabIndicatorProps={{

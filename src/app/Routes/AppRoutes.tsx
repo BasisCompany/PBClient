@@ -15,7 +15,12 @@ export const AppRoutes = () => {
         <Routes>
             <Route path="/" element={<AppLayout />}>
                 <Route index element={<TestPage />} />
-                <Route path="profile" element={<ProfilePage />} />
+                <Route path="profile/*" element={<ProfilePage />}>
+                    <Route index element={<h1>Карточки </h1>} />
+                    <Route path="settings" element={<h1>Настройки </h1>} />
+                    <Route path="statistics" element={<h1>Статистика </h1>} />
+                    <Route path="comments" element={<h1>Комментарии </h1>} />
+                </Route>
                 <Route path="marketplace" element={<AuthPage />} />
                 <Route element={<AuthLayout />}>
                     <Route path="login" element={<AuthPage />} />

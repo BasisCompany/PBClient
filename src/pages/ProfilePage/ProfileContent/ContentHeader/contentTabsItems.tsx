@@ -6,6 +6,8 @@ import ChatBubbleRoundedIcon from "@mui/icons-material/ChatBubbleRounded";
 
 export const contentTabsItems = [
     {
+        id: 0,
+        to: "",
         icon: (
             <IntegrationInstructionsRoundedIcon
                 sx={{
@@ -17,6 +19,8 @@ export const contentTabsItems = [
         label: "Промты",
     },
     {
+        id: 1,
+        to: "settings",
         icon: (
             <SettingsRoundedIcon
                 sx={{
@@ -28,6 +32,8 @@ export const contentTabsItems = [
         label: "Настройки",
     },
     {
+        id: 2,
+        to: "statistics",
         icon: (
             <DataUsageRoundedIcon
                 sx={{
@@ -39,6 +45,8 @@ export const contentTabsItems = [
         label: "Статистика",
     },
     {
+        id: 3,
+        to: "statistics",
         icon: (
             <PersonAddRoundedIcon
                 sx={{
@@ -50,6 +58,8 @@ export const contentTabsItems = [
         label: "Друзья",
     },
     {
+        id: 4,
+        to: "comments",
         icon: (
             <ChatBubbleRoundedIcon
                 sx={{

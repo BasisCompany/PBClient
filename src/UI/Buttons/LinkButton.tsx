@@ -1,14 +1,8 @@
-import { FC, forwardRef } from "react";
+import { FC } from "react";
 import { Button, ButtonProps } from "@mui/material";
-import {
-    LinkProps as RouterLinkProps,
-    Link as RouterLink,
-} from "react-router-dom";
+import { LinkProps as RouterLinkProps } from "react-router-dom";
 import { CustomButton } from "./CustomButton";
-
-const LinkBehavior = forwardRef<any, RouterLinkProps>((props, ref) => (
-    <RouterLink ref={ref} {...props} />
-));
+import { LinkBehavior } from "../Route/LinkBehavior";
 
 export const LinkButton: FC<ButtonProps & RouterLinkProps> = ({
     children,

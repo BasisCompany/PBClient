@@ -7,6 +7,7 @@ import { NavBarSearch } from "./NavBarSearch";
 import { SideBarButton } from "./SideBarButton";
 import { Spacer } from "../../UI/Spacer";
 import { NavBarLogin } from "./IconMenu/NavBarLogin";
+import { memo } from "react";
 
 const CustomAppBar = styled(AppBar)(({ theme }) => ({
     zIndex: theme.zIndex.drawer + 1,
@@ -14,7 +15,7 @@ const CustomAppBar = styled(AppBar)(({ theme }) => ({
     backgroundImage: "none",
 }));
 
-export const NavBar = () => {
+export const NavBar = memo(() => {
     const { isUserAuthenticated } = useAuth();
 
     return (
@@ -28,4 +29,4 @@ export const NavBar = () => {
             </Toolbar>
         </CustomAppBar>
     );
-};
+});

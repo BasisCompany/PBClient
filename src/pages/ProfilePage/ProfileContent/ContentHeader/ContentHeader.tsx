@@ -1,15 +1,26 @@
+import { SyntheticEvent, useState } from "react";
+import { useLocation } from "react-router";
 import { Box } from "@mui/material";
-import React from "react";
 import { ContentTabs } from "./ContentTabs";
 import { ContentTab } from "./ContentTab";
 import { contentTabsItems } from "./contentTabsItems";
 
-export const ContentHeader = () => {
-    const [value, setValue] = React.useState(0);
+const getPathId = (path: string): number => {
+    const lastUrlSegment = path.split("/").pop();
+    return lastUrlSegment === "profile"
+        ? 0
+        : contentTabsItems.find((el) => el.to === lastUrlSegment)?.id || 0;
+};
 
-    const handleChange = (_: React.SyntheticEvent, newValue: number) => {
+export const ContentHeader = () => {
+    const location = useLocation();
+
+    const [value, setValue] = useState<number>(getPathId(location.pathname));
+
+    const handleChange = (_: SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
+
     return (
         <Box
             sx={{
@@ -27,8 +38,8 @@ export const ContentHeader = () => {
                 scrollButtons="auto"
                 allowScrollButtonsMobile
             >
-                {contentTabsItems.map((item) => (
-                    <ContentTab {...item} />
+                {contentTabsItems.map(({ id, to, ...item }) => (
+                    <ContentTab key={id} to={to} {...item} />
                 ))}
             </ContentTabs>
         </Box>

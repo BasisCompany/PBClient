@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { Outlet } from "react-router";
 
 export const ContentMain = () => {
     return (
@@ -9,6 +10,8 @@ export const ContentMain = () => {
                 borderRadius: "15px",
                 mt: "15px",
             }}
-        ></Box>
+        >
+            <Outlet />
+        </Box>
     );
 };
