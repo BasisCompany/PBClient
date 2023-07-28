@@ -1,10 +1,13 @@
 import { StatisticWrapper } from "./StatisticWrapper";
-import { StatisticList } from "./StatisticList";
+import { StatisticItem } from "./StatisticItem";
+import { statisticListContent } from "./statisticListContent";
 
 export const ProfileStatistic = () => {
     return (
         <StatisticWrapper>
-            <StatisticList />
+            {statisticListContent.map(({ id, ...item }) => (
+                <StatisticItem key={id} {...item} />
+            ))}
         </StatisticWrapper>
     );
 };

@@ -1,5 +1,5 @@
+import { FC } from "react";
 import { Box, Typography } from "@mui/material";
-import React from "react";
 import { statisticListContent } from "./statisticListContent";
 
 export interface StatisticItemProps {
@@ -10,7 +10,7 @@ export interface StatisticItemProps {
     unit: string;
 }
 
-export const StatisticItem: React.FC<StatisticItemProps> = ({
+export const StatisticItem: FC<StatisticItemProps> = ({
     borderColor,
     iconColor,
     icon,
