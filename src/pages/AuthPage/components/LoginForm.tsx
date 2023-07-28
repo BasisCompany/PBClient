@@ -10,6 +10,7 @@ import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { useLoginMutation } from "../store/authApi";
+import { ApiError, getErrorMessage } from "../../../app/Error/apiError";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -50,8 +51,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
             await login(data).unwrap();
             reset();
         } catch (error) {
-            //TODO[Саша]: Обработка ошибок
-            showAlert("error", "Произошла ошибка! Повторите попытку позже");
+            showAlert("error", getErrorMessage(error as ApiError));
             console.log(error);
         }
     };

@@ -19,6 +19,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useRegisterMutation } from "../store/authApi";
 import { LoadingButton } from "../../../UI/Buttons/LoadingButton";
 import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
+import { getErrorMessage, ApiError } from "../../../app/Error/apiError";
 
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -76,7 +77,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
             toggleLogin();
             reset();
         } catch (error) {
-            showAlert("error", "Произошла ошибка! Повторите попытку позже");
+            showAlert("error", getErrorMessage(error as ApiError));
             console.log(error);
         }
     };
