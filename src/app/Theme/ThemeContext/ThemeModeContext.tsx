@@ -1,9 +1,9 @@
-import { Dispatch, createContext } from "react";
+import { DispatchWithoutAction, createContext } from "react";
 import { EThemeMode } from "../enums/themeMode.enum";
 
-interface IThemeModeContext {
+export interface IThemeModeContext {
     mode: EThemeMode;
-    toggleThemeMode: Dispatch<EThemeMode>;
+    toggleThemeMode: DispatchWithoutAction;
 }
 
 export const ThemeModeContext = createContext<IThemeModeContext | null>(null);

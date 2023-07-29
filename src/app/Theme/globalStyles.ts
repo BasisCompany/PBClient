@@ -48,7 +48,7 @@ const darkStyles = {
 
 export const getGlobalStyles = (mode: EThemeMode) => ({
     palette: {
-        mode: mode as "light" | "dark",
+        mode,
         ...(mode === EThemeMode.light ? lightStyles : darkStyles),
     },
     components: componentsStyleOverrides,

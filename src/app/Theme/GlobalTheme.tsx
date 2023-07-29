@@ -17,31 +17,25 @@ interface IGlobalThemeProps {
 export const GlobalTheme: FC<IGlobalThemeProps> = ({ children }) => {
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
     const [mode, setMode] = useLocalStorageState<EThemeMode>(
-        EThemeMode.system,
+        prefersDarkMode ? EThemeMode.dark : EThemeMode.light,
         "theme"
     );
 
     const setupThemeMode = useMemo(
         () => ({
-            toggleThemeMode: (mode: EThemeMode) => setMode(mode),
+            toggleThemeMode: () => {
+                setMode(
+                    mode === EThemeMode.light
+                        ? EThemeMode.dark
+                        : EThemeMode.light
+                );
+            },
             mode: mode,
         }),
         [mode, setMode]
     );
 
-    const theme = useMemo(
-        () =>
-            createTheme(
-                getGlobalStyles(
-                    mode === EThemeMode.system
-                        ? prefersDarkMode
-                            ? EThemeMode.dark
-                            : EThemeMode.light
-                        : mode
-                )
-            ),
-        [mode, prefersDarkMode]
-    );
+    const theme = useMemo(() => createTheme(getGlobalStyles(mode)), [mode]);
 
     return (
         <ThemeModeContext.Provider value={setupThemeMode}>

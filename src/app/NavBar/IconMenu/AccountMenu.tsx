@@ -1,4 +1,10 @@
 import { FC } from "react";
+import { Logout, Settings } from "@mui/icons-material";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
+import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import {
     Avatar,
     Badge,
@@ -10,13 +16,10 @@ import {
     Typography,
     styled,
 } from "@mui/material";
-import { useMobileDevice } from "../../../hooks/useMobileDevice";
-import { Logout, Settings } from "@mui/icons-material";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { CustomButton } from "../../../UI/Buttons/CustomButton";
 import { Spacer } from "../../../UI/Spacer";
+import { useMobileDevice } from "../../../hooks/useMobileDevice";
+import { useThemeMode } from "../../Theme/ThemeContext/useThemeMode";
 
 const StyledMenu = styled(Menu)({
     "& .MuiPaper-root": {
@@ -31,10 +34,11 @@ interface AccountMenuProps {
 
 export const AccountMenu: FC<AccountMenuProps> = ({ anchorEl, onClose }) => {
     const isMobile = useMobileDevice();
+    const { mode, toggleThemeMode } = useThemeMode();
+
     const open = Boolean(anchorEl);
     return (
         <StyledMenu anchorEl={anchorEl} open={open} onClose={onClose}>
-            {/* <Divider /> */}
             <Box
                 sx={{
                     backgroundColor: "#1a1a1b",
@@ -112,9 +116,19 @@ export const AccountMenu: FC<AccountMenuProps> = ({ anchorEl, onClose }) => {
                         </ListItemIcon>
                         Уведомления
                     </MenuItem>
-                    <Divider />
                 </>
             )}
+            <MenuItem onClick={toggleThemeMode}>
+                <ListItemIcon>
+                    {mode === "light" ? (
+                        <DarkModeRoundedIcon fontSize="small" />
+                    ) : (
+                        <LightModeRoundedIcon />
+                    )}
+                </ListItemIcon>
+                {mode === "light" ? "Тёмная тема" : "Светлая тема"}
+            </MenuItem>
+            <Divider />
             <MenuItem onClick={onClose}>
                 <ListItemIcon>
                     <Settings fontSize="small" />

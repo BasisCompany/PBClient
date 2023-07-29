@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { IconButton, Badge, Avatar, Tooltip, Box } from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import { Avatar, Badge, IconButton, Tooltip } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { AccountMenu } from "./AccountMenu";
-import { useMobileDevice } from "../../../hooks/useMobileDevice";
 import { FlexBox } from "../../../UI/FlexBox";
+import { useMobileDevice } from "../../../hooks/useMobileDevice";
+import { AccountMenu } from "./AccountMenu";
 
 export const NavBarIconMenu = () => {
     const isMobile = useMobileDevice();
