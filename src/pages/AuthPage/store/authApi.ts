@@ -28,6 +28,7 @@ export const authApi = createApi({
                 url: "auth/login",
                 method: "POST",
                 body,
+                credentials: "include",
             }),
         }),
         register: builder.mutation<void, RegisterRequest>({
@@ -47,6 +48,10 @@ export const authApi = createApi({
                 body,
             }),
         }),
+        //TODO: Delete
+        me: builder.query<void, void>({
+            query: () => `auth/me`,
+        }),
     }),
 });
 
@@ -55,4 +60,5 @@ export const {
     useRegisterMutation,
     useLazyForgotPasswordQuery,
     useResetPasswordMutation,
+    useLazyMeQuery,
 } = authApi;

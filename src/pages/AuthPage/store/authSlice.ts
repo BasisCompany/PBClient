@@ -30,6 +30,9 @@ export const authSlice = createSlice({
         toggleIsUserAuthenticated: (state) => {
             state.isUserAuthenticated = !state.isUserAuthenticated;
         },
+        setUserToken: (state, action: PayloadAction<string>) => {
+            state.token = action.payload;
+        },
         setInitialState: () => initialState,
     },
     extraReducers: (builder) => {
@@ -52,6 +55,7 @@ export const {
     setUserAuthenticated,
     setInitialState,
     toggleIsUserAuthenticated,
+    setUserToken,
 } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;

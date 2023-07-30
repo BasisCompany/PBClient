@@ -4,12 +4,25 @@ import { Box, Typography } from "@mui/material";
 import { useAppDispatch } from "../redux/hooks";
 import { toggleIsUserAuthenticated } from "../pages/AuthPage/store/authSlice";
 import { useAuth } from "../hooks/useAuth";
+import { useLazyMeQuery } from "../pages/AuthPage/store/authApi";
 
 export const TestPage = () => {
     const dispatch = useAppDispatch();
     const { isUserAuthenticated } = useAuth();
+
     const handleAuthButton = () => {
         dispatch(toggleIsUserAuthenticated());
+    };
+
+    const [getMe] = useLazyMeQuery();
+
+    const handleTestQueryButton = async () => {
+        try {
+            const result = await getMe().unwrap();
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -25,9 +38,11 @@ export const TestPage = () => {
                     Авторизация
                 </CustomButton>
             </Box>
-            <PromptCard />
-            <PromptCard />
-            <PromptCard />
+            <Box sx={{ width: "200px", m: 5, textAlign: "center" }}>
+                <CustomButton onClick={handleTestQueryButton}>
+                    Тестовый запрос на сервер
+                </CustomButton>
+            </Box>
             <PromptCard />
         </>
     );
