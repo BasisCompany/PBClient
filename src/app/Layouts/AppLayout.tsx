@@ -4,6 +4,7 @@ import { FlexBox } from "../../UI/FlexBox";
 import { NavBar } from "../NavBar/NavBar";
 import { SideBar } from "../SideBar/SideBar";
 import { useMeQuery } from "../../pages/AuthPage/store/authApi";
+import { LoadingPage } from "../../pages/LoadingPage/Loading.page";
 
 const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
     flexGrow: 1,
@@ -18,7 +19,11 @@ export const AppLayout = () => {
 
     //TODO[Артем]: Стилизовать
     if (isLoading) {
-        return <>Loading</>;
+        return (
+            <>
+                <LoadingPage />
+            </>
+        );
     }
 
     return (
