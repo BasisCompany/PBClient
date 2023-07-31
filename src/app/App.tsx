@@ -12,12 +12,12 @@ export const App = () => {
     return (
         <Provider store={store}>
             <BrowserRouter>
-                <ErrorBoundary FallbackComponent={FallbackError}>
-                    <GlobalTheme>
+                <GlobalTheme>
+                    <ErrorBoundary FallbackComponent={FallbackError}>
                         <AppSnackbar />
                         <AppRoutes />
-                    </GlobalTheme>
-                </ErrorBoundary>
+                    </ErrorBoundary>
+                </GlobalTheme>
             </BrowserRouter>
         </Provider>
     );
