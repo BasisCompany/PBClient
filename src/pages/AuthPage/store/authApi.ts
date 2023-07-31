@@ -1,5 +1,5 @@
+import { baseQuery, baseQueryWithReAuth } from "./../../../redux/api/baseQuery";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "../../../redux/api/baseQuery";
 import { LoginSchema } from "../components/LoginForm";
 import { RegisterSchema } from "../components/RegisterForm";
 import { ResetPasswordSchema } from "../ResetPassword.page";
@@ -48,9 +48,19 @@ export const authApi = createApi({
                 body,
             }),
         }),
-        //TODO: Delete
-        me: builder.query<void, void>({
-            query: () => `auth/me`,
+    }),
+});
+
+type MeResponse = Omit<LoginResponse, "token">;
+
+export const initAuthApi = createApi({
+    reducerPath: "initAuthApi",
+    baseQuery: baseQueryWithReAuth,
+    endpoints: (builder) => ({
+        me: builder.query<MeResponse, void>({
+            query: () => ({
+                url: "auth/me",
+            }),
         }),
     }),
 });
@@ -60,5 +70,6 @@ export const {
     useRegisterMutation,
     useLazyForgotPasswordQuery,
     useResetPasswordMutation,
-    useLazyMeQuery,
 } = authApi;
+
+export const { useLazyMeQuery, useMeQuery } = initAuthApi;

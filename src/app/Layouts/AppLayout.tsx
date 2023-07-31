@@ -3,6 +3,7 @@ import { Outlet } from "react-router";
 import { FlexBox } from "../../UI/FlexBox";
 import { NavBar } from "../NavBar/NavBar";
 import { SideBar } from "../SideBar/SideBar";
+import { useMeQuery } from "../../pages/AuthPage/store/authApi";
 
 const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
     flexGrow: 1,
@@ -13,6 +14,13 @@ const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
 }));
 
 export const AppLayout = () => {
+    const { isLoading } = useMeQuery();
+
+    //TODO[Артем]: Стилизовать
+    if (isLoading) {
+        return <>Loading</>;
+    }
+
     return (
         <>
             <NavBar />

@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../../redux/store";
-import { authApi } from "./authApi";
+import { authApi, initAuthApi } from "./authApi";
 
 export interface UserDetails {
     id: number;
@@ -41,6 +41,17 @@ export const authSlice = createSlice({
             (state, { payload }) => {
                 state.isUserAuthenticated = true;
                 state.token = payload.token;
+                state.user = {
+                    id: payload.id,
+                    email: payload.email,
+                    username: payload.username,
+                } as UserDetails;
+            }
+        );
+        builder.addMatcher(
+            initAuthApi.endpoints.me.matchFulfilled,
+            (state, { payload }) => {
+                state.isUserAuthenticated = true;
                 state.user = {
                     id: payload.id,
                     email: payload.email,
