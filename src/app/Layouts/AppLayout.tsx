@@ -19,11 +19,7 @@ export const AppLayout = () => {
 
     //TODO[Артем]: Стилизовать
     if (isLoading) {
-        return (
-            <>
-                <LoadingPage />
-            </>
-        );
+        return <LoadingPage />;
     }
 
     return (
