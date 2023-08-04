@@ -7,6 +7,7 @@ import { ExpiredPage } from "../../pages/AuthPage/Expired.page";
 import { VerifiedPage } from "../../pages/AuthPage/Verified.page";
 import { ForgotPasswordPage } from "../../pages/AuthPage/ForgotPassword.page";
 import { ResetPasswordPage } from "../../pages/AuthPage/ResetPassword.page";
+import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileContent/ContentMain/ContentMainPrompts/ContentMainPrompts";
 
 import { TestPage } from "../../trash/TestPage";
 
@@ -16,7 +17,7 @@ export const AppRoutes = () => {
             <Route path="/" element={<AppLayout />}>
                 <Route index element={<TestPage />} />
                 <Route path="profile/*" element={<ProfilePage />}>
-                    <Route index element={<h1>Карточки </h1>} />
+                    <Route index element={<ContentMainPrompts />} />
                     <Route path="settings" element={<h1>Настройки </h1>} />
                     <Route path="statistics" element={<h1>Статистика </h1>} />
                     <Route path="comments" element={<h1>Комментарии </h1>} />
