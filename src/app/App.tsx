@@ -6,7 +6,7 @@ import { store } from "../redux/store";
 import { AppRoutes } from "./Routes/AppRoutes";
 import { GlobalTheme } from "./Theme/GlobalTheme";
 import { AppSnackbar } from "../UI/Snackbar/AppSnackbar";
-import { FallbackError } from "./Error/FallbackError";
+import { FallbackError } from "../modules/Error/FallbackError";
 
 export const App = () => {
     return (

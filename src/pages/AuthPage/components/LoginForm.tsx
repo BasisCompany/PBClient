@@ -10,7 +10,7 @@ import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { useLoginMutation } from "../store/authApi";
-import { ApiError, getErrorMessage } from "../../../app/Error/apiError";
+import { ApiError, getErrorMessage } from "../../../modules/Error/apiError";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;

@@ -1,11 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import navbarReducer from "../app/store/navbarSlice";
+import navbarReducer from "../modules/NavBar/store/navbarSlice";
 import authReducer from "../pages/AuthPage/store/authSlice";
 import { authApi, initAuthApi } from "../pages/AuthPage/store/authApi";
 import snackbarReducer from "../UI/Snackbar/snackbarSlice";
+import {
+    navbarInitState,
+    navbarlistenerMiddleware,
+} from "../modules/NavBar/store/navbarMiddleware";
 
 export const store = configureStore({
+    preloadedState: {
+        navbar: navbarInitState(),
+    },
     reducer: {
         [authApi.reducerPath]: authApi.reducer,
         [initAuthApi.reducerPath]: initAuthApi.reducer,
@@ -17,6 +24,7 @@ export const store = configureStore({
         getDefaultMiddleware().concat([
             authApi.middleware,
             initAuthApi.middleware,
+            navbarlistenerMiddleware.middleware,
         ]),
 });
 

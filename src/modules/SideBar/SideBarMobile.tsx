@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
-import { selectNavbarStatus, setNavbarOpen } from "../store/navbarSlice";
+import { selectNavbarStatus, setNavbarOpen } from "../NavBar/store/navbarSlice";
 import { SideBarContent } from "./SideBarContent";
 
 const CustomDrawer = styled(Drawer)({
