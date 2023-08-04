@@ -15,12 +15,12 @@ const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
 }));
 
 export const AppLayout = () => {
-    const { isLoading } = useMeQuery();
+    // const { isLoading } = useMeQuery();
 
-    //TODO[Артем]: Стилизовать
-    if (isLoading) {
-        return <LoadingPage />;
-    }
+    // //TODO[Артем]: Стилизовать
+    // if (isLoading) {
+    //     return <LoadingPage />;
+    // }
 
     return (
         <>

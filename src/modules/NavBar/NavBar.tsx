@@ -5,7 +5,6 @@ import { NavBarIconMenu } from "./IconMenu/NavBarIconMenu";
 import { NavBarLogo } from "./NavBarLogo";
 import { NavBarSearch } from "./NavBarSearch";
 import { SideBarButton } from "./SideBarButton";
-import { Spacer } from "../../UI/Spacer";
 import { NavBarLogin } from "./IconMenu/NavBarLogin";
 import { memo } from "react";
 
