@@ -1,8 +1,8 @@
 import { BoxProps, Container, styled } from "@mui/material";
 import { Outlet } from "react-router";
 import { FlexBox } from "../../UI/FlexBox";
-import { NavBar } from "../NavBar/NavBar";
-import { SideBar } from "../SideBar/SideBar";
+import { NavBar } from "../../modules/NavBar/NavBar";
+import { SideBar } from "../../modules/SideBar/SideBar";
 import { useMeQuery } from "../../pages/AuthPage/store/authApi";
 import { LoadingPage } from "../../pages/LoadingPage/Loading.page";
 

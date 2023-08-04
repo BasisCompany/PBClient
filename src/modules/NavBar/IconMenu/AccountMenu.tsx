@@ -19,7 +19,7 @@ import {
 import { CustomButton } from "../../../UI/Buttons/CustomButton";
 import { Spacer } from "../../../UI/Spacer";
 import { useMobileDevice } from "../../../hooks/useMobileDevice";
-import { useThemeMode } from "../../Theme/ThemeContext/useThemeMode";
+import { useThemeMode } from "../../../app/Theme/ThemeContext/useThemeMode";
 
 const StyledMenu = styled(Menu)({
     "& .MuiPaper-root": {

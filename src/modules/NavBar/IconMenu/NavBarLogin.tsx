@@ -3,7 +3,7 @@ import { LinkButton } from "../../../UI/Buttons/LinkButton";
 import { Tooltip, IconButton, Badge } from "@mui/material";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
-import { useThemeMode } from "../../Theme/ThemeContext/useThemeMode";
+import { useThemeMode } from "../../../app/Theme/ThemeContext/useThemeMode";
 
 export const NavBarLogin = () => {
     const { mode, toggleThemeMode } = useThemeMode();

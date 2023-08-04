@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import navbarReducer from "../app/NavBar/store/navbarSlice";
+import navbarReducer from "../modules/NavBar/store/navbarSlice";
 import authReducer from "../pages/AuthPage/store/authSlice";
 import { authApi, initAuthApi } from "../pages/AuthPage/store/authApi";
 import snackbarReducer from "../UI/Snackbar/snackbarSlice";
 import {
     navbarInitState,
     navbarlistenerMiddleware,
-} from "./../app/NavBar/store/navbarMiddleware";
+} from "../modules/NavBar/store/navbarMiddleware";
 
 export const store = configureStore({
     preloadedState: {
