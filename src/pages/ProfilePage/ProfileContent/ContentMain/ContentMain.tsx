@@ -6,9 +6,11 @@ export const ContentMain = () => {
         <Box
             sx={{
                 height: "500px",
-                //bgcolor: "#727 ",
+                //bgcolor: "primary.main",
+                borderRadius: "15px",
                 //pl: "15px",
                 pl: { lg: "15px" },
+                //pr: { lg: "15px" },
                 pt: "15px",
                 mt: "15px",
                 color: "white",

@@ -1,5 +1,6 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha, InputBase } from "@mui/material";
+import { Spacer } from "../../UI/Spacer";
 
 const SearchInput = styled("div")(({ theme }) => ({
     position: "relative",
@@ -43,14 +44,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export const NavBarSearch = () => {
     return (
-        <SearchInput>
-            <SearchIconWrapper>
-                <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-            />
-        </SearchInput>
+        <>
+            <SearchInput>
+                <SearchIconWrapper>
+                    <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                    placeholder="Search…"
+                    inputProps={{ "aria-label": "search" }}
+                />
+            </SearchInput>
+            <Spacer />
+        </>
     );
 };

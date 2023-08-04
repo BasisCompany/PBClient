@@ -24,7 +24,6 @@ export const NavBar = memo(() => {
                 <SideBarButton />
                 <NavBarLogo />
                 <NavBarSearch />
-                <Spacer />
                 {isUserAuthenticated ? <NavBarIconMenu /> : <NavBarLogin />}
             </Toolbar>
         </CustomAppBar>
