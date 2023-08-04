@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 import { Link as RouterLink } from "react-router-dom";
 import MuiListItemButton from "@mui/material/ListItemButton";
 import { useAppSelector } from "../../redux/hooks";
-import { selectNavbarStatus } from "../store/navbarSlice";
+import { selectNavbarStatus } from "../NavBar/store/navbarSlice";
 import { sideBarItems } from "./sideBarItems";
 
 const StyledListItemButton = styled(MuiListItemButton)`

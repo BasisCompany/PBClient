@@ -3,7 +3,7 @@ import MuiDrawer from "@mui/material/Drawer";
 import { Theme, styled } from "@mui/material/styles";
 
 import { useAppSelector } from "../../redux/hooks";
-import { selectNavbarStatus } from "../store/navbarSlice";
+import { selectNavbarStatus } from "../NavBar/store/navbarSlice";
 import { SideBarContent } from "./SideBarContent";
 import { SideBarContentMin } from "./SideBarContentMin";
 
