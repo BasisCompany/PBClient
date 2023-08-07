@@ -14,15 +14,14 @@ import {
     ListItemButton,
     ListItemIcon,
     Popper,
-    Typography,
     styled,
 } from "@mui/material";
 import { FC } from "react";
 import { CustomButton } from "../../../../UI/Buttons/CustomButton";
+import { ColorTypography } from "../../../../UI/ColorTypography";
 import { Spacer } from "../../../../UI/Spacer";
 import { useThemeMode } from "../../../../app/Theme/ThemeContext/useThemeMode";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
-import { ColorTypography } from "../../../../UI/ColorTypography";
 
 interface AccountMenuProps {
     isOpen: boolean;
