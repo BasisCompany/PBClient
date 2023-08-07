@@ -91,10 +91,10 @@ const CustomToggleButton = styled((props: CustomToggleButtonProps) => (
         fontSize: "2rem",
         fill: theme.palette.text.secondary,
     },
-    "&:hover": {
-        borderBottom: `5px solid rgba(${colorbutton}, 1)`,
-        transition: "all 0.1s ease-out",
-    },
+    // "&:hover": {
+    //     borderBottom: `5px solid rgba(${colorbutton}, 1)`,
+    //     transition: "all 0.1s ease-out",
+    // },
     "&:hover:not(.Mui-selected)": {
         //backgroundColor: `rgba(${colorbutton}, 0.2)`,
         backgroundColor: "transparent",
