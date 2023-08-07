@@ -1,6 +1,6 @@
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import { LinkButton } from "../../../UI/Buttons/LinkButton";
-import { Tooltip, IconButton, Badge } from "@mui/material";
+import { Tooltip, IconButton } from "@mui/material";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import { useThemeMode } from "../../../app/Theme/ThemeContext/useThemeMode";

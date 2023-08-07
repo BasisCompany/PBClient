@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import {
     styled,
@@ -11,7 +11,11 @@ import {
     Popper,
 } from "@mui/material";
 
-const SearchInput = styled((props: BoxProps & { isOpen: boolean }) => (
+interface SearchInputProps extends BoxProps {
+    isOpen: boolean;
+}
+
+const SearchInput = styled(({ isOpen: _, ...props }: SearchInputProps) => (
     <Box {...props} />
 ))(({ theme, isOpen }) => ({
     position: "relative",
@@ -23,7 +27,6 @@ const SearchInput = styled((props: BoxProps & { isOpen: boolean }) => (
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
-
     [theme.breakpoints.up("sm")]: {
         marginLeft: theme.spacing(3),
         width: isOpen ? "700px" : "280px",
@@ -54,19 +57,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const NavBarSearch = () => {
-    const [searchOpen, setSearchOpen] = useState(false);
-    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 
-    const handleSearchOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setSearchOpen(true);
+    const handleSearchOpen = (event: MouseEvent<HTMLDivElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
     const handleSearchClose = () => {
-        setSearchOpen(false);
         setAnchorEl(null);
     };
 
+    const searchOpen = Boolean(anchorEl);
     const id = searchOpen ? "simple-popover" : undefined;
 
     return (
