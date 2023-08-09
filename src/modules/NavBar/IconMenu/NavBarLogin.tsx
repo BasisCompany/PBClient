@@ -31,6 +31,7 @@ export const NavBarLogin = () => {
                 startIcon={<PersonRoundedIcon />}
                 sx={{
                     ml: 1,
+                    minWidth: "90px",
                 }}
             >
                 Войти
