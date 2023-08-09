@@ -9,6 +9,7 @@ import { CenterBox } from "../../UI/CenterBox";
 import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
 import { MyTextField } from "./components/MyTextField";
 import { useLazyForgotPasswordQuery } from "./store/authApi";
+import { SmartCaptcha } from "@yandex/smart-captcha";
 
 const forgotPasswordSchema = z.object({
     email: z
@@ -135,6 +136,13 @@ export const ForgotPasswordPage = () => {
                                     : "Ваша почта"
                             }
                         />
+                        <Box
+                            sx={{
+                                marginTop: "10px",
+                            }}
+                        >
+                            <SmartCaptcha sitekey="<ключ_клиента>" />
+                        </Box>
                         <Box
                             sx={{
                                 marginTop: "20px",

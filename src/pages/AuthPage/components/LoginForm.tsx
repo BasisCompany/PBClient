@@ -12,6 +12,7 @@ import { PasswordTextField } from "./PasswordTextField";
 import { useLoginMutation } from "../store/authApi";
 import { ApiError, getErrorMessage } from "../../../modules/Error/apiError";
 import { SmartCaptcha } from "@yandex/smart-captcha";
+import { LinkBehavior } from "../../../UI/Route/LinkBehavior";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -193,8 +194,9 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                     }}
                 >
                     <Link
+                        component={LinkBehavior}
+                        to="/forgot-password"
                         variant="h6"
-                        href="#"
                         underline="none"
                         sx={{
                             fontSize: 14,
