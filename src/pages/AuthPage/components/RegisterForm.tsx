@@ -20,6 +20,7 @@ import { useRegisterMutation } from "../store/authApi";
 import { LoadingButton } from "../../../UI/Buttons/LoadingButton";
 import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
 import { getErrorMessage, ApiError } from "../../../modules/Error/apiError";
+import { SmartCaptcha } from "@yandex/smart-captcha";
 
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -250,14 +251,12 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                     />
                     <Box
                         sx={{
-                            border: "1px solid #fff",
-                            height: "80px",
                             marginTop: "15px",
                             display: "flex",
                             justifyContent: "center",
                         }}
                     >
-                        {/* <ReCAPTCHA sitekey=" " ref={captchaRef} /> */}
+                        <SmartCaptcha sitekey="<ключ_клиента>" />
                     </Box>
                     <Box
                         sx={{
@@ -277,7 +276,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                 </form>
                 <Box
                     sx={{
-                        marginTop: "40px",
+                        marginTop: "30px",
                         display: "flex",
                         justifyContent: "center",
                     }}

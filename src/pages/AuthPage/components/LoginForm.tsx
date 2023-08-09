@@ -11,6 +11,7 @@ import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { useLoginMutation } from "../store/authApi";
 import { ApiError, getErrorMessage } from "../../../modules/Error/apiError";
+import { SmartCaptcha } from "@yandex/smart-captcha";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -89,7 +90,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                 </Box>
             </Box>
             <CardContent>
-                <Box sx={{ mb: "65px", mt: "20px" }}>
+                <Box sx={{ mb: "50px", mt: "20px" }}>
                     <Box sx={{ textAlign: "center" }}>
                         <Typography
                             component="span"
@@ -159,16 +160,15 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                                 : "Ваш пароль"
                         }
                     />
-
-                    {/* <Box
-                    sx={{
-                        marginTop: "15px",
-                        display: "flex",
-                        justifyContent: "center",
-                    }}
+                    <Box
+                        sx={{
+                            marginTop: "15px",
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
                     >
-                        <ReCAPTCHA sitekey=" " ref={captchaRef} />
-                    </Box> */}
+                        <SmartCaptcha sitekey="<ключ_клиента>" />
+                    </Box>
                     <Box
                         sx={{
                             marginTop: "30px",
@@ -206,7 +206,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                 </Box>
                 <Box
                     sx={{
-                        marginTop: "130px",
+                        marginTop: "40px",
                         display: "flex",
                         justifyContent: "center",
                     }}
