@@ -4,6 +4,8 @@ import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+
 import {
     Avatar,
     Badge,
@@ -109,6 +111,11 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                                 </ColorTypography>
                             </Box>
                         </Box>
+                        <ChevronRightIcon
+                            sx={{
+                                color: "text.primary",
+                            }}
+                        />
                     </ListItemButton>
                     <Box
                         sx={{
@@ -162,6 +169,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                 <ListItemButton
                     onClick={toggleThemeMode}
                     sx={{ color: "text.primary" }}
+                    selected
                 >
                     <ListItemIcon>
                         {mode === "light" ? (
