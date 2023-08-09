@@ -9,7 +9,9 @@ import {
     Backdrop,
     Typography,
     Popper,
+    Container,
 } from "@mui/material";
+import { useMobileDevice } from "../../hooks/useMobileDevice";
 
 interface SearchInputProps extends BoxProps {
     isOpen: boolean;
@@ -27,10 +29,13 @@ const SearchInput = styled(({ isOpen: _, ...props }: SearchInputProps) => (
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
+    zIndex: isOpen ? 1300 : 1,
     [theme.breakpoints.up("sm")]: {
         marginLeft: theme.spacing(3),
+        width: isOpen ? "100%" : "200px",
+    },
+    [theme.breakpoints.up("lg")]: {
         width: isOpen ? "700px" : "280px",
-        zIndex: isOpen ? 1300 : 1,
     },
 }));
 
@@ -57,27 +62,31 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const NavBarSearch = () => {
-    const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
+    const isMobile = useMobileDevice();
+    const [popperAnchor, setPopperAnchor] = useState<HTMLDivElement | null>(
+        null
+    );
 
     const handleSearchOpen = (event: MouseEvent<HTMLDivElement>) => {
-        setAnchorEl(event.currentTarget);
+        setPopperAnchor(event.currentTarget);
     };
 
     const handleSearchClose = () => {
-        setAnchorEl(null);
+        setPopperAnchor(null);
     };
 
-    const searchOpen = Boolean(anchorEl);
+    const searchOpen = Boolean(popperAnchor);
     const id = searchOpen ? "simple-popover" : undefined;
 
     return (
         <Box
             sx={{
                 width: "100%",
-                ...(searchOpen && {
-                    display: "flex",
-                    justifyContent: "center",
-                }),
+                ...(searchOpen &&
+                    !isMobile && {
+                        display: "flex",
+                        justifyContent: "center",
+                    }),
             }}
         >
             <SearchInput isOpen={searchOpen} onClick={handleSearchOpen}>
@@ -93,12 +102,15 @@ export const NavBarSearch = () => {
             <Popper
                 id={id}
                 open={searchOpen}
-                anchorEl={anchorEl}
+                anchorEl={popperAnchor}
+                onClick={isMobile ? handleSearchClose : undefined}
                 placement="bottom"
                 sx={{
                     zIndex: 1250,
                     backgroundColor: "primary.main",
                     borderRadius: "5px",
+                    maxWidth: "700px",
+                    width: isMobile ? "100%" : "80%",
                 }}
                 modifiers={[
                     {
@@ -109,9 +121,9 @@ export const NavBarSearch = () => {
                     },
                 ]}
             >
-                <Box
+                <Container
+                    maxWidth="md"
                     sx={{
-                        width: "700px",
                         height: "50px",
                         display: "flex",
                         justifyContent: "center",
@@ -125,7 +137,7 @@ export const NavBarSearch = () => {
                     >
                         Что будем искать?
                     </Typography>
-                </Box>
+                </Container>
             </Popper>
             <Backdrop
                 sx={{
