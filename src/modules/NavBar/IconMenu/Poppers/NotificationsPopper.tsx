@@ -2,13 +2,15 @@ import {
     Badge,
     Box,
     Button,
+    Divider,
     IconButton,
     Popper,
     Typography,
 } from "@mui/material";
-import { FC } from "react";
+import { FC, useState } from "react";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import TuneIcon from "@mui/icons-material/Tune";
+import { Notification } from "./Notification";
 
 interface NotificationsPopperProps {
     isOpen: boolean;
@@ -78,26 +80,31 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                         <ChecklistIcon />
                     </IconButton>
                 </Box>
+                <Divider />
                 {[...new Array(5)].map((_, i) => (
-                    <Box
-                        key={i}
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "60px",
-                            border: "1px solid red",
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                color: "text.primary",
-                                textTransform: "none",
-                            }}
-                        >
-                            Уведомление {i + 1}
-                        </Typography>
-                    </Box>
+                    <>
+                        <Notification />
+                        <Divider />
+                    </>
+                    // <Box
+                    //     key={i}
+                    //     sx={{
+                    //         display: "flex",
+                    //         justifyContent: "center",
+                    //         alignItems: "center",
+                    //         height: "60px",
+                    //         border: "1px solid red",
+                    //     }}
+                    // >
+                    //     <Typography
+                    //         sx={{
+                    //             color: "text.primary",
+                    //             textTransform: "none",
+                    //         }}
+                    //     >
+                    //         Уведомление {i + 1}
+                    //     </Typography>
+                    // </Box>
                 ))}
             </Box>
         </Popper>

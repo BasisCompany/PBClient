@@ -94,7 +94,6 @@ export const NavBarSearch = () => {
                     <SearchIcon />
                 </SearchIconWrapper>
                 <StyledInputBase
-                    autoFocus
                     placeholder="Поиск"
                     inputProps={{ "aria-label": "search" }}
                 />
