@@ -164,8 +164,8 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                     <Box
                         sx={{
                             marginTop: "15px",
-                            display: "flex",
-                            justifyContent: "center",
+                            width: "100%",
+                            minWidth: "100px",
                         }}
                     >
                         <SmartCaptcha sitekey="<ключ_клиента>" />
@@ -208,7 +208,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                 </Box>
                 <Box
                     sx={{
-                        marginTop: "40px",
+                        marginTop: "30px",
                         display: "flex",
                         justifyContent: "center",
                     }}

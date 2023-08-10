@@ -276,7 +276,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                 </form>
                 <Box
                     sx={{
-                        marginTop: "30px",
+                        marginTop: "20px",
                         display: "flex",
                         justifyContent: "center",
                     }}
