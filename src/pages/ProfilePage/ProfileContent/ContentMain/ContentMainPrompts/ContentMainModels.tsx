@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
     Box,
     ToggleButton,
@@ -5,9 +6,7 @@ import {
     ToggleButtonProps,
     styled,
 } from "@mui/material";
-import { FC } from "react";
-
-import { contentMainLineListContent } from "./ContentMainLineListContent";
+import { contentMainLineListContent } from "./contentMainLineListContent";
 
 interface CustomToggleButtonProps extends ToggleButtonProps {
     colorbutton: string | "0,0,0";

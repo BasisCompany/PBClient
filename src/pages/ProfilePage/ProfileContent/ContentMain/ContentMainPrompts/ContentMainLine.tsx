@@ -1,22 +1,7 @@
-import { Box } from "@mui/material";
 import { FC } from "react";
-import { contentMainLineListContent } from "./ContentMainLineListContent";
+import { Box } from "@mui/material";
 import { ContentMainLineItem } from "./ContentMainLineItem";
-
-declare global {
-    interface Array<T> {
-        toSplicedCustom(index: number, count: number): T[];
-    }
-}
-
-Array.prototype.toSplicedCustom = function <T>(
-    index: number,
-    count: number
-): T[] {
-    const newArray = [...(this as T[])];
-    newArray.splice(index, count);
-    return newArray;
-};
+import { contentMainLineListContent } from "./contentMainLineListContent";
 
 interface ContentMainLineProps {
     model: Array<string>;

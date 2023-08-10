@@ -1,9 +1,9 @@
-import { Box } from "@mui/material";
 import { useState } from "react";
-
+import { Box } from "@mui/material";
+import { ContentMainLine } from "./ContentMainLine";
+import { ContentMainModels } from "./ContentMainModels";
 import { ContentMainSelect } from "./ContentMainSelect";
 import { ContentMainToggleMode } from "./ContentMainToggleMode";
-import { ContentMainFilter } from "./ContentMainFilter";
 
 export const ContentMainPrompts = () => {
     const [model, setModel] = useState(() => [
@@ -14,17 +14,16 @@ export const ContentMainPrompts = () => {
     ]);
 
     const handleModel = (
-        event: React.MouseEvent<HTMLElement>,
+        _: React.MouseEvent<HTMLElement>,
         newModel: string[]
     ) => {
-        console.log(newModel);
         setModel(newModel);
     };
 
     const boxModel = (model: string) => {
         setModel((prev) => {
             return prev.includes(model)
-                ? prev.toSplicedCustom(prev.indexOf(model), 1)
+                ? prev.filter((e) => e !== model)
                 : [...prev, model];
         });
     };
@@ -42,11 +41,10 @@ export const ContentMainPrompts = () => {
                 <ContentMainSelect />
                 <ContentMainToggleMode />
             </Box>
-            <ContentMainFilter
-                model={model}
-                boxModel={boxModel}
-                handleModel={handleModel}
-            />
+            <Box>
+                <ContentMainLine model={model} boxModel={boxModel} />
+                <ContentMainModels model={model} handleModel={handleModel} />
+            </Box>
             <Box>
                 {model.map((item) => (
                     <Box>{item}</Box>
