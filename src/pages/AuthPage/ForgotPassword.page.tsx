@@ -54,7 +54,7 @@ export const ForgotPasswordPage = () => {
                     maxWidth: "400px",
                     minHeight: "390px",
                     borderRadius: "15px",
-                    bgcolor: "primary.dark",
+                    bgcolor: (theme) => theme.palette.bgcolor.secondary.main,
                 }}
             >
                 <Box

@@ -63,7 +63,15 @@ export const SideBarDesktop = () => {
     const isOpen = useAppSelector(selectNavbarStatus);
     return (
         <Box sx={{ display: "flex" }}>
-            <Drawer variant="permanent" open={isOpen}>
+            <Drawer
+                variant="permanent"
+                open={isOpen}
+                sx={{
+                    ".MuiDrawer-paper": {
+                        bgcolor: (theme) => theme.palette.bgcolor.content.main,
+                    },
+                }}
+            >
                 <DrawerHeader />
                 {isOpen ? <SideBarContent /> : <SideBarContentMin />}
             </Drawer>

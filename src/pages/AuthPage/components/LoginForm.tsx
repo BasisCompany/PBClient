@@ -64,7 +64,8 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                 width: { xs: "100%", sm: "100%", md: "350px" },
                 height: "810px",
                 borderRadius: "15px",
-                bgcolor: "primary.dark",
+                backgroundImage: "none",
+                bgcolor: (theme) => theme.palette.bgcolor.secondary.main,
             }}
         >
             <Box

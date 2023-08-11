@@ -13,7 +13,7 @@ export const ExpiredPage: FC = () => {
                     maxWidth: "350px",
                     height: "300px",
                     borderRadius: "15px",
-                    bgcolor: "primary.dark",
+                    bgcolor: (theme) => theme.palette.bgcolor.secondary.main,
                 }}
             >
                 <Box

@@ -5,6 +5,7 @@ import { useAppDispatch } from "../redux/hooks";
 import { toggleIsUserAuthenticated } from "../pages/AuthPage/store/authSlice";
 import { useAuth } from "../hooks/useAuth";
 import { useLazyMeQuery } from "../pages/AuthPage/store/authApi";
+import { ColorTest } from "./ColorTest";
 
 export const TestPage = () => {
     const dispatch = useAppDispatch();
@@ -26,24 +27,29 @@ export const TestPage = () => {
     };
 
     return (
-        <>
-            <Box sx={{ width: "200px", m: 5, textAlign: "center" }}>
-                {isUserAuthenticated ? (
-                    <Typography color="green">Авторизация выполнена</Typography>
-                ) : (
-                    <Typography color="red">Не авторизирован</Typography>
-                )}
+        <Box sx={{ display: "flex" }}>
+            <Box>
+                <Box sx={{ width: "200px", m: 5, textAlign: "center" }}>
+                    {isUserAuthenticated ? (
+                        <Typography color="green">
+                            Авторизация выполнена
+                        </Typography>
+                    ) : (
+                        <Typography color="red">Не авторизирован</Typography>
+                    )}
 
-                <CustomButton onClick={handleAuthButton}>
-                    Авторизация
-                </CustomButton>
-            </Box>
-            <Box sx={{ width: "200px", m: 5, textAlign: "center" }}>
-                <CustomButton onClick={handleTestQueryButton}>
-                    Тестовый запрос на сервер
-                </CustomButton>
+                    <CustomButton onClick={handleAuthButton}>
+                        Авторизация
+                    </CustomButton>
+                </Box>
+                <Box sx={{ width: "200px", m: 5, textAlign: "center" }}>
+                    <CustomButton onClick={handleTestQueryButton}>
+                        Тестовый запрос на сервер
+                    </CustomButton>
+                </Box>
             </Box>
             <PromptCard />
-        </>
+            <ColorTest />
+        </Box>
     );
 };

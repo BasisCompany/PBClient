@@ -22,7 +22,7 @@ export const StatisticItem: FC<StatisticItemProps> = ({
             sx={{
                 height: { sm: "75px", lg: "80px" },
                 //bgcolor: "#861",
-                bgcolor: "primary.main",
+                bgcolor: "bgcolor.secondary.main",
                 borderRadius: "15px",
                 display: "flex",
                 flexDirection: { xs: "column", lg: "row" },

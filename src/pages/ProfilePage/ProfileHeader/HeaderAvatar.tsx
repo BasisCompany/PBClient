@@ -34,7 +34,7 @@ export const HeaderAvatar: React.FC<HeaderAvatarProps> = ({
                     src={urlAvatarImage}
                     sx={{
                         border: "5px solid",
-                        borderColor: "primary.main",
+                        borderColor: "bgcolor.secondary.main",
                         width: "100%",
                         height: "100%",
                     }}

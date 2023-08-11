@@ -12,6 +12,7 @@ const CustomAppBar = styled(AppBar)(({ theme }) => ({
     zIndex: theme.zIndex.drawer + 1,
     boxShadow: "none",
     backgroundImage: "none",
+    backgroundColor: theme.palette.bgcolor.content.main,
 }));
 
 export const NavBar = memo(() => {

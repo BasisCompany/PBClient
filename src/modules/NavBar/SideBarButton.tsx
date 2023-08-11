@@ -15,7 +15,12 @@ export const SideBarButton = () => {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{
+                mr: 2,
+                ":hover": {
+                    bgcolor: (theme) => theme.palette.bgcolor.content.hover,
+                },
+            }}
             onClick={handleButtonClick}
         >
             <MenuIcon />

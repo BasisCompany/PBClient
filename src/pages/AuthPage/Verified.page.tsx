@@ -12,7 +12,7 @@ export const VerifiedPage = () => {
                     maxWidth: "350px",
                     height: "280px",
                     borderRadius: "15px",
-                    bgcolor: "primary.dark",
+                    bgcolor: (theme) => theme.palette.bgcolor.secondary.main,
                 }}
             >
                 <Box

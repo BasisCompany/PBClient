@@ -21,9 +21,6 @@ export const SideBarContentMin = () => {
                         textDecoration: "none",
                         color: "text.primary",
                         display: "block",
-                        "& :hover": {
-                            borderRadius: "15px",
-                        },
                     }}
                 >
                     <StyledListItemButton
@@ -33,6 +30,12 @@ export const SideBarContentMin = () => {
                             paddingTop: "10px",
                             display: "flex",
                             flexDirection: "column",
+                            borderRadius: "15px",
+                            ":hover": {
+                                borderRadius: "15px",
+                                bgcolor: (theme) =>
+                                    theme.palette.bgcolor.content.hover,
+                            },
                         }}
                     >
                         <ListItemIcon

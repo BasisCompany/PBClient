@@ -20,7 +20,7 @@ export const ProfileHeader = () => {
             <Box
                 sx={{
                     //bgcolor: "#651",
-                    bgcolor: "primary.main",
+                    bgcolor: "bgcolor.secondary.main",
                     width: "100%",
                     top: { xs: "200px", md: "300px" },
                     height: { xs: "250px", md: "150px" },

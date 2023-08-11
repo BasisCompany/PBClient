@@ -24,8 +24,8 @@ export const GlobalTheme: FC<IGlobalThemeProps> = ({ children }) => {
     const setupThemeMode = useMemo(
         () => ({
             toggleThemeMode: () => {
-                setMode(
-                    mode === EThemeMode.light
+                setMode((prev) =>
+                    prev === EThemeMode.light
                         ? EThemeMode.dark
                         : EThemeMode.light
                 );

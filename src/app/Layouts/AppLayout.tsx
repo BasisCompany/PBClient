@@ -8,7 +8,7 @@ import { LoadingPage } from "../../pages/LoadingPage/Loading.page";
 
 const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.bgcolor.content.main,
     paddingTop: "72px",
     height: "100vh",
     overflow: "auto",

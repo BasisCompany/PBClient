@@ -62,7 +62,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
             placement="bottom-end"
             sx={{
                 zIndex: 1250,
-                backgroundColor: "primary.main",
+                bgcolor: "background.modal.content.main",
                 borderRadius: "5px",
                 "& .MuiPaper-root": {
                     minWidth: "200px",
@@ -80,7 +80,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
             <StyledList>
                 <Box
                     sx={{
-                        backgroundColor: "#1a1a1b",
+                        backgroundColor: "background.modal.secondary.main",
                         margin: 1,
                         borderRadius: "10px",
                     }}
@@ -168,8 +168,12 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                 )}
                 <ListItemButton
                     onClick={toggleThemeMode}
-                    sx={{ color: "text.primary" }}
-                    selected
+                    sx={{
+                        color: "text.primary",
+                        ":hover": {
+                            bgcolor: "modal.content.main.hover",
+                        },
+                    }}
                 >
                     <ListItemIcon>
                         {mode === "light" ? (
@@ -181,7 +185,12 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                     {mode === "light" ? "Тёмная тема" : "Светлая тема"}
                 </ListItemButton>
                 <Divider />
-                <ListItem disablePadding sx={{ color: "text.primary" }}>
+                <ListItem
+                    disablePadding
+                    sx={{
+                        color: "text.primary",
+                    }}
+                >
                     <ListItemButton onClick={onClose}>
                         <ListItemIcon>
                             <Settings fontSize="small" />
