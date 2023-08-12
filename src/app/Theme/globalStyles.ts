@@ -1,5 +1,12 @@
 import { EThemeMode } from "./enums/themeMode.enum";
 
+const defaultDarkStyles = {
+    background: {
+        paper: "#0f0f0f",
+        default: "#0f0f0f",
+    },
+};
+
 const lightStyles = {
     primary: {
         main: "#ffffff",
@@ -28,6 +35,7 @@ const lightStyles = {
 };
 
 const darkStyles = {
+    ...defaultDarkStyles,
     primary: {
         main: "#272727",
         dark: "#272727",
@@ -39,9 +47,14 @@ const darkStyles = {
         main: "#9933FF",
         dark: "#9933FF",
     },
-    background: {
-        paper: "#0f0f0f",
-        default: "#0f0f0f",
+    text: {
+        primary: "#FFF",
+        secondary: "#d1d1dc",
+    },
+    action: {
+        active: "#d1d1dc",
+        hover: "#272727",
+        selected: "#9933FF",
     },
     bgcolor: {
         content: {
@@ -72,15 +85,6 @@ const darkStyles = {
             },
         },
     },
-    text: {
-        primary: "#FFF",
-        secondary: "#d1d1dc",
-    },
-    action: {
-        active: "#d1d1dc",
-        hover: "#272727",
-        selected: "#9933FF",
-    },
 };
 
 export const getGlobalStyles = (mode: EThemeMode) => ({
@@ -109,74 +113,38 @@ const componentsStyleOverrides = {
         styleOverrides: {
             root: {
                 backgroundImage: "none",
-            }
-        }
-    }
+            },
+        },
+    },
 };
 
 declare module "@mui/material/styles/createPalette" {
-    export interface PaletteOptions {
+    interface BackgroundColorOptions {
+        main: string;
+        hover: string;
+        active: string;
+    }
+
+    interface PaletteOptions {
         bgcolor?: {
-            content?: {
-                main: string;
-                hover: string;
-                active: string;
-            };
-            secondary?: {
-                main: string;
-                hover: string;
-                active: string;
-            };
-            tertiary?: {
-                main: string;
-                hover: string;
-                active: string;
-            };
+            content?: BackgroundColorOptions;
+            secondary?: BackgroundColorOptions;
+            tertiary?: BackgroundColorOptions;
             modal?: {
-                content: {
-                    main: string;
-                    hover: string;
-                    active: string;
-                };
-                secondary: {
-                    main: string;
-                    hover: string;
-                    active: string;
-                };
+                content: BackgroundColorOptions;
+                secondary: BackgroundColorOptions;
             };
         };
     }
-}
 
-declare module "@mui/material/styles/createPalette" {
-    export interface Palette {
+    interface Palette {
         bgcolor: {
-            content: {
-                main: string;
-                hover: string;
-                active: string;
-            };
-            secondary: {
-                main: string;
-                hover: string;
-                active: string;
-            };
-            tertiary: {
-                main: string;
-                hover: string;
-                active: string;
-            };
+            content: BackgroundColorOptions;
+            secondary: BackgroundColorOptions;
+            tertiary: BackgroundColorOptions;
             modal: {
-                content: {
-                    main: string;
-                    hover: string;
-                    active: string;
-                };
-                secondary: {
-                    main: string;
-                    hover: string;
-                    active: string;
-                };
+                content: BackgroundColorOptions;
+                secondary: BackgroundColorOptions;
             };
         };
     }
