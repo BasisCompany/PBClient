@@ -62,7 +62,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
             placement="bottom-end"
             sx={{
                 zIndex: 1250,
-                bgcolor: "background.modal.content.main",
+                bgcolor: (theme) => theme.palette.bgcolor.modal.content.main,
                 borderRadius: "5px",
                 "& .MuiPaper-root": {
                     minWidth: "200px",
