@@ -1,11 +1,10 @@
-import { Box } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
-import { styled } from "@mui/material/styles";
-
+import { Theme, styled } from "@mui/material/styles";
 import { useAppSelector } from "../../redux/hooks";
 import { selectNavbarStatus } from "../NavBar/store/navbarSlice";
 import { SideBarContent } from "./SideBarContent";
 import { SideBarContentMin } from "./SideBarContentMin";
+import { Box } from "@mui/material";
 
 const drawerWidth = "240px";
 
@@ -14,43 +13,64 @@ const DrawerHeader = styled("div")(({ theme }) => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
 }));
+
+// const Drawer = styled(MuiDrawer, {
+//     shouldForwardProp: (prop) => prop !== "open",
+// })(({ theme, open }) => ({
+//     width: drawerWidth,
+//     flexShrink: 0,
+//     whiteSpace: "nowrap",
+//     boxSizing: "border-box",
+//     ...(open && {
+//         width: drawerWidth,
+//         overflowX: "hidden",
+//         borderRight: "0px",
+//         "& .MuiDrawer-paper": {
+//             width: drawerWidth,
+//             overflowX: "hidden",
+//             borderRight: "0px",
+//         },
+//     }),
+//     ...(!open && {
+//         overflowX: "hidden",
+//         width: `calc(${theme.spacing(7)} + 12px)`,
+//         borderRight: "0px",
+//         [theme.breakpoints.up("sm")]: {
+//             width: `calc(${theme.spacing(8)} + 12px)`,
+//         },
+//         "& .MuiDrawer-paper": {
+//             overflowX: "hidden",
+//             width: `calc(${theme.spacing(7)} + 12px)`,
+//             borderRight: "0px",
+//             [theme.breakpoints.up("sm")]: {
+//                 width: `calc(${theme.spacing(8)} + 12px)`,
+//             },
+//         },
+//     }),
+// }));
 
 const Drawer = styled(MuiDrawer, {
     shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-    width: drawerWidth,
+    width: open ? drawerWidth : `calc(${theme.spacing(7)} + 12px)`,
     flexShrink: 0,
     whiteSpace: "nowrap",
     boxSizing: "border-box",
-    ...(open && {
-        width: drawerWidth,
+    overflowX: "hidden",
+    borderRight: "0px",
+    [theme.breakpoints.up("sm")]: {
+        width: open ? drawerWidth : `calc(${theme.spacing(8)} + 12px)`,
+    },
+    "& .MuiDrawer-paper": {
+        width: open ? drawerWidth : `calc(${theme.spacing(7)} + 12px)`,
         overflowX: "hidden",
-        borderRight: "0px",
-        "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            overflowX: "hidden",
-            borderRight: "0px",
-        },
-    }),
-    ...(!open && {
-        overflowX: "hidden",
-        width: `calc(${theme.spacing(7)} + 12px)`,
         borderRight: "0px",
         [theme.breakpoints.up("sm")]: {
-            width: `calc(${theme.spacing(8)} + 12px)`,
+            width: open ? drawerWidth : `calc(${theme.spacing(8)} + 12px)`,
         },
-        "& .MuiDrawer-paper": {
-            overflowX: "hidden",
-            width: `calc(${theme.spacing(7)} + 12px)`,
-            borderRight: "0px",
-            [theme.breakpoints.up("sm")]: {
-                width: `calc(${theme.spacing(8)} + 12px)`,
-            },
-        },
-    }),
+    },
 }));
 
 export const SideBarDesktop = () => {
