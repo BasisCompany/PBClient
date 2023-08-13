@@ -21,33 +21,50 @@ function popperReducer(
     action: { type: string; payload: HTMLElement | null }
 ) {
     switch (action.type) {
-        case "OPEN_ACCOUNT": {
-            const newState = { ...state };
-            newState.anchorPopper = action.payload;
-            newState.currPopper = NavPoppers.account;
-            return newState;
+        case "TOGGLE_ACCOUNT": {
+            if (state.currPopper === NavPoppers.account) {
+                return disablePopper(state);
+            }
+            return {
+                ...state,
+                currPopper: NavPoppers.account,
+                anchorPopper: action.payload,
+            };
         }
-        case "OPEN_NOTIFICATIONS": {
-            const newState = { ...state };
-            newState.anchorPopper = action.payload;
-            newState.currPopper = NavPoppers.notifications;
-            return newState;
+        case "TOGGLE_NOTIFICATIONS": {
+            if (state.currPopper === NavPoppers.notifications) {
+                return disablePopper(state);
+            }
+            return {
+                ...state,
+                currPopper: NavPoppers.notifications,
+                anchorPopper: action.payload,
+            };
         }
-        case "OPEN_BASKET": {
-            const newState = { ...state };
-            newState.anchorPopper = action.payload;
-            newState.currPopper = NavPoppers.basket;
-            return newState;
+        case "TOGGLE_BASKET": {
+            if (state.currPopper === NavPoppers.basket) {
+                return disablePopper(state);
+            }
+            return {
+                ...state,
+                currPopper: NavPoppers.basket,
+                anchorPopper: action.payload,
+            };
         }
         case "CLOSE": {
-            const newState = { ...state };
-            newState.anchorPopper = null;
-            newState.currPopper = null;
-            return newState;
+            return disablePopper(state);
         }
         default: {
             return state;
         }
+    }
+
+    function disablePopper(state: PopperReducer) {
+        return {
+            ...state,
+            anchorPopper: null,
+            currPopper: null,
+        };
     }
 }
 
@@ -56,11 +73,11 @@ export const closePopper = () => ({
     payload: null,
 });
 export const openNotifications = (target: HTMLElement | null) => ({
-    type: "OPEN_NOTIFICATIONS",
+    type: "TOGGLE_NOTIFICATIONS",
     payload: target,
 });
 export const openAccount = (target: HTMLElement | null) => ({
-    type: "OPEN_ACCOUNT",
+    type: "TOGGLE_ACCOUNT",
     payload: target,
 });
 

@@ -49,7 +49,7 @@ export const TestPage = () => {
                 </Box>
             </Box>
             <PromptCard />
-            <ColorTest />
+            {/* <ColorTest /> */}
         </Box>
     );
 };

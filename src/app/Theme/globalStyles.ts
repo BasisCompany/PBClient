@@ -1,3 +1,4 @@
+import { Theme } from "@mui/material/styles";
 import { EThemeMode } from "./enums/themeMode.enum";
 
 const defaultDarkStyles = {
@@ -114,6 +115,13 @@ const componentsStyleOverrides = {
             root: {
                 backgroundImage: "none",
             },
+        },
+    },
+    MuiTypography: {
+        styleOverrides: {
+            root: ({ theme }: { theme: Theme }) => ({
+                color: theme.palette.text.primary,
+            }),
         },
     },
 };

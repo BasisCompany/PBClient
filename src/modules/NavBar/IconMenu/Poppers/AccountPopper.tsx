@@ -5,6 +5,9 @@ import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 import {
     Avatar,
@@ -12,18 +15,17 @@ import {
     Box,
     Divider,
     List,
-    ListItem,
     ListItemButton,
     ListItemIcon,
     Popper,
+    Typography,
     styled,
 } from "@mui/material";
 import { FC } from "react";
-import { CustomButton } from "../../../../UI/Buttons/CustomButton";
-import { ColorTypography } from "../../../../UI/ColorTypography";
-import { Spacer } from "../../../../UI/Spacer";
 import { useThemeMode } from "../../../../app/Theme/ThemeContext/useThemeMode";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
+import { Spacer } from "../../../../UI/Spacer";
+import { CustomButton } from "../../../../UI/Buttons/CustomButton";
 
 interface AccountMenuProps {
     isOpen: boolean;
@@ -31,10 +33,13 @@ interface AccountMenuProps {
     onClose: () => void;
 }
 
-const StyledList = styled(List)({
+const StyledList = styled(List)(({ theme }) => ({
     "& .MuiListItemButton-root": {
-        paddingLeft: 24,
-        paddingRight: 24,
+        paddingLeft: 18,
+        color: theme.palette.text.primary,
+        ":hover": {
+            backgroundColor: theme.palette.bgcolor.modal.content.hover,
+        },
     },
     "& .MuiListItemIcon-root": {
         minWidth: 0,
@@ -43,7 +48,7 @@ const StyledList = styled(List)({
     "& .MuiSvgIcon-root": {
         fontSize: 20,
     },
-});
+}));
 
 export const AccountPopper: FC<AccountMenuProps> = ({
     isOpen,
@@ -77,56 +82,85 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                 },
             ]}
         >
-            <StyledList>
-                <Box
+            <Box
+                sx={{
+                    backgroundColor: (theme) =>
+                        theme.palette.bgcolor.modal.secondary.main,
+                    margin: 2,
+                    mb: 0,
+                    borderRadius: "10px",
+                }}
+            >
+                <ListItemButton
+                    onClick={onClose}
                     sx={{
-                        backgroundColor: "background.modal.secondary.main",
-                        margin: 1,
-                        borderRadius: "10px",
+                        borderRadius: "10px 10px 0px 0px",
+                        ":hover": {
+                            backgroundColor: (theme) =>
+                                theme.palette.bgcolor.modal.secondary.hover,
+                        },
                     }}
+                    divider
                 >
-                    <ListItemButton
-                        onClick={onClose}
-                        sx={{
-                            borderRadius: "10px 10px 0px 0px",
-                        }}
-                        divider
-                    >
-                        <Box
-                            sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                padding: 2,
-                                paddingLeft: 1,
-                            }}
-                        >
-                            <Avatar
-                                alt="Remy Sharp"
-                                src="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg"
-                            />
-                            <Box sx={{ ml: 2 }}>
-                                <ColorTypography>Stormpero</ColorTypography>
-                                <ColorTypography>
-                                    staroselsky.S@yandex.ru
-                                </ColorTypography>
-                            </Box>
-                        </Box>
-                        <ChevronRightIcon
-                            sx={{
-                                color: "text.primary",
-                            }}
-                        />
-                    </ListItemButton>
                     <Box
                         sx={{
                             display: "flex",
                             alignItems: "center",
                             padding: 2,
+                            paddingLeft: 1,
                         }}
                     >
-                        <ColorTypography>0 ₽</ColorTypography>
-                        <Spacer />
-                        <CustomButton
+                        <Avatar
+                            alt="Remy Sharp"
+                            src="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg"
+                        />
+                        <Box sx={{ ml: 2 }}>
+                            <Typography>Stormpero</Typography>
+                            <Typography>staroselsky.S@yandex.ru</Typography>
+                        </Box>
+                    </Box>
+                    <ChevronRightIcon
+                        sx={{
+                            color: "text.primary",
+                        }}
+                    />
+                </ListItemButton>
+                <ListItemButton
+                    onClick={onClose}
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "start",
+                        borderRadius: "0px 0px 10px 10px",
+                        ":hover": {
+                            backgroundColor: (theme) =>
+                                theme.palette.bgcolor.modal.secondary.hover,
+                        },
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "5px",
+                        }}
+                    >
+                        <AccountBalanceWalletIcon
+                            sx={{
+                                color: "text.primary",
+                                mr: 1.5,
+                            }}
+                        />
+                        <Typography
+                            sx={{
+                                textAlign: "center",
+                                verticalAlign: "center",
+                                mt: "3px",
+                            }}
+                        >
+                            0 ₽
+                        </Typography>
+                        {/* <CustomButton
                             variant="outlined"
                             sx={{
                                 fontSize: "13px",
@@ -135,19 +169,25 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                             }}
                         >
                             Пополнить
-                        </CustomButton>
+                        </CustomButton> */}
                     </Box>
-                </Box>
+                    <Spacer />
+                    <AddCircleOutlineIcon
+                        sx={{
+                            color: "text.primary",
+                        }}
+                    />
+                </ListItemButton>
+            </Box>
+            <StyledList>
                 {isMobile && (
                     <>
-                        <ListItem disablePadding>
-                            <ListItemButton onClick={onClose}>
-                                <ListItemIcon>
-                                    <BookmarkIcon fontSize="small" />
-                                </ListItemIcon>
-                                Избранное
-                            </ListItemButton>
-                        </ListItem>
+                        <ListItemButton onClick={onClose}>
+                            <ListItemIcon>
+                                <BookmarkIcon fontSize="small" />
+                            </ListItemIcon>
+                            Избранное
+                        </ListItemButton>
                         <ListItemButton onClick={onClose}>
                             <ListItemIcon>
                                 <Badge badgeContent={4} color="secondary">
@@ -166,15 +206,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                         </ListItemButton>
                     </>
                 )}
-                <ListItemButton
-                    onClick={toggleThemeMode}
-                    sx={{
-                        color: "text.primary",
-                        ":hover": {
-                            bgcolor: "modal.content.main.hover",
-                        },
-                    }}
-                >
+                <ListItemButton onClick={toggleThemeMode}>
                     <ListItemIcon>
                         {mode === "light" ? (
                             <DarkModeRoundedIcon fontSize="small" />
@@ -185,23 +217,20 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                     {mode === "light" ? "Тёмная тема" : "Светлая тема"}
                 </ListItemButton>
                 <Divider />
-                <ListItem
-                    disablePadding
-                    sx={{
-                        color: "text.primary",
-                    }}
-                >
-                    <ListItemButton onClick={onClose}>
-                        <ListItemIcon>
-                            <Settings fontSize="small" />
-                        </ListItemIcon>
-                        Настройки
-                    </ListItemButton>
-                </ListItem>
-                <ListItemButton
-                    onClick={onClose}
-                    sx={{ color: "text.primary" }}
-                >
+                <ListItemButton onClick={onClose}>
+                    <ListItemIcon>
+                        <HelpOutlineIcon fontSize="small" />
+                    </ListItemIcon>
+                    Помощь
+                </ListItemButton>
+                <Divider />
+                <ListItemButton onClick={onClose}>
+                    <ListItemIcon>
+                        <Settings fontSize="small" />
+                    </ListItemIcon>
+                    Настройки
+                </ListItemButton>
+                <ListItemButton onClick={onClose}>
                     <ListItemIcon>
                         <Logout fontSize="small" color="error" />
                     </ListItemIcon>
