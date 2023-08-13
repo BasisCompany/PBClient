@@ -25,7 +25,6 @@ import { FC } from "react";
 import { useThemeMode } from "../../../../app/Theme/ThemeContext/useThemeMode";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
 import { Spacer } from "../../../../UI/Spacer";
-import { CustomButton } from "../../../../UI/Buttons/CustomButton";
 
 interface AccountMenuProps {
     isOpen: boolean;

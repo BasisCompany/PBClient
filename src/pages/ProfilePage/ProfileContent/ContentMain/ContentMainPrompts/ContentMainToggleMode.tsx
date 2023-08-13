@@ -41,7 +41,7 @@ export const ContentMainToggleMode = () => {
     const [alignment, setAlignment] = useState("left");
 
     const handleAlignment = (
-        event: React.MouseEvent<HTMLElement>,
+        _: React.MouseEvent<HTMLElement>,
         newAlignment: string
     ) => {
         if (newAlignment !== null) {

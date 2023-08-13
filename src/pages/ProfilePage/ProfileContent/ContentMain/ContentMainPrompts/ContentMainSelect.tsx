@@ -90,8 +90,8 @@ const CustomSelect = styled((props: SelectProps) => <Select {...props} />)(
 export const ContentMainSelect = () => {
     const [select, setSelect] = useState("new");
 
-    const handleChange = (event: SelectChangeEvent) => {
-        setSelect(event.target.value);
+    const handleChange = (event: SelectChangeEvent<unknown>) => {
+        setSelect(event.target.value as string);
     };
     return (
         <FormControl>

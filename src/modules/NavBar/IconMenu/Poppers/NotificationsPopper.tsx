@@ -7,7 +7,7 @@ import {
     Popper,
     Typography,
 } from "@mui/material";
-import { FC, useState } from "react";
+import { FC } from "react";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import TuneIcon from "@mui/icons-material/Tune";
 import { Notification } from "./Notification";
@@ -81,7 +81,7 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                     </IconButton>
                 </Box>
                 <Divider />
-                {[...new Array(5)].map((_, i) => (
+                {[...new Array(5)].map((_) => (
                     <>
                         <Notification />
                         <Divider />

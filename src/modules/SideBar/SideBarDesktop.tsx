@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
-import { Theme, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 import { useAppSelector } from "../../redux/hooks";
 import { selectNavbarStatus } from "../NavBar/store/navbarSlice";
@@ -8,30 +8,6 @@ import { SideBarContent } from "./SideBarContent";
 import { SideBarContentMin } from "./SideBarContentMin";
 
 const drawerWidth = "240px";
-
-const openedMixin = (theme: Theme) => ({
-    width: drawerWidth,
-    // transition: theme.transitions.create("width", {
-    //     easing: theme.transitions.easing.sharp,
-    //     duration: theme.transitions.duration.enteringScreen,
-    // }),
-    overflowX: "hidden",
-    borderRight: "0px",
-});
-
-const closedMixin = (theme: Theme) => ({
-    // transition: theme.transitions.create("width", {
-    //     easing: theme.transitions.easing.sharp,
-    //     duration: theme.transitions.duration.leavingScreen,
-    // }),
-    overflowX: "hidden",
-    width: `calc(${theme.spacing(7)} + 12px)`,
-    borderRight: "0px",
-
-    [theme.breakpoints.up("sm")]: {
-        width: `calc(${theme.spacing(8)} + 12px)`,
-    },
-});
 
 const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
@@ -50,12 +26,30 @@ const Drawer = styled(MuiDrawer, {
     whiteSpace: "nowrap",
     boxSizing: "border-box",
     ...(open && {
-        ...openedMixin(theme),
-        "& .MuiDrawer-paper": openedMixin(theme),
+        width: drawerWidth,
+        overflowX: "hidden",
+        borderRight: "0px",
+        "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            overflowX: "hidden",
+            borderRight: "0px",
+        },
     }),
     ...(!open && {
-        ...closedMixin(theme),
-        "& .MuiDrawer-paper": closedMixin(theme),
+        overflowX: "hidden",
+        width: `calc(${theme.spacing(7)} + 12px)`,
+        borderRight: "0px",
+        [theme.breakpoints.up("sm")]: {
+            width: `calc(${theme.spacing(8)} + 12px)`,
+        },
+        "& .MuiDrawer-paper": {
+            overflowX: "hidden",
+            width: `calc(${theme.spacing(7)} + 12px)`,
+            borderRight: "0px",
+            [theme.breakpoints.up("sm")]: {
+                width: `calc(${theme.spacing(8)} + 12px)`,
+            },
+        },
     }),
 }));
 

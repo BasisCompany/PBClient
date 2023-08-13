@@ -5,7 +5,6 @@ import { useAppDispatch } from "../redux/hooks";
 import { toggleIsUserAuthenticated } from "../pages/AuthPage/store/authSlice";
 import { useAuth } from "../hooks/useAuth";
 import { useLazyMeQuery } from "../pages/AuthPage/store/authApi";
-import { ColorTest } from "./ColorTest";
 
 export const TestPage = () => {
     const dispatch = useAppDispatch();
