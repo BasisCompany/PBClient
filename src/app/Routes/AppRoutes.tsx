@@ -18,9 +18,13 @@ export const AppRoutes = () => {
                 <Route index element={<TestPage />} />
                 <Route path="profile/*" element={<ProfilePage />}>
                     <Route index element={<ContentMainPrompts />} />
-                    <Route path="settings" element={<h1>Настройки </h1>} />
-                    <Route path="statistics" element={<h1>Статистика </h1>} />
                     <Route path="comments" element={<h1>Комментарии </h1>} />
+                    <Route
+                        path="notifications"
+                        element={<h1>Уведомления </h1>}
+                    />
+                    <Route path="settings" element={<h1>Настройки </h1>} />
+                    <Route path="payments" element={<h1>Платежи </h1>} />
                 </Route>
                 <Route path="marketplace" element={<AuthPage />} />
                 <Route element={<AuthLayout />}>

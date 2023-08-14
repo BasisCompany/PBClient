@@ -67,6 +67,7 @@ export const NavBarIconMenu = () => {
                         <NotificationsPopper
                             isOpen={isPopperOpen(NavPoppers.notifications)}
                             anchorEl={poppers.anchorPopper}
+                            handleClose={handleClose}
                         />
                     </>
                 )}

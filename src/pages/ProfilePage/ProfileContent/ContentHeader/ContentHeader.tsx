@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Box } from "@mui/material";
 import { ContentTabs } from "./ContentTabs";
@@ -14,8 +14,13 @@ const getPathId = (path: string): number => {
 
 export const ContentHeader = () => {
     const location = useLocation();
+    console.log(getPathId(location.pathname));
 
     const [value, setValue] = useState<number>(getPathId(location.pathname));
+
+    useEffect(() => {
+        setValue(getPathId(location.pathname));
+    }, [location.pathname]);
 
     const handleChange = (_: SyntheticEvent, newValue: number) => {
         setValue(newValue);

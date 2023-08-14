@@ -1,19 +1,17 @@
 import { Logout, Settings } from "@mui/icons-material";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-
 import {
     Avatar,
     Badge,
     Box,
-    Divider,
     List,
     ListItemButton,
     ListItemIcon,
@@ -22,9 +20,11 @@ import {
     styled,
 } from "@mui/material";
 import { FC } from "react";
+import { Spacer } from "../../../../UI/Spacer";
 import { useThemeMode } from "../../../../app/Theme/ThemeContext/useThemeMode";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
-import { Spacer } from "../../../../UI/Spacer";
+import { LinkBehavior } from "../../../../UI/Route/LinkBehavior";
+import { LinkListItemButton } from "../../../../UI/Buttons/LinkListItemButton";
 
 interface AccountMenuProps {
     isOpen: boolean;
@@ -48,7 +48,7 @@ const StyledList = styled(List)(({ theme }) => ({
         fontSize: 20,
     },
 }));
-
+//TODO[Aртем]: Размеры каждого эл-та
 export const AccountPopper: FC<AccountMenuProps> = ({
     isOpen,
     anchorEl,
@@ -159,16 +159,6 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                         >
                             0 ₽
                         </Typography>
-                        {/* <CustomButton
-                            variant="outlined"
-                            sx={{
-                                fontSize: "13px",
-                                width: "100px",
-                                minHeight: "30px",
-                            }}
-                        >
-                            Пополнить
-                        </CustomButton> */}
                     </Box>
                     <Spacer />
                     <AddCircleOutlineIcon
@@ -195,17 +185,24 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                             </ListItemIcon>
                             Корзина
                         </ListItemButton>
-                        <ListItemButton onClick={onClose}>
+                        <LinkListItemButton
+                            to="profile/notifications"
+                            onClick={onClose}
+                        >
                             <ListItemIcon>
                                 <Badge badgeContent={4} color="secondary">
                                     <NotificationsIcon fontSize="small" />
                                 </Badge>
                             </ListItemIcon>
                             Уведомления
-                        </ListItemButton>
+                        </LinkListItemButton>
                     </>
                 )}
-                <ListItemButton onClick={toggleThemeMode}>
+                <ListItemButton
+                    component={LinkBehavior}
+                    to="/s"
+                    onClick={toggleThemeMode}
+                >
                     <ListItemIcon>
                         {mode === "light" ? (
                             <DarkModeRoundedIcon fontSize="small" />
@@ -215,20 +212,18 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                     </ListItemIcon>
                     {mode === "light" ? "Тёмная тема" : "Светлая тема"}
                 </ListItemButton>
-                <Divider />
-                <ListItemButton onClick={onClose}>
+                <LinkListItemButton to="/faq" onClick={onClose}>
                     <ListItemIcon>
                         <HelpOutlineIcon fontSize="small" />
                     </ListItemIcon>
                     Помощь
-                </ListItemButton>
-                <Divider />
-                <ListItemButton onClick={onClose}>
+                </LinkListItemButton>
+                <LinkListItemButton to="profile/settings" onClick={onClose}>
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>
                     Настройки
-                </ListItemButton>
+                </LinkListItemButton>
                 <ListItemButton onClick={onClose}>
                     <ListItemIcon>
                         <Logout fontSize="small" color="error" />

@@ -1,25 +1,35 @@
 import {
     Badge,
     Box,
-    Button,
     Divider,
     IconButton,
     Popper,
     Typography,
+    styled,
 } from "@mui/material";
 import { FC } from "react";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import TuneIcon from "@mui/icons-material/Tune";
 import { Notification } from "./Notification";
+import { LinkButton } from "../../../../UI/Buttons/LinkButton";
+import { LinkIconButton } from "../../../../UI/Buttons/LinkIconButton";
 
 interface NotificationsPopperProps {
     isOpen: boolean;
     anchorEl: HTMLElement | null;
+    handleClose: () => void;
 }
+
+const NotificationsBox = styled(Box)(({ theme }) => ({
+    height: "300px",
+    overflow: "auto",
+    ...theme.scrollbar,
+}));
 
 export const NotificationsPopper: FC<NotificationsPopperProps> = ({
     isOpen,
     anchorEl,
+    handleClose,
 }) => {
     const id = isOpen ? "notifications-popover" : undefined;
 
@@ -56,10 +66,17 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                         p: 1,
                     }}
                 >
-                    <IconButton>
+                    <LinkIconButton
+                        to="profile/notifications"
+                        onClick={handleClose}
+                    >
                         <TuneIcon />
-                    </IconButton>
-                    <Button variant="text">
+                    </LinkIconButton>
+                    <LinkButton
+                        to="profile/notifications"
+                        variant="text"
+                        onClick={handleClose}
+                    >
                         <Typography
                             sx={{
                                 color: "text.primary",
@@ -75,37 +92,39 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                             badgeContent={4}
                             color="secondary"
                         />
-                    </Button>
+                    </LinkButton>
                     <IconButton>
                         <ChecklistIcon />
                     </IconButton>
                 </Box>
                 <Divider />
-                {[...new Array(5)].map((_) => (
-                    <>
-                        <Notification />
-                        <Divider />
-                    </>
-                    // <Box
-                    //     key={i}
-                    //     sx={{
-                    //         display: "flex",
-                    //         justifyContent: "center",
-                    //         alignItems: "center",
-                    //         height: "60px",
-                    //         border: "1px solid red",
-                    //     }}
-                    // >
-                    //     <Typography
-                    //         sx={{
-                    //             color: "text.primary",
-                    //             textTransform: "none",
-                    //         }}
-                    //     >
-                    //         Уведомление {i + 1}
-                    //     </Typography>
-                    // </Box>
-                ))}
+                <NotificationsBox>
+                    {[...new Array(10)].map((_) => (
+                        <>
+                            <Notification />
+                            <Divider />
+                        </>
+                        // <Box
+                        //     key={i}
+                        //     sx={{
+                        //         display: "flex",
+                        //         justifyContent: "center",
+                        //         alignItems: "center",
+                        //         height: "60px",
+                        //         border: "1px solid red",
+                        //     }}
+                        // >
+                        //     <Typography
+                        //         sx={{
+                        //             color: "text.primary",
+                        //             textTransform: "none",
+                        //         }}
+                        //     >
+                        //         Уведомление {i + 1}
+                        //     </Typography>
+                        // </Box>
+                    ))}
+                </NotificationsBox>
             </Box>
         </Popper>
     );

@@ -94,6 +94,7 @@ export const getGlobalStyles = (mode: EThemeMode) => ({
         ...(mode === EThemeMode.light ? lightStyles : darkStyles),
     },
     components: componentsStyleOverrides,
+    scrollbar: scrollbarStyles,
 });
 
 const componentsStyleOverrides = {
@@ -124,6 +125,24 @@ const componentsStyleOverrides = {
             }),
         },
     },
+};
+
+const scrollbarStyles = {
+    "&::-webkit-scrollbar": {
+        width: "0.5em",
+    },
+    "&::-webkit-scrollbar-track": {
+        background: "rgba(0,0,0,0)",
+    },
+    "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "#9933FF",
+        borderRadius: "5px",
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+        background: "#7A18DC",
+    },
+    "scrollbar-width": "thin",
+    "scrollbar-color": "#9933FF rgba(0,0,0,0)",
 };
 
 declare module "@mui/material/styles/createPalette" {
@@ -158,6 +177,15 @@ declare module "@mui/material/styles/createPalette" {
     }
 }
 
+declare module "@mui/material/styles/createTheme" {
+    interface ThemeOptions {
+        scrollbar?: object;
+    }
+
+    interface Theme {
+        scrollbar: object;
+    }
+}
 // const colors = {
 //     black: {
 //         DEFAULT: "#000000",

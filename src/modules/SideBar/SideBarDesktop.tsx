@@ -63,7 +63,6 @@ const Drawer = styled(MuiDrawer, {
     [theme.breakpoints.up("sm")]: {
         width: open ? drawerWidth : `calc(${theme.spacing(8)} + 12px)`,
     },
-
     "& .MuiDrawer-paper": {
         backgroundColor: theme.palette.bgcolor.content.main,
         width: open ? drawerWidth : `calc(${theme.spacing(7)} + 12px)`,
