@@ -1,10 +1,10 @@
 import MuiDrawer from "@mui/material/Drawer";
-import { Theme, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { useAppSelector } from "../../redux/hooks";
 import { selectNavbarStatus } from "../NavBar/store/navbarSlice";
 import { SideBarContent } from "./SideBarContent";
 import { SideBarContentMin } from "./SideBarContentMin";
-import { Box } from "@mui/material";
+import { FlexBox } from "../../UI/FlexBox";
 
 const drawerWidth = "240px";
 
@@ -63,7 +63,9 @@ const Drawer = styled(MuiDrawer, {
     [theme.breakpoints.up("sm")]: {
         width: open ? drawerWidth : `calc(${theme.spacing(8)} + 12px)`,
     },
+
     "& .MuiDrawer-paper": {
+        backgroundColor: theme.palette.bgcolor.content.main,
         width: open ? drawerWidth : `calc(${theme.spacing(7)} + 12px)`,
         overflowX: "hidden",
         borderRight: "0px",
@@ -76,19 +78,11 @@ const Drawer = styled(MuiDrawer, {
 export const SideBarDesktop = () => {
     const isOpen = useAppSelector(selectNavbarStatus);
     return (
-        <Box sx={{ display: "flex" }}>
-            <Drawer
-                variant="permanent"
-                open={isOpen}
-                sx={{
-                    ".MuiDrawer-paper": {
-                        bgcolor: (theme) => theme.palette.bgcolor.content.main,
-                    },
-                }}
-            >
+        <FlexBox>
+            <Drawer variant="permanent" open={isOpen}>
                 <DrawerHeader />
                 {isOpen ? <SideBarContent /> : <SideBarContentMin />}
             </Drawer>
-        </Box>
+        </FlexBox>
     );
 };
