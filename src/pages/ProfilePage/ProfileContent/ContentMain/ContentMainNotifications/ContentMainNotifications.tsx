@@ -1,11 +1,14 @@
 import ChecklistIcon from "@mui/icons-material/Checklist";
+import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
+import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
+import SortRoundedIcon from "@mui/icons-material/SortRounded";
 import TuneIcon from "@mui/icons-material/Tune";
 import {
     Box,
     IconButton,
+    ListItemIcon,
     SelectChangeEvent,
     Tooltip,
-    ListItemIcon,
 } from "@mui/material";
 import { useState } from "react";
 import {
@@ -13,9 +16,7 @@ import {
     CustomSelect,
 } from "../ContentMainPrompts/ContentMainSelect";
 import { ContentMainNotification } from "./ContentMainNotification";
-import SortRoundedIcon from "@mui/icons-material/SortRounded";
-import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
-import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
+import { CustomPagination } from "./CustomPagintaion";
 
 export const ContentMainNotifications = () => {
     const [select, setSelect] = useState("all");
@@ -23,6 +24,7 @@ export const ContentMainNotifications = () => {
     const handleChange = (event: SelectChangeEvent<unknown>) => {
         setSelect(event.target.value as string);
     };
+
     return (
         <>
             <Box
@@ -72,9 +74,18 @@ export const ContentMainNotifications = () => {
                 </Box>
             </Box>
             <Box>
-                {[...new Array(5)].map((_) => (
-                    <ContentMainNotification />
+                {[...new Array(10)].map((_, i) => (
+                    <ContentMainNotification key={i} />
                 ))}
+            </Box>
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "end",
+                    mt: 2,
+                }}
+            >
+                <CustomPagination pathTo="/profile/notifications" />
             </Box>
         </>
     );

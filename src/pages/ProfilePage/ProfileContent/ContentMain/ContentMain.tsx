@@ -5,7 +5,7 @@ export const ContentMain = () => {
     return (
         <Box
             sx={{
-                height: "500px",
+                //height: "500px",
                 //bgcolor: "primary.main",
                 borderRadius: "15px",
                 //pl: "15px",
