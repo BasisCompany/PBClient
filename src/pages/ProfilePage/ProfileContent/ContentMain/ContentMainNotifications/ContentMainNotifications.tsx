@@ -1,12 +1,21 @@
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import TuneIcon from "@mui/icons-material/Tune";
-import { Box, IconButton, SelectChangeEvent, Tooltip } from "@mui/material";
+import {
+    Box,
+    IconButton,
+    SelectChangeEvent,
+    Tooltip,
+    ListItemIcon,
+} from "@mui/material";
 import { useState } from "react";
 import {
     CustomMenuItem,
     CustomSelect,
 } from "../ContentMainPrompts/ContentMainSelect";
 import { ContentMainNotification } from "./ContentMainNotification";
+import SortRoundedIcon from "@mui/icons-material/SortRounded";
+import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
+import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
 
 export const ContentMainNotifications = () => {
     const [select, setSelect] = useState("all");
@@ -24,25 +33,29 @@ export const ContentMainNotifications = () => {
                     mb: "15px",
                 }}
             >
-                <CustomSelect
-                    sx={{
-                        "& .MuiSelect-select.MuiInputBase-input.MuiOutlinedInput-input":
-                            {
-                                pl: 1,
-                            },
-                    }}
-                    value={select}
-                    onChange={handleChange}
-                >
-                    <CustomMenuItem value="all">Все</CustomMenuItem>
+                <CustomSelect value={select} onChange={handleChange}>
+                    <CustomMenuItem value="all">
+                        <ListItemIcon>
+                            <SortRoundedIcon />
+                        </ListItemIcon>
+                        Все уведомления
+                    </CustomMenuItem>
                     <CustomMenuItem value="unread">
+                        <ListItemIcon>
+                            <DoneRoundedIcon />
+                        </ListItemIcon>
                         Непрочитанные
                     </CustomMenuItem>
-                    <CustomMenuItem value="read">Прочитанные</CustomMenuItem>
+                    <CustomMenuItem value="read">
+                        <ListItemIcon>
+                            <DoneAllRoundedIcon />
+                        </ListItemIcon>
+                        Прочитанные
+                    </CustomMenuItem>
                 </CustomSelect>
                 <Box
                     sx={{
-                        backgroundColor: "primary.main",
+                        //backgroundColor: "primary.main",
                         borderRadius: "4px",
                     }}
                 >
