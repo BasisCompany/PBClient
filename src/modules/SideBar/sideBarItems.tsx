@@ -48,7 +48,7 @@ export const sideBarItems = [
                 }}
             />
         ),
-        to: "/login",
+        to: "/support",
     },
     {
         title: "expired",
