@@ -10,6 +10,7 @@ import { ResetPasswordPage } from "../../pages/AuthPage/ResetPassword.page";
 import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileContent/ContentMain/ContentMainPrompts/ContentMainPrompts";
 
 import { TestPage } from "../../trash/TestPage";
+import { ContentMainNotifications } from "../../pages/ProfilePage/ProfileContent/ContentMain/ContentMainNotifications/ContentMainNotifications";
 
 export const AppRoutes = () => {
     return (
@@ -21,7 +22,7 @@ export const AppRoutes = () => {
                     <Route path="comments" element={<h1>Комментарии </h1>} />
                     <Route
                         path="notifications"
-                        element={<h1>Уведомления </h1>}
+                        element={<ContentMainNotifications />}
                     />
                     <Route path="settings" element={<h1>Настройки </h1>} />
                     <Route path="payments" element={<h1>Платежи </h1>} />
