@@ -11,15 +11,15 @@ const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
     backgroundColor: theme.palette.bgcolor.content.main,
     paddingTop: "72px",
     height: "100vh",
-    overflow: "hidden",
+    overflow: "auto",
     ...theme.scrollbar,
 }));
 
-const ScrollBox = styled(Box)(({ theme }) => ({
-    overflow: "auto",
-    height: "100vh",
-    ...theme.scrollbar,
-}));
+// const ScrollBox = styled(Box)(({ theme }) => ({
+//     overflow: "auto",
+//     height: "100vh",
+//     ...theme.scrollbar,
+// }));
 
 export const AppLayout = () => {
     const theme = useTheme();
@@ -38,17 +38,15 @@ export const AppLayout = () => {
             <FlexBox>
                 <SideBar />
                 <MainContainer>
-                    <ScrollBox>
-                        <Container
-                            maxWidth="xl"
-                            sx={{
-                                mt: "15px",
-                                mb: "15px",
-                            }}
-                        >
-                            <Outlet />
-                        </Container>
-                    </ScrollBox>
+                    <Container
+                        maxWidth="xl"
+                        sx={{
+                            mt: "15px",
+                            mb: "15px",
+                        }}
+                    >
+                        <Outlet />
+                    </Container>
                 </MainContainer>
             </FlexBox>
         </>
