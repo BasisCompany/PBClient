@@ -1,12 +1,7 @@
-import { FC } from "react";
 import { Pagination, PaginationItem } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 
-interface PagePaginationProps {
-    pathTo: string;
-}
-
-export const PagePagination: FC<PagePaginationProps> = ({ pathTo }) => {
+export const PagePagination = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const currentPage = parseInt(searchParams.get("page") || "1", 10);
 

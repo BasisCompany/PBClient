@@ -1,29 +1,12 @@
 import ChecklistIcon from "@mui/icons-material/Checklist";
-import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
-import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
-import SortRoundedIcon from "@mui/icons-material/SortRounded";
 import TuneIcon from "@mui/icons-material/Tune";
-import {
-    Box,
-    IconButton,
-    ListItemIcon,
-    SelectChangeEvent,
-    Tooltip,
-} from "@mui/material";
-import { useState } from "react";
+import { Box, IconButton, Tooltip } from "@mui/material";
 
 import { ContentMainNotification } from "./ProfileNotification";
 import { PagePagination } from "../../../../../UI/PagePagination";
-import { CustomSelect } from "../../../../../UI/Select/CustomSelect";
-import { CustomSelectMenuItem } from "../../../../../UI/Select/CustomSelectMenuItem";
+import { NotificationSelect } from "./NotificationSelect";
 
 export const ContentMainNotifications = () => {
-    const [select, setSelect] = useState("unread");
-
-    const handleChange = (event: SelectChangeEvent<unknown>) => {
-        setSelect(event.target.value as string);
-    };
-
     return (
         <>
             <Box
@@ -34,26 +17,7 @@ export const ContentMainNotifications = () => {
                     mb: "15px",
                 }}
             >
-                <CustomSelect value={select} onChange={handleChange}>
-                    <CustomSelectMenuItem value="unread">
-                        <ListItemIcon>
-                            <DoneRoundedIcon sx={{ fontSize: "19px" }} />
-                        </ListItemIcon>
-                        Непрочитанные
-                    </CustomSelectMenuItem>
-                    <CustomSelectMenuItem value="read">
-                        <ListItemIcon>
-                            <DoneAllRoundedIcon sx={{ fontSize: "19px" }} />
-                        </ListItemIcon>
-                        Прочитанные
-                    </CustomSelectMenuItem>
-                    <CustomSelectMenuItem value="all">
-                        <ListItemIcon>
-                            <SortRoundedIcon sx={{ fontSize: "19px" }} />
-                        </ListItemIcon>
-                        Все уведомления
-                    </CustomSelectMenuItem>
-                </CustomSelect>
+                <NotificationSelect />
                 <Box
                     sx={{
                         //backgroundColor: "primary.main",
@@ -98,7 +62,7 @@ export const ContentMainNotifications = () => {
                     mt: 2,
                 }}
             >
-                <PagePagination pathTo="/profile/notifications" />
+                <PagePagination />
             </Box>
         </>
     );
