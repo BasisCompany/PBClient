@@ -1,19 +1,13 @@
 import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import { Spacer } from "../../../../../UI/Spacer";
-import { useMemo, useState } from "react";
-import DoneIcon from "@mui/icons-material/Done";
-export const ContentMainNotification = () => {
-    const [showCheckArrows, setShowCheckArrows] = useState(false);
+import { useMemo } from "react";
+import CloseIcon from "@mui/icons-material/Close";
 
-    const handleMouseOver = () => {
-        setShowCheckArrows(true);
-    };
-
-    const handleMouseOut = () => {
-        setShowCheckArrows(false);
-    };
+export const ContentMainNotification = ({ i }: { i: number }) => {
     const randomType = useMemo(() => {
-        return Math.random() > 0.5 ? "Был оставлен комментарий" : "Был куплен";
+        return Math.random() > 0.5
+            ? "Пользователь {username} оставил(а) комментарий"
+            : "Был куплен";
     }, []);
 
     const randomTime = useMemo(() => {
@@ -30,23 +24,29 @@ export const ContentMainNotification = () => {
                 p: 1,
                 pl: 0,
                 mb: 1,
-                height: "70px",
+                height: "90px",
+                bgcolor:
+                    i < 5
+                        ? (theme) => theme.palette.bgcolor.secondary.main
+                        : "none",
                 borderRadius: "4px",
-                bgcolor: (theme) => theme.palette.bgcolor.secondary.main,
                 transition: "all 0.1s ease-in",
                 ":hover": {
                     bgcolor: (theme) => theme.palette.bgcolor.secondary.hover,
                     transition: "all 0.1s ease-out",
                 },
             }}
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
         >
             <Avatar
                 alt="Remy Sharp"
                 src="https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg"
                 variant="square"
-                sx={{ width: 70, height: 70, borderRadius: "4px 0px 0px 4px" }}
+                sx={{
+                    width: 85,
+                    height: 85,
+                    borderRadius: "4px 0px 0px 4px",
+                    p: "5px",
+                }}
             />
             <Box
                 sx={{
@@ -90,7 +90,6 @@ export const ContentMainNotification = () => {
                         {randomTime}
                     </Typography>
                 </Box>
-
                 <Typography
                     variant="h6"
                     component="span"
@@ -107,16 +106,15 @@ export const ContentMainNotification = () => {
                 </Typography>
             </Box>
             <Spacer />
-            {showCheckArrows && (
+            <Box sx={{ height: "100%" }}>
                 <IconButton
                     sx={{
                         color: "text.primary",
-                        borderRadius: "4px",
                     }}
                 >
-                    <DoneIcon />
+                    <CloseIcon sx={{ fontSize: "18px" }} />
                 </IconButton>
-            )}
+            </Box>
         </Box>
     );
 };

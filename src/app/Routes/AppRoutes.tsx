@@ -8,9 +8,9 @@ import { ExpiredPage } from "../../pages/AuthPage/Expired.page";
 import { VerifiedPage } from "../../pages/AuthPage/Verified.page";
 import { ForgotPasswordPage } from "../../pages/AuthPage/ForgotPassword.page";
 import { ResetPasswordPage } from "../../pages/AuthPage/ResetPassword.page";
-import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileContent/ContentMain/ContentMainPrompts/ContentMainPrompts";
+import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileContent/ContentMain/ProfilePrompts/ContentMainPrompts";
 import { TestPage } from "../../trash/TestPage";
-import { ContentMainNotifications } from "../../pages/ProfilePage/ProfileContent/ContentMain/ContentMainNotifications/ContentMainNotifications";
+import { ContentMainNotifications } from "../../pages/ProfilePage/ProfileContent/ContentMain/ProfileNotifications/ProfileNotifications";
 import { SupportContentMainHelp } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
 
 export const AppRoutes = () => {

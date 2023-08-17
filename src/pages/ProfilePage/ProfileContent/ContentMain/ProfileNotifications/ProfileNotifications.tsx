@@ -11,15 +11,14 @@ import {
     Tooltip,
 } from "@mui/material";
 import { useState } from "react";
-import {
-    CustomMenuItem,
-    CustomSelect,
-} from "../ContentMainPrompts/ContentMainSelect";
-import { ContentMainNotification } from "./ContentMainNotification";
-import { CustomPagination } from "./CustomPagintaion";
+
+import { ContentMainNotification } from "./ProfileNotification";
+import { PagePagination } from "../../../../../UI/PagePagination";
+import { CustomSelect } from "../../../../../UI/Select/CustomSelect";
+import { CustomSelectMenuItem } from "../../../../../UI/Select/CustomSelectMenuItem";
 
 export const ContentMainNotifications = () => {
-    const [select, setSelect] = useState("all");
+    const [select, setSelect] = useState("unread");
 
     const handleChange = (event: SelectChangeEvent<unknown>) => {
         setSelect(event.target.value as string);
@@ -36,24 +35,24 @@ export const ContentMainNotifications = () => {
                 }}
             >
                 <CustomSelect value={select} onChange={handleChange}>
-                    <CustomMenuItem value="all">
+                    <CustomSelectMenuItem value="unread">
                         <ListItemIcon>
-                            <SortRoundedIcon />
-                        </ListItemIcon>
-                        Все уведомления
-                    </CustomMenuItem>
-                    <CustomMenuItem value="unread">
-                        <ListItemIcon>
-                            <DoneRoundedIcon />
+                            <DoneRoundedIcon sx={{ fontSize: "19px" }} />
                         </ListItemIcon>
                         Непрочитанные
-                    </CustomMenuItem>
-                    <CustomMenuItem value="read">
+                    </CustomSelectMenuItem>
+                    <CustomSelectMenuItem value="read">
                         <ListItemIcon>
-                            <DoneAllRoundedIcon />
+                            <DoneAllRoundedIcon sx={{ fontSize: "19px" }} />
                         </ListItemIcon>
                         Прочитанные
-                    </CustomMenuItem>
+                    </CustomSelectMenuItem>
+                    <CustomSelectMenuItem value="all">
+                        <ListItemIcon>
+                            <SortRoundedIcon sx={{ fontSize: "19px" }} />
+                        </ListItemIcon>
+                        Все уведомления
+                    </CustomSelectMenuItem>
                 </CustomSelect>
                 <Box
                     sx={{
@@ -62,12 +61,26 @@ export const ContentMainNotifications = () => {
                     }}
                 >
                     <Tooltip title="Настройки" disableInteractive>
-                        <IconButton sx={{ borderRadius: "4px" }}>
+                        <IconButton
+                            sx={{
+                                borderRadius: "4px",
+                                ":hover": {
+                                    backgroundColor: "rgba(153, 51, 255,0.4)",
+                                },
+                            }}
+                        >
                             <TuneIcon />
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Прочитать всё" disableInteractive>
-                        <IconButton sx={{ borderRadius: "4px" }}>
+                        <IconButton
+                            sx={{
+                                borderRadius: "4px",
+                                ":hover": {
+                                    backgroundColor: "rgba(153, 51, 255,0.4)",
+                                },
+                            }}
+                        >
                             <ChecklistIcon />
                         </IconButton>
                     </Tooltip>
@@ -75,7 +88,7 @@ export const ContentMainNotifications = () => {
             </Box>
             <Box>
                 {[...new Array(10)].map((_, i) => (
-                    <ContentMainNotification key={i} />
+                    <ContentMainNotification key={i} i={i} />
                 ))}
             </Box>
             <Box
@@ -85,7 +98,7 @@ export const ContentMainNotifications = () => {
                     mt: 2,
                 }}
             >
-                <CustomPagination pathTo="/profile/notifications" />
+                <PagePagination pathTo="/profile/notifications" />
             </Box>
         </>
     );
