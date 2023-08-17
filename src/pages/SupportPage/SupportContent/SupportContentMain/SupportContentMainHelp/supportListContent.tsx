@@ -5,7 +5,7 @@ import FaceRoundedIcon from "@mui/icons-material/FaceRounded";
 import CreditCardRoundedIcon from "@mui/icons-material/CreditCardRounded";
 import ForumRoundedIcon from "@mui/icons-material/ForumRounded";
 
-export const supportListContent = [
+export const supporHelpListContent = [
     {
         id: 0,
         to: "general",

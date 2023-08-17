@@ -11,6 +11,7 @@ import { ResetPasswordPage } from "../../pages/AuthPage/ResetPassword.page";
 import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileContent/ContentMain/ContentMainPrompts/ContentMainPrompts";
 import { TestPage } from "../../trash/TestPage";
 import { ContentMainNotifications } from "../../pages/ProfilePage/ProfileContent/ContentMain/ContentMainNotifications/ContentMainNotifications";
+import { SupportContentMainHelp } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
 
 export const AppRoutes = () => {
     return (
@@ -28,7 +29,14 @@ export const AppRoutes = () => {
                     <Route path="payments" element={<h1>Платежи </h1>} />
                 </Route>
                 <Route path="marketplace" element={<AuthPage />} />
-                <Route path="support" element={<SupportPage />} />
+                <Route path="support/*" element={<SupportPage />}>
+                    <Route index element={<SupportContentMainHelp />} />
+                    <Route
+                        path="questions"
+                        element={<h1>Список вопросов </h1>}
+                    />
+                    <Route path="feedback" element={<h1>Задать вопрос </h1>} />
+                </Route>
                 <Route element={<AuthLayout />}>
                     <Route path="login" element={<AuthPage />} />
                     <Route path="expired" element={<ExpiredPage />} />
