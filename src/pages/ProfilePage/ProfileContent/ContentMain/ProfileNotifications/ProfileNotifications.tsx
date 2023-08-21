@@ -51,7 +51,7 @@ export const ContentMainNotifications = () => {
                 </Box>
             </Box>
             <Box>
-                {[...new Array(10)].map((_, i) => (
+                {new Array(10).fill(null).map((_, i) => (
                     <ContentMainNotification key={i} i={i} />
                 ))}
             </Box>

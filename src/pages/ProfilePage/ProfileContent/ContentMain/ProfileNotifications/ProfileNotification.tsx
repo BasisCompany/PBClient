@@ -1,50 +1,40 @@
-import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Tooltip, Typography, styled } from "@mui/material";
 import { Spacer } from "../../../../../UI/Spacer";
-import { useMemo } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
+const NotificationBox = styled(Box)(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    padding: "10px",
+    marginBottom: "8px",
+    height: "90px",
+    borderRadius: "4px",
+    transition: "all 0.1s ease-in",
+    "&:hover": {
+        bgcolor: theme.palette.bgcolor.secondary.hover,
+        transition: "all 0.1s ease-out",
+    },
+}));
+
 export const ContentMainNotification = ({ i }: { i: number }) => {
-    const randomType = useMemo(() => {
-        return Math.random() > 0.5
-            ? "Пользователь {username} оставил(а) комментарий"
-            : "Был куплен";
-    }, []);
-
-    const randomTime = useMemo(() => {
-        return Math.random() > 0.5
-            ? "около 10 часов назад"
-            : "около 1 дня назад";
-    }, []);
-
     return (
-        <Box
+        <NotificationBox
             sx={{
-                display: "flex",
-                alignItems: "center",
-                p: 1,
-                pl: 0,
-                mb: 1,
-                height: "90px",
                 bgcolor:
                     i < 5
                         ? (theme) => theme.palette.bgcolor.secondary.main
                         : "none",
-                borderRadius: "4px",
-                transition: "all 0.1s ease-in",
-                ":hover": {
-                    bgcolor: (theme) => theme.palette.bgcolor.secondary.hover,
-                    transition: "all 0.1s ease-out",
-                },
             }}
         >
-            <Avatar
-                alt="Remy Sharp"
+            <Box
+                component="img"
+                alt="Prompt"
                 src="https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg"
-                variant="square"
                 sx={{
-                    width: 85,
-                    height: 85,
-                    borderRadius: "4px 0px 0px 4px",
+                    width: 70,
+                    height: 80,
+                    borderRadius: "10px",
+                    objectFit: "cover",
                     p: "5px",
                 }}
             />
@@ -87,7 +77,7 @@ export const ContentMainNotification = ({ i }: { i: number }) => {
                             overflow: "hidden",
                         }}
                     >
-                        {randomTime}
+                        около 10 часов назад
                     </Typography>
                 </Box>
                 <Typography
@@ -102,19 +92,21 @@ export const ContentMainNotification = ({ i }: { i: number }) => {
                         overflow: "hidden",
                     }}
                 >
-                    {randomType}
+                    {`Пользователь {username} оставил(а) комментарий`}
                 </Typography>
             </Box>
             <Spacer />
             <Box sx={{ height: "100%" }}>
-                <IconButton
-                    sx={{
-                        color: "text.primary",
-                    }}
-                >
-                    <CloseIcon sx={{ fontSize: "18px" }} />
-                </IconButton>
+                <Tooltip title="Прочитать" disableInteractive placement="left">
+                    <IconButton
+                        sx={{
+                            color: "text.primary",
+                        }}
+                    >
+                        <CloseIcon sx={{ fontSize: "18px" }} />
+                    </IconButton>
+                </Tooltip>
             </Box>
-        </Box>
+        </NotificationBox>
     );
 };

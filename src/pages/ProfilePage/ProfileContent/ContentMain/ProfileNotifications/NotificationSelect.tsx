@@ -27,6 +27,7 @@ export const NotificationSelect = () => {
         }
         setSearchParams(searchParams);
     };
+
     return (
         <CustomSelect value={currentSelect} onChange={handleChange}>
             <CustomSelectMenuItem value="unread">

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { ContentHeader } from "./ContentHeader/ContentHeader";
+import { HeaderTabs } from "./HeaderTabs";
 import { ContentMain } from "./ContentMain/ContentMain";
 
 export const ProfileContent = () => {
@@ -15,7 +15,7 @@ export const ProfileContent = () => {
                 mt: { xs: "15px", lg: "0px" },
             }}
         >
-            <ContentHeader />
+            <HeaderTabs />
             <ContentMain />
         </Box>
     );

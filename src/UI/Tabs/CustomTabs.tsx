@@ -1,8 +1,6 @@
-import { Tabs } from "@mui/material";
-import { TabsProps, tabsClasses } from "@mui/material/Tabs";
-import { styled } from "@mui/material/styles";
+import { styled, TabsProps, Tabs, tabsClasses } from "@mui/material";
 
-export const ContentTabs = styled((props: TabsProps) => (
+export const CustomTabs = styled((props: TabsProps) => (
     <Tabs
         {...props}
         TabIndicatorProps={{
