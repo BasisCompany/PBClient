@@ -47,7 +47,7 @@ export const ContentMainPrompts = () => {
             </Box>
             <Box>
                 {model.map((item) => (
-                    <Box>{item}</Box>
+                    <Box sx={{ height: "100px" }}>{item}</Box>
                 ))}
             </Box>
         </>

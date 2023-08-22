@@ -1,12 +1,11 @@
 import { Box } from "@mui/material";
 import { HeaderTabs } from "./HeaderTabs";
-import { ContentMain } from "./ContentMain/ContentMain";
+import { Outlet } from "react-router";
 
 export const ProfileContent = () => {
     return (
         <Box
             sx={{
-                //bgcolor: "#966",
                 position: "relative",
                 width: { xs: "100%", lg: "calc(80% - 15px)" },
                 display: "flex",
@@ -16,7 +15,17 @@ export const ProfileContent = () => {
             }}
         >
             <HeaderTabs />
-            <ContentMain />
+            <Box
+                sx={{
+                    borderRadius: "15px",
+                    pl: { lg: "15px" },
+                    pt: "15px",
+                    mt: "15px",
+                    color: "white",
+                }}
+            >
+                <Outlet />
+            </Box>
         </Box>
     );
 };

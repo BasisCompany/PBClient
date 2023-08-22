@@ -1,5 +1,5 @@
 import { SyntheticEvent, useEffect, useState } from "react";
-import { Badge, Box } from "@mui/material";
+import { Badge, BadgeProps, Box, styled } from "@mui/material";
 import { useLocation } from "react-router";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import ChatBubbleRoundedIcon from "@mui/icons-material/ChatBubbleRounded";
@@ -7,6 +7,16 @@ import IntegratInstRoundedIcon from "@mui/icons-material/IntegrationInstructions
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { CustomTabs, CustomTab } from "../../../UI/Tabs";
+
+const ProfileTabBadge = styled((props: BadgeProps) => (
+    <Badge overlap="circular" color="secondary" max={9} {...props} />
+))({
+    "& .MuiBadge-badge": {
+        width: 20,
+        height: 20,
+        fontSize: 11,
+    },
+});
 
 const profileTabs = ["", "comments", "notifications", "payments", "settings"];
 
@@ -53,32 +63,20 @@ export const HeaderTabs = () => {
                     to="comments"
                     label="Комментарии"
                     icon={
-                        <Badge
-                            badgeContent={100}
-                            overlap="circular"
-                            color="secondary"
-                            max={9}
-                        >
+                        <ProfileTabBadge badgeContent={100}>
                             <ChatBubbleRoundedIcon sx={{ fontSize: 25 }} />
-                        </Badge>
+                        </ProfileTabBadge>
                     }
                 />
-
                 <CustomTab
                     to="notifications"
                     label="Уведомления"
                     icon={
-                        <Badge
-                            badgeContent={100}
-                            overlap="circular"
-                            color="secondary"
-                            max={9}
-                        >
+                        <ProfileTabBadge badgeContent={5}>
                             <NotificationsIcon sx={{ fontSize: 25 }} />
-                        </Badge>
+                        </ProfileTabBadge>
                     }
                 />
-
                 <CustomTab
                     to="payments"
                     label="Платежи"

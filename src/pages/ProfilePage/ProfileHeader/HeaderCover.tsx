@@ -1,5 +1,5 @@
 import { Box, CardMedia } from "@mui/material";
-import { ProfileButton } from "../ProfileButton";
+import { ProfileButton } from "../../../UI/ProfileButton";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 
 export interface HeaderCoverProps {

@@ -130,6 +130,7 @@ const componentsStyleOverrides = {
 const scrollbarStyles = {
     "&::-webkit-scrollbar": {
         width: "0.5em",
+        height: "0.5em",
     },
     "&::-webkit-scrollbar-track": {
         background: "rgba(0,0,0,0)",

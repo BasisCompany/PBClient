@@ -1,12 +1,13 @@
+import { Box, Tooltip, IconButton } from "@mui/material";
+import { PagePagination } from "../../../../UI/PagePagination";
+import { NotificationSelect } from "../ProfileNotifications/NotificationSelect";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import TuneIcon from "@mui/icons-material/Tune";
-import { Box, IconButton, Tooltip } from "@mui/material";
+import { useMobileDevice } from "../../../../hooks/useMobileDevice";
+import { ProfileCommentItem } from "./ProfileCommentItem";
 
-import { ContentMainNotification } from "./ProfileNotification";
-import { PagePagination } from "../../../../../UI/PagePagination";
-import { NotificationSelect } from "./NotificationSelect";
-
-export const ContentMainNotifications = () => {
+export const ProfileComments = () => {
+    const isMobile = useMobileDevice();
     return (
         <>
             <Box
@@ -29,7 +30,7 @@ export const ContentMainNotifications = () => {
                             sx={{
                                 borderRadius: "4px",
                                 ":hover": {
-                                    backgroundColor: "rgba(153, 51, 255,0.4)",
+                                    backgroundColor: "rgba(153, 51, 255,0.2)",
                                 },
                             }}
                         >
@@ -41,7 +42,7 @@ export const ContentMainNotifications = () => {
                             sx={{
                                 borderRadius: "4px",
                                 ":hover": {
-                                    backgroundColor: "rgba(153, 51, 255,0.4)",
+                                    backgroundColor: "rgba(153, 51, 255,0.2)",
                                 },
                             }}
                         >
@@ -52,7 +53,7 @@ export const ContentMainNotifications = () => {
             </Box>
             <Box>
                 {new Array(10).fill(null).map((_, i) => (
-                    <ContentMainNotification key={i} i={i} />
+                    <ProfileCommentItem key={i} />
                 ))}
             </Box>
             <Box
@@ -62,7 +63,10 @@ export const ContentMainNotifications = () => {
                     mt: 2,
                 }}
             >
-                <PagePagination />
+                <PagePagination
+                    siblingCount={isMobile ? 0 : 2}
+                    size={isMobile ? "small" : "medium"}
+                />
             </Box>
         </>
     );

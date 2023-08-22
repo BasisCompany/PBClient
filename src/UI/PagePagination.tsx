@@ -1,7 +1,8 @@
-import { Pagination, PaginationItem } from "@mui/material";
+import { FC } from "react";
+import { Pagination, PaginationItem, PaginationProps } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 
-export const PagePagination = () => {
+export const PagePagination: FC<PaginationProps> = (props) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
@@ -20,13 +21,13 @@ export const PagePagination = () => {
             count={10}
             showFirstButton
             showLastButton
-            siblingCount={2}
             renderItem={(item) => (
                 <PaginationItem
                     {...item}
                     onClick={() => handlePaginationClick(item.page)}
                 />
             )}
+            {...props}
         />
     );
 };
