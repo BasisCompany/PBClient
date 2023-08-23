@@ -16,7 +16,7 @@ export const SupportContentMainQuestions = () => {
         >
             <Box
                 sx={{
-                    borderRadius: "4px",
+                    borderRadius: "5px",
                     minWidth: "205px",
                     mr: "15px",
                     pr: "8px",

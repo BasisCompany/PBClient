@@ -37,7 +37,7 @@ export const CustomListItem: FC<CustomListItemProps> = ({
                 sx={{
                     //bgcolor: "#397",
                     height: "100%",
-                    borderRadius: "4px",
+                    borderRadius: "5px",
                     ":hover": {
                         bgcolor: (theme) =>
                             theme.palette.bgcolor.secondary.hover,

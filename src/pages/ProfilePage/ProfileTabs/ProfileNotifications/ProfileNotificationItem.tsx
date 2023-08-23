@@ -13,7 +13,7 @@ const NotificationBox = styled(Box)(({ theme }) => ({
     display: "flex",
     marginBottom: "8px",
     minHeight: "90px",
-    borderRadius: "4px",
+    borderRadius: "5px",
     transition: "all 0.1s ease-in",
     backgroundColor: theme.palette.bgcolor.secondary.main, // Math.random() > 0.5 ? theme.palette.bgcolor.secondary.main : "none",
     "&:hover": {

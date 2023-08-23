@@ -29,6 +29,8 @@ export const ProfileNotifications = () => {
                     <Tooltip title="Настройки" disableInteractive>
                         <IconButton
                             sx={{
+                                height: "33px",
+                                width: "33px",
                                 borderRadius: "4px",
                                 ":hover": {
                                     backgroundColor: "rgba(153, 51, 255,0.2)",
@@ -41,6 +43,8 @@ export const ProfileNotifications = () => {
                     <Tooltip title="Прочитать всё" disableInteractive>
                         <IconButton
                             sx={{
+                                height: "33px",
+                                width: "33px",
                                 borderRadius: "4px",
                                 ":hover": {
                                     backgroundColor: "rgba(153, 51, 255,0.2)",

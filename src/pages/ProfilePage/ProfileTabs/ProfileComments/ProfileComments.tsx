@@ -28,6 +28,8 @@ export const ProfileComments = () => {
                     <Tooltip title="Настройки" disableInteractive>
                         <IconButton
                             sx={{
+                                height: "33px",
+                                width: "33px",
                                 borderRadius: "4px",
                                 ":hover": {
                                     backgroundColor: "rgba(153, 51, 255,0.2)",
@@ -40,6 +42,8 @@ export const ProfileComments = () => {
                     <Tooltip title="Прочитать всё" disableInteractive>
                         <IconButton
                             sx={{
+                                height: "33px",
+                                width: "33px",
                                 borderRadius: "4px",
                                 ":hover": {
                                     backgroundColor: "rgba(153, 51, 255,0.2)",
