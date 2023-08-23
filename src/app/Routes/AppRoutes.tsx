@@ -8,11 +8,15 @@ import { ExpiredPage } from "../../pages/AuthPage/Expired.page";
 import { VerifiedPage } from "../../pages/AuthPage/Verified.page";
 import { ForgotPasswordPage } from "../../pages/AuthPage/ForgotPassword.page";
 import { ResetPasswordPage } from "../../pages/AuthPage/ResetPassword.page";
-import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileContent/ContentMain/ProfilePrompts/ContentMainPrompts";
+import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileTabs/ProfilePrompts/ContentMainPrompts";
 import { TestPage } from "../../trash/TestPage";
-import { ContentMainNotifications } from "../../pages/ProfilePage/ProfileContent/ContentMain/ProfileNotifications/ProfileNotifications";
 import { SupportContentMainHelp } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
+<<<<<<< HEAD
 import { SupportContentMainQuestions } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/SupportContentMainQuestions";
+=======
+import { ProfileNotifications } from "../../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotifications";
+import { ProfileComments } from "../../pages/ProfilePage/ProfileTabs/ProfileComments/ProfileComments";
+>>>>>>> 6a645ef718abb709cf3b79089e32b7a788b44ca7
 
 export const AppRoutes = () => {
     return (
@@ -21,10 +25,10 @@ export const AppRoutes = () => {
                 <Route index element={<TestPage />} />
                 <Route path="profile/*" element={<ProfilePage />}>
                     <Route index element={<ContentMainPrompts />} />
-                    <Route path="comments" element={<h1>Комментарии </h1>} />
+                    <Route path="comments" element={<ProfileComments />} />
                     <Route
                         path="notifications"
-                        element={<ContentMainNotifications />}
+                        element={<ProfileNotifications />}
                     />
                     <Route path="settings" element={<h1>Настройки </h1>} />
                     <Route path="payments" element={<h1>Платежи </h1>} />

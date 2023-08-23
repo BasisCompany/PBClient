@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileStatistic } from "./ProfileStatistic/ProfileStatistic";
-import { ProfileContent } from "./ProfileContent/ProfileContent";
+import { ProfileContent } from "./ProfileTabs/ProfileContent";
 
 export const ProfilePage = () => {
     return (

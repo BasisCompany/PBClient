@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ListItemIcon, SelectChangeEvent } from "@mui/material";
-import { CustomSelect } from "../../../../../UI/Select/CustomSelect";
-import { CustomSelectMenuItem } from "../../../../../UI/Select/CustomSelectMenuItem";
+import { CustomSelect } from "../../../../UI/Select/CustomSelect";
+import { CustomSelectMenuItem } from "../../../../UI/Select/CustomSelectMenuItem";
 
 import UpdateRoundedIcon from "@mui/icons-material/UpdateRounded";
 import GradeRoundedIcon from "@mui/icons-material/GradeRounded";

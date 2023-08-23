@@ -1,6 +1,6 @@
 import { SelectChangeEvent, ListItemIcon } from "@mui/material";
-import { CustomSelect } from "../../../../../UI/Select/CustomSelect";
-import { CustomSelectMenuItem } from "../../../../../UI/Select/CustomSelectMenuItem";
+import { CustomSelect } from "../../../../UI/Select/CustomSelect";
+import { CustomSelectMenuItem } from "../../../../UI/Select/CustomSelectMenuItem";
 
 import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
 import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
@@ -27,6 +27,7 @@ export const NotificationSelect = () => {
         }
         setSearchParams(searchParams);
     };
+
     return (
         <CustomSelect value={currentSelect} onChange={handleChange}>
             <CustomSelectMenuItem value="unread">

@@ -1,4 +1,4 @@
-import { ChatGPTIcon } from "../../../../../assets/ChatGPTIcon";
+import { ChatGPTIcon } from "../../../../assets/ChatGPTIcon";
 import BrushOutlinedIcon from "@mui/icons-material/BrushOutlined";
 import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
 import SailingOutlinedIcon from "@mui/icons-material/SailingOutlined";

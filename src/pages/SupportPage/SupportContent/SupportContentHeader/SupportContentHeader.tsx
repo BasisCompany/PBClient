@@ -3,13 +3,12 @@ import { useState, SyntheticEvent, useEffect } from "react";
 import { Box } from "@mui/material";
 
 import { useLocation } from "react-router";
-import { ContentTabs } from "../../../ProfilePage/ProfileContent/ContentHeader/ContentTabs";
 
-import { ContentTab } from "../../../ProfilePage/ProfileContent/ContentHeader/ContentTab";
 import QuizRoundedIcon from "@mui/icons-material/QuizRounded";
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded";
 import LightbulbRoundedIcon from "@mui/icons-material/LightbulbRounded";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
+import { CustomTab, CustomTabs } from "../../../../UI/Tabs";
 
 const supportTabsItems = [
     {
@@ -71,14 +70,14 @@ export const SupportContentHeader = () => {
                 mb: "15px",
             }}
         >
-            <ContentTabs
+            <CustomTabs
                 value={value}
                 onChange={handleChange}
                 variant="scrollable"
                 scrollButtons="auto"
                 allowScrollButtonsMobile
             >
-                <ContentTab
+                <CustomTab
                     to=""
                     icon={
                         <QuizRoundedIcon
@@ -91,7 +90,7 @@ export const SupportContentHeader = () => {
                     label="Помощь"
                 />
                 {!isMobile && (
-                    <ContentTab
+                    <CustomTab
                         to="questions"
                         icon={
                             <FormatListBulletedRoundedIcon
@@ -104,7 +103,7 @@ export const SupportContentHeader = () => {
                         label={"Список вопрос"}
                     />
                 )}
-                <ContentTab
+                <CustomTab
                     to="feedback"
                     icon={
                         <LightbulbRoundedIcon
@@ -116,7 +115,7 @@ export const SupportContentHeader = () => {
                     iconPosition="start"
                     label="Задать вопрос"
                 />
-            </ContentTabs>
+            </CustomTabs>
         </Box>
     );
 };
