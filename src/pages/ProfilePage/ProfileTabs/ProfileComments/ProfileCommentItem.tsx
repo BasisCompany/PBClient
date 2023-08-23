@@ -1,14 +1,13 @@
 import {
     Box,
     Typography,
-    Tooltip,
-    IconButton,
     styled,
     Avatar,
     Rating,
+    IconButton,
 } from "@mui/material";
-import { Spacer } from "../../../../UI/Spacer";
-import CloseIcon from "@mui/icons-material/Close";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const CommentBox = styled(Box)(({ theme }) => ({
     padding: "10px",
@@ -35,7 +34,7 @@ export const ProfileCommentItem = () => {
                 <Avatar
                     alt="Remy Sharp"
                     src="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg"
-                    sx={{ width: 62, height: 62 }}
+                    sx={{ width: 52, height: 52 }}
                 />
                 <Box
                     sx={{
@@ -111,6 +110,27 @@ export const ProfileCommentItem = () => {
                     laudantium id! Magni, explicabo. Fugit a quisquam ut aliquid
                     excepturi blanditiis iusto dolore ex?
                 </Typography>
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+                <IconButton>
+                    <KeyboardArrowUpIcon sx={{ color: "lime" }} />
+                </IconButton>
+                <Typography
+                    variant="h6"
+                    component="span"
+                    color="text.primary"
+                    fontSize={16}
+                    fontWeight={400}
+                    sx={{
+                        mr: 1,
+                        ml: 1,
+                    }}
+                >
+                    2
+                </Typography>
+                <IconButton>
+                    <KeyboardArrowDownIcon sx={{ color: "red" }} />
+                </IconButton>
             </Box>
         </CommentBox>
     );
