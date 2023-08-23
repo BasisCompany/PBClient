@@ -22,9 +22,6 @@ const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
 // }));
 
 export const AppLayout = () => {
-    const theme = useTheme();
-    console.log(theme);
-
     // const { isLoading } = useMeQuery();
 
     // //TODO[Артем]: Стилизовать

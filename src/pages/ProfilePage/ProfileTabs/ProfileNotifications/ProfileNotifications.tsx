@@ -1,11 +1,10 @@
-import ChecklistIcon from "@mui/icons-material/Checklist";
-import TuneIcon from "@mui/icons-material/Tune";
 import { Box, IconButton, Tooltip } from "@mui/material";
-
 import { PagePagination } from "../../../../UI/PagePagination";
 import { NotificationSelect } from "./NotificationSelect";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
 import { ProfileNotificationItem } from "./ProfileNotificationItem";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 
 export const ProfileNotifications = () => {
     const isMobile = useMobileDevice();
@@ -37,7 +36,7 @@ export const ProfileNotifications = () => {
                                 },
                             }}
                         >
-                            <TuneIcon />
+                            <SettingsRoundedIcon sx={{ width: "23px" }} />
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Прочитать всё" disableInteractive>
@@ -47,11 +46,11 @@ export const ProfileNotifications = () => {
                                 width: "33px",
                                 borderRadius: "4px",
                                 ":hover": {
-                                    backgroundColor: "rgba(153, 51, 255,0.2)",
+                                    backgroundColor: "rgba(153, 51, 255, 0.2);",
                                 },
                             }}
                         >
-                            <ChecklistIcon />
+                            <DoneAllIcon />
                         </IconButton>
                     </Tooltip>
                 </Box>
@@ -64,7 +63,7 @@ export const ProfileNotifications = () => {
             <Box
                 sx={{
                     display: "flex",
-                    justifyContent: "end",
+                    justifyContent: isMobile ? "center" : "end",
                     mt: 2,
                 }}
             >

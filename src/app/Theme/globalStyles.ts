@@ -2,41 +2,6 @@ import { Theme } from "@mui/material/styles";
 import { EThemeMode } from "./enums/themeMode.enum";
 
 const defaultDarkStyles = {
-    background: {
-        paper: "#0f0f0f",
-        default: "#0f0f0f",
-    },
-};
-
-const lightStyles = {
-    primary: {
-        main: "#ffffff",
-        dark: "#ffffff",
-    },
-    secondary: {
-        main: "#ddccfc",
-    },
-    test: {
-        main: "#000000",
-        dark: "#000000",
-    },
-    background: {
-        paper: "#edeef0",
-        default: "#edeef0",
-    },
-    text: {
-        primary: "#000000",
-        secondary: "#1e1e1e",
-    },
-    action: {
-        active: "#1e1e1e",
-        hover: "#ddccfc",
-        selected: "#ddccfc",
-    },
-};
-
-const darkStyles = {
-    ...defaultDarkStyles,
     primary: {
         main: "#272727",
         dark: "#272727",
@@ -44,18 +9,24 @@ const darkStyles = {
     secondary: {
         main: "#9933FF",
     },
-    test: {
-        main: "#9933FF",
-        dark: "#9933FF",
-    },
-    text: {
-        primary: "#FFF",
-        secondary: "#d1d1dc",
-    },
     action: {
         active: "#d1d1dc",
         hover: "#272727",
         selected: "#9933FF",
+    },
+    background: {
+        paper: "#0f0f0f",
+        default: "#0f0f0f",
+    },
+};
+
+const darkStyles = {
+    ...defaultDarkStyles,
+    text: {
+        primary: "#FFF",
+        secondary: "#d1d1dc",
+        hover: "#9933FF",
+        disabled: "#4d4d4d",
     },
     bgcolor: {
         content: {
@@ -83,6 +54,64 @@ const darkStyles = {
                 main: "#373737",
                 hover: "#464646",
                 active: "#5c5c5c",
+            },
+        },
+    },
+};
+
+const defaultLightStyles = {
+    primary: {
+        main: "#E0E0E0",
+        dark: "#E0E0E0",
+    },
+    secondary: {
+        main: "#9933FF",
+    },
+    action: {
+        active: "#3f3f46",
+        hover: "#E0E0E0",
+        selected: "#9933FF",
+    },
+    background: {
+        paper: "#FFFFFF",
+        default: "#FFFFFF",
+    },
+};
+
+const lightStyles = {
+    ...defaultLightStyles,
+    text: {
+        primary: "#272727",
+        secondary: "#7E7E7E",
+        hover: "#9933FF",
+        disabled: "#A0A0A0",
+    },
+    bgcolor: {
+        content: {
+            main: "#FFFFFF",
+            hover: "#E0E0E0",
+            active: "#B0B0B0",
+        },
+        secondary: {
+            main: "#E0E0E0",
+            hover: "#D0D0D0",
+            active: "#C0C0C0",
+        },
+        tertiary: {
+            main: "#D0D0D0",
+            hover: "#C0C0C0",
+            active: "#A0A0A0",
+        },
+        modal: {
+            content: {
+                main: "#E0E0E0",
+                hover: "#D0D0D0",
+                active: "#C0C0C0",
+            },
+            secondary: {
+                main: "#D0D0D0",
+                hover: "#C0C0C0",
+                active: "#A0A0A0",
             },
         },
     },
@@ -142,8 +171,8 @@ const scrollbarStyles = {
     "&::-webkit-scrollbar-thumb:hover": {
         background: "#7A18DC",
     },
-    "scrollbar-width": "thin",
-    "scrollbar-color": "#9933FF rgba(0,0,0,0)",
+    scrollbarWidth: "thin",
+    scrollbarColor: "#9933FF rgba(0,0,0,0)",
 };
 
 declare module "@mui/material/styles/createPalette" {
@@ -152,29 +181,25 @@ declare module "@mui/material/styles/createPalette" {
         hover: string;
         active: string;
     }
-
-    interface PaletteOptions {
-        bgcolor?: {
-            content?: BackgroundColorOptions;
-            secondary?: BackgroundColorOptions;
-            tertiary?: BackgroundColorOptions;
-            modal?: {
-                content: BackgroundColorOptions;
-                secondary: BackgroundColorOptions;
-            };
+    interface BackgroundColor {
+        content: BackgroundColorOptions;
+        secondary: BackgroundColorOptions;
+        tertiary: BackgroundColorOptions;
+        modal: {
+            content: BackgroundColorOptions;
+            secondary: BackgroundColorOptions;
         };
     }
 
+    interface TypeText {
+        hover: string;
+    }
+
     interface Palette {
-        bgcolor: {
-            content: BackgroundColorOptions;
-            secondary: BackgroundColorOptions;
-            tertiary: BackgroundColorOptions;
-            modal: {
-                content: BackgroundColorOptions;
-                secondary: BackgroundColorOptions;
-            };
-        };
+        bgcolor: BackgroundColor;
+    }
+    interface PaletteOptions {
+        bgcolor?: Partial<BackgroundColor>;
     }
 }
 
@@ -187,26 +212,3 @@ declare module "@mui/material/styles/createTheme" {
         scrollbar: object;
     }
 }
-// const colors = {
-//     black: {
-//         DEFAULT: "#000000",
-//         100: "#373737",
-//         200: "#313131",
-//         300: "#303030",
-//         400: "#282828",
-//         500: "#272727",
-//         600: "#1a1a1a",
-//         700: "#0f0f0f",
-//     },
-//     gray: {
-//         DEFAULT: "##808080",
-//         100: "#585858",
-//         200: "#545454",
-//         300: "#4b4b4b",
-//         400: "#4a4a4a",
-//         500: "#444444",
-//         600: "#3e3e3e",
-//         700: "#3d3d3d",
-//         800: "#3c3c3c",
-//     },
-// };

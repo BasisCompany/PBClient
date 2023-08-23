@@ -6,16 +6,16 @@ import {
     Typography,
     styled,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import { Spacer } from "../../../../UI/Spacer";
+import CheckIcon from "@mui/icons-material/Check";
 
 const NotificationBox = styled(Box)(({ theme }) => ({
     display: "flex",
     marginBottom: "8px",
     minHeight: "90px",
     borderRadius: "5px",
+    cursor: "pointer",
     transition: "all 0.1s ease-in",
-    backgroundColor: theme.palette.bgcolor.secondary.main, // Math.random() > 0.5 ? theme.palette.bgcolor.secondary.main : "none",
     "&:hover": {
         backgroundColor: theme.palette.bgcolor.secondary.hover,
         transition: "all 0.1s ease-out",
@@ -25,24 +25,37 @@ const NotificationBox = styled(Box)(({ theme }) => ({
 const NotificationImg = styled((props: BoxProps<"img">) => (
     <Box component="img" {...props} />
 ))({
-    width: 70,
+    width: 60,
     height: 80,
-    borderRadius: "10px",
+    borderRadius: "5px",
     objectFit: "cover",
-    padding: "5px",
-    paddingLeft: "0px",
+    marginRight: "5px",
 });
 
 export const ProfileNotificationItem = () => {
     const username = "Stormpero";
-
+    const ran = Math.random();
     return (
-        <NotificationBox>
+        <NotificationBox
+            sx={{
+                backgroundColor:
+                    ran > 0.5
+                        ? (theme) => theme.palette.bgcolor.secondary.main
+                        : "none",
+                "&:hover": {
+                    backgroundColor:
+                        ran > 0.5
+                            ? (theme) => theme.palette.bgcolor.secondary.hover
+                            : (theme) => theme.palette.bgcolor.secondary.main,
+                },
+            }}
+        >
             <Box
                 sx={{
                     display: "flex",
                     alignItems: "center",
                     padding: "10px",
+                    pl: "13px",
                 }}
             >
                 <NotificationImg
@@ -60,13 +73,20 @@ export const ProfileNotificationItem = () => {
                         <Typography
                             component="span"
                             variant="h6"
-                            color="text.primary"
+                            color={(theme) => theme.palette.text.primary}
+                            fontSize={15}
+                            fontWeight={700}
                             sx={{
-                                fontSize: 15,
-                                fontWeight: 700,
                                 textOverflow: "ellipsis",
                                 overflow: "hidden",
                                 mr: "8px",
+                                cursor: "pointer",
+                                transition: "all .1s ease-in",
+                                ":hover": {
+                                    color: (theme) =>
+                                        theme.palette.text.secondary,
+                                    transition: "all .1s ease-out",
+                                },
                             }}
                         >
                             Asian Art T-shirt Designs
@@ -74,12 +94,12 @@ export const ProfileNotificationItem = () => {
                         <Typography
                             variant="h6"
                             component="span"
-                            color="#bfbfc0"
+                            color={(theme) => theme.palette.text.secondary}
+                            fontSize={15}
+                            fontWeight={400}
                             sx={{
-                                fontSize: 15,
                                 textOverflow: "ellipsis",
                                 overflow: "hidden",
-                                fontWeight: 400,
                             }}
                         >
                             около 10 часов назад
@@ -87,27 +107,28 @@ export const ProfileNotificationItem = () => {
                     </Box>
                     <Typography
                         component="span"
-                        color="text.primary"
+                        color={(theme) => theme.palette.text.primary}
+                        fontSize={14}
+                        fontWeight={400}
                         sx={{
-                            fontSize: 14,
                             textOverflow: "ellipsis",
                             overflow: "hidden",
-                            fontWeight: 400,
                         }}
                     >
                         Пользователь{" "}
                         <Typography
                             component="span"
+                            color={(theme) => theme.palette.text.primary}
+                            fontSize={14}
+                            fontWeight={600}
                             sx={{
-                                fontSize: 14,
-                                fontWeight: 600,
                                 textDecoration: "none",
-                                color: "text.primary",
                                 cursor: "pointer",
-                                transition: "all 0.1s ease-in",
+                                transition: "all .1s ease-in",
                                 ":hover": {
-                                    color: "rgba(153, 51, 255, 0.8)",
-                                    transition: "all 0.1s ease-out",
+                                    color: (theme) =>
+                                        theme.palette.text.secondary,
+                                    transition: "all .1s ease-out",
                                 },
                             }}
                         >
@@ -118,17 +139,23 @@ export const ProfileNotificationItem = () => {
                 </Box>
             </Box>
             <Spacer />
-            <Box>
-                <Tooltip title="Прочитать" disableInteractive placement="left">
-                    <IconButton
-                        sx={{
-                            color: "text.primary",
-                        }}
+            {ran > 0.5 && (
+                <Box>
+                    <Tooltip
+                        title="Прочитать"
+                        disableInteractive
+                        placement="left"
                     >
-                        <CloseIcon sx={{ fontSize: "21px" }} />
-                    </IconButton>
-                </Tooltip>
-            </Box>
+                        <IconButton
+                            sx={{
+                                color: (theme) => theme.palette.text.primary,
+                            }}
+                        >
+                            <CheckIcon sx={{ fontSize: "21px" }} />
+                        </IconButton>
+                    </Tooltip>
+                </Box>
+            )}
         </NotificationBox>
     );
 };

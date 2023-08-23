@@ -15,10 +15,10 @@ export const CustomTab = styled((props: TabProps & RouterLinkProps) => (
     paddingRight: "0",
     fontSize: theme.typography.pxToRem(19),
     marginRight: theme.spacing(5),
-    color: "rgba(255, 255, 255, 0.7)",
+    color: theme.palette.text.secondary,
     minHeight: "0px",
     "&.Mui-selected": {
-        color: "#fff",
+        color: theme.palette.text.primary,
     },
     "&.Mui-focusVisible": {
         backgroundColor: "rgba(100, 95, 228, 0.32)",
