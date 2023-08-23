@@ -30,10 +30,10 @@ export const Notification = () => {
                 display: "flex",
                 alignItems: "center",
                 p: 1,
-                backgroundColor: "primary.dark",
+                backgroundColor: (theme) => theme.palette.bgcolor.modal.primary.main,
                 transition: "all 0.1s ease-in",
                 ":hover": {
-                    backgroundColor: "rgba(255, 255, 255, 0.3)",
+                    backgroundColor: (theme) => theme.palette.bgcolor.modal.primary.hover,
                     transition: "all 0.1s ease-out",
                 },
             }}

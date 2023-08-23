@@ -8,7 +8,7 @@ import { SideBar } from "../../modules/SideBar/SideBar";
 
 const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
     flexGrow: 1,
-    backgroundColor: theme.palette.bgcolor.content.main,
+    backgroundColor: theme.palette.bgcolor.primary.main,
     paddingTop: "72px",
     height: "100vh",
     overflow: "auto",

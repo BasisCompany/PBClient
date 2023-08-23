@@ -34,7 +34,7 @@ export const SideBarContentMin = () => {
                             ":hover": {
                                 borderRadius: "15px",
                                 bgcolor: (theme) =>
-                                    theme.palette.bgcolor.content.hover,
+                                    theme.palette.bgcolor.primary.hover,
                             },
                         }}
                     >

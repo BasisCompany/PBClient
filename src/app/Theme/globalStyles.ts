@@ -1,6 +1,25 @@
 import { Theme } from "@mui/material/styles";
 import { EThemeMode } from "./enums/themeMode.enum";
 
+const defaultLightStyles = {
+    primary: {
+        main: "#E0E0E0",
+        dark: "#E0E0E0",
+    },
+    secondary: {
+        main: "#00BFFF",
+    },
+    action: {
+        active: "#3f3f46",
+        hover: "#E0E0E0",
+        selected: "#9933FF",
+    },
+    background: {
+        paper: "#FFFFFF",
+        default: "#FFFFFF",
+    },
+};
+
 const defaultDarkStyles = {
     primary: {
         main: "#272727",
@@ -20,6 +39,45 @@ const defaultDarkStyles = {
     },
 };
 
+const lightStyles = {
+    ...defaultLightStyles,
+    text: {
+        primary: "#000",
+        secondary: "#6c6c6c",
+        hover: "#00BFFF",
+        disabled: "#a0a0a0",
+    },
+    bgcolor: {
+        primary: {
+            main: "#ffffff",
+            hover: "#e6e6e6",
+            active: "#c0c0c0",
+        },
+        secondary: {
+            main: "#f2f2f2",
+            hover: "#dbdbdb",
+            active: "#b9b9b9",
+        },
+        tertiary: {
+            main: "#F3F3F3",
+            hover: "#dcdcdc",
+            active: "#bababa",
+        },
+        modal: {
+            primary: {
+                main: "#ffffff",
+                hover: "#e6e6e6",
+                active: "#c0c0c0",
+            },
+            secondary: {
+                main: "#f2f2f2",
+                hover: "#dbdbdb",
+                active: "#b9b9b9",
+            },
+        },
+    },
+};
+
 const darkStyles = {
     ...defaultDarkStyles,
     text: {
@@ -29,7 +87,7 @@ const darkStyles = {
         disabled: "#4d4d4d",
     },
     bgcolor: {
-        content: {
+        primary: {
             main: "#0f0f0f",
             hover: "#262626",
             active: "#484848",
@@ -45,7 +103,7 @@ const darkStyles = {
             active: "#5f5f5f",
         },
         modal: {
-            content: {
+            primary: {
                 main: "#282828",
                 hover: "#3a3a3a",
                 active: "#555555",
@@ -54,64 +112,6 @@ const darkStyles = {
                 main: "#373737",
                 hover: "#464646",
                 active: "#5c5c5c",
-            },
-        },
-    },
-};
-
-const defaultLightStyles = {
-    primary: {
-        main: "#E0E0E0",
-        dark: "#E0E0E0",
-    },
-    secondary: {
-        main: "#9933FF",
-    },
-    action: {
-        active: "#3f3f46",
-        hover: "#E0E0E0",
-        selected: "#9933FF",
-    },
-    background: {
-        paper: "#FFFFFF",
-        default: "#FFFFFF",
-    },
-};
-
-const lightStyles = {
-    ...defaultLightStyles,
-    text: {
-        primary: "#272727",
-        secondary: "#7E7E7E",
-        hover: "#9933FF",
-        disabled: "#A0A0A0",
-    },
-    bgcolor: {
-        content: {
-            main: "#FFFFFF",
-            hover: "#E0E0E0",
-            active: "#B0B0B0",
-        },
-        secondary: {
-            main: "#E0E0E0",
-            hover: "#D0D0D0",
-            active: "#C0C0C0",
-        },
-        tertiary: {
-            main: "#D0D0D0",
-            hover: "#C0C0C0",
-            active: "#A0A0A0",
-        },
-        modal: {
-            content: {
-                main: "#E0E0E0",
-                hover: "#D0D0D0",
-                active: "#C0C0C0",
-            },
-            secondary: {
-                main: "#D0D0D0",
-                hover: "#C0C0C0",
-                active: "#A0A0A0",
             },
         },
     },
@@ -182,11 +182,11 @@ declare module "@mui/material/styles/createPalette" {
         active: string;
     }
     interface BackgroundColor {
-        content: BackgroundColorOptions;
+        primary: BackgroundColorOptions;
         secondary: BackgroundColorOptions;
         tertiary: BackgroundColorOptions;
         modal: {
-            content: BackgroundColorOptions;
+            primary: BackgroundColorOptions;
             secondary: BackgroundColorOptions;
         };
     }

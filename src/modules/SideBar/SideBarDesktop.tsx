@@ -64,7 +64,7 @@ const Drawer = styled(MuiDrawer, {
         width: open ? drawerWidth : `calc(${theme.spacing(8)} + 12px)`,
     },
     "& .MuiDrawer-paper": {
-        backgroundColor: theme.palette.bgcolor.content.main,
+        backgroundColor: theme.palette.bgcolor.primary.main,
         width: open ? drawerWidth : `calc(${theme.spacing(7)} + 12px)`,
         overflowX: "hidden",
         borderRight: "0px",

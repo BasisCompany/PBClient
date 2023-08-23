@@ -8,11 +8,12 @@ import {
     styled,
 } from "@mui/material";
 import { FC } from "react";
-import ChecklistIcon from "@mui/icons-material/Checklist";
-import TuneIcon from "@mui/icons-material/Tune";
 import { Notification } from "./Notification";
 import { LinkButton } from "../../../../UI/Buttons/LinkButton";
 import { LinkIconButton } from "../../../../UI/Buttons/LinkIconButton";
+
+import DoneAllIcon from "@mui/icons-material/DoneAll";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 
 interface NotificationsPopperProps {
     isOpen: boolean;
@@ -41,7 +42,8 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
             placement="bottom-end"
             sx={{
                 zIndex: 1250,
-                backgroundColor: "primary.main",
+                backgroundColor: (theme) =>
+                    theme.palette.bgcolor.modal.primary.main,
                 borderRadius: "5px",
             }}
             modifiers={[
@@ -70,7 +72,7 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                         to="profile/notifications"
                         onClick={handleClose}
                     >
-                        <TuneIcon />
+                        <SettingsRoundedIcon />
                     </LinkIconButton>
                     <LinkButton
                         to="profile/notifications"
@@ -94,12 +96,12 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                         />
                     </LinkButton>
                     <IconButton>
-                        <ChecklistIcon />
+                        <DoneAllIcon />
                     </IconButton>
                 </Box>
                 <Divider />
                 <NotificationsBox>
-                    {[...new Array(10)].map((_) => (
+                    {new Array(10).fill(null).map((_) => (
                         <>
                             <Notification />
                             <Divider />

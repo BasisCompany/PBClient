@@ -37,7 +37,7 @@ const StyledList = styled(List)(({ theme }) => ({
         paddingLeft: 18,
         color: theme.palette.text.primary,
         ":hover": {
-            backgroundColor: theme.palette.bgcolor.modal.content.hover,
+            backgroundColor: theme.palette.bgcolor.modal.primary.hover,
         },
     },
     "& .MuiListItemIcon-root": {
@@ -66,7 +66,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
             placement="bottom-end"
             sx={{
                 zIndex: 1250,
-                bgcolor: (theme) => theme.palette.bgcolor.modal.content.main,
+                bgcolor: (theme) => theme.palette.bgcolor.modal.primary.main,
                 borderRadius: "5px",
                 "& .MuiPaper-root": {
                     minWidth: "200px",
@@ -198,11 +198,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                         </LinkListItemButton>
                     </>
                 )}
-                <ListItemButton
-                    component={LinkBehavior}
-                    to="/s"
-                    onClick={toggleThemeMode}
-                >
+                <ListItemButton onClick={toggleThemeMode}>
                     <ListItemIcon>
                         {mode === "light" ? (
                             <DarkModeRoundedIcon fontSize="small" />

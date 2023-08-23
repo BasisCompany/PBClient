@@ -18,7 +18,7 @@ export const SideBarButton = () => {
             sx={{
                 mr: 2,
                 ":hover": {
-                    bgcolor: (theme) => theme.palette.bgcolor.content.hover,
+                    bgcolor: (theme) => theme.palette.bgcolor.primary.hover,
                 },
             }}
             onClick={handleButtonClick}

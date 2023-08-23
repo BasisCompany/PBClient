@@ -12,7 +12,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 const CommentBox = styled(Box)(({ theme }) => ({
     padding: "10px",
     marginBottom: "8px",
-    backgroundColor: theme.palette.bgcolor.content.main,
+    backgroundColor: theme.palette.bgcolor.primary.main,
     borderRadius: "4px",
     transition: "all 0.1s ease-in",
     "&:hover": {
