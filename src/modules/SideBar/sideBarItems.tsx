@@ -40,7 +40,7 @@ export const sideBarItems = [
         to: "/profile",
     },
     {
-        title: "FAQ",
+        title: "Помощь",
         icon: (
             <QuizRoundedIcon
                 sx={{

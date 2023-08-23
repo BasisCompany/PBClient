@@ -11,8 +11,12 @@ import { ResetPasswordPage } from "../../pages/AuthPage/ResetPassword.page";
 import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileTabs/ProfilePrompts/ContentMainPrompts";
 import { TestPage } from "../../trash/TestPage";
 import { SupportContentMainHelp } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
+<<<<<<< HEAD
+import { SupportContentMainQuestions } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/SupportContentMainQuestions";
+=======
 import { ProfileNotifications } from "../../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotifications";
 import { ProfileComments } from "../../pages/ProfilePage/ProfileTabs/ProfileComments/ProfileComments";
+>>>>>>> 6a645ef718abb709cf3b79089e32b7a788b44ca7
 
 export const AppRoutes = () => {
     return (
@@ -33,9 +37,31 @@ export const AppRoutes = () => {
                 <Route path="support/*" element={<SupportPage />}>
                     <Route index element={<SupportContentMainHelp />} />
                     <Route
-                        path="questions"
-                        element={<h1>Список вопросов </h1>}
-                    />
+                        path="questions/*"
+                        element={<SupportContentMainQuestions />}
+                    >
+                        <Route index element={<h1>Общие вопросы</h1>} />
+                        <Route
+                            path="security"
+                            element={<h1>Безопасность</h1>}
+                        />
+                        <Route
+                            path="monetization"
+                            element={<h1>Монетизация</h1>}
+                        />
+                        <Route
+                            path="profile"
+                            element={<h1>Настройка профиля</h1>}
+                        />
+                        <Route
+                            path="payments"
+                            element={<h1>Платежи и переводы</h1>}
+                        />
+                        <Route
+                            path="comments"
+                            element={<h1>Комментарии </h1>}
+                        />
+                    </Route>
                     <Route path="feedback" element={<h1>Задать вопрос </h1>} />
                 </Route>
                 <Route element={<AuthLayout />}>
