@@ -11,12 +11,9 @@ import { ResetPasswordPage } from "../../pages/AuthPage/ResetPassword.page";
 import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileTabs/ProfilePrompts/ContentMainPrompts";
 import { TestPage } from "../../trash/TestPage";
 import { SupportContentMainHelp } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
-<<<<<<< HEAD
 import { SupportContentMainQuestions } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/SupportContentMainQuestions";
-=======
 import { ProfileNotifications } from "../../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotifications";
 import { ProfileComments } from "../../pages/ProfilePage/ProfileTabs/ProfileComments/ProfileComments";
->>>>>>> 6a645ef718abb709cf3b79089e32b7a788b44ca7
 
 export const AppRoutes = () => {
     return (
