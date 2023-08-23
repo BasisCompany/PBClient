@@ -12,6 +12,7 @@ import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileContent/Conte
 import { TestPage } from "../../trash/TestPage";
 import { ContentMainNotifications } from "../../pages/ProfilePage/ProfileContent/ContentMain/ProfileNotifications/ProfileNotifications";
 import { SupportContentMainHelp } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
+import { SupportContentMainQuestions } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/SupportContentMainQuestions";
 
 export const AppRoutes = () => {
     return (
@@ -32,9 +33,31 @@ export const AppRoutes = () => {
                 <Route path="support/*" element={<SupportPage />}>
                     <Route index element={<SupportContentMainHelp />} />
                     <Route
-                        path="questions"
-                        element={<h1>Список вопросов </h1>}
-                    />
+                        path="questions/*"
+                        element={<SupportContentMainQuestions />}
+                    >
+                        <Route index element={<h1>Общие вопросы</h1>} />
+                        <Route
+                            path="security"
+                            element={<h1>Безопасность</h1>}
+                        />
+                        <Route
+                            path="monetization"
+                            element={<h1>Монетизация</h1>}
+                        />
+                        <Route
+                            path="profile"
+                            element={<h1>Настройка профиля</h1>}
+                        />
+                        <Route
+                            path="payments"
+                            element={<h1>Платежи и переводы</h1>}
+                        />
+                        <Route
+                            path="comments"
+                            element={<h1>Комментарии </h1>}
+                        />
+                    </Route>
                     <Route path="feedback" element={<h1>Задать вопрос </h1>} />
                 </Route>
                 <Route element={<AuthLayout />}>
