@@ -1,10 +1,22 @@
-import { Box, Tooltip, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 import { PagePagination } from "../../../../UI/PagePagination";
-import { NotificationSelect } from "../ProfileNotifications/NotificationSelect";
-import ChecklistIcon from "@mui/icons-material/Checklist";
-import TuneIcon from "@mui/icons-material/Tune";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
 import { ProfileCommentItem } from "./ProfileCommentItem";
+import { ProfileSelect } from "../../components/ProfileSelect";
+
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
+import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
+import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
+
+const commentsSelectItems = {
+    params: ["popular", "new", "old"],
+    icons: [
+        <LocalFireDepartmentIcon sx={{ fontSize: "19px" }} />,
+        <MarkChatUnreadIcon sx={{ fontSize: "19px" }} />,
+        <MarkChatReadIcon sx={{ fontSize: "19px" }} />,
+    ],
+    labels: ["Популярные", "Новые", "Старые"],
+};
 
 export const ProfileComments = () => {
     const isMobile = useMobileDevice();
@@ -18,42 +30,7 @@ export const ProfileComments = () => {
                     mb: "15px",
                 }}
             >
-                <NotificationSelect />
-                <Box
-                    sx={{
-                        //backgroundColor: "primary.main",
-                        borderRadius: "4px",
-                    }}
-                >
-                    <Tooltip title="Настройки" disableInteractive>
-                        <IconButton
-                            sx={{
-                                height: "33px",
-                                width: "33px",
-                                borderRadius: "4px",
-                                ":hover": {
-                                    backgroundColor: "rgba(153, 51, 255,0.2)",
-                                },
-                            }}
-                        >
-                            <TuneIcon />
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Прочитать всё" disableInteractive>
-                        <IconButton
-                            sx={{
-                                height: "33px",
-                                width: "33px",
-                                borderRadius: "4px",
-                                ":hover": {
-                                    backgroundColor: "rgba(153, 51, 255,0.2)",
-                                },
-                            }}
-                        >
-                            <ChecklistIcon />
-                        </IconButton>
-                    </Tooltip>
-                </Box>
+                <ProfileSelect selectItems={commentsSelectItems} />
             </Box>
             <Box>
                 {new Array(10).fill(null).map((_, i) => (

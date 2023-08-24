@@ -1,10 +1,24 @@
 import { Box, IconButton, Tooltip } from "@mui/material";
 import { PagePagination } from "../../../../UI/PagePagination";
-import { NotificationSelect } from "./NotificationSelect";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
 import { ProfileNotificationItem } from "./ProfileNotificationItem";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+
+import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
+import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
+import SortRoundedIcon from "@mui/icons-material/SortRounded";
+import { ProfileSelect } from "../../components/ProfileSelect";
+
+const notificationsSelectItems = {
+    params: ["unread", "read", "all"],
+    icons: [
+        <DoneRoundedIcon sx={{ fontSize: "19px" }} />,
+        <DoneAllRoundedIcon sx={{ fontSize: "19px" }} />,
+        <SortRoundedIcon sx={{ fontSize: "19px" }} />,
+    ],
+    labels: ["Непрочитанные", "Прочитанные", "Все уведомления"],
+};
 
 export const ProfileNotifications = () => {
     const isMobile = useMobileDevice();
@@ -18,7 +32,7 @@ export const ProfileNotifications = () => {
                     mb: "15px",
                 }}
             >
-                <NotificationSelect />
+                <ProfileSelect selectItems={notificationsSelectItems} />
                 <Box
                     sx={{
                         //backgroundColor: "primary.main",

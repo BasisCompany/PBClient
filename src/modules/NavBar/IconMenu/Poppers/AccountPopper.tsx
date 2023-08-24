@@ -1,13 +1,4 @@
-import { Logout, Settings } from "@mui/icons-material";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { FC } from "react";
 import {
     Avatar,
     Badge,
@@ -19,11 +10,19 @@ import {
     Typography,
     styled,
 } from "@mui/material";
-import { FC } from "react";
+import { Logout, Settings } from "@mui/icons-material";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Spacer } from "../../../../UI/Spacer";
 import { useThemeMode } from "../../../../app/Theme/ThemeContext/useThemeMode";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
-import { LinkBehavior } from "../../../../UI/Route/LinkBehavior";
 import { LinkListItemButton } from "../../../../UI/Buttons/LinkListItemButton";
 
 interface AccountMenuProps {

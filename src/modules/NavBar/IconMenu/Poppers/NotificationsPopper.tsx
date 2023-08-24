@@ -101,7 +101,7 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                 </Box>
                 <Divider />
                 <NotificationsBox>
-                    {new Array(10).fill(null).map((_) => (
+                    {new Array(10).fill(null).map(() => (
                         <>
                             <Notification />
                             <Divider />
