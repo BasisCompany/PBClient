@@ -5,9 +5,10 @@ import { CommentRating } from "../CommentRating";
 import { CommentItemMenu } from "../CommentItemMenu";
 import { useState } from "react";
 import { FlexBox } from "../../../../../UI/FlexBox";
-import PersonIcon from "@mui/icons-material/Person";
+import { useMobileDevice } from "../../../../../hooks/useMobileDevice";
 
 export const CommentReplyAnswer = () => {
+    const isMobile = useMobileDevice();
     const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
 
     const handleClickMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,7 +29,7 @@ export const CommentReplyAnswer = () => {
         >
             <Box sx={{ pt: 2, pr: 2, pl: 2 }}>
                 <FlexBox sx={{ justifyContent: "space-between" }}>
-                    <FlexBox sx={{ alignItems: "center" }}>
+                    <FlexBox sx={{ alignItems: "center", flexWrap: "wrap" }}>
                         <Avatar
                             alt="Remy Sharp"
                             src="https://sneg.top/uploads/posts/2023-06/1687912638_sneg-top-p-avatarka-dlya-kvorka-vkontakte-10.jpg"
@@ -41,38 +42,24 @@ export const CommentReplyAnswer = () => {
                                 color={(theme) => theme.palette.text.primary}
                                 fontSize={15}
                                 fontWeight={500}
+                                sx={{ mr: 1 }}
                             >
                                 _Gvozd_
                             </Typography>
                         </Tooltip>
-                        {/* <Tooltip title="Автор">
-                            <Avatar
-                                sx={{
-                                    bgcolor: (theme) =>
-                                        theme.palette.secondary.main,
-                                    width: 18,
-                                    height: 18,
-                                    ml: 1,
-                                }}
-                            >
-                                <PersonIcon
-                                    sx={{
-                                        fontSize: "14px",
-                                        color: (theme) =>
-                                            theme.palette.text.primary,
-                                    }}
-                                />
-                            </Avatar>
-                        </Tooltip> */}
-                        <NavigateNextIcon
-                            sx={{ fontSize: "15px", mr: 1, ml: 1 }}
-                        />
+                        {!isMobile && (
+                            <NavigateNextIcon
+                                sx={{ fontSize: "15px", mr: 1 }}
+                            />
+                        )}
+
                         <Typography
                             variant="h5"
                             component="span"
                             color={(theme) => theme.palette.text.secondary}
                             fontSize={13}
                             fontWeight={500}
+                            sx={{ mt: isMobile ? 0.5 : 0 }}
                         >
                             8 декабря 2022
                         </Typography>
@@ -109,3 +96,25 @@ export const CommentReplyAnswer = () => {
         </Box>
     );
 };
+
+/* 
+<Tooltip title="Автор">
+    <Avatar
+        sx={{
+            bgcolor: (theme) =>
+                theme.palette.secondary.main,
+            width: 18,
+            height: 18,
+            ml: 1,
+        }}
+    >
+        <PersonIcon
+            sx={{
+                fontSize: "14px",
+                color: (theme) =>
+                    theme.palette.text.primary,
+            }}
+        />
+    </Avatar>
+</Tooltip> 
+*/
