@@ -5,13 +5,18 @@ import {
     Avatar,
     Rating,
     IconButton,
-    Tooltip,
+    ButtonProps,
+    Button,
 } from "@mui/material";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { FlexBox } from "../../../../UI/FlexBox";
-import { useState } from "react";
+import { useMemo, useReducer, useState } from "react";
 import { CommentItemMenu } from "./CommentItemMenu";
+import ReplyIcon from "@mui/icons-material/Reply";
+import CloseIcon from "@mui/icons-material/Close";
+import { CommentReplyInput } from "./CommentItemReply/CommentReplyInput";
+import { CommentReplyAnswer } from "./CommentItemReply/CommentReplyAnswer";
+import { CommentRating } from "./CommentRating";
 
 const CommentBox = styled(Box)(({ theme }) => ({
     padding: "10px",
@@ -25,30 +30,55 @@ const CommentBox = styled(Box)(({ theme }) => ({
         transition: "all 0.1s ease-out",
     },
 }));
-//TODO[Саша]: Выпадающее меню
+
+const ReplyButton = styled((props: ButtonProps) => (
+    <Button size="small" {...props} />
+))(({ theme }) => ({
+    textTransform: "none",
+    fontSize: 14,
+    fontWeight: 400,
+    backgroundColor: theme.palette.bgcolor.primary.main,
+    color: theme.palette.text.secondary,
+}));
+
 export const ProfileCommentItem = () => {
     const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+    const [isOpenReply, toggleReply] = useReducer((state) => !state, false);
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    const handleClickMenu = (event: React.MouseEvent<HTMLElement>) => {
         setMenuAnchor(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleCloseMenu = () => {
         setMenuAnchor(null);
     };
-
+    
     const username = "Stormpero";
-    const comment = {
+    const comment1 = {
         likes: 1,
         dislike: 0,
         rating: 1,
-        isReply: false,
+        text: "text",
+        isReply: true,
+        reply: {
+            text: "2323",
+            likes: 1,
+            dislike: 0,
+            rating: 1,
+            isReply: false,
+        },
     };
+
+    const comment2 = { ...comment1, isReply: false };
+
+    const comment = useMemo(
+        () => (Math.random() > 0.5 ? comment1 : comment2),
+        []
+    );
 
     return (
         <CommentBox>
             <Box sx={{ pl: "12px" }}>
-                {/* bgcolor: "#32d" */}
                 <FlexBox sx={{ justifyContent: "space-between" }}>
                     <FlexBox sx={{ alignItems: "center" }}>
                         <Avatar
@@ -104,7 +134,7 @@ export const ProfileCommentItem = () => {
                         </Box>
                     </FlexBox>
                     <FlexBox sx={{ alignItems: "end" }}>
-                        <IconButton onClick={handleClick}>
+                        <IconButton onClick={handleClickMenu}>
                             <MoreHorizIcon />
                         </IconButton>
                     </FlexBox>
@@ -137,48 +167,31 @@ export const ProfileCommentItem = () => {
                 </Box>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", pl: "2px" }}>
-                <IconButton>
-                    <KeyboardArrowUpIcon
-                        sx={{
-                            color: "lime",
-                            fontSize: "20px",
-                        }}
-                    />
-                </IconButton>
-                <Tooltip
-                    title={`Лайки: ${comment.likes}, Дизлайки: ${comment.dislike}`}
-                >
-                    <Typography
-                        variant="h6"
-                        component="span"
-                        color="text.primary"
-                        fontSize={16}
-                        fontWeight={400}
-                        sx={{
-                            mr: 1,
-                            ml: 1,
-                            cursor: "default",
-                            ":hover": {
-                                color: (theme) => theme.palette.text.secondary,
-                            },
-                        }}
+                <CommentRating />
+                {comment.isReply ? null : isOpenReply ? (
+                    <ReplyButton
+                        startIcon={<CloseIcon />}
+                        onClick={toggleReply}
                     >
-                        {comment.rating}
-                    </Typography>
-                </Tooltip>
-                <IconButton>
-                    <KeyboardArrowUpIcon
-                        sx={{
-                            color: "red",
-                            fontSize: "20px",
-                            rotate: "180deg",
-                        }}
-                    />
-                </IconButton>
+                        Отменить
+                    </ReplyButton>
+                ) : (
+                    <ReplyButton
+                        startIcon={<ReplyIcon />}
+                        onClick={toggleReply}
+                    >
+                        Ответить
+                    </ReplyButton>
+                )}
             </Box>
+            {comment.isReply ? (
+                <CommentReplyAnswer />
+            ) : (
+                isOpenReply && <CommentReplyInput />
+            )}
             <CommentItemMenu
                 menuAnchor={menuAnchor}
-                onMenuClose={handleClose}
+                onMenuClose={handleCloseMenu}
             />
         </CommentBox>
     );

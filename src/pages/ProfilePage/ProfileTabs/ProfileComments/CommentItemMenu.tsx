@@ -2,7 +2,6 @@ import { FC } from "react";
 import {
     Popper,
     Grow,
-    Paper,
     ClickAwayListener,
     MenuList,
     MenuItem,
@@ -10,25 +9,22 @@ import {
     styled,
     ListItemText,
     Box,
+    Theme,
 } from "@mui/material";
 import ReportIcon from "@mui/icons-material/Report";
 
-const StyledMenuList = styled(MenuList)(({ theme }) => ({
-    borderRadius: "5px",
-    backgroundColor: theme.palette.bgcolor.modal.primary.main,
-    "& .MuiMenuItem-root:hover": {
-        backgroundColor: theme.palette.bgcolor.modal.primary.hover,
-    },
-}));
+const StyledMenuList = styled(MenuList)(({ theme }) => ({}));
 
 interface CommentItemMenuProps {
     menuAnchor: HTMLElement | null;
     onMenuClose: () => void;
+    bgcolorSecondary?: boolean;
 }
 
 export const CommentItemMenu: FC<CommentItemMenuProps> = ({
     menuAnchor,
     onMenuClose,
+    bgcolorSecondary,
 }) => {
     const open = Boolean(menuAnchor);
 
@@ -44,7 +40,25 @@ export const CommentItemMenu: FC<CommentItemMenuProps> = ({
                 <Grow {...TransitionProps}>
                     <Box>
                         <ClickAwayListener onClickAway={onMenuClose}>
-                            <StyledMenuList>
+                            <MenuList
+                                sx={{
+                                    borderRadius: "5px",
+                                    backgroundColor: (theme) =>
+                                        bgcolorSecondary
+                                            ? theme.palette.bgcolor.tertiary
+                                                  .main
+                                            : theme.palette.bgcolor.modal
+                                                  .primary.main,
+                                    "& .MuiMenuItem-root:hover": {
+                                        backgroundColor: (theme) =>
+                                            bgcolorSecondary
+                                                ? theme.palette.bgcolor.tertiary
+                                                      .hover
+                                                : theme.palette.bgcolor.modal
+                                                      .primary.hover,
+                                    },
+                                }}
+                            >
                                 <MenuItem onClick={onMenuClose}>
                                     <ListItemIcon>
                                         <ReportIcon fontSize="small" />
@@ -53,7 +67,7 @@ export const CommentItemMenu: FC<CommentItemMenuProps> = ({
                                         Пожаловаться на отзыв
                                     </ListItemText>
                                 </MenuItem>
-                            </StyledMenuList>
+                            </MenuList>
                         </ClickAwayListener>
                     </Box>
                 </Grow>

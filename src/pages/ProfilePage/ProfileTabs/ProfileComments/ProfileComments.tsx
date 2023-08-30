@@ -17,7 +17,7 @@ const commentsSelectItems = {
     ],
     labels: ["Популярные", "Новые", "Старые"],
 };
-
+// При наведение на время показывается дата и время
 export const ProfileComments = () => {
     const isMobile = useMobileDevice();
     return (
