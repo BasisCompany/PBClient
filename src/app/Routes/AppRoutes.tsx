@@ -8,7 +8,7 @@ import { ExpiredPage } from "../../pages/AuthPage/Expired.page";
 import { VerifiedPage } from "../../pages/AuthPage/Verified.page";
 import { ForgotPasswordPage } from "../../pages/AuthPage/ForgotPassword.page";
 import { ResetPasswordPage } from "../../pages/AuthPage/ResetPassword.page";
-import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileTabs/ProfilePrompts/ContentMainPrompts";
+import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileTabs/ProfilePrompts/ProfilePrompts";
 import { TestPage } from "../../trash/TestPage";
 import { SupportContentMainHelp } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
 import { SupportContentMainQuestions } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/SupportContentMainQuestions";

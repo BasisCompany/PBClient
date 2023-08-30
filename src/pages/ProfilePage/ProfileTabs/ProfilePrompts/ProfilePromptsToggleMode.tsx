@@ -1,16 +1,9 @@
+import { useState } from "react";
+import { ToggleButton, ToggleButtonGroup, styled } from "@mui/material";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import ViewAgendaRoundedIcon from "@mui/icons-material/ViewAgendaRounded";
-import { useState } from "react";
-import {
-    ToggleButton,
-    ToggleButtonGroup,
-    ToggleButtonGroupProps,
-    styled,
-} from "@mui/material";
 
-const CustomToggleButtonGroup = styled((props: ToggleButtonGroupProps) => (
-    <ToggleButtonGroup {...props} />
-))(({ theme }) => ({
+const CustomToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     "& .MuiToggleButtonGroup-grouped": {
         transition: "all 0.2s ease-out",
         margin: 0,
@@ -37,7 +30,7 @@ const CustomToggleButtonGroup = styled((props: ToggleButtonGroupProps) => (
     },
 }));
 
-export const ContentMainToggleMode = () => {
+export const ProfilePromptsToggleMode = () => {
     const [alignment, setAlignment] = useState("left");
 
     const handleAlignment = (

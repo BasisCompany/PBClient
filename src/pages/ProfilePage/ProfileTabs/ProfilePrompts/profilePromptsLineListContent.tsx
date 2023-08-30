@@ -1,9 +1,9 @@
-import { ChatGPTIcon } from "../../../../assets/ChatGPTIcon";
 import BrushOutlinedIcon from "@mui/icons-material/BrushOutlined";
 import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
 import SailingOutlinedIcon from "@mui/icons-material/SailingOutlined";
+import { ChatGPTIcon } from "../../../../assets/ChatGPTIcon";
 
-export const contentMainLineListContent = [
+export const profilePromptsLineListContent = [
     {
         id: 0,
         title: "ChatGPT",

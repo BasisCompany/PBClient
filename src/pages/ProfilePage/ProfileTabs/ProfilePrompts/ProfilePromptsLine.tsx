@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Box } from "@mui/material";
-import { ContentMainLineItem } from "./ContentMainLineItem";
-import { contentMainLineListContent } from "./contentMainLineListContent";
+import { profilePromptsLineListContent } from "./profilePromptsLineListContent";
+import { ProfilePromptsLineItem } from "./ProfilePromptsLineItem";
 
 interface ContentMainLineProps {
     model: Array<string>;
@@ -12,7 +12,7 @@ export const ContentMainLine: FC<ContentMainLineProps> = ({
     model,
     boxModel,
 }) => {
-    const totalCount = contentMainLineListContent.reduce(
+    const totalCount = profilePromptsLineListContent.reduce(
         (accumulator, currentValue) => accumulator + currentValue.count,
         0
     );
@@ -27,8 +27,8 @@ export const ContentMainLine: FC<ContentMainLineProps> = ({
                 mb: { xs: "15px", md: "25px" },
             }}
         >
-            {contentMainLineListContent.map(({ id, ...item }) => (
-                <ContentMainLineItem
+            {profilePromptsLineListContent.map(({ id, ...item }) => (
+                <ProfilePromptsLineItem
                     key={id}
                     {...item}
                     boxModel={boxModel}
@@ -37,7 +37,7 @@ export const ContentMainLine: FC<ContentMainLineProps> = ({
                     border={
                         id == 0
                             ? "30px 0 0 30px"
-                            : id == contentMainLineListContent.length - 1
+                            : id == profilePromptsLineListContent.length - 1
                             ? "0 30px 30px 0"
                             : "none"
                     }

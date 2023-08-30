@@ -11,7 +11,7 @@ export interface ContentMainLineItemProps {
     border: string;
 }
 
-export const ContentMainLineItem: FC<ContentMainLineItemProps> = ({
+export const ProfilePromptsLineItem: FC<ContentMainLineItemProps> = ({
     boxModel,
     title,
     color,

@@ -6,7 +6,7 @@ import {
     ToggleButtonProps,
     styled,
 } from "@mui/material";
-import { contentMainLineListContent } from "./contentMainLineListContent";
+import { profilePromptsLineListContent } from "./profilePromptsLineListContent";
 
 interface CustomToggleButtonProps extends ToggleButtonProps {
     colorbutton: string | "0,0,0";
@@ -80,7 +80,7 @@ interface ContentMainModelsProps {
     ) => void;
 }
 
-export const ContentMainModels: FC<ContentMainModelsProps> = ({
+export const ProfilePromptsModels: FC<ContentMainModelsProps> = ({
     model,
     handleModel,
 }) => {
@@ -95,7 +95,7 @@ export const ContentMainModels: FC<ContentMainModelsProps> = ({
                 onChange={handleModel}
                 sx={{ width: "100%", justifyContent: "center" }}
             >
-                {contentMainLineListContent.map((item) => (
+                {profilePromptsLineListContent.map((item) => (
                     <CustomToggleButton
                         key={item.id}
                         value={item.title}
@@ -107,7 +107,7 @@ export const ContentMainModels: FC<ContentMainModelsProps> = ({
                             flexDirection: "column",
                             width: {
                                 xs: `${
-                                    100 / contentMainLineListContent.length
+                                    100 / profilePromptsLineListContent.length
                                 }%`,
                                 md: "120px",
                             },

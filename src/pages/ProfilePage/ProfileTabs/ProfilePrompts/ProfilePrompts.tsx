@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
-import { ContentMainLine } from "./ContentMainLine";
-import { ContentMainModels } from "./ContentMainModels";
-import { ContentMainToggleMode } from "./ContentMainToggleMode";
+import { ContentMainLine } from "./ProfilePromptsLine";
 import { ProfileSelect } from "../../components/ProfileSelect";
-
 import UpdateRoundedIcon from "@mui/icons-material/UpdateRounded";
 import GradeRoundedIcon from "@mui/icons-material/GradeRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import { ProfilePromptsModels } from "./ProfilePromptsModels";
+import { ProfilePromptsToggleMode } from "./ProfilePromptsToggleMode";
 
 const promptsSelectItems = {
     params: ["new", "rating", "like", "shop"],
@@ -21,7 +20,7 @@ const promptsSelectItems = {
     labels: ["Новые", "Высокий рейтинг", "Много лайков", "Популярные"],
 };
 
-export const ContentMainPrompts = () => {
+export const ProfilePrompts = () => {
     const [model, setModel] = useState(() => [
         "ChatGPT",
         "Midjourney",
@@ -55,11 +54,11 @@ export const ContentMainPrompts = () => {
                 }}
             >
                 <ProfileSelect selectItems={promptsSelectItems} />
-                <ContentMainToggleMode />
+                <ProfilePromptsToggleMode />
             </Box>
             <Box>
                 <ContentMainLine model={model} boxModel={boxModel} />
-                <ContentMainModels model={model} handleModel={handleModel} />
+                <ProfilePromptsModels model={model} handleModel={handleModel} />
             </Box>
             <Box>
                 {model.map((item) => (
