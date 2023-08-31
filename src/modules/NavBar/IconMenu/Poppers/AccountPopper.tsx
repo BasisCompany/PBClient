@@ -172,14 +172,14 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                     <>
                         <ListItemButton onClick={onClose}>
                             <ListItemIcon>
-                                <BookmarkIcon fontSize="small" />
+                                <BookmarkIcon />
                             </ListItemIcon>
                             Избранное
                         </ListItemButton>
                         <ListItemButton onClick={onClose}>
                             <ListItemIcon>
                                 <Badge badgeContent={4} color="secondary">
-                                    <ShoppingBasketIcon fontSize="small" />
+                                    <ShoppingBasketIcon />
                                 </Badge>
                             </ListItemIcon>
                             Корзина
@@ -190,7 +190,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                         >
                             <ListItemIcon>
                                 <Badge badgeContent={4} color="secondary">
-                                    <NotificationsIcon fontSize="small" />
+                                    <NotificationsIcon />
                                 </Badge>
                             </ListItemIcon>
                             Уведомления
@@ -200,7 +200,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                 <ListItemButton onClick={toggleThemeMode}>
                     <ListItemIcon>
                         {mode === "light" ? (
-                            <DarkModeRoundedIcon fontSize="small" />
+                            <DarkModeRoundedIcon />
                         ) : (
                             <LightModeRoundedIcon />
                         )}
@@ -209,19 +209,19 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                 </ListItemButton>
                 <LinkListItemButton to="/faq" onClick={onClose}>
                     <ListItemIcon>
-                        <HelpOutlineIcon fontSize="small" />
+                        <HelpOutlineIcon />
                     </ListItemIcon>
                     Помощь
                 </LinkListItemButton>
                 <LinkListItemButton to="profile/settings" onClick={onClose}>
                     <ListItemIcon>
-                        <Settings fontSize="small" />
+                        <Settings />
                     </ListItemIcon>
                     Настройки
                 </LinkListItemButton>
                 <ListItemButton onClick={onClose}>
                     <ListItemIcon>
-                        <Logout fontSize="small" color="error" />
+                        <Logout color="error" />
                     </ListItemIcon>
                     Выход
                 </ListItemButton>

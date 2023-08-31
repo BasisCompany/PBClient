@@ -17,13 +17,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import { CommentReplyInput } from "./CommentItemReply/CommentReplyInput";
 import { CommentReplyAnswer } from "./CommentItemReply/CommentReplyAnswer";
 import { CommentRating } from "./CommentRating";
+import { CommentReportDialog } from "./CommentReportDialog";
 
 const CommentBox = styled(Box)(({ theme }) => ({
     padding: "10px",
     paddingLeft: "0px",
     marginBottom: "8px",
     backgroundColor: theme.palette.bgcolor.primary.main,
-    borderRadius: "4px",
+    borderRadius: "5px",
     transition: "all 0.1s ease-in",
     "&:hover": {
         bgcolor: theme.palette.bgcolor.secondary.hover,
@@ -39,11 +40,15 @@ const ReplyButton = styled((props: ButtonProps) => (
     fontWeight: 400,
     backgroundColor: theme.palette.bgcolor.primary.main,
     color: theme.palette.text.secondary,
+    ":hover": {
+        color: theme.palette.text.primary,
+    },
 }));
 
 export const ProfileCommentItem = () => {
     const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
     const [isOpenReply, toggleReply] = useReducer((state) => !state, false);
+    const [openDialog, setOpenDialog] = useState(false);
 
     const handleClickMenu = (event: React.MouseEvent<HTMLElement>) => {
         setMenuAnchor(event.currentTarget);
@@ -52,7 +57,7 @@ export const ProfileCommentItem = () => {
     const handleCloseMenu = () => {
         setMenuAnchor(null);
     };
-    
+
     const username = "Stormpero";
     const comment1 = {
         likes: 1,
@@ -78,13 +83,18 @@ export const ProfileCommentItem = () => {
 
     return (
         <CommentBox>
-            <Box sx={{ pl: "12px" }}>
+            <Box sx={{ pl: "4px" }}>
                 <FlexBox sx={{ justifyContent: "space-between" }}>
                     <FlexBox sx={{ alignItems: "center" }}>
                         <Avatar
                             alt="Remy Sharp"
                             src="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg"
-                            sx={{ width: 52, height: 52, cursor: "pointer" }}
+                            sx={{
+                                width: 52,
+                                height: 52,
+                                cursor: "pointer",
+                                mb: 1,
+                            }}
                         />
                         <Box sx={{ ml: 2 }}>
                             <Box>
@@ -128,7 +138,7 @@ export const ProfileCommentItem = () => {
                                     Prompt url name test
                                 </Typography>
                             </Box>
-                            <Box>
+                            <Box sx={{ mt: 0.25, ml: -0.2 }}>
                                 <Rating name="read-only" value={3} readOnly />
                             </Box>
                         </Box>
@@ -166,7 +176,14 @@ export const ProfileCommentItem = () => {
                     </Typography>
                 </Box>
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center", pl: "2px" }}>
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    ml: "-8px",
+                    mt: 0.5,
+                }}
+            >
                 <CommentRating />
                 {comment.isReply ? null : isOpenReply ? (
                     <ReplyButton
@@ -192,6 +209,11 @@ export const ProfileCommentItem = () => {
             <CommentItemMenu
                 menuAnchor={menuAnchor}
                 onMenuClose={handleCloseMenu}
+                onReportOpen={() => setOpenDialog(true)}
+            />
+            <CommentReportDialog
+                open={openDialog}
+                onClose={() => setOpenDialog(false)}
             />
         </CommentBox>
     );

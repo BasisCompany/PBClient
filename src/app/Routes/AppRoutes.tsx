@@ -8,12 +8,12 @@ import { ExpiredPage } from "../../pages/AuthPage/Expired.page";
 import { VerifiedPage } from "../../pages/AuthPage/Verified.page";
 import { ForgotPasswordPage } from "../../pages/AuthPage/ForgotPassword.page";
 import { ResetPasswordPage } from "../../pages/AuthPage/ResetPassword.page";
-import { ContentMainPrompts } from "../../pages/ProfilePage/ProfileTabs/ProfilePrompts/ProfilePrompts";
 import { TestPage } from "../../trash/TestPage";
 import { SupportContentMainHelp } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
 import { SupportContentMainQuestions } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/SupportContentMainQuestions";
 import { ProfileNotifications } from "../../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotifications";
 import { ProfileComments } from "../../pages/ProfilePage/ProfileTabs/ProfileComments/ProfileComments";
+import { ProfilePrompts } from "../../pages/ProfilePage/ProfileTabs/ProfilePrompts/ProfilePrompts";
 
 export const AppRoutes = () => {
     return (
@@ -21,7 +21,7 @@ export const AppRoutes = () => {
             <Route path="/" element={<AppLayout />}>
                 <Route index element={<TestPage />} />
                 <Route path="profile/*" element={<ProfilePage />}>
-                    <Route index element={<ContentMainPrompts />} />
+                    <Route index element={<ProfilePrompts />} />
                     <Route path="comments" element={<ProfileComments />} />
                     <Route
                         path="notifications"

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import {
     Popper,
     Grow,
@@ -6,27 +6,32 @@ import {
     MenuList,
     MenuItem,
     ListItemIcon,
-    styled,
     ListItemText,
     Box,
-    Theme,
 } from "@mui/material";
 import ReportIcon from "@mui/icons-material/Report";
-
-const StyledMenuList = styled(MenuList)(({ theme }) => ({}));
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 interface CommentItemMenuProps {
     menuAnchor: HTMLElement | null;
     onMenuClose: () => void;
+    onReportOpen: () => void;
     bgcolorSecondary?: boolean;
 }
 
 export const CommentItemMenu: FC<CommentItemMenuProps> = ({
     menuAnchor,
     onMenuClose,
+    onReportOpen,
     bgcolorSecondary,
 }) => {
     const open = Boolean(menuAnchor);
+
+    const handleOpenReport = () => {
+        onReportOpen();
+        onMenuClose();
+    };
 
     return (
         <Popper
@@ -57,15 +62,35 @@ export const CommentItemMenu: FC<CommentItemMenuProps> = ({
                                                 : theme.palette.bgcolor.modal
                                                       .primary.hover,
                                     },
+                                    "& .MuiMenuItem-root": {
+                                        "& .MuiListItemIcon-root": {
+                                            mr: -0.5,
+                                        },
+                                    },
+                                    "& .MuiSvgIcon-root": {
+                                        fontSize: 20,
+                                    },
                                 }}
                             >
-                                <MenuItem onClick={onMenuClose}>
+                                <MenuItem onClick={handleOpenReport}>
                                     <ListItemIcon>
-                                        <ReportIcon fontSize="small" />
+                                        <ReportIcon />
                                     </ListItemIcon>
                                     <ListItemText>
                                         Пожаловаться на отзыв
                                     </ListItemText>
+                                </MenuItem>
+                                <MenuItem onClick={handleOpenReport}>
+                                    <ListItemIcon>
+                                        <EditIcon />
+                                    </ListItemIcon>
+                                    <ListItemText>Редактировать</ListItemText>
+                                </MenuItem>
+                                <MenuItem onClick={handleOpenReport}>
+                                    <ListItemIcon>
+                                        <DeleteIcon />
+                                    </ListItemIcon>
+                                    <ListItemText>Удалить</ListItemText>
                                 </MenuItem>
                             </MenuList>
                         </ClickAwayListener>

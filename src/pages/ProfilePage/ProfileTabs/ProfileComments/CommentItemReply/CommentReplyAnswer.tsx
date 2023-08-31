@@ -52,7 +52,6 @@ export const CommentReplyAnswer = () => {
                                 sx={{ fontSize: "15px", mr: 1 }}
                             />
                         )}
-
                         <Typography
                             variant="h5"
                             component="span"
@@ -85,7 +84,7 @@ export const CommentReplyAnswer = () => {
                     </Typography>
                 </Box>
             </Box>
-            <Box sx={{ pl: "5px", pb: 1 }}>
+            <Box sx={{ mt: 0.5, pl: "5px", pb: 1 }}>
                 <CommentRating />
             </Box>
             <CommentItemMenu

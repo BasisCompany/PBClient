@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
-import { ContentMainLine } from "./ProfilePromptsLine";
-import { ProfileSelect } from "../../components/ProfileSelect";
 import UpdateRoundedIcon from "@mui/icons-material/UpdateRounded";
 import GradeRoundedIcon from "@mui/icons-material/GradeRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { ProfilePromptsModels } from "./ProfilePromptsModels";
 import { ProfilePromptsToggleMode } from "./ProfilePromptsToggleMode";
+import { ProfilePromptsLine } from "./ProfilePromptsLine";
+import { ProfileSelect } from "../../components/ProfileSelect";
 
 const promptsSelectItems = {
     params: ["new", "rating", "like", "shop"],
@@ -57,7 +57,7 @@ export const ProfilePrompts = () => {
                 <ProfilePromptsToggleMode />
             </Box>
             <Box>
-                <ContentMainLine model={model} boxModel={boxModel} />
+                <ProfilePromptsLine model={model} boxModel={boxModel} />
                 <ProfilePromptsModels model={model} handleModel={handleModel} />
             </Box>
             <Box>

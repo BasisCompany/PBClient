@@ -8,7 +8,7 @@ interface ContentMainLineProps {
     boxModel: (title: string) => void;
 }
 
-export const ContentMainLine: FC<ContentMainLineProps> = ({
+export const ProfilePromptsLine: FC<ContentMainLineProps> = ({
     model,
     boxModel,
 }) => {

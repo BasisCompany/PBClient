@@ -1,4 +1,4 @@
-import { IconButton, Tooltip, Typography } from "@mui/material";
+import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 export const CommentRating = () => {
@@ -7,7 +7,7 @@ export const CommentRating = () => {
     const rating = likes - dislikes;
 
     return (
-        <>
+        <Box>
             <IconButton>
                 <KeyboardArrowUpIcon
                     sx={{
@@ -44,6 +44,6 @@ export const CommentRating = () => {
                     }}
                 />
             </IconButton>
-        </>
+        </Box>
     );
 };
