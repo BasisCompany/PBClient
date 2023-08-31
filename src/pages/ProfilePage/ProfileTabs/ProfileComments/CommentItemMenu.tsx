@@ -50,15 +50,15 @@ export const CommentItemMenu: FC<CommentItemMenuProps> = ({
                                     borderRadius: "5px",
                                     backgroundColor: (theme) =>
                                         bgcolorSecondary
-                                            ? theme.palette.bgcolor.tertiary
-                                                  .main
+                                            ? theme.palette.bgcolor.modal
+                                                  .secondary.main
                                             : theme.palette.bgcolor.modal
                                                   .primary.main,
                                     "& .MuiMenuItem-root:hover": {
                                         backgroundColor: (theme) =>
                                             bgcolorSecondary
-                                                ? theme.palette.bgcolor.tertiary
-                                                      .hover
+                                                ? theme.palette.bgcolor.modal
+                                                      .secondary.hover
                                                 : theme.palette.bgcolor.modal
                                                       .primary.hover,
                                     },
