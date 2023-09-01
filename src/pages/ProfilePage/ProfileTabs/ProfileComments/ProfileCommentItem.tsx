@@ -33,7 +33,7 @@ const CommentBox = styled(Box)(({ theme }) => ({
 }));
 
 const ReplyButton = styled((props: ButtonProps) => (
-    <Button size="small" {...props} />
+    <Button size="small" disableRipple {...props} />
 ))(({ theme }) => ({
     textTransform: "none",
     fontSize: 14,
@@ -109,9 +109,11 @@ export const ProfileCommentItem = () => {
                                     letterSpacing="0.4px"
                                     sx={{
                                         cursor: "pointer",
+                                        transition: "all 0.1s ease-in",
                                         ":hover": {
                                             color: (theme) =>
                                                 theme.palette.text.secondary,
+                                            transition: "all 0.1s ease-out",
                                         },
                                     }}
                                 >
@@ -129,9 +131,11 @@ export const ProfileCommentItem = () => {
                                     fontWeight={400}
                                     sx={{
                                         cursor: "pointer",
+                                        transition: "all 0.1s ease-in",
                                         ":hover": {
                                             color: (theme) =>
                                                 theme.palette.text.primary,
+                                            transition: "all 0.1s ease-out",
                                         },
                                     }}
                                 >
