@@ -17,6 +17,11 @@ export const CustomTab = styled((props: TabProps & RouterLinkProps) => (
     marginRight: theme.spacing(5),
     color: theme.palette.text.secondary,
     minHeight: "0px",
+    transition: "all 0.1s ease-in",
+    "&:hover": {
+        color: theme.palette.text.primary,
+        transition: "all 0.1s ease-out",
+    },
     "&.Mui-selected": {
         color: theme.palette.text.primary,
     },

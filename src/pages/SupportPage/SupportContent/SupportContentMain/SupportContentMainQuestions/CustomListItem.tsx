@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { Link as RouterLink } from "react-router-dom";
 import MuiListItemButton from "@mui/material/ListItemButton";
-import { ListItem, ListItemText } from "@mui/material";
+import { ListItem, ListItemText} from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const StyledListItemButton = styled(MuiListItemButton)(() => ({
@@ -13,12 +13,14 @@ export interface CustomListItemProps {
     path: string;
     title: string;
     selected: boolean;
+    onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 export const CustomListItem: FC<CustomListItemProps> = ({
     path,
     title,
     selected,
+    onClick,
 }) => {
     return (
         <ListItem
@@ -27,17 +29,22 @@ export const CustomListItem: FC<CustomListItemProps> = ({
             to={path}
             sx={{
                 //bgcolor: "#327",
+                mt: "4px",
+                mb: "4px",
                 height: "40px",
                 textDecoration: "none",
-                color: "text.primary",
+                color: (theme) => theme.palette.text.primary,
             }}
         >
             <StyledListItemButton
                 selected={selected}
+                onClick={onClick}
                 sx={{
+                    //color: "#543",
                     //bgcolor: "#397",
                     height: "100%",
                     borderRadius: "5px",
+
                     ":hover": {
                         bgcolor: (theme) =>
                             theme.palette.bgcolor.secondary.hover,
@@ -45,9 +52,10 @@ export const CustomListItem: FC<CustomListItemProps> = ({
                     "&.Mui-selected": {
                         bgcolor: (theme) =>
                             theme.palette.bgcolor.secondary.active,
+
                         ":hover": {
                             bgcolor: (theme) =>
-                                theme.palette.bgcolor.secondary.hover,
+                                theme.palette.bgcolor.secondary.active,
                         },
                     },
                 }}

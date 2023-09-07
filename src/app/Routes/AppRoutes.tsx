@@ -14,13 +14,15 @@ import { SupportContentMainQuestions } from "../../pages/SupportPage/SupportCont
 import { ProfileNotifications } from "../../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotifications";
 import { ProfileComments } from "../../pages/ProfilePage/ProfileTabs/ProfileComments/ProfileComments";
 import { ProfilePrompts } from "../../pages/ProfilePage/ProfileTabs/ProfilePrompts/ProfilePrompts";
+import { QuestionsSection } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/QuestionsSection";
+import { sectionListContent } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/sectionListContent";
 
 export const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<AppLayout />}>
                 <Route index element={<TestPage />} />
-                <Route path="profile/*" element={<ProfilePage />}>
+                <Route path="profile/" element={<ProfilePage />}>
                     <Route index element={<ProfilePrompts />} />
                     <Route path="comments" element={<ProfileComments />} />
                     <Route
@@ -31,32 +33,59 @@ export const AppRoutes = () => {
                     <Route path="payments" element={<h1>Платежи </h1>} />
                 </Route>
                 <Route path="marketplace" element={<AuthPage />} />
-                <Route path="support/*" element={<SupportPage />}>
+                <Route path="support/" element={<SupportPage />}>
                     <Route index element={<SupportContentMainHelp />} />
                     <Route
-                        path="questions/*"
+                        path="questions/"
                         element={<SupportContentMainQuestions />}
                     >
-                        <Route index element={<h1>Общие вопросы</h1>} />
+                        <Route
+                            index
+                            element={
+                                <QuestionsSection
+                                    questions={sectionListContent?.main}
+                                />
+                            }
+                        />
                         <Route
                             path="security"
-                            element={<h1>Безопасность</h1>}
+                            element={
+                                <QuestionsSection
+                                    questions={sectionListContent?.security}
+                                />
+                            }
                         />
                         <Route
                             path="monetization"
-                            element={<h1>Монетизация</h1>}
+                            element={
+                                <QuestionsSection
+                                    questions={sectionListContent?.monetization}
+                                />
+                            }
                         />
                         <Route
                             path="profile"
-                            element={<h1>Настройка профиля</h1>}
+                            element={
+                                <QuestionsSection
+                                    questions={sectionListContent?.profile}
+                                />
+                            }
                         />
                         <Route
                             path="payments"
-                            element={<h1>Платежи и переводы</h1>}
+                            element={
+                                <QuestionsSection
+                                    questions={sectionListContent?.payments}
+                                />
+                            }
                         />
                         <Route
                             path="comments"
-                            element={<h1>Комментарии </h1>}
+                            element={
+                                <QuestionsSection
+                                    questions={sectionListContent?.comments}
+                                />
+                            }
                         />
                     </Route>
                     <Route path="feedback" element={<h1>Задать вопрос </h1>} />
