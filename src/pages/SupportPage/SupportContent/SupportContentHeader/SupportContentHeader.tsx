@@ -17,7 +17,7 @@ const supportTabsItems = [
     },
     {
         id: 1,
-        to: "questions",
+        to: "questions/general",
     },
     {
         id: 2,
@@ -91,7 +91,7 @@ export const SupportContentHeader = () => {
                 />
                 {!isMobile && (
                     <CustomTab
-                        to="questions"
+                        to="questions/general"
                         icon={
                             <FormatListBulletedRoundedIcon
                                 sx={{

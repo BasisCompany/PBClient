@@ -36,58 +36,9 @@ export const AppRoutes = () => {
                 <Route path="support/" element={<SupportPage />}>
                     <Route index element={<SupportContentMainHelp />} />
                     <Route
-                        path="questions/"
+                        path="questions/:category"
                         element={<SupportContentMainQuestions />}
-                    >
-                        <Route
-                            index
-                            element={
-                                <QuestionsSection
-                                    questions={sectionListContent?.main}
-                                />
-                            }
-                        />
-                        <Route
-                            path="security"
-                            element={
-                                <QuestionsSection
-                                    questions={sectionListContent?.security}
-                                />
-                            }
-                        />
-                        <Route
-                            path="monetization"
-                            element={
-                                <QuestionsSection
-                                    questions={sectionListContent?.monetization}
-                                />
-                            }
-                        />
-                        <Route
-                            path="profile"
-                            element={
-                                <QuestionsSection
-                                    questions={sectionListContent?.profile}
-                                />
-                            }
-                        />
-                        <Route
-                            path="payments"
-                            element={
-                                <QuestionsSection
-                                    questions={sectionListContent?.payments}
-                                />
-                            }
-                        />
-                        <Route
-                            path="comments"
-                            element={
-                                <QuestionsSection
-                                    questions={sectionListContent?.comments}
-                                />
-                            }
-                        />
-                    </Route>
+                    />
                     <Route path="feedback" element={<h1>Задать вопрос </h1>} />
                 </Route>
                 <Route element={<AuthLayout />}>

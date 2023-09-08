@@ -1,8 +1,6 @@
 import { FC } from "react";
-
-import { Link as RouterLink } from "react-router-dom";
 import MuiListItemButton from "@mui/material/ListItemButton";
-import { ListItem, ListItemText} from "@mui/material";
+import { ListItem, ListItemText } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const StyledListItemButton = styled(MuiListItemButton)(() => ({
@@ -10,14 +8,12 @@ const StyledListItemButton = styled(MuiListItemButton)(() => ({
 }));
 
 export interface CustomListItemProps {
-    path: string;
     title: string;
     selected: boolean;
     onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 export const CustomListItem: FC<CustomListItemProps> = ({
-    path,
     title,
     selected,
     onClick,
@@ -25,8 +21,6 @@ export const CustomListItem: FC<CustomListItemProps> = ({
     return (
         <ListItem
             disablePadding
-            component={RouterLink}
-            to={path}
             sx={{
                 //bgcolor: "#327",
                 mt: "4px",

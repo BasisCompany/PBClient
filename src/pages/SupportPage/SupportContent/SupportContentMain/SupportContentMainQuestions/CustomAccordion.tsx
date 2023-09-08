@@ -11,23 +11,21 @@ import {
 export interface CustomAccordionProps {
     question: string;
     answer: string;
-    expanded: boolean;
 }
 
 export const CustomAccordion: FC<CustomAccordionProps> = ({
     question,
     answer,
-    expanded,
 }) => {
-    const [accordionClose, setAccordionClose] = useState(expanded);
-    console.log(accordionClose);
+    const [accordionClose, setAccordionClose] = useState(false);
+
     return (
         <Accordion
             expanded={accordionClose}
             square
             disableGutters
             onChange={() => {
-                setAccordionClose(!accordionClose);
+                setAccordionClose((prev) => !prev);
             }}
             sx={{
                 bgcolor: (theme) => theme.palette.bgcolor.secondary.main,

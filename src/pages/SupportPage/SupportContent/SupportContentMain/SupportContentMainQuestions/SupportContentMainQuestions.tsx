@@ -1,34 +1,26 @@
+import { useState } from "react";
 import { Box, List } from "@mui/material";
-import { Outlet } from "react-router";
-
-import { CustomListItem } from "./CustomListItem";
-import { useLocation } from "react-router";
-import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import { CustomAccordion } from "./CustomAccordion";
+import { CustomListItem } from "./CustomListItem";
+import { sectionListContent } from "./sectionListContent";
 
-function extractLastSegmentFromURL(url: string): string {
-    const parts = url.split("/").filter((part) => part !== "");
-    const lastEl = parts.pop() ?? "questions";
-    return lastEl === "questions" ? "" : lastEl;
-    //TODO: Сделать, чтобы при инвалидных значениях ("http://localhost:5173/support/questions/security43") возвращал questions
-}
+const categories = Object.keys(sectionListContent);
 
 export const SupportContentMainQuestions = () => {
-    const location = useLocation().pathname;
-    const currentLocation = extractLastSegmentFromURL(location);
-    const [selected, setSelected] = useState(currentLocation);
+    const { category = "general" } = useParams();
+    const navigate = useNavigate();
 
-    const [expanded, setExpanded] = useState(false);
-    useEffect(() => {
-        console.log("Eseff сработал");
-        setExpanded(false);
-    }, [location]);
+    const [selected, setSelected] = useState(
+        categories.includes(category) ? category : "general"
+    );
 
     const handleListItemClick = (
         _: React.MouseEvent<HTMLDivElement, MouseEvent>,
         path: string
     ) => {
         setSelected(path);
+        navigate(`/support/questions/${path}`);
     };
 
     return (
@@ -57,23 +49,20 @@ export const SupportContentMainQuestions = () => {
                     }}
                 >
                     <CustomListItem
-                        path=""
                         title="Общие вопросы"
-                        selected={selected === ""}
-                        onClick={(event) => handleListItemClick(event, "")}
+                        selected={selected === "general"}
+                        onClick={(event) =>
+                            handleListItemClick(event, "general")
+                        }
                     />
-
                     <CustomListItem
-                        path="security"
                         title="Безопасность"
                         selected={selected === "security"}
                         onClick={(event) =>
                             handleListItemClick(event, "security")
                         }
                     />
-
                     <CustomListItem
-                        path="monetization"
                         title="Монетизация"
                         selected={selected === "monetization"}
                         onClick={(event) =>
@@ -81,16 +70,13 @@ export const SupportContentMainQuestions = () => {
                         }
                     />
                     <CustomListItem
-                        path="profile"
                         title="Настройки профиля"
                         selected={selected === "profile"}
                         onClick={(event) =>
                             handleListItemClick(event, "profile")
                         }
                     />
-
                     <CustomListItem
-                        path="payments"
                         title="Платежи и переводы"
                         selected={selected === "payments"}
                         onClick={(event) =>
@@ -98,7 +84,6 @@ export const SupportContentMainQuestions = () => {
                         }
                     />
                     <CustomListItem
-                        path="comments"
                         title="Комментарии"
                         selected={selected === "comments"}
                         onClick={(event) =>
@@ -107,14 +92,19 @@ export const SupportContentMainQuestions = () => {
                     />
                 </List>
             </Box>
-
             <Box
                 sx={{
                     width: "775px",
                     //bgcolor: "#653"
                 }}
             >
-                <Outlet context={[expanded]} />
+                {sectionListContent?.[selected].map((item, index) => (
+                    <CustomAccordion
+                        key={`${selected}_${index}`}
+                        question={item.question}
+                        answer={item.answer}
+                    />
+                ))}
             </Box>
         </Box>
     );

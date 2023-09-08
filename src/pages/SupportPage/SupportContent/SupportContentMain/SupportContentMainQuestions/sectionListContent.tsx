@@ -1,5 +1,12 @@
-export const sectionListContent = {
-    main: [
+type SectionListContent = {
+    [key: string]: {
+        question: string;
+        answer: string;
+    }[];
+};
+
+export const sectionListContent: SectionListContent = {
+    general: [
         {
             question: "Что такое промты в нейросети?",
             answer: "Промты в нейросети представляют собой текстовые запросы, которые пользователи вводят, чтобы получить ответы от искусственного интеллекта или нейронных сетей. Эти запросы могут содержать ключевые слова или фразы, которые помогают нейросети понять, какой тип информации или действия от пользователя требуется.",
