@@ -3,17 +3,7 @@ import { SelectChangeEvent, ListItemIcon } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import { CustomSelect } from "../../../UI/Select/CustomSelect";
 import { CustomSelectMenuItem } from "../../../UI/Select/CustomSelectMenuItem";
-
-const getSaveSearchParams = (
-    searchParams: URLSearchParams,
-    validParams: string[],
-    paramName?: string,
-    defaultParam?: string
-) => {
-    const defParam = defaultParam ?? validParams[0];
-    const currentSelect = searchParams.get(paramName ?? "filter") || defParam;
-    return validParams.includes(currentSelect) ? currentSelect : defParam;
-};
+import { getSortParamSafe } from "../../../utils/getParamSafely";
 
 interface ProfileSelectProps {
     selectItems: {
@@ -25,14 +15,18 @@ interface ProfileSelectProps {
 
 export const ProfileSelect: FC<ProfileSelectProps> = ({ selectItems }) => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const currentSelect = getSaveSearchParams(searchParams, selectItems.params);
+    const currentSelect = getSortParamSafe(searchParams, selectItems.params);
 
     const handleChange = (event: SelectChangeEvent<unknown>) => {
         const selectValue = event.target.value as string;
+
+        if (currentSelect !== selectValue) {
+            searchParams.delete("page");
+        }
         if (selectValue === selectItems.params[0]) {
-            searchParams.delete("filter");
+            searchParams.delete("sort");
         } else {
-            searchParams.set("filter", selectValue);
+            searchParams.set("sort", selectValue);
         }
         setSearchParams(searchParams);
     };

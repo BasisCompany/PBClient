@@ -1,14 +1,17 @@
 import { FC } from "react";
 import { Pagination, PaginationItem, PaginationProps } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
+import { getPageParamSafe } from "../utils/getParamSafely";
 
 export const PagePagination: FC<PaginationProps> = (props) => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const currentPage = parseInt(searchParams.get("page") || "1", 10);
+    const currentPage = getPageParamSafe(searchParams, 1);
 
     const handlePaginationClick = (page: number | null) => {
+        if (page === null) return;
+
         if (page !== 1) {
-            searchParams.set("page", `${page ?? "2"}`);
+            searchParams.set("page", `${page}`);
         } else {
             searchParams.delete("page");
         }
@@ -18,7 +21,6 @@ export const PagePagination: FC<PaginationProps> = (props) => {
     return (
         <Pagination
             page={currentPage}
-            count={10}
             showFirstButton
             showLastButton
             renderItem={(item) => (

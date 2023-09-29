@@ -7,6 +7,12 @@ import { ProfileSelect } from "../../components/ProfileSelect";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
+import { useGetCommentsQuery } from "./store/profileCommentsApi";
+import { useSearchParams } from "react-router-dom";
+import {
+    getPageParamSafe,
+    getSortParamSafe,
+} from "../../../../utils/getParamSafely";
 
 const commentsSelectItems = {
     params: ["popular", "new", "old"],
@@ -17,9 +23,27 @@ const commentsSelectItems = {
     ],
     labels: ["Популярные", "Новые", "Старые"],
 };
-// При наведение на время показывается дата и время
+//TODO: При наведение на время показывается дата и время
 export const ProfileComments = () => {
     const isMobile = useMobileDevice();
+
+    const [searchParams] = useSearchParams();
+    const currentPage = getPageParamSafe(searchParams, 1);
+    const currentSort = getSortParamSafe(
+        searchParams,
+        commentsSelectItems.params
+    );
+
+    const { data, isLoading } = useGetCommentsQuery({
+        sort: currentSort,
+        page: currentPage,
+        take: 5,
+    });
+
+    if (isLoading) {
+        return null;
+    }
+
     return (
         <>
             <Box
@@ -33,8 +57,8 @@ export const ProfileComments = () => {
                 <ProfileSelect selectItems={commentsSelectItems} />
             </Box>
             <Box>
-                {new Array(10).fill(null).map((_, i) => (
-                    <ProfileCommentItem key={i} />
+                {data?.data.map((comment, i) => (
+                    <ProfileCommentItem key={i} comment={comment} />
                 ))}
             </Box>
             <Box
@@ -45,6 +69,7 @@ export const ProfileComments = () => {
                 }}
             >
                 <PagePagination
+                    count={data?.meta.totalPages}
                     siblingCount={isMobile ? 0 : 2}
                     size={isMobile ? "small" : "medium"}
                 />
