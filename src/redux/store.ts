@@ -8,6 +8,7 @@ import {
     navbarInitState,
     navbarlistenerMiddleware,
 } from "../modules/NavBar/store/navbarMiddleware";
+import { profileApi } from "../pages/ProfilePage/store/profileApi";
 
 export const store = configureStore({
     preloadedState: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     reducer: {
         [authApi.reducerPath]: authApi.reducer,
         [initAuthApi.reducerPath]: initAuthApi.reducer,
+        [profileApi.reducerPath]: profileApi.reducer,
         auth: authReducer,
         navbar: navbarReducer,
         snackbar: snackbarReducer,
@@ -24,6 +26,7 @@ export const store = configureStore({
         getDefaultMiddleware().concat([
             authApi.middleware,
             initAuthApi.middleware,
+            profileApi.middleware,
             navbarlistenerMiddleware.middleware,
         ]),
 });
