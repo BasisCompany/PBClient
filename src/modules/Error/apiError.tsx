@@ -7,6 +7,10 @@ const errors = {
         message: "ThrottlerException: Too Many Requests",
         str: "Слишком много запросов! Повторите попытку позже",
     },
+    NOT_VERIFY_EMAIL: {
+        message: "Not verified, a new email has been sent",
+        str: "Вы не подтвердили свою почту",
+    },
 };
 
 export type ApiError = {
@@ -24,6 +28,12 @@ export const getErrorMessage = (error: ApiError) => {
     if (error?.data?.statusCode === 429) {
         if (error?.data?.message === errors.THROTTLER.message) {
             return errors.THROTTLER.str;
+        }
+    }
+
+    if (error?.data?.statusCode === 403) {
+        if (error?.data?.message === errors.NOT_VERIFY_EMAIL.message) {
+            return errors.NOT_VERIFY_EMAIL.str;
         }
     }
 
