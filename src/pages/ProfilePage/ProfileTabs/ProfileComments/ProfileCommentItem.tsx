@@ -1,16 +1,16 @@
 import {
     Box,
-    Typography,
     styled,
     Avatar,
     Rating,
     IconButton,
     ButtonProps,
     Button,
+    Typography,
 } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { FlexBox } from "../../../../UI/FlexBox";
-import { useMemo, useReducer, useState } from "react";
+import { FC, useReducer, useState } from "react";
 import { CommentItemMenu } from "./CommentItemMenu";
 import ReplyIcon from "@mui/icons-material/Reply";
 import CloseIcon from "@mui/icons-material/Close";
@@ -18,6 +18,9 @@ import { CommentReplyInput } from "./CommentItemReply/CommentReplyInput";
 import { CommentReplyAnswer } from "./CommentItemReply/CommentReplyAnswer";
 import { CommentRating } from "./CommentRating";
 import { CommentReportDialog } from "./CommentReportDialog";
+import { formatDistanceToNow } from "date-fns";
+import { ru } from "date-fns/locale";
+import { Comment } from "./store/types/comments.type";
 
 const CommentBox = styled(Box)(({ theme }) => ({
     padding: "10px",
@@ -45,7 +48,13 @@ const ReplyButton = styled((props: ButtonProps) => (
     },
 }));
 
-export const ProfileCommentItem = () => {
+interface ProfileCommentItemProps {
+    comment: Comment;
+}
+
+export const ProfileCommentItem: FC<ProfileCommentItemProps> = ({
+    comment,
+}) => {
     const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
     const [isOpenReply, toggleReply] = useReducer((state) => !state, false);
     const [openDialog, setOpenDialog] = useState(false);
@@ -58,28 +67,10 @@ export const ProfileCommentItem = () => {
         setMenuAnchor(null);
     };
 
-    const username = "Stormpero";
-    const comment1 = {
-        likes: 1,
-        dislike: 0,
-        rating: 1,
-        text: "text",
-        isReply: true,
-        reply: {
-            text: "2323",
-            likes: 1,
-            dislike: 0,
-            rating: 1,
-            isReply: false,
-        },
-    };
-
-    const comment2 = { ...comment1, isReply: false };
-
-    const comment = useMemo(
-        () => (Math.random() > 0.5 ? comment1 : comment2),
-        []
-    );
+    const timeFormatDistanceToNow = `${formatDistanceToNow(
+        new Date(comment.createdAt),
+        { locale: ru }
+    )} назад`;
 
     return (
         <CommentBox>
@@ -117,7 +108,7 @@ export const ProfileCommentItem = () => {
                                         },
                                     }}
                                 >
-                                    {username}
+                                    {comment.user.username}
                                 </Typography>
                             </Box>
                             <Box>
@@ -143,7 +134,11 @@ export const ProfileCommentItem = () => {
                                 </Typography>
                             </Box>
                             <Box sx={{ mt: 0.25, ml: -0.2 }}>
-                                <Rating name="read-only" value={3} readOnly />
+                                <Rating
+                                    name="read-only"
+                                    value={comment.rating}
+                                    readOnly
+                                />
                             </Box>
                         </Box>
                     </FlexBox>
@@ -161,7 +156,7 @@ export const ProfileCommentItem = () => {
                         fontSize={13}
                         fontWeight={500}
                     >
-                        7 декабря 2022
+                        {timeFormatDistanceToNow}
                     </Typography>
                 </Box>
                 <Box sx={{ mt: 1 }}>
@@ -172,11 +167,7 @@ export const ProfileCommentItem = () => {
                         fontSize={16}
                         fontWeight={400}
                     >
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Blanditiis, neque. Ut magnam quae pariatur
-                        delectus autem laudantium id! Magni, explicabo. Fugit a
-                        quisquam ut aliquid excepturi blanditiis iusto dolore
-                        ex?
+                        {comment.message}
                     </Typography>
                 </Box>
             </Box>
@@ -188,7 +179,10 @@ export const ProfileCommentItem = () => {
                     mt: 0.5,
                 }}
             >
-                <CommentRating />
+                <CommentRating
+                    likes={comment.likes}
+                    dislikes={comment.dislikes}
+                />
                 {comment.isReply ? null : isOpenReply ? (
                     <ReplyButton
                         startIcon={<CloseIcon />}
@@ -205,8 +199,8 @@ export const ProfileCommentItem = () => {
                     </ReplyButton>
                 )}
             </Box>
-            {comment.isReply ? (
-                <CommentReplyAnswer />
+            {comment.reply ? (
+                <CommentReplyAnswer replyData={comment.reply} />
             ) : (
                 isOpenReply && <CommentReplyInput />
             )}

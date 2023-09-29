@@ -3,11 +3,33 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { CommentRating } from "../CommentRating";
 import { CommentItemMenu } from "../CommentItemMenu";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { FlexBox } from "../../../../../UI/FlexBox";
 import { useMobileDevice } from "../../../../../hooks/useMobileDevice";
 
-export const CommentReplyAnswer = () => {
+interface CommentReplyAnswerProps {
+    replyData: {
+        id: number;
+        message: string;
+        rating: number;
+        likes: number;
+        dislikes: number;
+        isReply: boolean;
+        createdAt: string;
+        updatedAt: string;
+        userId: number;
+        replyId: null;
+        user: {
+            id: number;
+            email: string;
+            username: string;
+        };
+    };
+}
+
+export const CommentReplyAnswer: FC<CommentReplyAnswerProps> = ({
+    replyData,
+}) => {
     const isMobile = useMobileDevice();
     const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
 

@@ -1,11 +1,14 @@
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { FC } from "react";
 
-export const CommentRating = () => {
-    const likes = 1;
-    const dislikes = 0;
+interface CommentRatingProps {
+    likes: number;
+    dislikes: number;
+}
+
+export const CommentRating: FC<CommentRatingProps> = ({ likes, dislikes }) => {
     const rating = likes - dislikes;
-
     return (
         <Box>
             <IconButton>
