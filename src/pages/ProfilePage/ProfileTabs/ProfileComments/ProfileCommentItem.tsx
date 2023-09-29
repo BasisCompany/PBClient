@@ -7,6 +7,7 @@ import {
     ButtonProps,
     Button,
     Typography,
+    Tooltip,
 } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { FlexBox } from "../../../../UI/FlexBox";
@@ -18,9 +19,11 @@ import { CommentReplyInput } from "./CommentItemReply/CommentReplyInput";
 import { CommentReplyAnswer } from "./CommentItemReply/CommentReplyAnswer";
 import { CommentRating } from "./CommentRating";
 import { CommentReportDialog } from "./CommentReportDialog";
-import { formatDistanceToNow } from "date-fns";
-import { ru } from "date-fns/locale";
 import { Comment } from "./store/types/comments.type";
+import {
+    formatTimeDistanceToNow,
+    formatTimeFull,
+} from "../../../../utils/timeFormatter";
 
 const CommentBox = styled(Box)(({ theme }) => ({
     padding: "10px",
@@ -67,10 +70,8 @@ export const ProfileCommentItem: FC<ProfileCommentItemProps> = ({
         setMenuAnchor(null);
     };
 
-    const timeFormatDistanceToNow = `${formatDistanceToNow(
-        new Date(comment.createdAt),
-        { locale: ru }
-    )} назад`;
+    const timeFormatDistanceToNow = formatTimeDistanceToNow(comment.createdAt);
+    const fullTime = formatTimeFull(comment.createdAt);
 
     return (
         <CommentBox>
@@ -149,15 +150,17 @@ export const ProfileCommentItem: FC<ProfileCommentItemProps> = ({
                     </FlexBox>
                 </FlexBox>
                 <Box sx={{ mt: 1 }}>
-                    <Typography
-                        variant="h5"
-                        component="span"
-                        color={(theme) => theme.palette.text.secondary}
-                        fontSize={13}
-                        fontWeight={500}
-                    >
-                        {timeFormatDistanceToNow}
-                    </Typography>
+                    <Tooltip title={`${fullTime}`}>
+                        <Typography
+                            variant="h5"
+                            component="span"
+                            color={(theme) => theme.palette.text.secondary}
+                            fontSize={13}
+                            fontWeight={500}
+                        >
+                            {timeFormatDistanceToNow}
+                        </Typography>
+                    </Tooltip>
                 </Box>
                 <Box sx={{ mt: 1 }}>
                     <Typography
