@@ -1,5 +1,8 @@
 import { profileApi } from "../../../store/profileApi";
-import { CommentsRequest, CommentsResponse } from "./types/comments.type";
+import {
+    CommentsRequest,
+    CommentsResponse,
+} from "../../../../../types/comments.type";
 
 const profileCommentsApi = profileApi.injectEndpoints({
     endpoints: (build) => ({

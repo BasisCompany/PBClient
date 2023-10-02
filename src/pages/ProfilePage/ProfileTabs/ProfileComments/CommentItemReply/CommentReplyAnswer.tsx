@@ -6,30 +6,17 @@ import { CommentItemMenu } from "../CommentItemMenu";
 import { FC, useState } from "react";
 import { FlexBox } from "../../../../../UI/FlexBox";
 import { useMobileDevice } from "../../../../../hooks/useMobileDevice";
+import { Reply } from "../../../../../types/comments.type";
+import {
+    formatTimeDistanceToNow,
+    formatTimeFull,
+} from "../../../../../utils/timeFormatter";
 
 interface CommentReplyAnswerProps {
-    replyData: {
-        id: number;
-        message: string;
-        rating: number;
-        likes: number;
-        dislikes: number;
-        isReply: boolean;
-        createdAt: string;
-        updatedAt: string;
-        userId: number;
-        replyId: null;
-        user: {
-            id: number;
-            email: string;
-            username: string;
-        };
-    };
+    reply: Reply;
 }
 
-export const CommentReplyAnswer: FC<CommentReplyAnswerProps> = ({
-    replyData,
-}) => {
+export const CommentReplyAnswer: FC<CommentReplyAnswerProps> = ({ reply }) => {
     const isMobile = useMobileDevice();
     const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
 
@@ -40,6 +27,10 @@ export const CommentReplyAnswer: FC<CommentReplyAnswerProps> = ({
     const handleCloseMenu = () => {
         setMenuAnchor(null);
     };
+
+    const timeFormatDistanceToNow = formatTimeDistanceToNow(reply.createdAt);
+    const fullTime = formatTimeFull(reply.createdAt);
+
     return (
         <Box
             sx={{
@@ -66,7 +57,7 @@ export const CommentReplyAnswer: FC<CommentReplyAnswerProps> = ({
                                 fontWeight={500}
                                 sx={{ mr: 1 }}
                             >
-                                _Gvozd_
+                                {reply.user.username}
                             </Typography>
                         </Tooltip>
                         {!isMobile && (
@@ -74,16 +65,18 @@ export const CommentReplyAnswer: FC<CommentReplyAnswerProps> = ({
                                 sx={{ fontSize: "15px", mr: 1 }}
                             />
                         )}
-                        <Typography
-                            variant="h5"
-                            component="span"
-                            color={(theme) => theme.palette.text.secondary}
-                            fontSize={13}
-                            fontWeight={500}
-                            sx={{ mt: isMobile ? 0.5 : 0 }}
-                        >
-                            8 декабря 2022
-                        </Typography>
+                        <Tooltip title={fullTime}>
+                            <Typography
+                                variant="h5"
+                                component="span"
+                                color={(theme) => theme.palette.text.secondary}
+                                fontSize={13}
+                                fontWeight={500}
+                                sx={{ mt: isMobile ? 0.5 : 0 }}
+                            >
+                                {timeFormatDistanceToNow}
+                            </Typography>
+                        </Tooltip>
                     </FlexBox>
 
                     <IconButton size="small" onClick={handleClickMenu}>
@@ -98,16 +91,12 @@ export const CommentReplyAnswer: FC<CommentReplyAnswerProps> = ({
                         fontSize={16}
                         fontWeight={400}
                     >
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Blanditiis, neque. Ut magnam quae pariatur
-                        delectus autem laudantium id! Magni, explicabo. Fugit a
-                        quisquam ut aliquid excepturi blanditiis iusto dolore
-                        ex?
+                        {reply.message}
                     </Typography>
                 </Box>
             </Box>
             <Box sx={{ mt: 0.5, pl: "5px", pb: 1 }}>
-                <CommentRating />
+                <CommentRating likes={reply.likes} dislikes={reply.dislikes} />
             </Box>
             <CommentItemMenu
                 bgcolorSecondary

@@ -19,7 +19,7 @@ import { CommentReplyInput } from "./CommentItemReply/CommentReplyInput";
 import { CommentReplyAnswer } from "./CommentItemReply/CommentReplyAnswer";
 import { CommentRating } from "./CommentRating";
 import { CommentReportDialog } from "./CommentReportDialog";
-import { Comment } from "./store/types/comments.type";
+import { Comment } from "../../../../types/comments.type";
 import {
     formatTimeDistanceToNow,
     formatTimeFull,
@@ -150,7 +150,7 @@ export const ProfileCommentItem: FC<ProfileCommentItemProps> = ({
                     </FlexBox>
                 </FlexBox>
                 <Box sx={{ mt: 1 }}>
-                    <Tooltip title={`${fullTime}`}>
+                    <Tooltip title={fullTime}>
                         <Typography
                             variant="h5"
                             component="span"
@@ -203,7 +203,7 @@ export const ProfileCommentItem: FC<ProfileCommentItemProps> = ({
                 )}
             </Box>
             {comment.reply ? (
-                <CommentReplyAnswer replyData={comment.reply} />
+                <CommentReplyAnswer reply={comment.reply} />
             ) : (
                 isOpenReply && <CommentReplyInput />
             )}
