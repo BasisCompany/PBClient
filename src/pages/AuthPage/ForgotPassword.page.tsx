@@ -1,9 +1,7 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
 import { LoadingButton } from "../../UI/Buttons/LoadingButton";
 import { CenterBox } from "../../UI/CenterBox";
 import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
@@ -11,15 +9,17 @@ import { MyTextField } from "./components/MyTextField";
 import { useLazyForgotPasswordQuery } from "./store/authApi";
 import { SmartCaptcha } from "@yandex/smart-captcha";
 
-const forgotPasswordSchema = z.object({
-    email: z
-        .string()
-        .nonempty("Пожалуйста, укажите свою почту.")
+import { object, string, InferType } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const forgotPasswordSchema = object({
+    email: string()
+        .required("Пожалуйста, укажите свою почту.")
         .email("Пожалуйста, укажите верную почту")
         .min(3, "Почта должна содержать больше 3 символов"),
 });
 
-export type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>;
+export type ForgotPasswordSchema = InferType<typeof forgotPasswordSchema>;
 
 export const ForgotPasswordPage = () => {
     const [showAlert] = useSnackbar();
@@ -31,7 +31,7 @@ export const ForgotPasswordPage = () => {
         formState: { errors },
     } = useForm<ForgotPasswordSchema>({
         mode: "onBlur",
-        resolver: zodResolver(forgotPasswordSchema),
+        resolver: yupResolver(forgotPasswordSchema),
     });
 
     const [forgotPassword, { isLoading }] = useLazyForgotPasswordQuery();

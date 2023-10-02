@@ -8,8 +8,6 @@ import {
     Link,
     Typography,
 } from "@mui/material";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
@@ -22,35 +20,33 @@ import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
 import { getErrorMessage, ApiError } from "../../../modules/Error/apiError";
 import { SmartCaptcha } from "@yandex/smart-captcha";
 
+import { object, string, ref, InferType } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
 }
 
-const registerSchema = z
-    .object({
-        username: z
-            .string()
-            .nonempty("Пожалуйста, укажите свой никнейм.")
-            .min(3, "Никнейм должен быть больше 3 символов")
-            .max(20, "Никнейм должен быть меньше 20 символов"),
-        email: z
-            .string()
-            .nonempty("Пожалуйста, укажите свою почту.")
-            .email("Пожалуйста, укажите верную почту")
-            .min(3, "Почта должна содержать больше 3 символов"),
-        password: z
-            .string()
-            .nonempty("Пожалуйста, укажите свой пароль.")
-            .min(8, "Пароль должен быть больше 8 символов")
-            .max(35, "Пароль должен быть меньше 35 символов"),
-        passwordConfirm: z.string().nonempty("Пожалуйста, подтвердите пароль."),
-    })
-    .refine((data) => data.password === data.passwordConfirm, {
-        message: "Пароли не совпадают",
-        path: ["passwordConfirm"],
-    });
+const registerSchema = object({
+    username: string()
+        .required("Пожалуйста, укажите свой никнейм.")
+        .min(3, "Никнейм должен быть больше 3 символов")
+        .max(20, "Никнейм должен быть меньше 20 символов"),
+    email: string()
+        .required("Пожалуйста, укажите свою почту.")
+        .email("Пожалуйста, укажите верную почту")
+        .min(3, "Почта должна содержать больше 3 символов"),
+    password: string()
+        .required("Пожалуйста, укажите свой пароль.")
+        .min(8, "Пароль должен быть больше 8 символов")
+        .max(35, "Пароль должен быть меньше 35 символов"),
+    passwordConfirm: string()
+        .required("Пожалуйста, подтвердите пароль.")
+        .oneOf([ref("password"), null], "Пароли должны совпадать"),
+});
 
-export type RegisterSchema = z.infer<typeof registerSchema>;
+
+export type RegisterSchema = InferType<typeof registerSchema>;
 
 export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
     const [showAlert] = useSnackbar();
@@ -61,7 +57,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
         formState: { errors },
     } = useForm<RegisterSchema>({
         mode: "onBlur",
-        resolver: zodResolver(registerSchema),
+        resolver: yupResolver(registerSchema),
     });
 
     const [registerMut, { isLoading }] = useRegisterMutation();

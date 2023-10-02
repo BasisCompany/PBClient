@@ -1,19 +1,19 @@
 import { Box, IconButton, InputBase } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useSnackbar } from "../../../../../UI/Snackbar/useSnackbar";
-import * as z from "zod";
+import { object, string, InferType } from "yup";
 import {
     getErrorMessage,
     ApiError,
 } from "../../../../../modules/Error/apiError";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-const replySchema = z.object({
-    message: z.string().nonempty("Пожалуйста, укажите свою почту."),
+const replySchema = object({
+    message: string().required("Пожалуйста, укажите свою почту."),
 });
+export type ReplySchema = InferType<typeof replySchema>;
 
-export type ReplySchema = z.infer<typeof replySchema>;
 
 export const CommentReplyInput = () => {
     const [showAlert] = useSnackbar();
@@ -25,13 +25,13 @@ export const CommentReplyInput = () => {
         formState: { errors },
     } = useForm<ReplySchema>({
         mode: "onBlur",
-        resolver: zodResolver(replySchema),
+        resolver: yupResolver(replySchema),
     });
 
     if (errors?.message?.message) {
         showAlert("error", errors?.message?.message);
     }
-    
+
     const onSubmit: SubmitHandler<ReplySchema> = (data) => {
         console.log(data);
         try {

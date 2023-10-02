@@ -1,30 +1,27 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded";
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useParams } from "react-router";
-import { z } from "zod";
 import { LoadingButton } from "../../UI/Buttons/LoadingButton";
 import { CenterBox } from "../../UI/CenterBox";
 import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
 import { PasswordTextField } from "./components/PasswordTextField";
 import { useResetPasswordMutation } from "./store/authApi";
 
-const resetPasswordSchema = z
-    .object({
-        password: z
-            .string()
-            .nonempty("Пожалуйста, укажите свой пароль.")
-            .min(8, "Пароль должен быть больше 8 символов")
-            .max(35, "Пароль должен быть меньше 35 символов"),
-        passwordConfirm: z.string().nonempty("Пожалуйста, подтвердите пароль."),
-    })
-    .refine((data) => data.password === data.passwordConfirm, {
-        message: "Пароли не совпадают",
-        path: ["passwordConfirm"],
-    });
+import { object, string, ref, InferType } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;
+const resetPasswordSchema = object({
+    password: string()
+        .required("Пожалуйста, укажите свой пароль.")
+        .min(8, "Пароль должен быть больше 8 символов")
+        .max(35, "Пароль должен быть меньше 35 символов"),
+    passwordConfirm: string()
+        .required("Пожалуйста, подтвердите пароль.")
+        .oneOf([ref("password"), null], "Пароли должны совпадать"),
+});
+
+export type ResetPasswordSchema = InferType<typeof resetPasswordSchema>;
 
 export const ResetPasswordPage = () => {
     const [showAlert] = useSnackbar();
@@ -37,7 +34,7 @@ export const ResetPasswordPage = () => {
         formState: { errors },
     } = useForm<ResetPasswordSchema>({
         mode: "onBlur",
-        resolver: zodResolver(resetPasswordSchema),
+        resolver: yupResolver(resetPasswordSchema),
     });
 
     const [resetPassword, { isLoading }] = useResetPasswordMutation();

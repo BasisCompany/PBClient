@@ -1,9 +1,7 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { Box, Card, CardContent, Link, Typography } from "@mui/material";
 import { DispatchWithoutAction, FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import * as z from "zod";
 import { LoadingButton } from "../../../UI/Buttons/LoadingButton";
 import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
 import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
@@ -13,25 +11,25 @@ import { useLoginMutation } from "../store/authApi";
 import { ApiError, getErrorMessage } from "../../../modules/Error/apiError";
 import { SmartCaptcha } from "@yandex/smart-captcha";
 import { LinkBehavior } from "../../../UI/Route/LinkBehavior";
+import { object, string, InferType } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;
 }
 
-const loginSchema = z.object({
-    email: z
-        .string()
-        .nonempty("Пожалуйста, укажите свою почту.")
+const loginSchema = object({
+    email: string()
+        .required("Пожалуйста, укажите свою почту.")
         .email("Пожалуйста, укажите верную почту")
         .min(3, "Почта должна содержать больше 3 символов"),
-    password: z
-        .string()
-        .nonempty("Пожалуйста, укажите свой пароль.")
+    password: string()
+        .required("Пожалуйста, укажите свой пароль.")
         .min(8, "Пароль должен быть больше 8 символов")
         .max(35, "Пароль должен быть меньше 35 символов"),
 });
 
-export type LoginSchema = z.infer<typeof loginSchema>;
+export type LoginSchema = InferType<typeof loginSchema>;
 
 export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
     const [showAlert] = useSnackbar();
@@ -43,7 +41,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
         formState: { errors },
     } = useForm<LoginSchema>({
         mode: "onBlur",
-        resolver: zodResolver(loginSchema),
+        resolver: yupResolver(loginSchema),
     });
 
     const [login, { isLoading }] = useLoginMutation();
