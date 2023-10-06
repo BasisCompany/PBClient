@@ -4,6 +4,7 @@ import { baseQueryWithReAuth } from "../../../redux/api/baseQuery";
 export const profileApi = createApi({
     reducerPath: "profileApi",
     baseQuery: baseQueryWithReAuth,
+    tagTypes: ["Comment"],
     endpoints: (builder) => ({
         //TODO: Delete
         me: builder.query<void, void>({

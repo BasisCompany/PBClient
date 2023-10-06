@@ -1,9 +1,7 @@
 import { Box } from "@mui/material";
 import { PagePagination } from "../../../../UI/PagePagination";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
-import { ProfileCommentItem } from "./ProfileCommentItem";
 import { ProfileSelect } from "../../components/ProfileSelect";
-
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
@@ -13,6 +11,9 @@ import {
     getPageParamSafe,
     getSortParamSafe,
 } from "../../../../utils/getParamSafely";
+import { ProfileComment } from "./ProfileComment/ProfileComment";
+import { CommentsEmpty } from "./CommentsEmpty";
+import { CommentsLoading } from "./CommentsLoading";
 
 const commentsSelectItems = {
     params: ["popular", "new", "old"],
@@ -23,7 +24,7 @@ const commentsSelectItems = {
     ],
     labels: ["Популярные", "Новые", "Старые"],
 };
-//TODO: При наведение на время показывается дата и время
+
 export const ProfileComments = () => {
     const isMobile = useMobileDevice();
 
@@ -40,11 +41,11 @@ export const ProfileComments = () => {
         take: 5,
     });
 
-    if (isLoading) {
-        return null;
-    }
+    const comments = data?.data || [];
 
-    return (
+    return isLoading ? (
+        <CommentsLoading />
+    ) : (
         <>
             <Box
                 sx={{
@@ -57,23 +58,29 @@ export const ProfileComments = () => {
                 <ProfileSelect selectItems={commentsSelectItems} />
             </Box>
             <Box>
-                {data?.data.map((comment, i) => (
-                    <ProfileCommentItem key={i} comment={comment} />
-                ))}
+                {comments.length ? (
+                    comments.map((comment) => (
+                        <ProfileComment key={comment.id} comment={comment} />
+                    ))
+                ) : (
+                    <CommentsEmpty />
+                )}
             </Box>
-            <Box
-                sx={{
-                    display: "flex",
-                    justifyContent: "end",
-                    mt: 2,
-                }}
-            >
-                <PagePagination
-                    count={data?.meta.totalPages}
-                    siblingCount={isMobile ? 0 : 2}
-                    size={isMobile ? "small" : "medium"}
-                />
-            </Box>
+            {comments.length > 0 && (
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "end",
+                        mt: 2,
+                    }}
+                >
+                    <PagePagination
+                        count={data?.meta.totalPages}
+                        siblingCount={isMobile ? 0 : 2}
+                        size={isMobile ? "small" : "medium"}
+                    />
+                </Box>
+            )}
         </>
     );
 };

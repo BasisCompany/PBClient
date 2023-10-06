@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import {
     Popper,
     Grow,
@@ -13,17 +13,19 @@ import ReportIcon from "@mui/icons-material/Report";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
-interface CommentItemMenuProps {
+interface CommentPopperMenuProps {
     menuAnchor: HTMLElement | null;
     onMenuClose: () => void;
     onReportOpen: () => void;
+    handleDelete: () => Promise<void>;
     bgcolorSecondary?: boolean;
 }
 
-export const CommentItemMenu: FC<CommentItemMenuProps> = ({
+export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
     menuAnchor,
     onMenuClose,
     onReportOpen,
+    handleDelete,
     bgcolorSecondary,
 }) => {
     const open = Boolean(menuAnchor);
@@ -31,6 +33,11 @@ export const CommentItemMenu: FC<CommentItemMenuProps> = ({
     const handleOpenReport = () => {
         onReportOpen();
         onMenuClose();
+    };
+
+    const handleDeleteFunc = async () => {
+        onMenuClose();
+        await handleDelete();
     };
 
     return (
@@ -86,7 +93,7 @@ export const CommentItemMenu: FC<CommentItemMenuProps> = ({
                                     </ListItemIcon>
                                     <ListItemText>Редактировать</ListItemText>
                                 </MenuItem>
-                                <MenuItem onClick={handleOpenReport}>
+                                <MenuItem onClick={handleDeleteFunc}>
                                     <ListItemIcon>
                                         <DeleteIcon />
                                     </ListItemIcon>

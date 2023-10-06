@@ -1,12 +1,12 @@
 import { User } from "./user.type";
 
-export interface CommentsResponse {
+export interface CommentsRequest  {
     sort: string;
     page: number;
     take: number;
 }
 
-export interface CommentsRequest {
+export interface CommentsResponse {
     data: Comment[];
     meta: {
         currentPage: number;

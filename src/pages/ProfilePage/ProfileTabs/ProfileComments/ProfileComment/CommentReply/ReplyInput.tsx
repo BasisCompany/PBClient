@@ -1,21 +1,28 @@
-import { Box, IconButton, InputBase } from "@mui/material";
+import { Box, CircularProgress, IconButton, InputBase } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useSnackbar } from "../../../../../UI/Snackbar/useSnackbar";
+import { useSnackbar } from "../../../../../../UI/Snackbar/useSnackbar";
 import { object, string, InferType } from "yup";
 import {
     getErrorMessage,
     ApiError,
-} from "../../../../../modules/Error/apiError";
+} from "../../../../../../modules/Error/apiError";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useAddReplyMutation } from "../../store/profileCommentsApi";
+import { FC } from "react";
 
 const replySchema = object({
-    message: string().required("Пожалуйста, укажите свою почту."),
+    message: string()
+        .required("Пожалуйста, укажите комментарий")
+        .max(800, "Комментарий должен содержать менее 1000 символов."),
 });
 export type ReplySchema = InferType<typeof replySchema>;
 
+interface ReplyInputProps {
+    commentId: number;
+}
 
-export const CommentReplyInput = () => {
+export const ReplyInput: FC<ReplyInputProps> = ({ commentId }) => {
     const [showAlert] = useSnackbar();
 
     const {
@@ -24,7 +31,7 @@ export const CommentReplyInput = () => {
         reset,
         formState: { errors },
     } = useForm<ReplySchema>({
-        mode: "onBlur",
+        mode: "onSubmit",
         resolver: yupResolver(replySchema),
     });
 
@@ -32,21 +39,28 @@ export const CommentReplyInput = () => {
         showAlert("error", errors?.message?.message);
     }
 
-    const onSubmit: SubmitHandler<ReplySchema> = (data) => {
-        console.log(data);
+    const [addReply, { isLoading }] = useAddReplyMutation();
+
+    const onSubmit: SubmitHandler<ReplySchema> = async (data) => {
+        const body = {
+            commentId,
+            message: data.message,
+        };
         try {
-            //await login(data).unwrap();
+            await addReply(body).unwrap();
             reset();
         } catch (error) {
             showAlert("error", getErrorMessage(error as ApiError));
             console.log(error);
         }
     };
+
     return (
         <form onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}>
             <Box sx={{ mt: 1, ml: 6, display: "flex" }}>
                 <InputBase
                     multiline
+                    disabled={isLoading}
                     fullWidth
                     placeholder="Введите ответ"
                     {...register("message")}
@@ -69,18 +83,23 @@ export const CommentReplyInput = () => {
                     }}
                 />
                 <IconButton disableRipple type="submit">
-                    <SendIcon
-                        sx={{
-                            width: "35px",
-                            height: "35px",
-                            color: (theme) => theme.palette.text.secondary,
-                            transition: "all 0.1s ease-in",
-                            ":hover": {
-                                color: (theme) => theme.palette.text.primary,
-                                transition: "all 0.1s ease-out",
-                            },
-                        }}
-                    />
+                    {isLoading ? (
+                        <CircularProgress color="inherit" size={30} />
+                    ) : (
+                        <SendIcon
+                            sx={{
+                                width: "35px",
+                                height: "35px",
+                                color: (theme) => theme.palette.text.secondary,
+                                transition: "all 0.1s ease-in",
+                                ":hover": {
+                                    color: (theme) =>
+                                        theme.palette.text.primary,
+                                    transition: "all 0.1s ease-out",
+                                },
+                            }}
+                        />
+                    )}
                 </IconButton>
             </Box>
         </form>

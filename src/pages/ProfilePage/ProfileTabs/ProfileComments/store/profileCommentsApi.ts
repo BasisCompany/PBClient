@@ -3,16 +3,56 @@ import {
     CommentsRequest,
     CommentsResponse,
 } from "../../../../../types/comments.type";
+import { ReplySchema } from "../ProfileComment/CommentReply/ReplyInput";
+
+type AddReplyResponse = ReplySchema & { commentId: number };
 
 const profileCommentsApi = profileApi.injectEndpoints({
     endpoints: (build) => ({
-        getComments: build.query<CommentsRequest, CommentsResponse>({
-            query: (args) => {
-                const { sort, page, take } = args;
-                return { url: "comments/user", params: { sort, page, take } };
-            },
+        getComments: build.query<CommentsResponse, CommentsRequest>({
+            query: ({ sort, page, take }) => ({
+                url: "comments/user",
+                params: { sort, page, take },
+            }),
+            providesTags: (result) =>
+                result?.data
+                    ? [
+                          ...result.data.map(({ id }) => ({
+                              type: "Comment" as const,
+                              id,
+                          })),
+                          "Comment",
+                      ]
+                    : ["Comment"],
+        }),
+        addReply: build.mutation<void, AddReplyResponse>({
+            query: (body) => ({
+                url: "comments/add/reply",
+                method: "POST",
+                body,
+            }),
+            invalidatesTags: ["Comment"],
+        }),
+        deleteReply: build.mutation<void, number>({
+            query: (id) => ({
+                url: `comments/delete/reply/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Comment"],
+        }),
+        deleteComment: build.mutation<void, number>({
+            query: (id) => ({
+                url: `comments/delete/comment/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Comment"],
         }),
     }),
 });
 
-export const { useGetCommentsQuery } = profileCommentsApi;
+export const {
+    useGetCommentsQuery,
+    useAddReplyMutation,
+    useDeleteReplyMutation,
+    useDeleteCommentMutation,
+} = profileCommentsApi;

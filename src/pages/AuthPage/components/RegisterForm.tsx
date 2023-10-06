@@ -45,7 +45,6 @@ const registerSchema = object({
         .oneOf([ref("password"), null], "Пароли должны совпадать"),
 });
 
-
 export type RegisterSchema = InferType<typeof registerSchema>;
 
 export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
