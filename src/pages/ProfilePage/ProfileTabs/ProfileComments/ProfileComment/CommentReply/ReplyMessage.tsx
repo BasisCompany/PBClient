@@ -12,6 +12,8 @@ import { useDeleteReplyMutation } from "../../store/profileCommentsApi";
 import { CommentPopperMenu } from "../CommentPopperMenu";
 import { CommentRating } from "../CommentRating";
 import { ReplyAuthor } from "./ReplyAuthor";
+import { CommentReportDialog } from "../modals/CommentReportDialog";
+import { usePopperMenu } from "../../../../../../hooks/usePopperMenu";
 
 const ReplyBox = styled(Box)(({ theme }) => ({
     marginTop: "8px",
@@ -27,16 +29,17 @@ interface ReplyMessageProps {
 export const ReplyMessage: FC<ReplyMessageProps> = ({ reply }) => {
     const [showAlert] = useSnackbar();
 
-    const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+    const [deleteReply] = useDeleteReplyMutation();
 
-    const [deleteReply, { isLoading }] = useDeleteReplyMutation();
+    const { menuAnchor, handleOpenMenu, handleCloseMenu } = usePopperMenu();
+    const [openDialog, setOpenDialog] = useState(false);
 
-    const handleClickMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setMenuAnchor(event.currentTarget);
+    const handleReport = () => {
+        setOpenDialog(true);
     };
 
-    const handleCloseMenu = () => {
-        setMenuAnchor(null);
+    const handleEditReply = () => {
+        //TODO
     };
 
     const handleDeleteReply = async () => {
@@ -55,7 +58,7 @@ export const ReplyMessage: FC<ReplyMessageProps> = ({ reply }) => {
                 <Box sx={{ pt: 2, pr: 2, pl: 2 }}>
                     <FlexBox sx={{ justifyContent: "space-between" }}>
                         <ReplyAuthor reply={reply} />
-                        <IconButton size="small" onClick={handleClickMenu}>
+                        <IconButton size="small" onClick={handleOpenMenu}>
                             <MoreHorizIcon />
                         </IconButton>
                     </FlexBox>
@@ -82,7 +85,13 @@ export const ReplyMessage: FC<ReplyMessageProps> = ({ reply }) => {
                 bgcolorSecondary
                 menuAnchor={menuAnchor}
                 onMenuClose={handleCloseMenu}
+                handleReport={handleReport}
                 handleDelete={handleDeleteReply}
+            />
+            <CommentReportDialog
+                open={openDialog}
+                onClose={() => setOpenDialog(false)}
+                commentId={reply.id}
             />
         </>
     );

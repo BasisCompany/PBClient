@@ -29,11 +29,13 @@ const CustomDialog = styled(Dialog)(({ theme }) => ({
 interface CommentReportDialogProps {
     open: boolean;
     onClose: () => void;
+    commentId: number;
 }
 
 export const CommentReportDialog: FC<CommentReportDialogProps> = ({
     open,
     onClose,
+    commentId,
 }) => {
     const isMobile = useMobileDevice();
     const [radioValue, setRadioValue] = useState("");

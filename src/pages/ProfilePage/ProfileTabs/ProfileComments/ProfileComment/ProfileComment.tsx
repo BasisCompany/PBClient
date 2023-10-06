@@ -16,12 +16,13 @@ import { CommentTimestamp } from "./CommentTimestamp";
 import { CommentActions } from "./CommentActions";
 import { CommentPopperMenu } from "./CommentPopperMenu";
 import { CommentReply } from "./CommentReply/CommentReply";
+import { usePopperMenu } from "../../../../../hooks/usePopperMenu";
 
 const CommentBox = styled(Box)(({ theme }) => ({
     padding: "10px",
     paddingLeft: "0px",
     marginBottom: "8px",
-    backgroundColor: "theme.palette.bgcolor.primary.main",
+    backgroundColor: theme.palette.bgcolor.primary.main,
     borderRadius: "5px",
     transition: "all 0.1s ease-in",
     "&:hover": {
@@ -37,19 +38,20 @@ interface ProfileCommentProps {
 export const ProfileComment: FC<ProfileCommentProps> = ({ comment }) => {
     const [showAlert] = useSnackbar();
 
-    const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+    const [deleteComment] = useDeleteCommentMutation();
+
+    const { menuAnchor, handleOpenMenu, handleCloseMenu } = usePopperMenu();
+
     const [isOpenReply, toggleReply] = useReducer((state) => !state, false);
     const [openDialog, setOpenDialog] = useState(false);
 
-    const handleClickMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setMenuAnchor(event.currentTarget);
+    const handleReport = () => {
+        setOpenDialog(true);
     };
 
-    const handleCloseMenu = () => {
-        setMenuAnchor(null);
+    const handleEditComment = () => {
+        //TODO
     };
-
-    const [deleteComment, { isLoading }] = useDeleteCommentMutation();
 
     const handleDeleteComment = async () => {
         try {
@@ -68,7 +70,7 @@ export const ProfileComment: FC<ProfileCommentProps> = ({ comment }) => {
                     <FlexBox sx={{ justifyContent: "space-between" }}>
                         <CommentAuthor comment={comment} />
                         <FlexBox sx={{ alignItems: "end" }}>
-                            <IconButton onClick={handleClickMenu}>
+                            <IconButton onClick={handleOpenMenu}>
                                 <MoreHorizIcon />
                             </IconButton>
                         </FlexBox>
@@ -86,12 +88,13 @@ export const ProfileComment: FC<ProfileCommentProps> = ({ comment }) => {
             <CommentPopperMenu
                 menuAnchor={menuAnchor}
                 onMenuClose={handleCloseMenu}
-                onReportOpen={() => setOpenDialog(true)}
+                handleReport={handleReport}
                 handleDelete={handleDeleteComment}
             />
             <CommentReportDialog
                 open={openDialog}
                 onClose={() => setOpenDialog(false)}
+                commentId={comment.id}
             />
         </>
     );

@@ -16,7 +16,7 @@ import EditIcon from "@mui/icons-material/Edit";
 interface CommentPopperMenuProps {
     menuAnchor: HTMLElement | null;
     onMenuClose: () => void;
-    onReportOpen: () => void;
+    handleReport: () => void;
     handleDelete: () => Promise<void>;
     bgcolorSecondary?: boolean;
 }
@@ -24,20 +24,20 @@ interface CommentPopperMenuProps {
 export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
     menuAnchor,
     onMenuClose,
-    onReportOpen,
+    handleReport,
     handleDelete,
     bgcolorSecondary,
 }) => {
     const open = Boolean(menuAnchor);
 
-    const handleOpenReport = () => {
-        onReportOpen();
+    const onClickReport = () => {
         onMenuClose();
+        handleReport();
     };
 
-    const handleDeleteFunc = async () => {
+    const onClickDelete = () => {
         onMenuClose();
-        await handleDelete();
+        void handleDelete();
     };
 
     return (
@@ -79,7 +79,7 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                                     },
                                 }}
                             >
-                                <MenuItem onClick={handleOpenReport}>
+                                <MenuItem onClick={onClickReport}>
                                     <ListItemIcon>
                                         <ReportIcon />
                                     </ListItemIcon>
@@ -87,13 +87,13 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                                         Пожаловаться на отзыв
                                     </ListItemText>
                                 </MenuItem>
-                                <MenuItem onClick={handleOpenReport}>
+                                <MenuItem onClick={onClickReport}>
                                     <ListItemIcon>
                                         <EditIcon />
                                     </ListItemIcon>
                                     <ListItemText>Редактировать</ListItemText>
                                 </MenuItem>
-                                <MenuItem onClick={handleDeleteFunc}>
+                                <MenuItem onClick={onClickDelete}>
                                     <ListItemIcon>
                                         <DeleteIcon />
                                     </ListItemIcon>
