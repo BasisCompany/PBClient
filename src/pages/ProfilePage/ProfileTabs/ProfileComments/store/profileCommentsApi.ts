@@ -5,7 +5,7 @@ import {
 } from "../../../../../types/comments.type";
 import { ReplySchema } from "../ProfileComment/CommentReply/ReplyInput";
 
-type AddReplyResponse = ReplySchema & { commentId: number };
+type AddReplyRequest = ReplySchema & { commentId: number };
 
 const profileCommentsApi = profileApi.injectEndpoints({
     endpoints: (build) => ({
@@ -25,18 +25,11 @@ const profileCommentsApi = profileApi.injectEndpoints({
                       ]
                     : ["Comment"],
         }),
-        addReply: build.mutation<void, AddReplyResponse>({
+        addReply: build.mutation<void, AddReplyRequest>({
             query: (body) => ({
                 url: "comments/add/reply",
                 method: "POST",
                 body,
-            }),
-            invalidatesTags: ["Comment"],
-        }),
-        deleteReply: build.mutation<void, number>({
-            query: (id) => ({
-                url: `comments/delete/reply/${id}`,
-                method: "DELETE",
             }),
             invalidatesTags: ["Comment"],
         }),
@@ -47,12 +40,19 @@ const profileCommentsApi = profileApi.injectEndpoints({
             }),
             invalidatesTags: ["Comment"],
         }),
+        deleteReply: build.mutation<void, number>({
+            query: (id) => ({
+                url: `comments/delete/reply/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Comment"],
+        }),
     }),
 });
 
 export const {
     useGetCommentsQuery,
     useAddReplyMutation,
-    useDeleteReplyMutation,
     useDeleteCommentMutation,
+    useDeleteReplyMutation,
 } = profileCommentsApi;

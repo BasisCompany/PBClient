@@ -4,6 +4,7 @@ import { CommentRating } from "./CommentRating";
 import { Comment } from "../../../../../types/comments.type";
 import ReplyIcon from "@mui/icons-material/Reply";
 import CloseIcon from "@mui/icons-material/Close";
+import { FlexBox } from "../../../../../UI/FlexBox";
 
 const ReplyButton = styled((props: ButtonProps) => (
     <Button size="small" disableRipple {...props} />
@@ -30,24 +31,35 @@ export const CommentActions: FC<CommentActionsProps> = ({
     toggleReply,
 }) => {
     return (
-        <Box
-            sx={{
-                display: "flex",
-                alignItems: "center",
-                ml: "-8px",
-                mt: 0.5,
-            }}
-        >
-            <CommentRating likes={comment.likes} dislikes={comment.dislikes} />
-            {comment.reply ? null : isOpenReply ? (
-                <ReplyButton startIcon={<CloseIcon />} onClick={toggleReply}>
-                    Отменить
-                </ReplyButton>
-            ) : (
-                <ReplyButton startIcon={<ReplyIcon />} onClick={toggleReply}>
-                    Ответить
-                </ReplyButton>
-            )}
-        </Box>
+        <FlexBox sx={{ justifyContent: "space-between" }}>
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    ml: "-8px",
+                    mt: 0.5,
+                }}
+            >
+                <CommentRating
+                    likes={comment.likes}
+                    dislikes={comment.dislikes}
+                />
+                {comment.reply ? null : isOpenReply ? (
+                    <ReplyButton
+                        startIcon={<CloseIcon />}
+                        onClick={toggleReply}
+                    >
+                        Отменить
+                    </ReplyButton>
+                ) : (
+                    <ReplyButton
+                        startIcon={<ReplyIcon />}
+                        onClick={toggleReply}
+                    >
+                        Ответить
+                    </ReplyButton>
+                )}
+            </Box>
+        </FlexBox>
     );
 };

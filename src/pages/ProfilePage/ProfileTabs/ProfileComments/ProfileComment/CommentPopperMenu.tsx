@@ -8,10 +8,22 @@ import {
     ListItemIcon,
     ListItemText,
     Box,
+    styled,
 } from "@mui/material";
 import ReportIcon from "@mui/icons-material/Report";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+
+const PooperMenuList = styled(MenuList)({
+    borderRadius: "5px",
+    "& .MuiMenuItem-root": {
+        "& .MuiListItemIcon-root": {
+            mr: -0.5,
+        },
+    },
+    "& .MuiSvgIcon-root": {
+        fontSize: 20,
+    },
+});
 
 interface CommentPopperMenuProps {
     menuAnchor: HTMLElement | null;
@@ -52,9 +64,8 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                 <Grow {...TransitionProps}>
                     <Box>
                         <ClickAwayListener onClickAway={onMenuClose}>
-                            <MenuList
+                            <PooperMenuList
                                 sx={{
-                                    borderRadius: "5px",
                                     backgroundColor: (theme) =>
                                         bgcolorSecondary
                                             ? theme.palette.bgcolor.modal
@@ -69,14 +80,6 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                                                 : theme.palette.bgcolor.modal
                                                       .primary.hover,
                                     },
-                                    "& .MuiMenuItem-root": {
-                                        "& .MuiListItemIcon-root": {
-                                            mr: -0.5,
-                                        },
-                                    },
-                                    "& .MuiSvgIcon-root": {
-                                        fontSize: 20,
-                                    },
                                 }}
                             >
                                 <MenuItem onClick={onClickReport}>
@@ -87,19 +90,13 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                                         Пожаловаться на отзыв
                                     </ListItemText>
                                 </MenuItem>
-                                <MenuItem onClick={onClickReport}>
-                                    <ListItemIcon>
-                                        <EditIcon />
-                                    </ListItemIcon>
-                                    <ListItemText>Редактировать</ListItemText>
-                                </MenuItem>
                                 <MenuItem onClick={onClickDelete}>
                                     <ListItemIcon>
                                         <DeleteIcon />
                                     </ListItemIcon>
                                     <ListItemText>Удалить</ListItemText>
                                 </MenuItem>
-                            </MenuList>
+                            </PooperMenuList>
                         </ClickAwayListener>
                     </Box>
                 </Grow>

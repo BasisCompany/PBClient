@@ -12,7 +12,7 @@ import { useDeleteReplyMutation } from "../../store/profileCommentsApi";
 import { CommentPopperMenu } from "../CommentPopperMenu";
 import { CommentRating } from "../CommentRating";
 import { ReplyAuthor } from "./ReplyAuthor";
-import { CommentReportDialog } from "../modals/CommentReportDialog";
+import { CommentReportDialog } from "../CommentReportDialog";
 import { usePopperMenu } from "../../../../../../hooks/usePopperMenu";
 
 const ReplyBox = styled(Box)(({ theme }) => ({
@@ -36,10 +36,6 @@ export const ReplyMessage: FC<ReplyMessageProps> = ({ reply }) => {
 
     const handleReport = () => {
         setOpenDialog(true);
-    };
-
-    const handleEditReply = () => {
-        //TODO
     };
 
     const handleDeleteReply = async () => {

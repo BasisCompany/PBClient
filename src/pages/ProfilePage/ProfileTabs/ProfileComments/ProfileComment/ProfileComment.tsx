@@ -2,7 +2,7 @@ import { FC, useReducer, useState } from "react";
 import { Box, styled, IconButton } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { FlexBox } from "../../../../../UI/FlexBox";
-import { CommentReportDialog } from "./modals/CommentReportDialog";
+import { CommentReportDialog } from "./CommentReportDialog";
 import { Comment } from "../../../../../types/comments.type";
 import { useSnackbar } from "../../../../../UI/Snackbar/useSnackbar";
 import {
@@ -24,11 +24,6 @@ const CommentBox = styled(Box)(({ theme }) => ({
     marginBottom: "8px",
     backgroundColor: theme.palette.bgcolor.primary.main,
     borderRadius: "5px",
-    transition: "all 0.1s ease-in",
-    "&:hover": {
-        bgcolor: theme.palette.bgcolor.secondary.hover,
-        transition: "all 0.1s ease-out",
-    },
 }));
 
 interface ProfileCommentProps {
@@ -41,16 +36,11 @@ export const ProfileComment: FC<ProfileCommentProps> = ({ comment }) => {
     const [deleteComment] = useDeleteCommentMutation();
 
     const { menuAnchor, handleOpenMenu, handleCloseMenu } = usePopperMenu();
-
     const [isOpenReply, toggleReply] = useReducer((state) => !state, false);
     const [openDialog, setOpenDialog] = useState(false);
 
     const handleReport = () => {
         setOpenDialog(true);
-    };
-
-    const handleEditComment = () => {
-        //TODO
     };
 
     const handleDeleteComment = async () => {

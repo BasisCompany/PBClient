@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import { ChangeEvent, FC, useState } from "react";
-import { useMobileDevice } from "../../../../../../hooks/useMobileDevice";
+import { useMobileDevice } from "../../../../../hooks/useMobileDevice";
 
 const CustomDialog = styled(Dialog)(({ theme }) => ({
     "& .MuiDialog-paper": {
@@ -201,25 +201,6 @@ export const CommentReportDialog: FC<CommentReportDialogProps> = ({
                 >
                     Отправить
                 </Button>
-                {/* <Button
-                    variant="contained"
-                    autoFocus
-                    onClick={onClose}
-                    fullWidth
-                    sx={{
-                        color: (theme) => theme.palette.secondary.main,
-                        bgcolor: (theme) =>
-                            theme.palette.bgcolor.modal.secondary.main,
-                        boxShadow: "none",
-                        ":hover": {
-                            bgcolor: (theme) =>
-                                theme.palette.bgcolor.modal.secondary.hover,
-                            boxShadow: "none",
-                        },
-                    }}
-                >
-                    Отправить
-                </Button> */}
             </DialogActions>
         </CustomDialog>
     );
