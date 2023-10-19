@@ -76,6 +76,7 @@ export const ProfileComment: FC<ProfileCommentProps> = ({ comment }) => {
                 <CommentReply comment={comment} isOpenReply={isOpenReply} />
             </CommentBox>
             <CommentPopperMenu
+                comment={comment}
                 menuAnchor={menuAnchor}
                 onMenuClose={handleCloseMenu}
                 handleReport={handleReport}

@@ -12,6 +12,10 @@ import {
 } from "@mui/material";
 import ReportIcon from "@mui/icons-material/Report";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useAuth } from "../../../../../hooks/useAuth";
+import { Comment } from "../../../../../types/comments.type";
+import { Authorization, POLICIES } from "../../../../../lib/authorization";
+import { UserDetails } from "../../../../AuthPage/store/authSlice";
 
 const PooperMenuList = styled(MenuList)({
     borderRadius: "5px",
@@ -26,6 +30,7 @@ const PooperMenuList = styled(MenuList)({
 });
 
 interface CommentPopperMenuProps {
+    comment: Comment;
     menuAnchor: HTMLElement | null;
     onMenuClose: () => void;
     handleReport: () => void;
@@ -34,12 +39,14 @@ interface CommentPopperMenuProps {
 }
 
 export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
+    comment,
     menuAnchor,
     onMenuClose,
     handleReport,
     handleDelete,
     bgcolorSecondary,
 }) => {
+    const { user } = useAuth();
     const open = Boolean(menuAnchor);
 
     const onClickReport = () => {
@@ -90,12 +97,19 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                                         Пожаловаться на отзыв
                                     </ListItemText>
                                 </MenuItem>
-                                <MenuItem onClick={onClickDelete}>
-                                    <ListItemIcon>
-                                        <DeleteIcon />
-                                    </ListItemIcon>
-                                    <ListItemText>Удалить</ListItemText>
-                                </MenuItem>
+                                <Authorization
+                                    policyCheck={POLICIES["comment:delete"](
+                                        user as UserDetails,
+                                        comment
+                                    )}
+                                >
+                                    <MenuItem onClick={onClickDelete}>
+                                        <ListItemIcon>
+                                            <DeleteIcon />
+                                        </ListItemIcon>
+                                        <ListItemText>Удалить</ListItemText>
+                                    </MenuItem>
+                                </Authorization>
                             </PooperMenuList>
                         </ClickAwayListener>
                     </Box>
