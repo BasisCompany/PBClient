@@ -9,6 +9,7 @@ type LoginResponse = {
     email: string;
     token: string;
     username: string;
+    roles: string[];
 };
 
 type LoginRequest = LoginSchema;

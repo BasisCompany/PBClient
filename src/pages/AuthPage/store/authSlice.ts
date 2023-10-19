@@ -6,6 +6,7 @@ export interface UserDetails {
     id: number;
     email: string;
     username: string;
+    roles: string[];
 }
 
 export interface AuthState {
@@ -45,6 +46,7 @@ export const authSlice = createSlice({
                     id: payload.id,
                     email: payload.email,
                     username: payload.username,
+                    roles: payload.roles,
                 } as UserDetails;
             }
         );
@@ -56,6 +58,7 @@ export const authSlice = createSlice({
                     id: payload.id,
                     email: payload.email,
                     username: payload.username,
+                    roles: payload.roles,
                 } as UserDetails;
             }
         );

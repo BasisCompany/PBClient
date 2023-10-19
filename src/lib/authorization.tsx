@@ -1,0 +1,85 @@
+import { ReactNode, useCallback } from "react";
+import { useAuth } from "../hooks/useAuth";
+import { UserDetails } from "../pages/AuthPage/store/authSlice";
+import { Comment } from "../types/comments.type";
+
+export enum ROLES {
+    ADMIN = "ADMIN",
+    USER = "USER",
+}
+
+type RoleTypes = keyof typeof ROLES;
+
+export const POLICIES = {
+    "comment:delete": (user: UserDetails, comment: Comment) => {
+        if (user.roles.includes(ROLES.ADMIN)) {
+            return true;
+        }
+
+        if (user.roles.includes(ROLES.USER) && comment.userId === user.id) {
+            return true;
+        }
+
+        return false;
+    },
+};
+
+export const useAuthorization = () => {
+    const { user } = useAuth();
+
+    if (!user) {
+        throw Error("User does not exist!");
+    }
+
+    const checkAccess = useCallback(
+        ({ allowedRoles }: { allowedRoles: RoleTypes[] }) => {
+            if (allowedRoles && allowedRoles.length > 0) {
+                for (let index = 0; index < allowedRoles.length; index++) {
+                    if (user.roles.indexOf(allowedRoles[index]) === -1) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        },
+        [user.roles]
+    );
+
+    return { checkAccess, roles: user.roles };
+};
+
+type AuthorizationProps = {
+    forbiddenFallback?: ReactNode;
+    children: ReactNode;
+} & (
+    | {
+          allowedRoles: RoleTypes[];
+          policyCheck?: never;
+      }
+    | {
+          allowedRoles?: never;
+          policyCheck: boolean;
+      }
+);
+
+export const Authorization = ({
+    policyCheck,
+    allowedRoles,
+    forbiddenFallback = null,
+    children,
+}: AuthorizationProps) => {
+    const { checkAccess } = useAuthorization();
+
+    let canAccess = false;
+
+    if (allowedRoles) {
+        canAccess = checkAccess({ allowedRoles });
+    }
+
+    if (typeof policyCheck !== "undefined") {
+        canAccess = policyCheck;
+    }
+
+    return <>{canAccess ? children : forbiddenFallback}</>;
+};
