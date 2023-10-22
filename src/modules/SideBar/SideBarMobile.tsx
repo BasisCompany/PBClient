@@ -1,11 +1,11 @@
-import { Box } from "@mui/material";
-import Drawer from "@mui/material/Drawer";
+import { Drawer } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectNavbarStatus, setNavbarOpen } from "../NavBar/store/navbarSlice";
-import { SideBarContent } from "./SideBarContent";
+import { SideBarList } from "./SideBarList";
+import { FlexBox } from "../../UI/FlexBox";
 
-const CustomDrawer = styled(Drawer)({
+const MobileDrawer = styled(Drawer)({
     "& .MuiDrawer-paper": {
         backgroundImage: "none",
         width: "240px",
@@ -17,7 +17,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
 }));
 
@@ -25,24 +24,23 @@ export const SideBarMobile = () => {
     const isOpen = useAppSelector(selectNavbarStatus);
     const dispatch = useAppDispatch();
 
-    const toggleDrawer =
-        (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-            if (
-                event.type === "keydown" &&
-                ((event as React.KeyboardEvent).key === "Tab" ||
-                    (event as React.KeyboardEvent).key === "Shift")
-            ) {
-                return;
-            }
-            dispatch(setNavbarOpen(open));
-        };
+    const closeDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
+        if (
+            event.type === "keydown" &&
+            ((event as React.KeyboardEvent).key === "Tab" ||
+                (event as React.KeyboardEvent).key === "Shift")
+        ) {
+            return;
+        }
+        dispatch(setNavbarOpen(false));
+    };
 
     return (
-        <Box sx={{ display: "flex" }} onKeyDown={toggleDrawer(false)}>
-            <CustomDrawer open={isOpen} onClose={toggleDrawer(false)}>
+        <FlexBox onKeyDown={closeDrawer}>
+            <MobileDrawer open={isOpen} onClose={closeDrawer}>
                 <DrawerHeader />
-                {isOpen && <SideBarContent />}
-            </CustomDrawer>
-        </Box>
+                <SideBarList />
+            </MobileDrawer>
+        </FlexBox>
     );
 };
