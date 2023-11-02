@@ -9,6 +9,7 @@ import {
     ListItemText,
     Box,
     styled,
+    MenuListProps,
 } from "@mui/material";
 import ReportIcon from "@mui/icons-material/Report";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -17,17 +18,30 @@ import { Comment } from "../../../../../types/comments.type";
 import { Authorization, POLICIES } from "../../../../../lib/authorization";
 import { UserDetails } from "../../../../AuthPage/store/authSlice";
 
-const PooperMenuList = styled(MenuList)({
-    borderRadius: "5px",
-    "& .MuiMenuItem-root": {
-        "& .MuiListItemIcon-root": {
-            mr: -0.5,
+const PooperMenuList = styled(MenuList, {
+    shouldForwardProp: (prop) => prop !== "bgcolorSecondary",
+})<MenuListProps & { bgcolorSecondary: boolean }>(
+    ({ theme, bgcolorSecondary }) => ({
+        borderRadius: "5px",
+        "& .MuiMenuItem-root": {
+            "& .MuiListItemIcon-root": {
+                mr: -0.5,
+            },
         },
-    },
-    "& .MuiSvgIcon-root": {
-        fontSize: 20,
-    },
-});
+        "& .MuiSvgIcon-root": {
+            fontSize: 20,
+        },
+        backgroundColor: bgcolorSecondary
+            ? theme.palette.bgcolor.modal.secondary.main
+            : theme.palette.bgcolor.modal.primary.main,
+
+        "& .MuiMenuItem-root:hover": {
+            backgroundColor: bgcolorSecondary
+                ? theme.palette.bgcolor.modal.secondary.hover
+                : theme.palette.bgcolor.modal.primary.hover,
+        },
+    })
+);
 
 interface CommentPopperMenuProps {
     comment: Comment;
@@ -44,7 +58,7 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
     onMenuClose,
     handleReport,
     handleDelete,
-    bgcolorSecondary,
+    bgcolorSecondary = false,
 }) => {
     const { user } = useAuth();
     const open = Boolean(menuAnchor);
@@ -71,32 +85,24 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                 <Grow {...TransitionProps}>
                     <Box>
                         <ClickAwayListener onClickAway={onMenuClose}>
-                            <PooperMenuList
-                                sx={{
-                                    backgroundColor: (theme) =>
-                                        bgcolorSecondary
-                                            ? theme.palette.bgcolor.modal
-                                                  .secondary.main
-                                            : theme.palette.bgcolor.modal
-                                                  .primary.main,
-                                    "& .MuiMenuItem-root:hover": {
-                                        backgroundColor: (theme) =>
-                                            bgcolorSecondary
-                                                ? theme.palette.bgcolor.modal
-                                                      .secondary.hover
-                                                : theme.palette.bgcolor.modal
-                                                      .primary.hover,
-                                    },
-                                }}
-                            >
-                                <MenuItem onClick={onClickReport}>
-                                    <ListItemIcon>
-                                        <ReportIcon />
-                                    </ListItemIcon>
-                                    <ListItemText>
-                                        Пожаловаться на отзыв
-                                    </ListItemText>
-                                </MenuItem>
+                            <PooperMenuList bgcolorSecondary={bgcolorSecondary}>
+                                <Authorization
+                                    policyCheck={
+                                        !POLICIES["comment:delete"](
+                                            user as UserDetails,
+                                            comment
+                                        )
+                                    }
+                                >
+                                    <MenuItem onClick={onClickReport}>
+                                        <ListItemIcon>
+                                            <ReportIcon />
+                                        </ListItemIcon>
+                                        <ListItemText>
+                                            Пожаловаться на отзыв
+                                        </ListItemText>
+                                    </MenuItem>
+                                </Authorization>
                                 <Authorization
                                     policyCheck={POLICIES["comment:delete"](
                                         user as UserDetails,
