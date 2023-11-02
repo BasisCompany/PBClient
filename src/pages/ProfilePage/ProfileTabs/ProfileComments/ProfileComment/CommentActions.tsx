@@ -1,10 +1,13 @@
 import { FC } from "react";
-import { Box, Button, ButtonProps, styled } from "@mui/material";
+import { Button, ButtonProps, styled } from "@mui/material";
 import { CommentRating } from "./CommentRating";
 import { Comment } from "../../../../../types/comments.type";
 import ReplyIcon from "@mui/icons-material/Reply";
 import CloseIcon from "@mui/icons-material/Close";
 import { FlexBox } from "../../../../../UI/FlexBox";
+import { useParams } from "react-router";
+import { useAuth } from "../../../../../hooks/useAuth";
+import { Authorization, POLICIES } from "../../../../../lib/authorization";
 
 const ReplyButton = styled((props: ButtonProps) => (
     <Button size="small" disableRipple {...props} />
@@ -30,11 +33,13 @@ export const CommentActions: FC<CommentActionsProps> = ({
     isOpenReply,
     toggleReply,
 }) => {
+    const { user } = useAuth();
+    const { id } = useParams();
+
     return (
         <FlexBox sx={{ justifyContent: "space-between" }}>
-            <Box
+            <FlexBox
                 sx={{
-                    display: "flex",
                     alignItems: "center",
                     ml: "-8px",
                     mt: 0.5,
@@ -44,22 +49,26 @@ export const CommentActions: FC<CommentActionsProps> = ({
                     likes={comment.likes}
                     dislikes={comment.dislikes}
                 />
-                {comment.reply ? null : isOpenReply ? (
-                    <ReplyButton
-                        startIcon={<CloseIcon />}
-                        onClick={toggleReply}
-                    >
-                        Отменить
-                    </ReplyButton>
-                ) : (
-                    <ReplyButton
-                        startIcon={<ReplyIcon />}
-                        onClick={toggleReply}
-                    >
-                        Ответить
-                    </ReplyButton>
-                )}
-            </Box>
+                <Authorization
+                    policyCheck={POLICIES["profile:local"](user, id)}
+                >
+                    {comment.reply ? null : isOpenReply ? (
+                        <ReplyButton
+                            startIcon={<CloseIcon />}
+                            onClick={toggleReply}
+                        >
+                            Отменить
+                        </ReplyButton>
+                    ) : (
+                        <ReplyButton
+                            startIcon={<ReplyIcon />}
+                            onClick={toggleReply}
+                        >
+                            Ответить
+                        </ReplyButton>
+                    )}
+                </Authorization>
+            </FlexBox>
         </FlexBox>
     );
 };

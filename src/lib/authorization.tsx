@@ -22,6 +22,9 @@ export const POLICIES = {
 
         return false;
     },
+    "profile:local": (user: UserDetails | null, id: string | undefined) => {
+        return user?.id === Number(id);
+    },
 };
 
 export const useAuthorization = () => {

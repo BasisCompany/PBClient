@@ -10,8 +10,8 @@ type AddReplyRequest = ReplySchema & { commentId: number };
 const profileCommentsApi = profileApi.injectEndpoints({
     endpoints: (build) => ({
         getComments: build.query<CommentsResponse, CommentsRequest>({
-            query: ({ sort, page, take }) => ({
-                url: "comments/user",
+            query: ({ id, sort, page, take }) => ({
+                url: `comments/user/${id}`,
                 params: { sort, page, take },
             }),
             providesTags: (result) =>

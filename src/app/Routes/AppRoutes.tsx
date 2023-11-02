@@ -14,23 +14,40 @@ import { SupportContentMainQuestions } from "../../pages/SupportPage/SupportCont
 import { ProfileNotifications } from "../../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotifications";
 import { ProfileComments } from "../../pages/ProfilePage/ProfileTabs/ProfileComments/ProfileComments";
 import { ProfilePrompts } from "../../pages/ProfilePage/ProfileTabs/ProfilePrompts/ProfilePrompts";
-import { QuestionsSection } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/QuestionsSection";
-import { sectionListContent } from "../../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/sectionListContent";
+import { RequireLocal } from "./RequireLocalProfile";
 
 export const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<AppLayout />}>
                 <Route index element={<TestPage />} />
-                <Route path="profile/" element={<ProfilePage />}>
+                <Route path="user/:id/" element={<ProfilePage />}>
                     <Route index element={<ProfilePrompts />} />
                     <Route path="comments" element={<ProfileComments />} />
                     <Route
                         path="notifications"
-                        element={<ProfileNotifications />}
+                        element={
+                            <RequireLocal>
+                                <ProfileNotifications />
+                            </RequireLocal>
+                        }
                     />
-                    <Route path="settings" element={<h1>Настройки </h1>} />
-                    <Route path="payments" element={<h1>Платежи </h1>} />
+                    <Route
+                        path="settings"
+                        element={
+                            <RequireLocal>
+                                <h1>Настройки </h1>
+                            </RequireLocal>
+                        }
+                    />
+                    <Route
+                        path="payments"
+                        element={
+                            <RequireLocal>
+                                <h1>Платежи </h1>
+                            </RequireLocal>
+                        }
+                    />
                 </Route>
                 <Route path="marketplace" element={<AuthPage />} />
                 <Route path="support/" element={<SupportPage />}>

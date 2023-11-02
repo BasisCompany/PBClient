@@ -1,6 +1,7 @@
 import { User } from "./user.type";
 
-export interface CommentsRequest  {
+export interface CommentsRequest {
+    id: string;
     sort: string;
     page: number;
     take: number;

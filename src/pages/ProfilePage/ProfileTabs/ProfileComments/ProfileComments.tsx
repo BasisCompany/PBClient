@@ -6,7 +6,7 @@ import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
 import { useGetCommentsQuery } from "./store/profileCommentsApi";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import {
     getPageParamSafe,
     getSortParamSafe,
@@ -26,6 +26,7 @@ const commentsSelectItems = {
 };
 
 export const ProfileComments = () => {
+    const { id } = useParams();
     const isMobile = useMobileDevice();
 
     const [searchParams] = useSearchParams();
@@ -36,6 +37,7 @@ export const ProfileComments = () => {
     );
 
     const { data, isLoading } = useGetCommentsQuery({
+        id: id as string,
         sort: currentSort,
         page: currentPage,
         take: 5,
