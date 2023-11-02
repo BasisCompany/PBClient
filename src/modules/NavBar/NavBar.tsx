@@ -1,12 +1,12 @@
+import { memo } from "react";
 import { AppBar, Toolbar } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useAuth } from "../../hooks/useAuth";
-import { NavBarIconMenu } from "./IconMenu/NavBarIconMenu";
 import { NavBarLogo } from "./NavBarLogo";
 import { NavBarSearch } from "./NavBarSearch";
 import { SideBarButton } from "./SideBarButton";
 import { NavBarLogin } from "./IconMenu/NavBarLogin";
-import { memo } from "react";
+import { NavBarMenu } from "./IconMenu/NavBarMenu";
 
 const CustomAppBar = styled(AppBar)(({ theme }) => ({
     zIndex: theme.zIndex.drawer + 1,
@@ -24,7 +24,7 @@ export const NavBar = memo(() => {
                 <SideBarButton />
                 <NavBarLogo />
                 <NavBarSearch />
-                {isUserAuthenticated ? <NavBarIconMenu /> : <NavBarLogin />}
+                {isUserAuthenticated ? <NavBarMenu /> : <NavBarLogin />}
             </Toolbar>
         </CustomAppBar>
     );

@@ -7,7 +7,7 @@ import {
     Typography,
     styled,
 } from "@mui/material";
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import { Notification } from "./Notification";
 import { LinkButton } from "../../../../UI/Buttons/LinkButton";
 import { LinkIconButton } from "../../../../UI/Buttons/LinkIconButton";
@@ -101,11 +101,11 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                 </Box>
                 <Divider />
                 <NotificationsBox>
-                    {new Array(10).fill(null).map(() => (
-                        <>
+                    {new Array(10).fill(null).map((_, i) => (
+                        <Fragment key={i}>
                             <Notification />
                             <Divider />
-                        </>
+                        </Fragment>
                         // <Box
                         //     key={i}
                         //     sx={{

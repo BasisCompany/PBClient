@@ -21,7 +21,7 @@ import {
     usePoppers,
 } from "./usePoppers";
 
-export const NavBarIconMenu = () => {
+export const NavBarMenu = () => {
     const isMobile = useMobileDevice();
     const { poppers, dispatchPopper, isPopperOpen } = usePoppers();
 

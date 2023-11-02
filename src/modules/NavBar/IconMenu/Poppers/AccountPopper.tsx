@@ -185,7 +185,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                             Корзина
                         </ListItemButton>
                         <LinkListItemButton
-                            to="profile/notifications"
+                            to={`user/id/notifications`}
                             onClick={onClose}
                         >
                             <ListItemIcon>
