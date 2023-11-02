@@ -1,16 +1,16 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithReAuth } from "../../../redux/api/baseQuery";
+import { UserAbout } from "../../../types/user.type";
 
 export const profileApi = createApi({
     reducerPath: "profileApi",
     baseQuery: baseQueryWithReAuth,
     tagTypes: ["Comment"],
     endpoints: (builder) => ({
-        //TODO: Delete
-        me: builder.query<void, void>({
-            query: () => `auth/me`,
+        userAbout: builder.query<UserAbout, string>({
+            query: (id) => `user/about/${id}`,
         }),
     }),
 });
 
-export const { useLazyMeQuery } = profileApi;
+export const { useUserAboutQuery } = profileApi;

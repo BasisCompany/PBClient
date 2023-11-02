@@ -61,8 +61,10 @@ export const ProfilePrompts = () => {
                 <ProfilePromptsModels model={model} handleModel={handleModel} />
             </Box>
             <Box>
-                {model.map((item) => (
-                    <Box sx={{ height: "100px" }}>{item}</Box>
+                {model.map((item, i) => (
+                    <Box key={i} sx={{ height: "100px" }}>
+                        {item}
+                    </Box>
                 ))}
             </Box>
         </>

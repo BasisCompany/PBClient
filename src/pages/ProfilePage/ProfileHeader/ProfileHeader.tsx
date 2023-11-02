@@ -1,8 +1,15 @@
+import { FC } from "react";
 import { Box, Card } from "@mui/material";
 import { HeaderCover } from "./HeaderCover";
 import { HeaderAvatar } from "./HeaderAvatar";
+import { HeaderAbout } from "./HeaderAbout";
+import { HeaderButtons } from "./HeaderButtons";
 
-export const ProfileHeader = () => {
+interface ProfileHeaderProps {
+    name: string;
+}
+
+export const ProfileHeader: FC<ProfileHeaderProps> = ({ name }) => {
     return (
         <Card
             sx={{
@@ -32,8 +39,8 @@ export const ProfileHeader = () => {
                 }}
             >
                 <HeaderAvatar urlAvatarImage="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg" />
-                {/* <HeaderAbout name={"Molot"} status={"Flex"} />
-                <HeaderButtons /> */}
+                <HeaderAbout name={name} status={"Flex"} />
+                <HeaderButtons />
             </Box>
         </Card>
     );
