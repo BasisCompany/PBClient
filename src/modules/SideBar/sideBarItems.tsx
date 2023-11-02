@@ -18,61 +18,36 @@ export const sideBarItems = [
     {
         title: "Профиль",
         icon: <PersonRoundedIcon sx={{ fontSize: 26 }} />,
-        to: "/user/test", //TODO: add user username
+        to: "/user/828", //TODO: add user username
+    },
+    {
+        title: "Профиль2",
+        icon: <PersonRoundedIcon sx={{ fontSize: 26 }} />,
+        to: "/user/829", //TODO: add user username
     },
     {
         title: "Помощь",
-        icon: (
-            <QuizRoundedIcon
-                sx={{
-                    fontSize: 26,
-                }}
-            />
-        ),
+        icon: <QuizRoundedIcon sx={{ fontSize: 26 }} />,
         to: "/support",
     },
     {
         title: "expired",
-        icon: (
-            <DeveloperModeIcon
-                sx={{
-                    fontSize: 26,
-                }}
-            />
-        ),
+        icon: <DeveloperModeIcon sx={{ fontSize: 26 }} />,
         to: "/expired",
     },
     {
         title: "verified",
-        icon: (
-            <DeveloperModeIcon
-                sx={{
-                    fontSize: 26,
-                }}
-            />
-        ),
+        icon: <DeveloperModeIcon sx={{ fontSize: 26 }} />,
         to: "/verified",
     },
     {
         title: "ForgotPwd",
-        icon: (
-            <DeveloperModeIcon
-                sx={{
-                    fontSize: 26,
-                }}
-            />
-        ),
+        icon: <DeveloperModeIcon sx={{ fontSize: 26 }} />,
         to: "/forgot-password",
     },
     {
         title: "ResetPwd",
-        icon: (
-            <DeveloperModeIcon
-                sx={{
-                    fontSize: 26,
-                }}
-            />
-        ),
+        icon: <DeveloperModeIcon sx={{ fontSize: 26 }} />,
         to: "/reset-password/testtoken",
     },
 ];
