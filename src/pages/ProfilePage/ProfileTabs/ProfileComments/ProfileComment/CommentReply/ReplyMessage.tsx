@@ -7,7 +7,7 @@ import {
     ApiError,
     getErrorMessage,
 } from "../../../../../../modules/Error/apiError";
-import { Reply } from "../../../../../../types/comments.type";
+import { Reply, Comment } from "../../../../../../types/comments.type";
 import { useDeleteReplyMutation } from "../../store/profileCommentsApi";
 import { CommentPopperMenu } from "../CommentPopperMenu";
 import { CommentRating } from "../CommentRating";
@@ -78,6 +78,7 @@ export const ReplyMessage: FC<ReplyMessageProps> = ({ reply }) => {
                 </Box>
             </ReplyBox>
             <CommentPopperMenu
+                comment={reply as Comment}
                 bgcolorSecondary
                 menuAnchor={menuAnchor}
                 onMenuClose={handleCloseMenu}
