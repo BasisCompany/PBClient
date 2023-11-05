@@ -30,26 +30,20 @@ export const POLICIES = {
 export const useAuthorization = () => {
     const { user } = useAuth();
 
-    if (!user) {
-        throw Error("User does not exist!");
-    }
-
     const checkAccess = useCallback(
         ({ allowedRoles }: { allowedRoles: RoleTypes[] }) => {
-            if (allowedRoles && allowedRoles.length > 0) {
-                for (let index = 0; index < allowedRoles.length; index++) {
-                    if (user.roles.indexOf(allowedRoles[index]) === -1) {
-                        return false;
-                    }
-                }
+            if (!user) {
+                return false;
             }
-
+            if (allowedRoles && allowedRoles.length > 0) {
+                return allowedRoles.every((role) => user.roles.includes(role));
+            }
             return true;
         },
-        [user.roles]
+        [user]
     );
 
-    return { checkAccess, roles: user.roles };
+    return { checkAccess };
 };
 
 type AuthorizationProps = {
