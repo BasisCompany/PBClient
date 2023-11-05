@@ -27,7 +27,7 @@ export interface BaseComment {
     createdAt: string;
     updatedAt: string;
     userId: number;
-    commentsLikes: any; // TODO: Likes
+    current_mark: boolean | null;
     user: User;
 }
 

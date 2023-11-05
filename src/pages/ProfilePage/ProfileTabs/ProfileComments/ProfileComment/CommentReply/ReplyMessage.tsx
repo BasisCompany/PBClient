@@ -71,10 +71,7 @@ export const ReplyMessage: FC<ReplyMessageProps> = ({ reply }) => {
                     </Box>
                 </Box>
                 <Box sx={{ mt: 0.5, pl: "5px", pb: 1 }}>
-                    <CommentRating
-                        likes={reply.likes}
-                        dislikes={reply.dislikes}
-                    />
+                    <CommentRating comment={reply as Comment} />
                 </Box>
             </ReplyBox>
             <CommentPopperMenu

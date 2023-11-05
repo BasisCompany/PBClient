@@ -45,10 +45,7 @@ export const CommentActions: FC<CommentActionsProps> = ({
                     mt: 0.5,
                 }}
             >
-                <CommentRating
-                    likes={comment.likes}
-                    dislikes={comment.dislikes}
-                />
+                <CommentRating comment={comment} />
                 <Authorization
                     policyCheck={POLICIES["profile:local"](user, id)}
                 >
