@@ -21,7 +21,7 @@ export const ProfilePage = () => {
 
     return (
         <>
-            <ProfileHeader name={data.username} />
+            <ProfileHeader userAbout={data} />
             <FlexBox sx={{ flexDirection: { xs: "column", lg: "row" } }}>
                 <ProfileStatistic />
                 <ProfileTabs />

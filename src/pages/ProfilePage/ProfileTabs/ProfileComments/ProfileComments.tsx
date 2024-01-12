@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { PagePagination } from "../../../../UI/PagePagination";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
 import { ProfileSelect } from "../../components/ProfileSelect";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
@@ -14,6 +13,8 @@ import {
 import { ProfileComment } from "./ProfileComment/ProfileComment";
 import { CommentsEmpty } from "./CommentsEmpty";
 import { CommentsLoading } from "./CommentsLoading";
+import { ProfilePagination } from "../../components/ProfilePagination";
+import { FlexBox } from "../../../../UI/FlexBox";
 
 const commentsSelectItems = {
     params: ["popular", "new", "old"],
@@ -44,44 +45,33 @@ export const ProfileComments = () => {
     });
 
     const comments = data?.data || [];
+    const hasComments = comments.length > 0;
 
     return isLoading ? (
         <CommentsLoading />
     ) : (
         <>
-            <Box
+            <FlexBox
                 sx={{
-                    display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                     mb: "15px",
                 }}
             >
                 <ProfileSelect selectItems={commentsSelectItems} />
-            </Box>
-            <Box>
-                {comments.length ? (
-                    comments.map((comment) => (
+            </FlexBox>
+            {hasComments ? (
+                <>
+                    {comments.map((comment) => (
                         <ProfileComment key={comment.id} comment={comment} />
-                    ))
-                ) : (
-                    <CommentsEmpty />
-                )}
-            </Box>
-            {comments.length > 0 && (
-                <Box
-                    sx={{
-                        display: "flex",
-                        justifyContent: "end",
-                        mt: 2,
-                    }}
-                >
-                    <PagePagination
-                        count={data?.meta.totalPages}
-                        siblingCount={isMobile ? 0 : 2}
-                        size={isMobile ? "small" : "medium"}
+                    ))}
+                    <ProfilePagination
+                        isMobile={isMobile}
+                        totalPages={data?.meta?.totalPages}
                     />
-                </Box>
+                </>
+            ) : (
+                <CommentsEmpty />
             )}
         </>
     );

@@ -1,21 +1,11 @@
+import { PageRequest, PageResponse } from "./page.type";
 import { User } from "./user.type";
 
-export interface CommentsRequest {
+export interface CommentsRequest extends PageRequest {
     id: string;
-    sort: string;
-    page: number;
-    take: number;
 }
 
-export interface CommentsResponse {
-    data: Comment[];
-    meta: {
-        currentPage: number;
-        take: number;
-        totalItems: number;
-        totalPages: number;
-    };
-}
+export type CommentsResponse = PageResponse<Comment>;
 
 export interface BaseComment {
     id: number;

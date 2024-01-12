@@ -1,12 +1,9 @@
 import { profileApi } from "../../../store/profileApi";
 import {
-    Comment,
     CommentsRequest,
     CommentsResponse,
 } from "../../../../../types/comments.type";
 import { ReplySchema } from "../ProfileComment/CommentReply/ReplyInput";
-import { id } from "date-fns/locale";
-import { build } from "vite";
 
 type AddReplyRequest = ReplySchema & { commentId: number };
 
