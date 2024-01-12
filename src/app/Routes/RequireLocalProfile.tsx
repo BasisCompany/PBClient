@@ -1,6 +1,6 @@
 import { useLocation, Navigate, useParams } from "react-router";
 import { useAuth } from "../../hooks/useAuth";
-import { POLICIES } from "../../lib/authorization";
+import { POLICIES } from "../../lib/authorization/policies";
 
 export const RequireLocal = ({ children }: { children: JSX.Element }) => {
     const { user } = useAuth();

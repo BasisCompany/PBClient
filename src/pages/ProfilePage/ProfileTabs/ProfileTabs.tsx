@@ -4,7 +4,7 @@ import { useAuth } from "../../../hooks/useAuth";
 import { UserTabs } from "./UserTabs";
 import { LocalTabs } from "./LocalTabs";
 import { FlexBox } from "../../../UI/FlexBox";
-import { POLICIES } from "../../../lib/authorization";
+import { POLICIES } from "../../../lib/authorization/policies";
 
 export const ProfileTabs = () => {
     const { id } = useParams();

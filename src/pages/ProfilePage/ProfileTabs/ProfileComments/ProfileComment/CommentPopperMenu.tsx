@@ -15,7 +15,8 @@ import ReportIcon from "@mui/icons-material/Report";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAuth } from "../../../../../hooks/useAuth";
 import { Comment } from "../../../../../types/comments.type";
-import { Authorization, POLICIES } from "../../../../../lib/authorization";
+import { Authorization } from "../../../../../lib/authorization";
+import { POLICIES } from "../../../../../lib/authorization/policies";
 import { UserDetails } from "../../../../AuthPage/store/authSlice";
 
 const PooperMenuList = styled(MenuList, {

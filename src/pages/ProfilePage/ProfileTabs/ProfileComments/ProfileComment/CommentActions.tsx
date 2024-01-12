@@ -7,7 +7,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { FlexBox } from "../../../../../UI/FlexBox";
 import { useParams } from "react-router";
 import { useAuth } from "../../../../../hooks/useAuth";
-import { Authorization, POLICIES } from "../../../../../lib/authorization";
+import { Authorization } from "../../../../../lib/authorization";
+import { POLICIES } from "../../../../../lib/authorization/policies";
 
 const ReplyButton = styled((props: ButtonProps) => (
     <Button size="small" disableRipple {...props} />
