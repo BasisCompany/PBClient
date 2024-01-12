@@ -5,7 +5,6 @@ import { HeaderAvatar } from "./HeaderAvatar";
 import { HeaderAbout } from "./HeaderAbout";
 import { HeaderButtons } from "./HeaderButtons";
 import { UserAbout } from "../../../types/user.type";
-import { URL_ROOT } from "../../../consts/api";
 
 interface ProfileHeaderProps {
     userAbout: UserAbout;

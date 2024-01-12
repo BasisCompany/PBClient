@@ -35,9 +35,9 @@ interface CommentReportDialogProps {
 export const CommentReportDialog: FC<CommentReportDialogProps> = ({
     open,
     onClose,
-    commentId,
 }) => {
     const isMobile = useMobileDevice();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [radioValue, setRadioValue] = useState("");
     //React hook form for text field
     const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {

@@ -51,6 +51,7 @@ const profileCommentsApi = profileApi.injectEndpoints({
             invalidatesTags: ["Comment"],
         }),
         addLike: build.mutation<void, AddLikeRequest>({
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             query: ({ isReply: _, ...body }) => ({
                 url: "comments/add/like",
                 method: "POST",
@@ -60,6 +61,7 @@ const profileCommentsApi = profileApi.injectEndpoints({
                 { isReply, ...body },
                 { dispatch, queryFulfilled, getState }
             ) {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const { originalArgs } =
                     profileCommentsApi.util.selectInvalidatedBy(getState(), [
                         { type: "Comment" },
@@ -110,6 +112,7 @@ const profileCommentsApi = profileApi.injectEndpoints({
                 { commentId, isReply },
                 { dispatch, queryFulfilled, getState }
             ) {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 const { originalArgs } =
                     profileCommentsApi.util.selectInvalidatedBy(getState(), [
                         { type: "Comment" },

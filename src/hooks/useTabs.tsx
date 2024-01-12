@@ -1,8 +1,6 @@
 import { useState, useEffect, SyntheticEvent } from "react";
 import { useLocation } from "react-router";
 
-const profileTabs = ["", "comments", "notifications", "payments", "settings"];
-
 const getPathId = (path: string, tabs: string[]): number => {
     const lastUrlSegment = path.split("/").pop();
     const index = tabs.findIndex((url) => url === lastUrlSegment);

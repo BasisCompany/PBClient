@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { PromptBuyIcon } from "../../../../assets/PromptBuyIcon";
 import { CatIcon } from "../../../../assets/Cat";
 
 export const CommentsEmpty = () => (

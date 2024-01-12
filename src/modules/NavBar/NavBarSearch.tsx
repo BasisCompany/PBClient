@@ -17,6 +17,7 @@ interface SearchInputProps extends BoxProps {
     isOpen: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SearchInput = styled(({ isOpen: _, ...props }: SearchInputProps) => (
     <Box {...props} />
 ))(({ theme, isOpen }) => ({

@@ -31,7 +31,7 @@ export const CustomTextField = styled(TextField)(({ theme }) => ({
 type MyTextFieldProps = TextFieldProps & {
     label: string;
     helperText: string;
-    icon: any;
+    icon: unknown;
     register: UseFormRegisterReturn;
 };
 

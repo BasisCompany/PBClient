@@ -42,7 +42,7 @@ export const TestPage = () => {
                     </PrimaryButton>
                 </Box>
                 <Box sx={{ width: "200px", m: 5, textAlign: "center" }}>
-                    <PrimaryButton onClick={handleTestQueryButton}>
+                    <PrimaryButton onClick={() => void handleTestQueryButton()}>
                         Тестовый запрос на сервер
                     </PrimaryButton>
                 </Box>
@@ -52,3 +52,5 @@ export const TestPage = () => {
         </Box>
     );
 };
+
+// (...args) => void handleSubmit(onSubmit)(...args)

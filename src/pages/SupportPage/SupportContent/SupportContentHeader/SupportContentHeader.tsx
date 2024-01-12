@@ -55,7 +55,7 @@ export const SupportContentHeader = () => {
 
     useEffect(() => {
         setValue(getPathId(location.pathname, isMobile));
-    }, [location.pathname]);
+    }, [isMobile, location.pathname]);
 
     const handleChange = (_: SyntheticEvent, newValue: number) => {
         setValue(newValue);
