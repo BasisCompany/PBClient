@@ -3,9 +3,9 @@ import { ProfileButton } from "../../../UI/ProfileButton";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 
 export interface HeaderCoverProps {
-    urlCoverImage: string;
+    urlCoverImage?: string;
 }
-
+//TODO[Артем]: Убрать CardMedia и переписать на  Box
 export const HeaderCover: React.FC<HeaderCoverProps> = ({ urlCoverImage }) => {
     return (
         <Box

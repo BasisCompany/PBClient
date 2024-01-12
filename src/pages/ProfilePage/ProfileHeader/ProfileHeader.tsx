@@ -4,12 +4,14 @@ import { HeaderCover } from "./HeaderCover";
 import { HeaderAvatar } from "./HeaderAvatar";
 import { HeaderAbout } from "./HeaderAbout";
 import { HeaderButtons } from "./HeaderButtons";
+import { UserAbout } from "../../../types/user.type";
+import { URL_ROOT } from "../../../consts/api";
 
 interface ProfileHeaderProps {
-    name: string;
+    userAbout: UserAbout;
 }
 
-export const ProfileHeader: FC<ProfileHeaderProps> = ({ name }) => {
+export const ProfileHeader: FC<ProfileHeaderProps> = ({ userAbout }) => {
     return (
         <Card
             sx={{
@@ -23,7 +25,7 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({ name }) => {
                 mb: "15px",
             }}
         >
-            <HeaderCover urlCoverImage="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg" />
+            <HeaderCover urlCoverImage={userAbout.avatar} />
             <Box
                 sx={{
                     //bgcolor: "#651",
@@ -38,8 +40,8 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({ name }) => {
                     flexDirection: { xs: "column", md: "row" },
                 }}
             >
-                <HeaderAvatar urlAvatarImage="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg" />
-                <HeaderAbout name={name} status={"Flex"} />
+                <HeaderAvatar userAbout={userAbout} />
+                <HeaderAbout name={userAbout.username} status={"Flex"} />
                 <HeaderButtons />
             </Box>
         </Card>

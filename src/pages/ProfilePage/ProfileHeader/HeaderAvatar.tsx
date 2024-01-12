@@ -1,16 +1,48 @@
 import { Box, Avatar } from "@mui/material";
+import { UserAbout } from "../../../types/user.type";
+import { FlexBox } from "../../../UI/FlexBox";
 
 export interface HeaderAvatarProps {
-    urlAvatarImage: string;
+    userAbout: UserAbout;
 }
 
-export const HeaderAvatar: React.FC<HeaderAvatarProps> = ({
-    urlAvatarImage,
-}) => {
+export const HeaderAvatar: React.FC<HeaderAvatarProps> = ({ userAbout }) => {
+    return (
+        <FlexBox
+            sx={{
+                justifyContent: "center",
+                position: "relative",
+                width: { xs: "100%", md: "300px" },
+            }}
+        >
+            <Box
+                sx={{
+                    position: "absolute",
+                    transform: "translateY(-60%)",
+                    width: { xs: "180px", md: "220px" },
+                    height: { xs: "180px", md: "220px" },
+                }}
+            >
+                <Avatar
+                    alt={userAbout.username}
+                    src={userAbout.avatar}
+                    sx={{
+                        border: "5px solid",
+                        borderColor: (theme) =>
+                            theme.palette.bgcolor.secondary.main,
+                        width: "100%",
+                        height: "100%",
+                    }}
+                />
+            </Box>
+        </FlexBox>
+    );
+};
+
+/*
     return (
         <Box
             sx={{
-                //bgcolor: "#588",
                 position: "relative",
                 width: { xs: "100%", md: "20%" },
                 display: "flex",
@@ -19,19 +51,17 @@ export const HeaderAvatar: React.FC<HeaderAvatarProps> = ({
         >
             <Box
                 sx={{
-                    //bgcolor: "#988",
                     position: "absolute",
                     top: "0%",
-
                     transform: "translateY(-60%)",
-
                     width: { xs: "25%", md: "80%" },
+                    maxWidth: "280px",
                     minWidth: { xs: "180px", md: "120px" },
                 }}
             >
                 <Avatar
-                    alt="Remy Sharp"
-                    src={urlAvatarImage}
+                    alt={userAbout.username}
+                    src={avatar}
                     sx={{
                         border: "5px solid",
                         borderColor: "bgcolor.secondary.main",
@@ -42,4 +72,5 @@ export const HeaderAvatar: React.FC<HeaderAvatarProps> = ({
             </Box>
         </Box>
     );
-};
+
+*/
