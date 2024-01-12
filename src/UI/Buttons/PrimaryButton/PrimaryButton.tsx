@@ -1,6 +1,6 @@
 import { styled, Button } from "@mui/material";
 
-export const CustomButton = styled(Button)(({ theme }) => ({
+export const PrimaryButton = styled(Button)(({ theme }) => ({
     fontSize: 15,
     width: "100%",
     minHeight: "50px",

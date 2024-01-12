@@ -23,7 +23,7 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Spacer } from "../../../../UI/Spacer";
 import { useThemeMode } from "../../../../app/Theme/ThemeContext/useThemeMode";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
-import { LinkListItemButton } from "../../../../UI/Buttons/LinkListItemButton";
+import { LinkListItemButton } from "../../../../UI/Links/LinkListItemButton";
 
 interface AccountMenuProps {
     isOpen: boolean;

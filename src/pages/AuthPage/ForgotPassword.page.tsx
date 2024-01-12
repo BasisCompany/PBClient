@@ -2,7 +2,6 @@ import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlin
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LoadingButton } from "../../UI/Buttons/LoadingButton";
 import { CenterBox } from "../../UI/CenterBox";
 import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
 import { MyTextField } from "./components/MyTextField";
@@ -11,6 +10,7 @@ import { SmartCaptcha } from "@yandex/smart-captcha";
 
 import { object, string, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { PrimaryLoadingButton } from "../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
 
 const forgotPasswordSchema = object({
     email: string()
@@ -150,13 +150,13 @@ export const ForgotPasswordPage = () => {
                                 justifyContent: "center",
                             }}
                         >
-                            <LoadingButton
+                            <PrimaryLoadingButton
                                 isLoading={isLoading}
                                 variant="outlined"
                                 type="submit"
                             >
                                 Отправить письмо
-                            </LoadingButton>
+                            </PrimaryLoadingButton>
                         </Box>
                     </form>
                 </CardContent>

@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import { FC, Fragment } from "react";
 import { Notification } from "./Notification";
-import { LinkButton } from "../../../../UI/Buttons/LinkButton";
-import { LinkIconButton } from "../../../../UI/Buttons/LinkIconButton";
+import { LinkButton } from "../../../../UI/Links/LinkButton";
+import { LinkIconButton } from "../../../../UI/Links/LinkIconButton";
 
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";

@@ -1,4 +1,4 @@
-import { Box, BoxProps, Container, styled, useTheme } from "@mui/material";
+import { BoxProps, Container, styled } from "@mui/material";
 import { Outlet } from "react-router";
 import { FlexBox } from "../../UI/FlexBox";
 import { NavBar } from "../../modules/NavBar/NavBar";

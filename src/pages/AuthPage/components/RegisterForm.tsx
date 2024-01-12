@@ -15,13 +15,13 @@ import { MyTextField } from "./MyTextField";
 import { PasswordTextField } from "./PasswordTextField";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRegisterMutation } from "../store/authApi";
-import { LoadingButton } from "../../../UI/Buttons/LoadingButton";
 import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
 import { getErrorMessage, ApiError } from "../../../modules/Error/apiError";
 import { SmartCaptcha } from "@yandex/smart-captcha";
 
 import { object, string, ref, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
 
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -260,13 +260,13 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                             justifyContent: "end",
                         }}
                     >
-                        <LoadingButton
+                        <PrimaryLoadingButton
                             type="submit"
                             variant="outlined"
                             isLoading={isLoading}
                         >
                             Зарегистрироваться
-                        </LoadingButton>
+                        </PrimaryLoadingButton>
                     </Box>
                 </form>
                 <Box

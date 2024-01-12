@@ -2,14 +2,13 @@ import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded";
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useParams } from "react-router";
-import { LoadingButton } from "../../UI/Buttons/LoadingButton";
 import { CenterBox } from "../../UI/CenterBox";
 import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
 import { PasswordTextField } from "./components/PasswordTextField";
 import { useResetPasswordMutation } from "./store/authApi";
-
 import { object, string, ref, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { PrimaryLoadingButton } from "../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
 
 const resetPasswordSchema = object({
     password: string()
@@ -151,13 +150,13 @@ export const ResetPasswordPage = () => {
                                 justifyContent: "center",
                             }}
                         >
-                            <LoadingButton
+                            <PrimaryLoadingButton
                                 type="submit"
                                 variant="outlined"
                                 isLoading={isLoading}
                             >
                                 Изменить пароль
-                            </LoadingButton>
+                            </PrimaryLoadingButton>
                         </Box>
                     </form>
                 </CardContent>

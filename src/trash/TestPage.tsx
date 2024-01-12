@@ -1,10 +1,10 @@
 import { PromptCard } from "../UI/PromptCard";
-import { CustomButton } from "../UI/Buttons/CustomButton";
 import { Box, Typography } from "@mui/material";
 import { useAppDispatch } from "../redux/hooks";
 import { toggleIsUserAuthenticated } from "../pages/AuthPage/store/authSlice";
 import { useAuth } from "../hooks/useAuth";
 import { useLazyMeQuery } from "../pages/AuthPage/store/authApi";
+import { PrimaryButton } from "../UI/Buttons/PrimaryButton/PrimaryButton";
 
 export const TestPage = () => {
     const dispatch = useAppDispatch();
@@ -37,14 +37,14 @@ export const TestPage = () => {
                         <Typography color="red">Не авторизирован</Typography>
                     )}
 
-                    <CustomButton onClick={handleAuthButton}>
+                    <PrimaryButton onClick={handleAuthButton}>
                         Авторизация
-                    </CustomButton>
+                    </PrimaryButton>
                 </Box>
                 <Box sx={{ width: "200px", m: 5, textAlign: "center" }}>
-                    <CustomButton onClick={handleTestQueryButton}>
+                    <PrimaryButton onClick={handleTestQueryButton}>
                         Тестовый запрос на сервер
-                    </CustomButton>
+                    </PrimaryButton>
                 </Box>
             </Box>
             <PromptCard />

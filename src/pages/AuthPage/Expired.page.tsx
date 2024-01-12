@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import { CenterBox } from "../../UI/CenterBox";
-import { CustomLinkButton } from "../../UI/Buttons/LinkButton";
+import { PrimaryLinkButton } from "../../UI/Buttons/PrimaryButton";
 
 export const ExpiredPage: FC = () => {
     return (
@@ -86,9 +86,9 @@ export const ExpiredPage: FC = () => {
                             justifyContent: "end",
                         }}
                     >
-                        <CustomLinkButton to="/login" variant="outlined">
+                        <PrimaryLinkButton to="/login" variant="outlined">
                             Войти в аккаунт
-                        </CustomLinkButton>
+                        </PrimaryLinkButton>
                     </Box>
                 </CardContent>
             </Card>

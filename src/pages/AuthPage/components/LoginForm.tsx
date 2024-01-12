@@ -2,7 +2,6 @@ import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { Box, Card, CardContent, Link, Typography } from "@mui/material";
 import { DispatchWithoutAction, FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LoadingButton } from "../../../UI/Buttons/LoadingButton";
 import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
 import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
 import { MyTextField } from "./MyTextField";
@@ -13,6 +12,7 @@ import { SmartCaptcha } from "@yandex/smart-captcha";
 import { LinkBehavior } from "../../../UI/Route/LinkBehavior";
 import { object, string, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -176,13 +176,13 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                             justifyContent: "end",
                         }}
                     >
-                        <LoadingButton
+                        <PrimaryLoadingButton
                             type="submit"
                             variant="outlined"
                             isLoading={isLoading}
                         >
                             Войти
-                        </LoadingButton>
+                        </PrimaryLoadingButton>
                     </Box>
                 </form>
                 <Box

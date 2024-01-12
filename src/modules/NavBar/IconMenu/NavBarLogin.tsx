@@ -1,5 +1,5 @@
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { LinkButton } from "../../../UI/Buttons/LinkButton";
+import { LinkButton } from "../../../UI/Links/LinkButton";
 import { Tooltip, IconButton } from "@mui/material";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
