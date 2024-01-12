@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
 import { ProfileSelect } from "../../components/ProfileSelect";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";

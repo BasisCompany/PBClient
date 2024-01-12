@@ -11,6 +11,7 @@ interface NotificationBoxProps extends BoxProps {
 }
 
 const NotificationBox = styled(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ({ isUnread: _, ...props }: NotificationBoxProps) => <Box {...props} />
 )(({ theme, isUnread }) => ({
     display: "flex",
