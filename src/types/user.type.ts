@@ -13,4 +13,5 @@ export interface UserAbout {
     id: number;
     username: string;
     gender: Gender | null;
+    avatar?: string;
 }
