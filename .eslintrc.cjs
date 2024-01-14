@@ -60,6 +60,9 @@ module.exports = {
                 groups: ["builtin", "external", "parent", "sibling", "index"],
             },
         ],
+        "import/no-duplicates": "off",
+        "import/no-unresolved": "error",
+        "import/named": "off",
         "prettier/prettier": [
             "warn",
             {
