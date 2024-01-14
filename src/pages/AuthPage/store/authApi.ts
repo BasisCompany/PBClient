@@ -1,8 +1,8 @@
-import { baseQuery, baseQueryWithReAuth } from "./../../../redux/api/baseQuery";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { LoginSchema } from "../components/LoginForm";
 import { RegisterSchema } from "../components/RegisterForm";
 import { ResetPasswordSchema } from "../ResetPassword.page";
+import { baseQuery, baseQueryWithReAuth } from "./../../../redux/api/baseQuery";
 
 interface LoginResponse {
     id: number;

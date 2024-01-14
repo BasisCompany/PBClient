@@ -4,10 +4,10 @@ import UpdateRoundedIcon from "@mui/icons-material/UpdateRounded";
 import GradeRoundedIcon from "@mui/icons-material/GradeRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import { ProfileSelect } from "../../components/ProfileSelect";
 import { ProfilePromptsModels } from "./ProfilePromptsModels";
 import { ProfilePromptsToggleMode } from "./ProfilePromptsToggleMode";
 import { ProfilePromptsLine } from "./ProfilePromptsLine";
-import { ProfileSelect } from "../../components/ProfileSelect";
 
 const promptsSelectItems = {
     params: ["new", "rating", "like", "shop"],

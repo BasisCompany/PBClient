@@ -1,7 +1,7 @@
 import { createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
-import { setNavbarOpen, toggleNavbar } from "./navbarSlice";
 import { navbarMode } from "../../../storage";
 import { RootState } from "../../../redux/store";
+import { setNavbarOpen, toggleNavbar } from "./navbarSlice";
 
 export const navbarlistenerMiddleware = createListenerMiddleware();
 navbarlistenerMiddleware.startListening({

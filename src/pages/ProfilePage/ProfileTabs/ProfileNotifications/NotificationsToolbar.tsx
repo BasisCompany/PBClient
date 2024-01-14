@@ -1,8 +1,8 @@
 import { Box, Tooltip, IconButton } from "@mui/material";
-import { ProfileSelect } from "../../components/ProfileSelect";
 import { FC } from "react";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import { ProfileSelect } from "../../components/ProfileSelect";
 
 interface NotificationsToolbarProps {
     selectItems: {

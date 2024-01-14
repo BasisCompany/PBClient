@@ -1,8 +1,8 @@
 import { useParams } from "react-router";
+import { FlexBox } from "../../UI/FlexBox";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileStatistic } from "./ProfileStatistic/ProfileStatistic";
 import { useUserAboutQuery } from "./store/profileApi";
-import { FlexBox } from "../../UI/FlexBox";
 import { ProfileTabs } from "./ProfileTabs/ProfileTabs";
 
 export const ProfilePage = () => {

@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import { useAppDispatch } from "../../redux/hooks";
 import { toggleNavbar } from "./store/navbarSlice";
-import MenuIcon from "@mui/icons-material/Menu";
 
 export const SideBarButton = () => {
     const dispatch = useAppDispatch();

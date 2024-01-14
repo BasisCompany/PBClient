@@ -1,6 +1,6 @@
+import { Box } from "@mui/material";
 import { StatisticItem } from "./StatisticItem";
 import { statisticListContent } from "./statisticListContent";
-import { Box } from "@mui/material";
 
 export const ProfileStatistic = () => {
     return (

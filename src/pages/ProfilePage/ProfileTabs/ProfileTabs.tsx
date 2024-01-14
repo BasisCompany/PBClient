@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import { Outlet, useParams } from "react-router";
 import { useAuth } from "../../../hooks/useAuth";
-import { UserTabs } from "./UserTabs";
-import { LocalTabs } from "./LocalTabs";
 import { FlexBox } from "../../../UI/FlexBox";
 import { POLICIES } from "../../../lib/authorization/policies";
+import { UserTabs } from "./UserTabs";
+import { LocalTabs } from "./LocalTabs";
 
 export const ProfileTabs = () => {
     const { id } = useParams();

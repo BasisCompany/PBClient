@@ -1,19 +1,19 @@
 import { Box } from "@mui/material";
-import { useMobileDevice } from "../../../../hooks/useMobileDevice";
-import { ProfileNotification } from "./ProfileNotification/ProfileNotification";
 import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
 import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
 import SortRoundedIcon from "@mui/icons-material/SortRounded";
 import { useSearchParams } from "react-router-dom";
+import { useMobileDevice } from "../../../../hooks/useMobileDevice";
 import {
     getPageParamSafe,
     getSortParamSafe,
 } from "../../../../utils/getParamSafely";
-import { useGetNotificationsQuery } from "./store/profileNotificationsApi";
 import { CommentsLoading } from "../ProfileComments/CommentsLoading";
-import { NotificationsToolbar } from "./NotificationsToolbar";
 import { CommentsEmpty } from "../ProfileComments/CommentsEmpty";
 import { ProfilePagination } from "../../components/ProfilePagination";
+import { NotificationsToolbar } from "./NotificationsToolbar";
+import { ProfileNotification } from "./ProfileNotification/ProfileNotification";
+import { useGetNotificationsQuery } from "./store/profileNotificationsApi";
 
 const notificationsSelectItems = {
     params: ["unread", "read", "all"],

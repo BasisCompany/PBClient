@@ -8,12 +8,12 @@ import {
     styled,
 } from "@mui/material";
 import { FC, Fragment } from "react";
-import { Notification } from "./Notification";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { LinkButton } from "../../../../UI/Links/LinkButton";
 import { LinkIconButton } from "../../../../UI/Links/LinkIconButton";
 
-import DoneAllIcon from "@mui/icons-material/DoneAll";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import { Notification } from "./Notification";
 
 interface NotificationsPopperProps {
     isOpen: boolean;

@@ -1,5 +1,5 @@
-import { PromptCard } from "../UI/PromptCard";
 import { Box, Typography } from "@mui/material";
+import { PromptCard } from "../UI/PromptCard";
 import { useAppDispatch } from "../redux/hooks";
 import { toggleIsUserAuthenticated } from "../pages/AuthPage/store/authSlice";
 import { useAuth } from "../hooks/useAuth";

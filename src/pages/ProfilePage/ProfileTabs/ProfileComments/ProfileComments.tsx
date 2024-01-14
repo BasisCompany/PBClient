@@ -1,19 +1,19 @@
-import { useMobileDevice } from "../../../../hooks/useMobileDevice";
-import { ProfileSelect } from "../../components/ProfileSelect";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
-import { useGetCommentsQuery } from "./store/profileCommentsApi";
 import { useParams, useSearchParams } from "react-router-dom";
+import { ProfileSelect } from "../../components/ProfileSelect";
+import { useMobileDevice } from "../../../../hooks/useMobileDevice";
 import {
     getPageParamSafe,
     getSortParamSafe,
 } from "../../../../utils/getParamSafely";
-import { ProfileComment } from "./ProfileComment/ProfileComment";
-import { CommentsEmpty } from "./CommentsEmpty";
-import { CommentsLoading } from "./CommentsLoading";
 import { ProfilePagination } from "../../components/ProfilePagination";
 import { FlexBox } from "../../../../UI/FlexBox";
+import { CommentsLoading } from "./CommentsLoading";
+import { useGetCommentsQuery } from "./store/profileCommentsApi";
+import { CommentsEmpty } from "./CommentsEmpty";
+import { ProfileComment } from "./ProfileComment/ProfileComment";
 
 const commentsSelectItems = {
     params: ["popular", "new", "old"],

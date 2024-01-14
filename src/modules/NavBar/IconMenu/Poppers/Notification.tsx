@@ -1,7 +1,7 @@
 import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
-import { Spacer } from "../../../../UI/Spacer";
 import { useMemo, useState } from "react";
+import { Spacer } from "../../../../UI/Spacer";
 
 export const Notification = () => {
     const [showCheckArrows, setShowCheckArrows] = useState(false);

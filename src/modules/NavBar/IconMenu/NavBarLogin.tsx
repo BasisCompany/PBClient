@@ -1,8 +1,8 @@
+import { IconButton, Tooltip } from "@mui/material";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { LinkButton } from "../../../UI/Links/LinkButton";
-import { Tooltip, IconButton } from "@mui/material";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import { LinkButton } from "../../../UI/Links/LinkButton";
 import { useThemeMode } from "../../../app/Theme/ThemeContext/useThemeMode";
 import { EThemeMode } from "../../../app/Theme/enums/themeMode.enum";
 

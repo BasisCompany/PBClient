@@ -11,9 +11,9 @@ import { Reply, Comment } from "../../../../../../types/comments.type";
 import { useDeleteReplyMutation } from "../../store/profileCommentsApi";
 import { CommentPopperMenu } from "../CommentPopperMenu";
 import { CommentRating } from "../CommentRating";
-import { ReplyAuthor } from "./ReplyAuthor";
 import { CommentReportDialog } from "../CommentReportDialog";
 import { usePopperMenu } from "../../../../../../hooks/usePopperMenu";
+import { ReplyAuthor } from "./ReplyAuthor";
 
 const ReplyBox = styled(Box)(({ theme }) => ({
     marginTop: "8px",

@@ -2,13 +2,13 @@ import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded";
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useParams } from "react-router";
-import { CenterBox } from "../../UI/CenterBox";
-import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
-import { PasswordTextField } from "./components/PasswordTextField";
-import { useResetPasswordMutation } from "./store/authApi";
 import { object, string, ref, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { CenterBox } from "../../UI/CenterBox";
+import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
 import { PrimaryLoadingButton } from "../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
+import { PasswordTextField } from "./components/PasswordTextField";
+import { useResetPasswordMutation } from "./store/authApi";
 
 const resetPasswordSchema = object({
     password: string()

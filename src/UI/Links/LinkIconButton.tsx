@@ -1,7 +1,7 @@
 import { IconButton, IconButtonProps } from "@mui/material";
 import { FC } from "react";
-import { LinkBehavior } from "../Route/LinkBehavior";
 import { LinkProps as RouterLinkProps } from "react-router-dom";
+import { LinkBehavior } from "../Route/LinkBehavior";
 
 export const LinkIconButton: FC<IconButtonProps & RouterLinkProps> = ({
     children,

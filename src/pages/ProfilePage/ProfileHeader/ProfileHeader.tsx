@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Box, Card } from "@mui/material";
+import { UserAbout } from "../../../types/user.type";
 import { HeaderCover } from "./HeaderCover";
 import { HeaderAvatar } from "./HeaderAvatar";
 import { HeaderAbout } from "./HeaderAbout";
 import { HeaderButtons } from "./HeaderButtons";
-import { UserAbout } from "../../../types/user.type";
 
 interface ProfileHeaderProps {
     userAbout: UserAbout;

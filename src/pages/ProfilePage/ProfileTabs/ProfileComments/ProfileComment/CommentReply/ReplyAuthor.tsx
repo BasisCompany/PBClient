@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Avatar, Tooltip, Typography } from "@mui/material";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useMobileDevice } from "../../../../../../hooks/useMobileDevice";
 import { Reply } from "../../../../../../types/comments.type";
 import { FlexBox } from "../../../../../../UI/FlexBox";
 import { ReplyTimestamp } from "./ReplyTimestamp";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 interface ReplyAuthorProps {
     reply: Reply;

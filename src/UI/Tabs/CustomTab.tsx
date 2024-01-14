@@ -1,6 +1,6 @@
 import { styled, TabProps, Tab } from "@mui/material";
-import { LinkBehavior } from "../Route/LinkBehavior";
 import { LinkProps as RouterLinkProps } from "react-router-dom";
+import { LinkBehavior } from "../Route/LinkBehavior";
 
 export const CustomTab = styled((props: TabProps & RouterLinkProps) => (
     <Tab

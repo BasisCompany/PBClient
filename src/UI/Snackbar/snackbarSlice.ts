@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../redux/store";
 import { AlertColor } from "@mui/material";
+import { RootState } from "../../redux/store";
 
 interface SnackbarState {
     isOpen: boolean;

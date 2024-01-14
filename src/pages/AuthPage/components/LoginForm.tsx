@@ -2,17 +2,17 @@ import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { Box, Card, CardContent, Link, Typography } from "@mui/material";
 import { DispatchWithoutAction, FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
-import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
-import { MyTextField } from "./MyTextField";
-import { PasswordTextField } from "./PasswordTextField";
-import { useLoginMutation } from "../store/authApi";
-import { ApiError, getErrorMessage } from "../../../modules/Error/apiError";
 import { SmartCaptcha } from "@yandex/smart-captcha";
-import { LinkBehavior } from "../../../UI/Route/LinkBehavior";
 import { object, string, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
+import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
+import { useLoginMutation } from "../store/authApi";
+import { ApiError, getErrorMessage } from "../../../modules/Error/apiError";
+import { LinkBehavior } from "../../../UI/Route/LinkBehavior";
 import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton";
+import { PasswordTextField } from "./PasswordTextField";
+import { MyTextField } from "./MyTextField";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;

@@ -11,17 +11,17 @@ import {
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
-import { MyTextField } from "./MyTextField";
-import { PasswordTextField } from "./PasswordTextField";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { SmartCaptcha } from "@yandex/smart-captcha";
+import { object, string, ref, InferType } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterMutation } from "../store/authApi";
 import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
 import { getErrorMessage, ApiError } from "../../../modules/Error/apiError";
-import { SmartCaptcha } from "@yandex/smart-captcha";
 
-import { object, string, ref, InferType } from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
+import { PasswordTextField } from "./PasswordTextField";
+import { MyTextField } from "./MyTextField";
 
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
