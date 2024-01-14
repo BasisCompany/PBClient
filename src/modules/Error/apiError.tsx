@@ -13,10 +13,10 @@ const errors = {
     },
 };
 
-export type ApiError = {
+export interface ApiError {
     status: number;
     data: { statusCode: number; message: string; error: string };
-};
+}
 
 export const getErrorMessage = (error: ApiError) => {
     if (error?.data?.statusCode === 401) {

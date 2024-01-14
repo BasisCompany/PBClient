@@ -41,7 +41,7 @@ const getPathId = (path: string, isMobile: boolean): number => {
     const tabsItem = isMobile ? supportTabsItemsMobile : supportTabsItems;
     return lastUrlSegment === "support"
         ? 0
-        : tabsItem.find((el) => el.to === lastUrlSegment)?.id || 1;
+        : tabsItem.find((el) => el.to === lastUrlSegment)?.id ?? 1;
 };
 
 export const SupportContentHeader = () => {

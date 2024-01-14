@@ -17,7 +17,6 @@ import { useAuth } from "../../../../../hooks/useAuth";
 import { Comment } from "../../../../../types/comments.type";
 import { Authorization } from "../../../../../lib/authorization";
 import { POLICIES } from "../../../../../lib/authorization/policies";
-import { UserDetails } from "../../../../AuthPage/store/authSlice";
 
 const PooperMenuList = styled(MenuList, {
     shouldForwardProp: (prop) => prop !== "bgcolorSecondary",
@@ -90,7 +89,7 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                                 <Authorization
                                     policyCheck={
                                         !POLICIES["comment:delete"](
-                                            user as UserDetails,
+                                            user!,
                                             comment
                                         )
                                     }
@@ -106,7 +105,7 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                                 </Authorization>
                                 <Authorization
                                     policyCheck={POLICIES["comment:delete"](
-                                        user as UserDetails,
+                                        user!,
                                         comment
                                     )}
                                 >

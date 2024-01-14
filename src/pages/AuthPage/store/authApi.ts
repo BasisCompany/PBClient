@@ -4,13 +4,13 @@ import { LoginSchema } from "../components/LoginForm";
 import { RegisterSchema } from "../components/RegisterForm";
 import { ResetPasswordSchema } from "../ResetPassword.page";
 
-type LoginResponse = {
+interface LoginResponse {
     id: number;
     email: string;
     token: string;
     username: string;
     roles: string[];
-};
+}
 
 type LoginRequest = LoginSchema;
 

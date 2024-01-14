@@ -74,7 +74,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
             reset();
         } catch (error) {
             showAlert("error", getErrorMessage(error as ApiError));
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -200,7 +200,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                         error={!!errors.username}
                         helperText={
                             errors?.username
-                                ? errors?.username?.message || ""
+                                ? errors?.username?.message ?? ""
                                 : "Придумайте никнейм"
                         }
                     />
@@ -220,7 +220,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                         error={!!errors.email}
                         helperText={
                             errors.email
-                                ? errors?.email?.message || ""
+                                ? errors?.email?.message ?? ""
                                 : "Ваша почта"
                         }
                     />
@@ -230,7 +230,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                         error={!!errors.password}
                         helperText={
                             errors.password
-                                ? errors?.password?.message || ""
+                                ? errors?.password?.message ?? ""
                                 : "Ваш пароль"
                         }
                     />
@@ -240,7 +240,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                         error={!!errors.passwordConfirm}
                         helperText={
                             errors.passwordConfirm
-                                ? errors?.passwordConfirm?.message || ""
+                                ? errors?.passwordConfirm?.message ?? ""
                                 : "Подтвердите пароль"
                         }
                     />

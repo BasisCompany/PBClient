@@ -12,10 +12,10 @@ import { ProfileSelect } from "../../components/ProfileSelect";
 const promptsSelectItems = {
     params: ["new", "rating", "like", "shop"],
     icons: [
-        <UpdateRoundedIcon sx={{ fontSize: "19px" }} />,
-        <GradeRoundedIcon sx={{ fontSize: "19px" }} />,
-        <FavoriteRoundedIcon sx={{ fontSize: "19px" }} />,
-        <ShoppingCartRoundedIcon sx={{ fontSize: "19px" }} />,
+        <UpdateRoundedIcon key="new" sx={{ fontSize: "19px" }} />,
+        <GradeRoundedIcon key="rating" sx={{ fontSize: "19px" }} />,
+        <FavoriteRoundedIcon key="like" sx={{ fontSize: "19px" }} />,
+        <ShoppingCartRoundedIcon key="shop" sx={{ fontSize: "19px" }} />,
     ],
     labels: ["Новые", "Высокий рейтинг", "Много лайков", "Популярные"],
 };

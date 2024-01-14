@@ -7,8 +7,15 @@ import { ReplySchema } from "../ProfileComment/CommentReply/ReplyInput";
 
 type AddReplyRequest = ReplySchema & { commentId: number };
 
-type AddLikeRequest = { commentId: number; type: boolean; isReply: boolean };
-type DeleteLikeRequest = { commentId: number; isReply: boolean };
+interface AddLikeRequest {
+    commentId: number;
+    type: boolean;
+    isReply: boolean;
+}
+interface DeleteLikeRequest {
+    commentId: number;
+    isReply: boolean;
+}
 
 const profileCommentsApi = profileApi.injectEndpoints({
     endpoints: (build) => ({

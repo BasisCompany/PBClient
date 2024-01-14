@@ -4,7 +4,7 @@ import { profilePromptsLineListContent } from "./profilePromptsLineListContent";
 import { ProfilePromptsLineItem } from "./ProfilePromptsLineItem";
 
 interface ContentMainLineProps {
-    model: Array<string>;
+    model: string[];
     boxModel: (title: string) => void;
 }
 
@@ -38,8 +38,8 @@ export const ProfilePromptsLine: FC<ContentMainLineProps> = ({
                         id == 0
                             ? "30px 0 0 30px"
                             : id == profilePromptsLineListContent.length - 1
-                            ? "0 30px 30px 0"
-                            : "none"
+                              ? "0 30px 30px 0"
+                              : "none"
                     }
                 />
             ))}

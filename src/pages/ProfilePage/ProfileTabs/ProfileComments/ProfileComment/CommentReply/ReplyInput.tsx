@@ -51,7 +51,7 @@ export const ReplyInput: FC<ReplyInputProps> = ({ commentId }) => {
             reset();
         } catch (error) {
             showAlert("error", getErrorMessage(error as ApiError));
-            console.log(error);
+            console.error(error);
         }
     };
 

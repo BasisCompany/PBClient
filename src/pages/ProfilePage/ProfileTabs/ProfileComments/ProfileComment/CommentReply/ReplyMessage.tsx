@@ -44,7 +44,7 @@ export const ReplyMessage: FC<ReplyMessageProps> = ({ reply }) => {
             showAlert("success", "Ответ удален");
         } catch (error) {
             showAlert("error", getErrorMessage(error as ApiError));
-            console.log(error);
+            console.error(error);
         }
     };
 

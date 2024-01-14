@@ -9,7 +9,7 @@ import {
 import { profilePromptsLineListContent } from "./profilePromptsLineListContent";
 
 interface CustomToggleButtonProps extends ToggleButtonProps {
-    colorbutton: string | "0,0,0";
+    colorbutton: string;
 }
 
 const CustomToggleButton = styled((props: CustomToggleButtonProps) => (
@@ -73,7 +73,7 @@ const CustomToggleButton = styled((props: CustomToggleButtonProps) => (
 }));
 
 interface ContentMainModelsProps {
-    model: Array<string>;
+    model: string[];
     handleModel: (
         event: React.MouseEvent<HTMLElement>,
         newModel: string[]

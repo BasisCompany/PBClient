@@ -18,9 +18,9 @@ import { ProfilePagination } from "../../components/ProfilePagination";
 const notificationsSelectItems = {
     params: ["unread", "read", "all"],
     icons: [
-        <DoneRoundedIcon sx={{ fontSize: "19px" }} />,
-        <DoneAllRoundedIcon sx={{ fontSize: "19px" }} />,
-        <SortRoundedIcon sx={{ fontSize: "19px" }} />,
+        <DoneRoundedIcon key="unread" sx={{ fontSize: "19px" }} />,
+        <DoneAllRoundedIcon key="read" sx={{ fontSize: "19px" }} />,
+        <SortRoundedIcon key="all" sx={{ fontSize: "19px" }} />,
     ],
     labels: ["Непрочитанные", "Прочитанные", "Все уведомления"],
 };

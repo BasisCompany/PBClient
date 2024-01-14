@@ -83,7 +83,7 @@ export const NotificationMessage: FC<NotificationMessageProps> = ({
                 >
                     {notification.senderUser.username}
                 </Typography>{" "}
-                оставил(а) комментарий: "Круто"
+                оставил(а) комментарий: &quot;Круто&quot;
             </Typography>
         </Box>
     );

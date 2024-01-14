@@ -24,6 +24,7 @@ import { Spacer } from "../../../../UI/Spacer";
 import { useThemeMode } from "../../../../app/Theme/ThemeContext/useThemeMode";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
 import { LinkListItemButton } from "../../../../UI/Links/LinkListItemButton";
+import { EThemeMode } from "../../../../app/Theme/enums/themeMode.enum";
 
 interface AccountMenuProps {
     isOpen: boolean;
@@ -199,13 +200,13 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                 )}
                 <ListItemButton onClick={toggleThemeMode}>
                     <ListItemIcon>
-                        {mode === "light" ? (
+                        {mode === EThemeMode.light ? (
                             <DarkModeRoundedIcon />
                         ) : (
                             <LightModeRoundedIcon />
                         )}
                     </ListItemIcon>
-                    {mode === "light" ? "Тёмная тема" : "Светлая тема"}
+                    {mode === EThemeMode.light ? "Тёмная тема" : "Светлая тема"}
                 </ListItemButton>
                 <LinkListItemButton to="/faq" onClick={onClose}>
                     <ListItemIcon>

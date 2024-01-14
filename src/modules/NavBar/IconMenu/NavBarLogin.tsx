@@ -4,13 +4,16 @@ import { Tooltip, IconButton } from "@mui/material";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import { useThemeMode } from "../../../app/Theme/ThemeContext/useThemeMode";
+import { EThemeMode } from "../../../app/Theme/enums/themeMode.enum";
 
 export const NavBarLogin = () => {
     const { mode, toggleThemeMode } = useThemeMode();
     return (
         <>
             <Tooltip
-                title={mode === "light" ? "Тёмная тема" : "Светлая тема"}
+                title={
+                    mode === EThemeMode.light ? "Тёмная тема" : "Светлая тема"
+                }
                 disableInteractive
             >
                 <IconButton
@@ -18,7 +21,7 @@ export const NavBarLogin = () => {
                     color="inherit"
                     onClick={toggleThemeMode}
                 >
-                    {mode === "light" ? (
+                    {mode === EThemeMode.light ? (
                         <DarkModeRoundedIcon fontSize="small" />
                     ) : (
                         <LightModeRoundedIcon />

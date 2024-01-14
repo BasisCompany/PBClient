@@ -43,7 +43,7 @@ export const CommentRating: FC<CommentRatingProps> = ({
             }
         } catch (error) {
             showAlert("error", getErrorMessage(error as ApiError));
-            console.log(error);
+            console.error(error);
         }
     };
 

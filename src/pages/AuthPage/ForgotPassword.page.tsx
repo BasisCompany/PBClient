@@ -43,7 +43,7 @@ export const ForgotPasswordPage = () => {
             //TODO: Карточка с значком успешно
         } catch (error) {
             showAlert("error", "Произошла ошибка! Повторите попытку позже");
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -132,7 +132,7 @@ export const ForgotPasswordPage = () => {
                             error={!!errors.email}
                             helperText={
                                 errors.email
-                                    ? errors?.email?.message || ""
+                                    ? errors?.email?.message ?? ""
                                     : "Ваша почта"
                             }
                         />

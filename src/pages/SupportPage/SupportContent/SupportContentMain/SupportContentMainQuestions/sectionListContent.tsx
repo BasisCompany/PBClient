@@ -1,9 +1,10 @@
-type SectionListContent = {
-    [key: string]: {
+type SectionListContent = Record<
+    string,
+    {
         question: string;
         answer: string;
-    }[];
-};
+    }[]
+>;
 
 export const sectionListContent: SectionListContent = {
     general: [

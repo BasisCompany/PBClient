@@ -1,13 +1,14 @@
 import { Box, Typography, Chip } from "@mui/material";
 
 import FaceIcon from "@mui/icons-material/Face";
+import { FC } from "react";
 
 export interface HeaderAboutProps {
     name: string;
     status: string;
 }
 
-export const HeaderAbout: React.FC<HeaderAboutProps> = ({ name, status }) => {
+export const HeaderAbout: FC<HeaderAboutProps> = ({ name, status }) => {
     return (
         <Box
             sx={{

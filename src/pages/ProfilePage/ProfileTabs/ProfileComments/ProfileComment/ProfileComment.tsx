@@ -2,7 +2,6 @@ import { FC, useReducer, useState } from "react";
 import { Box, styled, IconButton } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { FlexBox } from "../../../../../UI/FlexBox";
-import { CommentReportDialog } from "./CommentReportDialog";
 import { Comment } from "../../../../../types/comments.type";
 import { useSnackbar } from "../../../../../UI/Snackbar/useSnackbar";
 import {
@@ -10,13 +9,14 @@ import {
     ApiError,
 } from "../../../../../modules/Error/apiError";
 import { useDeleteCommentMutation } from "../store/profileCommentsApi";
+import { usePopperMenu } from "../../../../../hooks/usePopperMenu";
+import { CommentReportDialog } from "./CommentReportDialog";
 import { CommentAuthor } from "./CommentAuthor";
 import { CommentMessage } from "./CommentMessage";
 import { CommentTimestamp } from "./CommentTimestamp";
 import { CommentActions } from "./CommentActions";
 import { CommentPopperMenu } from "./CommentPopperMenu";
 import { CommentReply } from "./CommentReply/CommentReply";
-import { usePopperMenu } from "../../../../../hooks/usePopperMenu";
 
 const CommentBox = styled(Box)(({ theme }) => ({
     padding: "10px",
@@ -49,7 +49,7 @@ export const ProfileComment: FC<ProfileCommentProps> = ({ comment }) => {
             showAlert("success", "Комментарий удален");
         } catch (error) {
             showAlert("error", getErrorMessage(error as ApiError));
-            console.log(error);
+            console.error(error);
         }
     };
 

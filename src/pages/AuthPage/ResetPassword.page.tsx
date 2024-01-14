@@ -41,14 +41,14 @@ export const ResetPasswordPage = () => {
     const onSubmit: SubmitHandler<ResetPasswordSchema> = async (data) => {
         try {
             await resetPassword({
-                resetPasswordToken: resetToken || "",
+                resetPasswordToken: resetToken ?? "",
                 password: data.password,
             }).unwrap();
             reset();
             //TODO: Карточка с значком успешно
         } catch (error) {
             showAlert("error", "Произошла ошибка! Повторите попытку позже");
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -129,7 +129,7 @@ export const ResetPasswordPage = () => {
                             error={!!errors.password}
                             helperText={
                                 errors.password
-                                    ? errors?.password?.message || ""
+                                    ? errors?.password?.message ?? ""
                                     : "Укажите новый пароль"
                             }
                         />
@@ -139,7 +139,7 @@ export const ResetPasswordPage = () => {
                             error={!!errors.passwordConfirm}
                             helperText={
                                 errors.passwordConfirm
-                                    ? errors?.passwordConfirm?.message || ""
+                                    ? errors?.passwordConfirm?.message ?? ""
                                     : "Подтвердите новый пароль"
                             }
                         />

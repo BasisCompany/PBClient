@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { FC } from "react";
 import { SvgIcon, SvgIconProps } from "@mui/material";
 

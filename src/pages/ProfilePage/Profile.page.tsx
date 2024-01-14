@@ -8,7 +8,7 @@ import { ProfileTabs } from "./ProfileTabs/ProfileTabs";
 export const ProfilePage = () => {
     const { id } = useParams();
 
-    const { data, isLoading } = useUserAboutQuery(id as string);
+    const { data, isLoading } = useUserAboutQuery(id!);
 
     //TODO: Загрузка & 404 Профиль
     if (isLoading) {

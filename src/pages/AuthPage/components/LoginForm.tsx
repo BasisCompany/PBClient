@@ -52,7 +52,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
             reset();
         } catch (error) {
             showAlert("error", getErrorMessage(error as ApiError));
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -146,7 +146,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                         error={!!errors.email}
                         helperText={
                             errors.email
-                                ? errors?.email?.message || ""
+                                ? errors?.email?.message ?? ""
                                 : "Ваша почта"
                         }
                     />
@@ -156,7 +156,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                         error={!!errors.password}
                         helperText={
                             errors.password
-                                ? errors?.password?.message || ""
+                                ? errors?.password?.message ?? ""
                                 : "Ваш пароль"
                         }
                     />

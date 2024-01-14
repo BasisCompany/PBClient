@@ -18,10 +18,9 @@ export const TestPage = () => {
 
     const handleTestQueryButton = async () => {
         try {
-            const result = await getMe().unwrap();
-            console.log(result);
+            await getMe().unwrap();
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
 

@@ -18,9 +18,9 @@ import { FlexBox } from "../../../../UI/FlexBox";
 const commentsSelectItems = {
     params: ["popular", "new", "old"],
     icons: [
-        <LocalFireDepartmentIcon sx={{ fontSize: "19px" }} />,
-        <MarkChatUnreadIcon sx={{ fontSize: "19px" }} />,
-        <MarkChatReadIcon sx={{ fontSize: "19px" }} />,
+        <LocalFireDepartmentIcon key="popular" sx={{ fontSize: "19px" }} />,
+        <MarkChatUnreadIcon key="new" sx={{ fontSize: "19px" }} />,
+        <MarkChatReadIcon key="old" sx={{ fontSize: "19px" }} />,
     ],
     labels: ["Популярные", "Новые", "Старые"],
 };
@@ -37,13 +37,13 @@ export const ProfileComments = () => {
     );
 
     const { data, isLoading } = useGetCommentsQuery({
-        id: id as string,
+        id: id!,
         sort: currentSort,
         page: currentPage,
         take: 5,
     });
 
-    const comments = data?.data || [];
+    const comments = data?.data ?? [];
     const hasComments = comments.length > 0;
 
     return isLoading ? (

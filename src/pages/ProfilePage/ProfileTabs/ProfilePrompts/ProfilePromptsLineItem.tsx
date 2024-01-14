@@ -5,7 +5,7 @@ export interface ContentMainLineItemProps {
     boxModel: (title: string) => void;
     title: string;
     color: string;
-    model: Array<string>;
+    model: string[];
     count: number;
     totalCount: number;
     border: string;
