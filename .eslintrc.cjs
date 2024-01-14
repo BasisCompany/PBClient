@@ -1,14 +1,31 @@
-/* eslint-env node */
-
 module.exports = {
-    root: true,
-    env: { browser: true, es2020: true, "cypress/globals": true },
+    env: {
+        browser: true,
+        es2021: true,
+    },
     extends: [
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/recommended-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+        "plugin:import/recommended",
+        "plugin:react/recommended",
         "plugin:react-hooks/recommended",
-        "plugin:cypress/recommended",
+        "plugin:prettier/recommended",
+    ],
+    overrides: [
+        {
+            env: {
+                node: true,
+            },
+            files: [".eslintrc.{js,cjs}"],
+            parserOptions: {
+                sourceType: "script",
+            },
+        },
+        {
+            extends: ["plugin:@typescript-eslint/disable-type-checked"],
+            files: ["./**/*.cjs"],
+        },
     ],
     parser: "@typescript-eslint/parser",
     parserOptions: {
@@ -17,18 +34,37 @@ module.exports = {
         project: true,
         tsconfigRootDir: __dirname,
     },
-    plugins: ["react-refresh", "cypress"],
+    settings: {
+        react: {
+            version: "detect",
+        },
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"],
+        },
+        "import/resolver": {
+            typescript: {
+                alwaysTryTypes: true,
+            },
+        },
+    },
+    plugins: ["@typescript-eslint", "react"],
     rules: {
-        "react-refresh/only-export-components": [
-            "warn",
-            { allowConstantExport: true },
+        "no-console": ["warn", { allow: ["warn", "error"] }],
+        "prefer-const": "warn",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "react/display-name": "off",
+        "import/order": [
+            "error",
+            {
+                groups: ["builtin", "external", "parent", "sibling", "index"],
+            },
         ],
-        "@typescript-eslint/no-non-null-assertion": "off",
-        "cypress/no-assigning-return-values": "error",
-        "cypress/no-unnecessary-waiting": "error",
-        "cypress/assertion-before-screenshot": "warn",
-        "cypress/no-force": "warn",
-        "cypress/no-async-tests": "error",
-        "cypress/no-pause": "error",
+        "prettier/prettier": [
+            "warn",
+            {
+                endOfLine: "auto",
+            },
+        ],
     },
 };
