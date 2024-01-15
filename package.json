@@ -14,7 +14,7 @@
     "husky:prepare": "husky install"
   },
   "lint-staged": {
-    "*.ts|tsx": [
+    "src/**/*.{ts,tsx}": [
       "npm run lint:fix"
     ]
   },
