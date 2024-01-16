@@ -5,6 +5,7 @@ import {
     ListItemText,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useAuth } from "../../hooks/useAuth";
 import { sideBarItems } from "./sideBarItems";
 import { SideBarItem } from "./SideBarItem";
 
@@ -27,10 +28,19 @@ const SideBarItemMinIcon = styled(ListItemIcon)({
 });
 
 export const SideBarListMin = () => {
+    const { user } = useAuth();
+
     return (
         <List>
             {sideBarItems.map((item) => (
-                <SideBarItem key={item.title} to={item.to}>
+                <SideBarItem
+                    key={item.title}
+                    to={
+                        item.title === "Профиль"
+                            ? `${item.to}${user!.id}`
+                            : item.to
+                    }
+                >
                     <SideBarItemMinButton>
                         <SideBarItemMinIcon>{item.icon}</SideBarItemMinIcon>
                         <ListItemText secondary={item.title} />
