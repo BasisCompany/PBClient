@@ -1,10 +1,10 @@
+import { FC } from "react";
 import { Box, BoxProps, IconButton, Tooltip, styled } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import { FC } from "react";
 import { Spacer } from "../../../../../UI/Spacer";
 import { Notification } from "../../../../../types/notifications.type";
 import { FlexBox } from "../../../../../UI/FlexBox";
-import { NotificationMessage } from "./NotificationMessage";
+import { NotificationContent } from "./NotificationContent";
 
 interface NotificationBoxProps extends BoxProps {
     isUnread: boolean;
@@ -61,7 +61,7 @@ export const ProfileNotification: FC<ProfileNotificationProps> = ({
                     src="https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg"
                     alt="Prompt"
                 />
-                <NotificationMessage notification={notification} />
+                <NotificationContent notification={notification} />
             </FlexBox>
             <Spacer />
             {isUnread && (
