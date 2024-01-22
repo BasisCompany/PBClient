@@ -49,6 +49,7 @@ module.exports = {
     },
     plugins: ["@typescript-eslint", "react"],
     rules: {
+        "@typescript-eslint/no-misused-promises": "off",
         "no-console": ["warn", { allow: ["warn", "error"] }],
         "prefer-const": "warn",
         "react/react-in-jsx-scope": "off",
