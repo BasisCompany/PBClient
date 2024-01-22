@@ -11,28 +11,26 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { FlexBox } from "../../../UI/FlexBox";
 import { useMobileDevice } from "../../../hooks/useMobileDevice";
+import { useCountUnreadNotificationsQuery } from "../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/store/profileNotificationsApi";
 import { AccountPopper } from "./Poppers/AccountPopper";
-import { NotificationsPopper } from "./Poppers/NotificationsPopper";
-import {
-    NavPoppers,
-    closePopper,
-    openAccount,
-    openNotifications,
-    usePoppers,
-} from "./usePoppers";
+import { NotificationsPopper } from "./Poppers/NotificationsPopper/NotificationsPopper";
+import { useNavbarPoppers, NavBarPoppers } from "./useNavbarPoppers";
 
 export const NavBarMenu = () => {
     const isMobile = useMobileDevice();
-    const { poppers, dispatchPopper, isPopperOpen } = usePoppers();
+    const { popper, closePopper, openPopper, isPopperOpen } =
+        useNavbarPoppers();
 
-    const handleClose = () => {
-        dispatchPopper(closePopper());
-    };
+    const { data } = useCountUnreadNotificationsQuery(undefined, {
+        pollingInterval: 10000,
+    });
+
+    const notificationsCount = data?.count ?? null;
 
     return (
         <ClickAwayListener
-            onClickAway={handleClose}
-            mouseEvent={poppers.currPopper !== null ? "onClick" : false}
+            onClickAway={closePopper}
+            mouseEvent={popper.current !== null ? "onClick" : false}
         >
             <FlexBox>
                 {!isMobile && (
@@ -53,22 +51,30 @@ export const NavBarMenu = () => {
                             title="Уведомления"
                             disableInteractive
                             onClick={(event: MouseEvent<HTMLElement>) =>
-                                dispatchPopper(
-                                    openNotifications(event.currentTarget)
+                                openPopper(
+                                    NavBarPoppers.Notifications,
+                                    event.currentTarget
                                 )
                             }
                         >
                             <IconButton size="large" color="inherit">
-                                <Badge badgeContent={4} color="secondary">
+                                <Badge
+                                    badgeContent={notificationsCount}
+                                    color="secondary"
+                                >
                                     <NotificationsIcon />
                                 </Badge>
                             </IconButton>
                         </Tooltip>
-                        <NotificationsPopper
-                            isOpen={isPopperOpen(NavPoppers.notifications)}
-                            anchorEl={poppers.anchorPopper}
-                            handleClose={handleClose}
-                        />
+                        {isPopperOpen(NavBarPoppers.Notifications) && (
+                            <NotificationsPopper
+                                isOpen={isPopperOpen(
+                                    NavBarPoppers.Notifications
+                                )}
+                                anchorEl={popper.anchor}
+                                handleClose={closePopper}
+                            />
+                        )}
                     </>
                 )}
                 <Tooltip title="Профиль" disableInteractive>
@@ -76,7 +82,10 @@ export const NavBarMenu = () => {
                         size="small"
                         color="inherit"
                         onClick={(event: MouseEvent<HTMLElement>) =>
-                            dispatchPopper(openAccount(event.currentTarget))
+                            openPopper(
+                                NavBarPoppers.Account,
+                                event.currentTarget
+                            )
                         }
                     >
                         <Avatar
@@ -86,9 +95,9 @@ export const NavBarMenu = () => {
                     </IconButton>
                 </Tooltip>
                 <AccountPopper
-                    isOpen={isPopperOpen(NavPoppers.account)}
-                    anchorEl={poppers.anchorPopper}
-                    onClose={handleClose}
+                    isOpen={isPopperOpen(NavBarPoppers.Account)}
+                    anchorEl={popper.anchor}
+                    onClose={closePopper}
                 />
             </FlexBox>
         </ClickAwayListener>

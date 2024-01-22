@@ -5,8 +5,8 @@ import { useAuth } from "../../hooks/useAuth";
 import { NavBarLogo } from "./NavBarLogo";
 import { NavBarSearch } from "./NavBarSearch";
 import { SideBarButton } from "./SideBarButton";
-import { NavBarLogin } from "./IconMenu/NavBarLogin";
-import { NavBarMenu } from "./IconMenu/NavBarMenu";
+import { NavBarLogin } from "./NavBarLogin";
+import { NavBarMenu } from "./NavBarMenu/NavBarMenu";
 
 const CustomAppBar = styled(AppBar)(({ theme }) => ({
     zIndex: theme.zIndex.drawer + 1,
