@@ -5,7 +5,7 @@ import {
     Notification,
 } from "../../../../../types/notifications.type";
 
-function getNotificationMessage(notification: Notification) {
+export function getNotificationMessage(notification: Notification) {
     const comment = "Круто"; // TODO: Сделать
 
     switch (notification.activityType) {
@@ -38,7 +38,7 @@ export const NotificationMessage: FC<NotificationMessageProps> = ({
                 overflow: "hidden",
             }}
         >
-            Пользователь{" "}
+            id:{notification.id} Пользователь{" "}
             <Typography
                 component="span"
                 color={(theme) => theme.palette.text.primary}

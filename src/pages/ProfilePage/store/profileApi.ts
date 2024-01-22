@@ -6,7 +6,7 @@ import { URL_ROOT } from "../../../consts/api";
 export const profileApi = createApi({
     reducerPath: "profileApi",
     baseQuery: baseQueryWithReAuth,
-    tagTypes: ["Comment"],
+    tagTypes: ["Comment", "Notification"],
     endpoints: (builder) => ({
         userAbout: builder.query<UserAbout, string>({
             query: (id) => `user/about/${id}`,

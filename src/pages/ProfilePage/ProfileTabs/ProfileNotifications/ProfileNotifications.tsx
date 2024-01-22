@@ -45,6 +45,12 @@ export const ProfileNotifications = () => {
     const notifications = data?.data ?? [];
     const hasNotifications = notifications.length > 0;
 
+    //TODO: Test
+    if (!isLoading && !hasNotifications && currentPage !== 1) {
+        searchParams.set("page", "1");
+    }
+
+    //TODO: Notifications Loading & Empty
     return isLoading ? (
         <CommentsLoading />
     ) : (

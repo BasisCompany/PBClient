@@ -4,6 +4,10 @@ export type NotificationsRequest = PageRequest;
 
 export type NotificationsResponse = PageResponse<Notification>;
 
+export interface NotifCount {
+    count: number;
+}
+
 export enum NotifActivityType {
     FRIEND_REQUEST = "FRIEND_REQUEST",
     PROMPT_COMMENT = "PROMPT_COMMENT",

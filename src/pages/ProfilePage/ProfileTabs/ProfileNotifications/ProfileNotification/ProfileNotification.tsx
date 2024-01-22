@@ -4,6 +4,12 @@ import CheckIcon from "@mui/icons-material/Check";
 import { Spacer } from "../../../../../UI/Spacer";
 import { Notification } from "../../../../../types/notifications.type";
 import { FlexBox } from "../../../../../UI/FlexBox";
+import { useReadNotificationMutation } from "../store/profileNotificationsApi";
+import { useSnackbar } from "../../../../../UI/Snackbar/useSnackbar";
+import {
+    getErrorMessage,
+    ApiError,
+} from "../../../../../modules/Error/apiError";
 import { NotificationContent } from "./NotificationContent";
 
 interface NotificationBoxProps extends BoxProps {
@@ -46,6 +52,19 @@ interface ProfileNotificationProps {
 export const ProfileNotification: FC<ProfileNotificationProps> = ({
     notification,
 }) => {
+    const [showAlert] = useSnackbar();
+
+    const [readNotification] = useReadNotificationMutation();
+
+    const handleReadNotification = async () => {
+        try {
+            await readNotification(notification.id).unwrap();
+        } catch (error) {
+            showAlert("error", getErrorMessage(error as ApiError));
+            console.error(error);
+        }
+    };
+
     const isUnread = !notification.isRead;
 
     return (
@@ -72,6 +91,7 @@ export const ProfileNotification: FC<ProfileNotificationProps> = ({
                         placement="left"
                     >
                         <IconButton
+                            onClick={handleReadNotification}
                             sx={{
                                 color: (theme) => theme.palette.text.primary,
                             }}
