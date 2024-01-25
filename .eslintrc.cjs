@@ -50,6 +50,10 @@ module.exports = {
     plugins: ["@typescript-eslint", "react"],
     rules: {
         "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            { argsIgnorePattern: "^_" },
+        ],
         "no-console": ["warn", { allow: ["warn", "error"] }],
         "prefer-const": "warn",
         "react/react-in-jsx-scope": "off",
