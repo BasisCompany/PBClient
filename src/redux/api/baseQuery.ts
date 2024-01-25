@@ -11,17 +11,19 @@ import {
     setInitialState,
     setUserToken,
 } from "../../pages/AuthPage/store/authSlice";
+import { toaster } from "../../modules/Toast";
+import { getErrorMessage, ApiError } from "../../modules/Error/apiError";
 
 export const baseQuery = fetchBaseQuery({
     baseUrl: URL_ROOT,
 });
 
-export const baseQueryWithCredentials = fetchBaseQuery({
+const baseQueryWithCredentials = fetchBaseQuery({
     baseUrl: URL_ROOT,
     credentials: "include",
 });
 
-export const baseQueryWithAuth = fetchBaseQuery({
+const baseQueryWithAuth = fetchBaseQuery({
     baseUrl: URL_ROOT,
     prepareHeaders: (headers, { getState }) => {
         const token = (getState() as RootState).auth.token;
@@ -38,17 +40,14 @@ export const baseQueryWithReAuth: BaseQueryFn<
     unknown,
     FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-    // wait until the mutex is available without locking it
     await reAuthMutex.waitForUnlock();
 
     let result = await baseQueryWithAuth(args, api, extraOptions);
+
     if (result?.error && result?.error?.status === 401) {
-        // checking whether the mutex is locked
         if (!reAuthMutex.isLocked()) {
             const releaseMutex = await reAuthMutex.acquire();
-
             try {
-                // try to get a new token
                 const refreshResult = await baseQueryWithCredentials(
                     "auth/refresh-token",
                     api,
@@ -59,20 +58,45 @@ export const baseQueryWithReAuth: BaseQueryFn<
                         token: string;
                     };
                     api.dispatch(setUserToken(refreshData.token));
-                    // retry the initial query
                     result = await baseQueryWithAuth(args, api, extraOptions);
                 } else {
                     api.dispatch(setInitialState());
                 }
             } finally {
-                // release must be called once the mutex should be released again.
                 releaseMutex();
             }
         } else {
-            // wait until the mutex is available without locking it
             await reAuthMutex.waitForUnlock();
             result = await baseQueryWithAuth(args, api, extraOptions);
         }
     }
+    return result;
+};
+
+export const baseQueryWithToastErrors: BaseQueryFn<
+    string | FetchArgs,
+    unknown,
+    FetchBaseQueryError
+> = async (args, api, extraOptions) => {
+    const result = await baseQuery(args, api, extraOptions);
+    if (result?.error) {
+        console.error("baseQuery", result.error);
+        toaster.error(getErrorMessage(result.error as ApiError));
+    }
+
+    return result;
+};
+
+export const baseQueryWithReAuthToastErrors: BaseQueryFn<
+    string | FetchArgs,
+    unknown,
+    FetchBaseQueryError
+> = async (args, api, extraOptions) => {
+    const result = await baseQueryWithReAuth(args, api, extraOptions);
+    if (result?.error) {
+        console.error("baseQueryWithReAuthToasts", result.error);
+        toaster.error(getErrorMessage(result.error as ApiError));
+    }
+
     return result;
 };

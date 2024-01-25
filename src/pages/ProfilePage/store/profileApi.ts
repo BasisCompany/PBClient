@@ -1,11 +1,11 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQueryWithReAuth } from "../../../redux/api/baseQuery";
+import { baseQueryWithReAuthToastErrors } from "../../../redux/api/baseQuery";
 import { UserAbout } from "../../../types/user.type";
 import { URL_ROOT } from "../../../consts/api";
 
 export const profileApi = createApi({
     reducerPath: "profileApi",
-    baseQuery: baseQueryWithReAuth,
+    baseQuery: baseQueryWithReAuthToastErrors,
     tagTypes: ["Comment", "Notification"],
     endpoints: (builder) => ({
         userAbout: builder.query<UserAbout, string>({

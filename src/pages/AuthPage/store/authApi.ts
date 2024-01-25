@@ -2,7 +2,10 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { LoginSchema } from "../components/LoginForm";
 import { RegisterSchema } from "../components/RegisterForm";
 import { ResetPasswordSchema } from "../ResetPassword.page";
-import { baseQuery, baseQueryWithReAuth } from "./../../../redux/api/baseQuery";
+import {
+    baseQueryWithReAuth,
+    baseQueryWithToastErrors,
+} from "./../../../redux/api/baseQuery";
 
 interface LoginResponse {
     id: number;
@@ -22,7 +25,7 @@ type ResetPasswordRequest = {
 
 export const authApi = createApi({
     reducerPath: "authApi",
-    baseQuery: baseQuery,
+    baseQuery: baseQueryWithToastErrors,
     endpoints: (builder) => ({
         login: builder.mutation<LoginResponse, LoginRequest>({
             query: (body) => ({
