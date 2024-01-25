@@ -2,17 +2,13 @@ import { FC, useState } from "react";
 import { Box, IconButton, Typography, styled } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { FlexBox } from "../../../../../../UI/FlexBox";
-import { useSnackbar } from "../../../../../../UI/Snackbar/useSnackbar";
-import {
-    ApiError,
-    getErrorMessage,
-} from "../../../../../../modules/Error/apiError";
 import { Reply, Comment } from "../../../../../../types/comments.type";
 import { useDeleteReplyMutation } from "../../store/profileCommentsApi";
 import { CommentPopperMenu } from "../CommentPopperMenu";
 import { CommentRating } from "../CommentRating";
 import { CommentReportDialog } from "../CommentReportDialog";
 import { usePopperMenu } from "../../../../../../hooks/usePopperMenu";
+import { toaster } from "../../../../../../modules/Toast";
 import { ReplyAuthor } from "./ReplyAuthor";
 
 const ReplyBox = styled(Box)(({ theme }) => ({
@@ -27,8 +23,6 @@ interface ReplyMessageProps {
 }
 
 export const ReplyMessage: FC<ReplyMessageProps> = ({ reply }) => {
-    const [showAlert] = useSnackbar();
-
     const [deleteReply] = useDeleteReplyMutation();
 
     const { menuAnchor, handleOpenMenu, handleCloseMenu } = usePopperMenu();
@@ -39,13 +33,9 @@ export const ReplyMessage: FC<ReplyMessageProps> = ({ reply }) => {
     };
 
     const handleDeleteReply = async () => {
-        try {
-            await deleteReply(reply.id).unwrap();
-            showAlert("success", "Ответ удален");
-        } catch (error) {
-            showAlert("error", getErrorMessage(error as ApiError));
-            console.error(error);
-        }
+        await deleteReply(reply.id)
+            .unwrap()
+            .then(() => toaster.success("Ответ удален"));
     };
 
     return (

@@ -3,13 +3,9 @@ import { Box, styled, IconButton } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { FlexBox } from "../../../../../UI/FlexBox";
 import { Comment } from "../../../../../types/comments.type";
-import { useSnackbar } from "../../../../../UI/Snackbar/useSnackbar";
-import {
-    getErrorMessage,
-    ApiError,
-} from "../../../../../modules/Error/apiError";
 import { useDeleteCommentMutation } from "../store/profileCommentsApi";
 import { usePopperMenu } from "../../../../../hooks/usePopperMenu";
+import { toaster } from "../../../../../modules/Toast";
 import { CommentReportDialog } from "./CommentReportDialog";
 import { CommentAuthor } from "./CommentAuthor";
 import { CommentMessage } from "./CommentMessage";
@@ -31,8 +27,6 @@ interface ProfileCommentProps {
 }
 
 export const ProfileComment: FC<ProfileCommentProps> = ({ comment }) => {
-    const [showAlert] = useSnackbar();
-
     const [deleteComment] = useDeleteCommentMutation();
 
     const { menuAnchor, handleOpenMenu, handleCloseMenu } = usePopperMenu();
@@ -44,13 +38,9 @@ export const ProfileComment: FC<ProfileCommentProps> = ({ comment }) => {
     };
 
     const handleDeleteComment = async () => {
-        try {
-            await deleteComment(comment.id).unwrap();
-            showAlert("success", "Комментарий удален");
-        } catch (error) {
-            showAlert("error", getErrorMessage(error as ApiError));
-            console.error(error);
-        }
+        await deleteComment(comment.id)
+            .unwrap()
+            .then(() => toaster.success("Комментарий удален"));
     };
 
     return (

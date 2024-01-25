@@ -7,8 +7,6 @@ import { Notification } from "../../../../../types/notifications.type";
 import { NotificationMessage } from "../../../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotification/NotificationMessage";
 import { FlexBox } from "../../../../../UI/FlexBox";
 import { useReadNotificationMutation } from "../../../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/store/profileNotificationsApi";
-import { getErrorMessage, ApiError } from "../../../../Error/apiError";
-import { useSnackbar } from "../../../../../UI/Snackbar/useSnackbar";
 
 interface NavbarNotificationProps {
     notification: Notification;
@@ -17,7 +15,6 @@ interface NavbarNotificationProps {
 export const NavbarNotification: FC<NavbarNotificationProps> = ({
     notification,
 }) => {
-    const [showAlert] = useSnackbar();
     const [showCheckArrows, setShowCheckArrows] = useState(false);
 
     const handleMouseOver = () => {
@@ -31,12 +28,7 @@ export const NavbarNotification: FC<NavbarNotificationProps> = ({
     const [readNotification] = useReadNotificationMutation();
 
     const handleReadNotification = async () => {
-        try {
-            await readNotification(notification.id).unwrap();
-        } catch (error) {
-            showAlert("error", getErrorMessage(error as ApiError));
-            console.error(error);
-        }
+        await readNotification(notification.id);
     };
 
     const promptName = "Asian Art T-shirt Designs";

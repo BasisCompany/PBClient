@@ -16,10 +16,8 @@ import { SmartCaptcha } from "@yandex/smart-captcha";
 import { object, string, ref, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterMutation } from "../store/authApi";
-import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
-import { getErrorMessage, ApiError } from "../../../modules/Error/apiError";
-
 import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
+import { toaster } from "../../../modules/Toast";
 import { PasswordTextField } from "./PasswordTextField";
 import { MyTextField } from "./MyTextField";
 
@@ -48,7 +46,6 @@ const registerSchema = object({
 export type RegisterSchema = InferType<typeof registerSchema>;
 
 export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
-    const [showAlert] = useSnackbar();
     const {
         register,
         handleSubmit,
@@ -64,18 +61,15 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
     const onSubmit: SubmitHandler<RegisterSchema> = async (data) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { passwordConfirm, ...dataReq } = data;
-        try {
-            await registerMut(dataReq).unwrap();
-            showAlert(
-                "success",
-                `Письмо с подтверждением отправлено на почту: ${dataReq.email}`
-            );
-            toggleLogin();
-            reset();
-        } catch (error) {
-            showAlert("error", getErrorMessage(error as ApiError));
-            console.error(error);
-        }
+        await registerMut(dataReq)
+            .unwrap()
+            .then(() => {
+                toaster.success(
+                    `Письмо с подтверждением отправлено на почту: ${dataReq.email}`
+                );
+                toggleLogin();
+                reset();
+            });
     };
 
     return (

@@ -3,8 +3,6 @@ import { Box, Tooltip, IconButton } from "@mui/material";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { ProfileSelect } from "../../components/ProfileSelect";
-import { getErrorMessage, ApiError } from "../../../../modules/Error/apiError";
-import { useSnackbar } from "../../../../UI/Snackbar/useSnackbar";
 import { useReadAllNotificationsMutation } from "./store/profileNotificationsApi";
 
 interface NotificationsToolbarProps {
@@ -18,17 +16,10 @@ interface NotificationsToolbarProps {
 export const NotificationsToolbar: FC<NotificationsToolbarProps> = ({
     selectItems,
 }) => {
-    const [showAlert] = useSnackbar();
-
     const [readAllNotifications] = useReadAllNotificationsMutation();
 
     const handleReadAllNotifications = async () => {
-        try {
-            await readAllNotifications().unwrap();
-        } catch (error) {
-            showAlert("error", getErrorMessage(error as ApiError));
-            console.error(error);
-        }
+        await readAllNotifications();
     };
 
     return (

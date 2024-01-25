@@ -4,12 +4,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { object, string, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FC } from "react";
-import { useSnackbar } from "../../../../../../UI/Snackbar/useSnackbar";
-import {
-    getErrorMessage,
-    ApiError,
-} from "../../../../../../modules/Error/apiError";
 import { useAddReplyMutation } from "../../store/profileCommentsApi";
+import { toaster } from "../../../../../../modules/Toast";
 
 const replySchema = object({
     message: string()
@@ -23,8 +19,6 @@ interface ReplyInputProps {
 }
 
 export const ReplyInput: FC<ReplyInputProps> = ({ commentId }) => {
-    const [showAlert] = useSnackbar();
-
     const {
         register,
         handleSubmit,
@@ -36,7 +30,7 @@ export const ReplyInput: FC<ReplyInputProps> = ({ commentId }) => {
     });
 
     if (errors?.message?.message) {
-        showAlert("error", errors?.message?.message);
+        toaster.error(errors?.message?.message);
     }
 
     const [addReply, { isLoading }] = useAddReplyMutation();
@@ -46,13 +40,9 @@ export const ReplyInput: FC<ReplyInputProps> = ({ commentId }) => {
             commentId,
             message: data.message,
         };
-        try {
-            await addReply(body).unwrap();
-            reset();
-        } catch (error) {
-            showAlert("error", getErrorMessage(error as ApiError));
-            console.error(error);
-        }
+        await addReply(body)
+            .unwrap()
+            .then(() => reset);
     };
 
     return (

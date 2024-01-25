@@ -5,10 +5,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { SmartCaptcha } from "@yandex/smart-captcha";
 import { object, string, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSnackbar } from "../../../UI/Snackbar/useSnackbar";
 import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
 import { useLoginMutation } from "../store/authApi";
-import { ApiError, getErrorMessage } from "../../../modules/Error/apiError";
 import { LinkBehavior } from "../../../UI/Route/LinkBehavior";
 import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton";
 import { PasswordTextField } from "./PasswordTextField";
@@ -32,8 +30,6 @@ const loginSchema = object({
 export type LoginSchema = InferType<typeof loginSchema>;
 
 export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
-    const [showAlert] = useSnackbar();
-
     const {
         register,
         handleSubmit,
@@ -47,13 +43,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
     const [login, { isLoading }] = useLoginMutation();
 
     const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
-        try {
-            await login(data).unwrap();
-            reset();
-        } catch (error) {
-            showAlert("error", getErrorMessage(error as ApiError));
-            console.error(error);
-        }
+        await login(data).unwrap().then(reset);
     };
 
     return (

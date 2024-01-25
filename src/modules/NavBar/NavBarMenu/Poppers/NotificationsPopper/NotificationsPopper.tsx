@@ -19,8 +19,6 @@ import {
 } from "../../../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/store/profileNotificationsApi";
 import { CommentsEmpty } from "../../../../../pages/ProfilePage/ProfileTabs/ProfileComments/CommentsEmpty";
 import { FlexBox } from "../../../../../UI/FlexBox";
-import { useSnackbar } from "../../../../../UI/Snackbar/useSnackbar";
-import { getErrorMessage, ApiError } from "../../../../Error/apiError";
 import { NavbarNotification } from "./NavbarNotification";
 
 interface NotificationsPopperProps {
@@ -41,8 +39,6 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
     anchorEl,
     handleClose,
 }) => {
-    const [showAlert] = useSnackbar();
-
     const { data, isLoading } = useGetNotificationsQuery({
         sort: "unread",
         page: 1,
@@ -50,15 +46,6 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
     });
 
     const [readAllNotifications] = useReadAllNotificationsMutation();
-
-    const handleReadAllNotifications = async () => {
-        try {
-            await readAllNotifications().unwrap();
-        } catch (error) {
-            showAlert("error", getErrorMessage(error as ApiError));
-            console.error(error);
-        }
-    };
 
     const notifications = data?.data ?? [];
     const totalNotifications = data?.meta.totalItems;
@@ -122,7 +109,7 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                             color="secondary"
                         />
                     </LinkButton>
-                    <IconButton onClick={handleReadAllNotifications}>
+                    <IconButton onClick={readAllNotifications}>
                         <DoneAllIcon />
                     </IconButton>
                 </Box>

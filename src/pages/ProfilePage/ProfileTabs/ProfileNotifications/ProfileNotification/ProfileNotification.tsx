@@ -5,11 +5,6 @@ import { Spacer } from "../../../../../UI/Spacer";
 import { Notification } from "../../../../../types/notifications.type";
 import { FlexBox } from "../../../../../UI/FlexBox";
 import { useReadNotificationMutation } from "../store/profileNotificationsApi";
-import { useSnackbar } from "../../../../../UI/Snackbar/useSnackbar";
-import {
-    getErrorMessage,
-    ApiError,
-} from "../../../../../modules/Error/apiError";
 import { NotificationContent } from "./NotificationContent";
 
 interface NotificationBoxProps extends BoxProps {
@@ -17,7 +12,6 @@ interface NotificationBoxProps extends BoxProps {
 }
 
 const NotificationBox = styled(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ({ isUnread: _, ...props }: NotificationBoxProps) => <Box {...props} />
 )(({ theme, isUnread }) => ({
     display: "flex",
@@ -52,17 +46,10 @@ interface ProfileNotificationProps {
 export const ProfileNotification: FC<ProfileNotificationProps> = ({
     notification,
 }) => {
-    const [showAlert] = useSnackbar();
-
     const [readNotification] = useReadNotificationMutation();
 
     const handleReadNotification = async () => {
-        try {
-            await readNotification(notification.id).unwrap();
-        } catch (error) {
-            showAlert("error", getErrorMessage(error as ApiError));
-            console.error(error);
-        }
+        await readNotification(notification.id);
     };
 
     const isUnread = !notification.isRead;
