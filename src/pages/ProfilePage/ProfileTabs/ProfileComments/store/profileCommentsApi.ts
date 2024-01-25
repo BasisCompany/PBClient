@@ -58,7 +58,6 @@ const profileCommentsApi = profileApi.injectEndpoints({
             invalidatesTags: ["Comment"],
         }),
         addLike: build.mutation<void, AddLikeRequest>({
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             query: ({ isReply: _, ...body }) => ({
                 url: "comments/add/like",
                 method: "POST",

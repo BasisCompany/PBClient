@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-
 import navbarReducer from "../modules/NavBar/store/navbarSlice";
 import authReducer from "../pages/AuthPage/store/authSlice";
 import { authApi, initAuthApi } from "../pages/AuthPage/store/authApi";
