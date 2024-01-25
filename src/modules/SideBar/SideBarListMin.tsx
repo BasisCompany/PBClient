@@ -32,21 +32,26 @@ export const SideBarListMin = () => {
 
     return (
         <List>
-            {sideBarItems.map((item) => (
-                <SideBarItem
-                    key={item.title}
-                    to={
-                        item.title === "Профиль"
-                            ? `${item.to}${user!.id}`
-                            : item.to
-                    }
-                >
-                    <SideBarItemMinButton>
-                        <SideBarItemMinIcon>{item.icon}</SideBarItemMinIcon>
-                        <ListItemText secondary={item.title} />
-                    </SideBarItemMinButton>
-                </SideBarItem>
-            ))}
+            {sideBarItems.map((item) => {
+                if (item.title === "Профиль" && !user) {
+                    return null;
+                }
+                return (
+                    <SideBarItem
+                        key={item.title}
+                        to={
+                            item.title === "Профиль"
+                                ? `${item.to}${user!.id}`
+                                : item.to
+                        }
+                    >
+                        <SideBarItemMinButton>
+                            <SideBarItemMinIcon>{item.icon}</SideBarItemMinIcon>
+                            <ListItemText secondary={item.title} />
+                        </SideBarItemMinButton>
+                    </SideBarItem>
+                );
+            })}
         </List>
     );
 };
