@@ -2,7 +2,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import navbarReducer from "../modules/NavBar/store/navbarSlice";
 import authReducer from "../pages/AuthPage/store/authSlice";
 import { authApi, initAuthApi } from "../pages/AuthPage/store/authApi";
-import snackbarReducer from "../UI/Snackbar/snackbarSlice";
 import {
     navbarInitState,
     navbarlistenerMiddleware,
@@ -19,7 +18,6 @@ export const store = configureStore({
         [profileApi.reducerPath]: profileApi.reducer,
         auth: authReducer,
         navbar: navbarReducer,
-        snackbar: snackbarReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat([

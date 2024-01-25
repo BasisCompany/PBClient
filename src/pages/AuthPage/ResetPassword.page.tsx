@@ -5,7 +5,6 @@ import { useParams } from "react-router";
 import { object, string, ref, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CenterBox } from "../../UI/CenterBox";
-import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
 import { PrimaryLoadingButton } from "../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
 import { PasswordTextField } from "./components/PasswordTextField";
 import { useResetPasswordMutation } from "./store/authApi";
@@ -23,7 +22,6 @@ const resetPasswordSchema = object({
 export type ResetPasswordSchema = InferType<typeof resetPasswordSchema>;
 
 export const ResetPasswordPage = () => {
-    const [showAlert] = useSnackbar();
     const { resetToken } = useParams();
 
     const {
@@ -39,17 +37,13 @@ export const ResetPasswordPage = () => {
     const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
     const onSubmit: SubmitHandler<ResetPasswordSchema> = async (data) => {
-        try {
-            await resetPassword({
-                resetPasswordToken: resetToken ?? "",
-                password: data.password,
-            }).unwrap();
-            reset();
-            //TODO: Карточка с значком успешно
-        } catch (error) {
-            showAlert("error", "Произошла ошибка! Повторите попытку позже");
-            console.error(error);
-        }
+        await resetPassword({
+            resetPasswordToken: resetToken ?? "",
+            password: data.password,
+        })
+            .unwrap()
+            .then(() => reset());
+        //TODO: Карточка с значком успешно
     };
 
     return (

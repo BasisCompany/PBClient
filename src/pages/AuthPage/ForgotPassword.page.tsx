@@ -6,7 +6,6 @@ import { object, string, InferType } from "yup";
 import { SmartCaptcha } from "@yandex/smart-captcha";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CenterBox } from "../../UI/CenterBox";
-import { useSnackbar } from "../../UI/Snackbar/useSnackbar";
 import { PrimaryLoadingButton } from "../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
 import { MyTextField } from "./components/MyTextField";
 import { useLazyForgotPasswordQuery } from "./store/authApi";
@@ -21,8 +20,6 @@ const forgotPasswordSchema = object({
 export type ForgotPasswordSchema = InferType<typeof forgotPasswordSchema>;
 
 export const ForgotPasswordPage = () => {
-    const [showAlert] = useSnackbar();
-
     const {
         register,
         handleSubmit,
@@ -36,14 +33,10 @@ export const ForgotPasswordPage = () => {
     const [forgotPassword, { isLoading }] = useLazyForgotPasswordQuery();
 
     const onSubmit: SubmitHandler<ForgotPasswordSchema> = async (data) => {
-        try {
-            await forgotPassword(data.email).unwrap();
-            reset();
-            //TODO: Карточка с значком успешно
-        } catch (error) {
-            showAlert("error", "Произошла ошибка! Повторите попытку позже");
-            console.error(error);
-        }
+        await forgotPassword(data.email)
+            .unwrap()
+            .then(() => reset());
+        //TODO: Карточка с значком успешно
     };
 
     return (
