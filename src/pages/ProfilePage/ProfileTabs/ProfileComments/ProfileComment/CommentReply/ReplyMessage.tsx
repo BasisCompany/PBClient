@@ -8,7 +8,7 @@ import { CommentPopperMenu } from "../CommentPopperMenu";
 import { CommentRating } from "../CommentRating";
 import { CommentReportDialog } from "../CommentReportDialog";
 import { usePopperMenu } from "../../../../../../hooks/usePopperMenu";
-import { toaster } from "../../../../../../modules/Toast";
+import { toaster } from "../../../../../../lib/Toast";
 import { ReplyAuthor } from "./ReplyAuthor";
 
 const ReplyBox = styled(Box)(({ theme }) => ({

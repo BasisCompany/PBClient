@@ -11,8 +11,8 @@ import {
     setInitialState,
     setUserToken,
 } from "../../pages/AuthPage/store/authSlice";
-import { toaster } from "../../modules/Toast";
-import { getErrorMessage, ApiError } from "../../modules/Error/apiError";
+import { toaster } from "../../lib/Toast";
+import { getUserErrorMessage, ApiError } from "../../lib/Error/api";
 
 export const baseQuery = fetchBaseQuery({
     baseUrl: URL_ROOT,
@@ -80,8 +80,7 @@ export const baseQueryWithToastErrors: BaseQueryFn<
 > = async (args, api, extraOptions) => {
     const result = await baseQuery(args, api, extraOptions);
     if (result?.error) {
-        console.error("baseQuery", result.error);
-        toaster.error(getErrorMessage(result.error as ApiError));
+        toaster.error(getUserErrorMessage(result.error as ApiError));
     }
 
     return result;
@@ -94,8 +93,7 @@ export const baseQueryWithReAuthToastErrors: BaseQueryFn<
 > = async (args, api, extraOptions) => {
     const result = await baseQueryWithReAuth(args, api, extraOptions);
     if (result?.error) {
-        console.error("baseQueryWithReAuthToasts", result.error);
-        toaster.error(getErrorMessage(result.error as ApiError));
+        toaster.error(getUserErrorMessage(result.error as ApiError));
     }
 
     return result;

@@ -15,8 +15,8 @@ import ReportIcon from "@mui/icons-material/Report";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAuth } from "../../../../../hooks/useAuth";
 import { Comment } from "../../../../../types/comments.type";
-import { Authorization } from "../../../../../lib/authorization";
-import { POLICIES } from "../../../../../lib/authorization/policies";
+import { Authorization } from "../../../../../lib/Authorization";
+import { POLICIES } from "../../../../../lib/Authorization/policies";
 
 const PooperMenuList = styled(MenuList, {
     shouldForwardProp: (prop) => prop !== "bgcolorSecondary",

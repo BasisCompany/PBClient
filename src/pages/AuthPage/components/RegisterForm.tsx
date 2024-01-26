@@ -17,7 +17,7 @@ import { object, string, ref, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterMutation } from "../store/authApi";
 import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
-import { toaster } from "../../../modules/Toast";
+import { toaster } from "../../../lib/Toast";
 import { PasswordTextField } from "./PasswordTextField";
 import { MyTextField } from "./MyTextField";
 
