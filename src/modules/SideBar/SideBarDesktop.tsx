@@ -1,8 +1,8 @@
 import MuiDrawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 import { useAppSelector } from "../../redux/hooks";
-import { selectNavbarStatus } from "../NavBar/store/navbarSlice";
 import { FlexBox } from "../../UI/FlexBox";
+import { selectSideBarStatus } from "./store/sidebarSlice";
 import { SideBarList } from "./SideBarList";
 import { SideBarListMin } from "./SideBarListMin";
 
@@ -40,7 +40,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export const SideBarDesktop = () => {
-    const isOpen = useAppSelector(selectNavbarStatus);
+    const isOpen = useAppSelector(selectSideBarStatus);
     return (
         <FlexBox>
             <Drawer variant="permanent" open={isOpen}>

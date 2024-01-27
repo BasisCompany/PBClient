@@ -1,4 +1,4 @@
 import * as themeMode from "./adapters/themeMode";
-import * as navbarMode from "./adapters/navbarMode";
+import * as sidebarMode from "./adapters/sidebarMode";
 
-export { themeMode, navbarMode };
+export { themeMode, sidebarMode };

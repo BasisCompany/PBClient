@@ -1,8 +1,8 @@
 import { Drawer } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
-import { selectNavbarStatus, setNavbarOpen } from "../NavBar/store/navbarSlice";
 import { FlexBox } from "../../UI/FlexBox";
+import { selectSideBarStatus, setSidebarOpen } from "./store/sidebarSlice";
 import { SideBarList } from "./SideBarList";
 
 const MobileDrawer = styled(Drawer)({
@@ -21,7 +21,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export const SideBarMobile = () => {
-    const isOpen = useAppSelector(selectNavbarStatus);
+    const isOpen = useAppSelector(selectSideBarStatus);
     const dispatch = useAppDispatch();
 
     const closeDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -32,7 +32,7 @@ export const SideBarMobile = () => {
         ) {
             return;
         }
-        dispatch(setNavbarOpen(false));
+        dispatch(setSidebarOpen(false));
     };
 
     return (

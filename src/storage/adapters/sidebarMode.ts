@@ -2,17 +2,17 @@ import { setItem, getItem, removeItem } from "../storage";
 
 const NavbarModeStorageName = "navbar";
 
-const setNavbarMode = (mode: boolean): void => {
+const setSidebarMode = (mode: boolean): void => {
     setItem(NavbarModeStorageName, JSON.stringify(mode));
 };
 
-const getNavbarMode = (): boolean | null => {
+const getSidebarMode = (): boolean | null => {
     const navbarMode = getItem(NavbarModeStorageName);
     return navbarMode ? (JSON.parse(navbarMode) as boolean) : null;
 };
 
-const removeNavbarMode = (): void => {
+const removeSidebarMode = (): void => {
     removeItem(NavbarModeStorageName);
 };
 
-export { setNavbarMode, getNavbarMode, removeNavbarMode };
+export { setSidebarMode, getSidebarMode, removeSidebarMode };

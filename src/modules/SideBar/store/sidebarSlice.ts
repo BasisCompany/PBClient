@@ -9,21 +9,19 @@ const initialState: NavBarState = {
     open: false,
 };
 
-const navbarSlice = createSlice({
-    name: "navbar",
+export const sidebarSlice = createSlice({
+    name: "sidebar",
     initialState,
     reducers: {
-        setNavbarOpen: (state, action: PayloadAction<boolean>) => {
+        setSidebarOpen: (state, action: PayloadAction<boolean>) => {
             state.open = action.payload;
         },
-        toggleNavbar: (state) => {
+        toggleSidebar: (state) => {
             state.open = !state.open;
         },
     },
 });
 
-export const { setNavbarOpen, toggleNavbar } = navbarSlice.actions;
+export const { setSidebarOpen, toggleSidebar } = sidebarSlice.actions;
 
-export const selectNavbarStatus = (state: RootState) => state.navbar.open;
-
-export default navbarSlice.reducer;
+export const selectSideBarStatus = (state: RootState) => state.sidebar.open;
