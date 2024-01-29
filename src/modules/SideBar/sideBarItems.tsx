@@ -18,12 +18,7 @@ export const sideBarItems = [
     {
         title: "Профиль",
         icon: <PersonRoundedIcon sx={{ fontSize: 26 }} />,
-        to: "/user/", //TODO: add user username
-    },
-    {
-        title: "Профиль2",
-        icon: <PersonRoundedIcon sx={{ fontSize: 26 }} />,
-        to: "/user/829", //TODO: add user username
+        to: "/user/",
     },
     {
         title: "Помощь",

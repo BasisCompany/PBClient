@@ -6,7 +6,7 @@ import { sidebarSlice } from "../modules/SideBar/store/sidebarSlice";
 import {
     sidebarInitState,
     sidebarlistenerMiddleware,
-} from "../modules/SideBar/store/navbarMiddleware";
+} from "../modules/SideBar/store/sidebarMiddleware";
 
 export const store = configureStore({
     preloadedState: {
