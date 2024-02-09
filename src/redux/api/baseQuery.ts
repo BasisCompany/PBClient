@@ -56,8 +56,14 @@ export const baseQueryWithReAuth: BaseQueryFn<
                 if (refreshResult?.data) {
                     const refreshData = refreshResult?.data as {
                         token: string;
+                        deviceId: number;
                     };
-                    api.dispatch(setUserToken(refreshData.token));
+                    api.dispatch(
+                        setUserToken({
+                            token: refreshData.token,
+                            deviceId: refreshData.deviceId,
+                        })
+                    );
                     result = await baseQueryWithAuth(args, api, extraOptions);
                 } else {
                     api.dispatch(setInitialState());

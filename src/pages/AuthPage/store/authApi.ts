@@ -12,6 +12,7 @@ interface LoginResponse {
     email: string;
     token: string;
     username: string;
+    deviceId: string;
     roles: string[];
 }
 

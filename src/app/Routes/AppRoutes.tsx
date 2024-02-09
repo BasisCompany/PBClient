@@ -14,6 +14,7 @@ import { SupportContentMainQuestions } from "../../pages/SupportPage/SupportCont
 import { ProfileNotifications } from "../../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotifications";
 import { ProfileComments } from "../../pages/ProfilePage/ProfileTabs/ProfileComments/ProfileComments";
 import { ProfilePrompts } from "../../pages/ProfilePage/ProfileTabs/ProfilePrompts/ProfilePrompts";
+import { ProfileSettings } from "../../pages/ProfilePage/ProfileTabs/ProfileSettings/ProfileSettings";
 import { RequireLocal } from "./RequireLocalProfile";
 
 export const AppRoutes = () => {
@@ -36,7 +37,7 @@ export const AppRoutes = () => {
                         path="settings"
                         element={
                             <RequireLocal>
-                                <h1>Настройки </h1>
+                                <ProfileSettings />
                             </RequireLocal>
                         }
                     />

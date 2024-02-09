@@ -12,11 +12,13 @@ export interface UserDetails {
 export interface AuthState {
     isUserAuthenticated: boolean;
     token: string | null;
+    deviceId: number | null;
     user: UserDetails | null;
 }
 
 const initialState: AuthState = {
     isUserAuthenticated: false,
+    deviceId: null,
     token: null,
     user: null,
 };
@@ -31,8 +33,12 @@ export const authSlice = createSlice({
         toggleIsUserAuthenticated: (state) => {
             state.isUserAuthenticated = !state.isUserAuthenticated;
         },
-        setUserToken: (state, action: PayloadAction<string>) => {
-            state.token = action.payload;
+        setUserToken: (
+            state,
+            action: PayloadAction<{ token: string; deviceId: number }>
+        ) => {
+            state.token = action.payload.token;
+            state.deviceId = action.payload.deviceId;
         },
         setInitialState: () => initialState,
     },
@@ -46,6 +52,7 @@ export const authSlice = createSlice({
                     id: payload.id,
                     email: payload.email,
                     username: payload.username,
+                    deviceId: payload.deviceId,
                     roles: payload.roles,
                 } as UserDetails;
             }
@@ -58,6 +65,7 @@ export const authSlice = createSlice({
                     id: payload.id,
                     email: payload.email,
                     username: payload.username,
+                    deviceId: payload.deviceId,
                     roles: payload.roles,
                 } as UserDetails;
             }

@@ -22,7 +22,7 @@ export const NavBarMenu = () => {
         useNavbarPoppers();
 
     const { data } = useCountUnreadNotificationsQuery(undefined, {
-        pollingInterval: 10000,
+        //pollingInterval: 10000, //TODO: delete comment
     });
 
     const notificationsCount = data?.count ?? null;
