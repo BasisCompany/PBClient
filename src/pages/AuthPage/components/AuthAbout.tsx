@@ -20,11 +20,13 @@ export const AuthAbout = () => {
                 }}
             >
                 <Typography
-                    variant="h2"
-                    color="text.primary"
+                    variant="title"
                     sx={{
                         margin: 0,
                         fontSize: { md: 30, lg: 44, xl: 52 },
+                        fontWeight: 300,
+                        lineHeight: 1.2,
+                        letterSpacing: "-0.00833em",
                         visibility: "visible",
                         maxHeight: "450px",
                         WebkitLineClamp: "7",
@@ -35,7 +37,7 @@ export const AuthAbout = () => {
                         cursor: "default",
                     }}
                 >
-                    Добро пожаловать в первый в России магазин промтов
+                    Добро пожаловать в первый в России магазин промптов
                 </Typography>
             </Box>
             <Box
@@ -46,11 +48,14 @@ export const AuthAbout = () => {
                 }}
             >
                 <Typography
-                    variant="h1"
+                    variant="subtitle"
                     color="text.secondary"
                     sx={{
                         margin: 0,
                         fontSize: { md: 13, lg: 19, xl: 22 },
+                        fontWeight: 300,
+                        lineHeight: 1.167,
+                        letterSpacing: "-0.01562em",
                         visibility: "visible",
                         maxHeight: "150px",
                         WebkitLineClamp: "7",
@@ -72,19 +77,6 @@ export const AuthAbout = () => {
                         mt: "30px",
                         height: "auto",
                         width: "85%",
-
-                        // maxHeight: {
-                        //     xs: "90px",
-                        //     sm: "180px",
-                        //     md: "360px",
-                        //     lg: "540px",
-                        // },
-                        // maxWidth: {
-                        //     xs: "160px",
-                        //     sm: "320px",
-                        //     md: "640px",
-                        //     lg: "960px",
-                        // },
                     }}
                     alt="The house from the offer."
                     src={AuthPageImage}

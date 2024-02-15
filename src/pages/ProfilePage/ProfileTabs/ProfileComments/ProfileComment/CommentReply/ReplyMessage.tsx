@@ -49,15 +49,7 @@ export const ReplyMessage: FC<ReplyMessageProps> = ({ reply }) => {
                         </IconButton>
                     </FlexBox>
                     <Box sx={{ mt: 1, overflow: "hidden" }}>
-                        <Typography
-                            variant="body1"
-                            component="span"
-                            color={(theme) => theme.palette.text.primary}
-                            fontSize={16}
-                            fontWeight={400}
-                        >
-                            {reply.message}
-                        </Typography>
+                        <Typography variant="text">{reply.message}</Typography>
                     </Box>
                 </Box>
                 <Box sx={{ mt: 0.5, pl: "5px", pb: 1 }}>

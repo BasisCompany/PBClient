@@ -22,8 +22,7 @@ export const ReplyAuthor: FC<ReplyAuthorProps> = ({ reply }) => {
             />
             <Tooltip title="Автор">
                 <Typography
-                    variant="h5"
-                    component="span"
+                    variant="text"
                     color={(theme) => theme.palette.text.primary}
                     fontSize={15}
                     fontWeight={500}

@@ -23,13 +23,15 @@ export const CommentAuthor: FC<CommentAuthorProps> = ({ comment }) => {
             <Box sx={{ ml: 2 }}>
                 <Box>
                     <Typography
-                        variant="h5"
+                        variant="text"
                         component="span"
                         color={(theme) => theme.palette.text.primary}
                         fontSize={15}
                         fontWeight={500}
                         letterSpacing="0.4px"
                         sx={{
+                            lineHeight: 1.334,
+                            letterSpacing: "0em",
                             cursor: "pointer",
                             transition: "all 0.1s ease-in",
                             ":hover": {

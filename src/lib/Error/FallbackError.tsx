@@ -27,9 +27,9 @@ export const FallbackError = () => {
                 }}
             >
                 <Typography
-                    variant="h2"
-                    color="text.primary"
+                    variant="title"
                     sx={{
+                        fontWeight: 300,
                         fontSize: { xs: "8vw", md: "8vh" },
                         overflow: "hidden",
                         cursor: "default",
@@ -38,9 +38,10 @@ export const FallbackError = () => {
                     Упс!
                 </Typography>
                 <Typography
-                    variant="h1"
+                    variant="subtitle"
                     color="text.secondary"
                     sx={{
+                        fontWeight: 300,
                         fontSize: { xs: "6vw", md: "6vh" },
                         overflow: "hidden",
                         cursor: "default",

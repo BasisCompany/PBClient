@@ -16,9 +16,7 @@ export const SecureDevice: FC<DeviceProps> = ({
         <Box sx={{ ml: 2 }}>
             <Box>
                 <Typography
-                    variant="h5"
-                    component="span"
-                    color={(theme) => theme.palette.text.primary}
+                    variant="text"
                     fontSize={15}
                     fontWeight={500}
                     letterSpacing="0.4px"

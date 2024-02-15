@@ -171,7 +171,6 @@ export const ProfileSettings = () => {
 };
 
 /* <Typography
-                variant="h4"
                 color={(theme) => theme.palette.text.primary}
                 fontWeight={500}
                 sx={{

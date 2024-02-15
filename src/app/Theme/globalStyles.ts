@@ -1,5 +1,5 @@
-import { Theme } from "@mui/material/styles";
 import { EThemeMode } from "./enums/themeMode.enum";
+import { MuiTypography, typography } from "./components/typography";
 
 const defaultLightStyles = {
     primary: {
@@ -122,6 +122,7 @@ export const getGlobalStyles = (mode: EThemeMode) => ({
         mode,
         ...(mode === EThemeMode.light ? lightStyles : darkStyles),
     },
+    typography,
     components: componentsStyleOverrides,
     scrollbar: scrollbarStyles,
 });
@@ -147,13 +148,7 @@ const componentsStyleOverrides = {
             },
         },
     },
-    MuiTypography: {
-        styleOverrides: {
-            root: ({ theme }: { theme: Theme }) => ({
-                color: theme.palette.text.primary,
-            }),
-        },
-    },
+    MuiTypography,
 };
 
 const scrollbarStyles = {

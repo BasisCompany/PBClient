@@ -18,8 +18,7 @@ export const ReplyTimestamp: FC<ReplyTimestamp> = ({ time }) => {
     return (
         <Tooltip title={fullTime}>
             <Typography
-                variant="h5"
-                component="span"
+                variant="text"
                 color={(theme) => theme.palette.text.secondary}
                 fontSize={13}
                 fontWeight={500}

@@ -16,7 +16,7 @@ export const CommentTimestamp: FC<CommentTimestampProps> = ({ time }) => {
         <Box sx={{ mt: 1 }}>
             <Tooltip title={fullTime}>
                 <Typography
-                    variant="h5"
+                    variant="text"
                     component="span"
                     color={(theme) => theme.palette.text.secondary}
                     fontSize={13}

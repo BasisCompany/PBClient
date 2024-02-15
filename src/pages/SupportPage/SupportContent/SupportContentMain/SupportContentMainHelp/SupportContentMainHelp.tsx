@@ -59,11 +59,14 @@ export const SupportContentMainHelp = () => {
                             }}
                         >
                             <Typography
-                                variant="h4"
+                                variant="text"
                                 color="text.primary"
                                 sx={{
                                     pr: "10%",
                                     pl: "10%",
+                                    fontWeight: 400,
+                                    lineHeight: 1.235,
+                                    letterSpacing: "0.00735em",
                                     fontSize: {
                                         xs: "16px",
                                         sm: "15px",
@@ -86,9 +89,12 @@ export const SupportContentMainHelp = () => {
                                 }}
                             >
                                 <Typography
-                                    variant="h1"
+                                    variant="text"
                                     color="text.secondary"
                                     sx={{
+                                        fontWeight: 300,
+                                        lineHeight: 1.167,
+                                        letterSpacing: "-0.01562em",
                                         fontSize: {
                                             xs: "13px",
                                             sm: "12px",

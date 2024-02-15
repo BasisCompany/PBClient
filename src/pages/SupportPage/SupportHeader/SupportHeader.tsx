@@ -105,9 +105,11 @@ export const SupportHeader = () => {
                 }}
             >
                 <Typography
-                    variant="h1"
-                    color="text.primary"
+                    variant="title"
                     sx={{
+                        fontWeight: 300,
+                        lineHeight: 1.167,
+                        letterSpacing: "-0.01562em",
                         fontSize: { xs: "44px", md: "52px" },
                         textAlign: "center",
                         cursor: "default",

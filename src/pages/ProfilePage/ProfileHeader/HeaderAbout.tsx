@@ -58,9 +58,12 @@ export const HeaderAbout: FC<HeaderAboutProps> = ({ name, status }) => {
                 }}
             >
                 <Typography
-                    variant="h3"
+                    variant="text"
                     color="text.primary"
                     sx={{
+                        fontWeight: 400,
+                        lineHeight: 1.167,
+                        letterSpacing: "0em",
                         fontSize: 16,
                         whiteSpace: "nowrap",
                         textOverflow: "ellipsis",
