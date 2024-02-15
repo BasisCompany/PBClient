@@ -6,13 +6,14 @@ import {
     baseQueryWithReAuth,
     baseQueryWithToastErrors,
 } from "./../../../redux/api/baseQuery";
+import { setInitialState } from "./authSlice";
 
 interface LoginResponse {
     id: number;
     email: string;
     token: string;
     username: string;
-    deviceId: string;
+    deviceId: number;
     roles: string[];
 }
 
@@ -53,6 +54,15 @@ export const authApi = createApi({
                 body,
             }),
         }),
+        logout: builder.query<void, void>({
+            query: () => ({
+                url: "auth/logout",
+                credentials: "include",
+            }),
+            onQueryStarted(_, { dispatch }) {
+                dispatch(setInitialState());
+            },
+        }),
     }),
 });
 
@@ -75,6 +85,7 @@ export const {
     useRegisterMutation,
     useLazyForgotPasswordQuery,
     useResetPasswordMutation,
+    useLazyLogoutQuery,
 } = authApi;
 
 export const { useLazyMeQuery, useMeQuery } = initAuthApi;

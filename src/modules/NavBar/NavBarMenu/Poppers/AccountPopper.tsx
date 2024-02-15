@@ -20,11 +20,13 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { useNavigate } from "react-router";
 import { Spacer } from "../../../../UI/Spacer";
 import { useThemeMode } from "../../../../app/Theme/ThemeContext/useThemeMode";
 import { useMobileDevice } from "../../../../hooks/useMobileDevice";
 import { LinkListItemButton } from "../../../../UI/Links/LinkListItemButton";
 import { EThemeMode } from "../../../../app/Theme/enums/themeMode.enum";
+import { useLazyLogoutQuery } from "../../../../pages/AuthPage/store/authApi";
 
 interface AccountMenuProps {
     isOpen: boolean;
@@ -48,14 +50,25 @@ const StyledList = styled(List)(({ theme }) => ({
         fontSize: 20,
     },
 }));
-//TODO[Aртем]: Размеры каждого эл-та
+
+//TODO[Артем]: Размеры каждого эл-та
 export const AccountPopper: FC<AccountMenuProps> = ({
     isOpen,
     anchorEl,
     onClose,
 }) => {
     const isMobile = useMobileDevice();
+    const navigate = useNavigate();
+
     const { mode, toggleThemeMode } = useThemeMode();
+
+    const [logout] = useLazyLogoutQuery();
+
+    const handleLogout = async () => {
+        await logout();
+        onClose();
+        navigate("/login");
+    };
 
     const id = isOpen ? "account-popover" : undefined;
     return (
@@ -220,7 +233,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                     </ListItemIcon>
                     Настройки
                 </LinkListItemButton>
-                <ListItemButton onClick={onClose}>
+                <ListItemButton onClick={handleLogout}>
                     <ListItemIcon>
                         <Logout color="error" />
                     </ListItemIcon>

@@ -48,11 +48,11 @@ export const authSlice = createSlice({
             (state, { payload }) => {
                 state.isUserAuthenticated = true;
                 state.token = payload.token;
+                state.deviceId = payload.deviceId;
                 state.user = {
                     id: payload.id,
                     email: payload.email,
                     username: payload.username,
-                    deviceId: payload.deviceId,
                     roles: payload.roles,
                 } as UserDetails;
             }
@@ -61,11 +61,11 @@ export const authSlice = createSlice({
             initAuthApi.endpoints.me.matchFulfilled,
             (state, { payload }) => {
                 state.isUserAuthenticated = true;
+                state.deviceId = payload.deviceId;
                 state.user = {
                     id: payload.id,
                     email: payload.email,
                     username: payload.username,
-                    deviceId: payload.deviceId,
                     roles: payload.roles,
                 } as UserDetails;
             }
