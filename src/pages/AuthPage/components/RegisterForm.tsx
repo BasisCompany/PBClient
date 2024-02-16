@@ -5,7 +5,6 @@ import {
     CardContent,
     CardHeader,
     IconButton,
-    Link,
     Typography,
 } from "@mui/material";
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
@@ -287,19 +286,16 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                     >
                         Уже есть аккаунт?
                     </Typography>
-                    <Link
-                        component="span"
+                    <Typography
                         variant="h6"
-                        underline="none"
                         onClick={toggleLogin}
                         sx={{
                             fontSize: 14,
-                            color: "text.primary",
                             cursor: "pointer",
                         }}
                     >
                         Войдите
-                    </Link>
+                    </Typography>
                 </Box>
             </CardContent>
         </Card>

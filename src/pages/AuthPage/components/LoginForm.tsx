@@ -1,5 +1,5 @@
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
-import { Box, Card, CardContent, Link, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import { DispatchWithoutAction, FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SmartCaptcha } from "@yandex/smart-captcha";
@@ -7,8 +7,8 @@ import { object, string, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
 import { useLoginMutation } from "../store/authApi";
-import { LinkBehavior } from "../../../UI/Route/LinkBehavior";
 import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton";
+import { LinkTypography } from "../../../UI/Links/LinkTypography";
 import { PasswordTextField } from "./PasswordTextField";
 import { MyTextField } from "./MyTextField";
 
@@ -182,18 +182,13 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                         justifyContent: "center",
                     }}
                 >
-                    <Link
-                        component={LinkBehavior}
+                    <LinkTypography
                         to="/forgot-password"
                         variant="h6"
-                        underline="none"
-                        sx={{
-                            fontSize: 14,
-                            color: "text.primary",
-                        }}
+                        fontSize={14}
                     >
                         Забыли пароль?
-                    </Link>
+                    </LinkTypography>
                 </Box>
                 <Box
                     sx={{
@@ -219,19 +214,16 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                     >
                         Нет аккаунта?
                     </Typography>
-                    <Link
-                        component="span"
+                    <Typography
                         variant="h6"
-                        underline="none"
                         onClick={toggleLogin}
                         sx={{
                             fontSize: 14,
-                            color: "text.primary",
                             cursor: "pointer",
                         }}
                     >
                         Зарегистрируйтесь
-                    </Link>
+                    </Typography>
                 </Box>
             </CardContent>
         </Card>
