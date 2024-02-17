@@ -5,6 +5,7 @@ import { toggleIsUserAuthenticated } from "../pages/AuthPage/store/authSlice";
 import { useAuth } from "../hooks/useAuth";
 import { useLazyMeQuery } from "../pages/AuthPage/store/authApi";
 import { PrimaryButton } from "../UI/Buttons/PrimaryButton/PrimaryButton";
+import { TestForm } from "./TestForm";
 
 export const TestPage = () => {
     const dispatch = useAppDispatch();
@@ -47,6 +48,8 @@ export const TestPage = () => {
                 </Box>
             </Box>
             <PromptCard />
+            <Box sx={{ width: "200px" }} />
+            <TestForm />
             {/* <ColorTest /> */}
         </Box>
     );

@@ -1,16 +1,19 @@
-import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import { DispatchWithoutAction, FC } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { SmartCaptcha } from "@yandex/smart-captcha";
 import { object, string, InferType } from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
+import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
 import { useLoginMutation } from "../store/authApi";
 import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton";
 import { LinkTypography } from "../../../UI/Links/LinkTypography";
-import { PasswordTextField } from "./PasswordTextField";
-import { MyTextField } from "./MyTextField";
+import {
+    ExtSubmitHandler,
+    Form,
+    InputText,
+    InputTextPassword,
+} from "../../../UI/Forms";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -30,19 +33,9 @@ const loginSchema = object({
 export type LoginSchema = InferType<typeof loginSchema>;
 
 export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<LoginSchema>({
-        mode: "onBlur",
-        resolver: yupResolver(loginSchema),
-    });
-
     const [login, { isLoading }] = useLoginMutation();
 
-    const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
+    const onSubmit: ExtSubmitHandler<LoginSchema> = async (data, reset) => {
         await login(data).unwrap().then(reset);
     };
 
@@ -117,38 +110,19 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                         </Typography>
                     </Box>
                 </Box>
-                <form
-                    onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
-                >
-                    <MyTextField
-                        icon={
-                            <MailOutlineRoundedIcon
-                                sx={{
-                                    fontSize: 20,
-                                    color: "action.active",
-                                    marginRight: "5px",
-                                    marginBottom: "3px",
-                                }}
-                            />
-                        }
-                        register={register("email")}
-                        label="Email"
-                        error={!!errors.email}
-                        helperText={
-                            errors.email
-                                ? errors?.email?.message ?? ""
-                                : "Ваша почта"
-                        }
+                <Form<LoginSchema> onSubmit={onSubmit} schema={loginSchema}>
+                    <InputText
+                        name="email"
+                        label="Почта"
+                        helperText="Ваша почта"
+                        labelIcon={<MailOutlineRoundedIcon />}
+                        sx={{ mb: 2 }}
                     />
-                    <PasswordTextField
-                        register={register("password")}
+                    <InputTextPassword
+                        name="password"
                         label="Пароль"
-                        error={!!errors.password}
-                        helperText={
-                            errors.password
-                                ? errors?.password?.message ?? ""
-                                : "Ваш пароль"
-                        }
+                        helperText="Ваш пароль"
+                        labelIcon={<LockOpenRoundedIcon />}
                     />
                     <Box
                         sx={{
@@ -174,7 +148,7 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                             Войти
                         </PrimaryLoadingButton>
                     </Box>
-                </form>
+                </Form>
                 <Box
                     sx={{
                         marginTop: "10px",
