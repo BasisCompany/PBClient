@@ -5,7 +5,7 @@ import {
     MuiTypography,
     scrollbarStyles,
     typography,
-} from "./components";
+} from "./overrides";
 import { EThemeMode } from "./enums/themeMode.enum";
 import { lightStyles, darkStyles } from "./themeColors";
 
