@@ -52,7 +52,7 @@ module.exports = {
         "@typescript-eslint/no-misused-promises": "off",
         "@typescript-eslint/no-unused-vars": [
             "error",
-            { argsIgnorePattern: "^_" },
+            { argsIgnorePattern: "^_", ignoreRestSiblings: true },
         ],
         "no-console": ["warn", { allow: ["warn", "error"] }],
         "prefer-const": "warn",
