@@ -1,8 +1,8 @@
 import { useReducer } from "react";
 import { Box, Card } from "@mui/material";
 import { AuthAbout } from "./components/AuthAbout";
-import { LoginForm } from "./components/LoginForm";
-import { RegisterForm } from "./components/RegisterForm";
+import { LoginCard } from "./components/LoginCard";
+import { RegisterCard } from "./components/RegisterCard";
 
 export const AuthPage = () => {
     const [showLogin, toggleLogin] = useReducer((show) => !show, true);
@@ -20,9 +20,9 @@ export const AuthPage = () => {
             <AuthAbout />
             <Box>
                 {showLogin ? (
-                    <LoginForm toggleLogin={toggleLogin} />
+                    <LoginCard toggleLogin={toggleLogin} />
                 ) : (
-                    <RegisterForm toggleLogin={toggleLogin} />
+                    <RegisterCard toggleLogin={toggleLogin} />
                 )}
             </Box>
         </Card>

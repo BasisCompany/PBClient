@@ -23,7 +23,7 @@ import {
 } from "../../../UI/Forms";
 import { FakeCaptcha } from "../../../trash/FakeCaptcha";
 
-interface RegisterFormProps {
+interface RegisterCardProps {
     toggleLogin: DispatchWithoutAction;
 }
 
@@ -47,7 +47,7 @@ const registerSchema = object({
 
 export type RegisterSchema = InferType<typeof registerSchema>;
 
-export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
+export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
     const [register, { isLoading }] = useRegisterMutation();
 
     const onSubmit: ExtSubmitHandler<RegisterSchema> = async (data, reset) => {

@@ -15,7 +15,7 @@ import {
 } from "../../../UI/Forms";
 import { FakeCaptcha } from "../../../trash/FakeCaptcha";
 
-interface LoginFormProps {
+interface LoginCardProps {
     toggleLogin: DispatchWithoutAction;
 }
 
@@ -32,7 +32,7 @@ const loginSchema = object({
 
 export type LoginSchema = InferType<typeof loginSchema>;
 
-export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
+export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
     const [login, { isLoading }] = useLoginMutation();
 
     const onSubmit: ExtSubmitHandler<LoginSchema> = async (data, reset) => {

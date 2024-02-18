@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { LoginSchema } from "../components/LoginForm";
-import { RegisterSchema } from "../components/RegisterForm";
+import { LoginSchema } from "../components/LoginCard";
+import { RegisterSchema } from "../components/RegisterCard";
 import { ResetPasswordSchema } from "../ResetPassword.page";
 import {
     baseQueryWithReAuth,
