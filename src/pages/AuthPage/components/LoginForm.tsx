@@ -1,6 +1,5 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import { DispatchWithoutAction, FC } from "react";
-import { SmartCaptcha } from "@yandex/smart-captcha";
 import { object, string, InferType } from "yup";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
@@ -14,6 +13,7 @@ import {
     InputText,
     InputTextPassword,
 } from "../../../UI/Forms";
+import { FakeCaptcha } from "../../../trash/FakeCaptcha";
 
 interface LoginFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -131,7 +131,8 @@ export const LoginForm: FC<LoginFormProps> = ({ toggleLogin }) => {
                             minWidth: "100px",
                         }}
                     >
-                        <SmartCaptcha sitekey="<ключ_клиента>" />
+                        <FakeCaptcha />
+                        {/* <SmartCaptcha sitekey="<ключ_клиента>" /> */}
                     </Box>
                     <Box
                         sx={{

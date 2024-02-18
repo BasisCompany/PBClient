@@ -1,13 +1,11 @@
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { Box, Card, CardContent, Typography } from "@mui/material";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { object, string, InferType } from "yup";
-import { SmartCaptcha } from "@yandex/smart-captcha";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { CenterBox } from "../../UI/CenterBox";
 import { PrimaryLoadingButton } from "../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
-import { MyTextField } from "./components/MyTextField";
+import { ExtSubmitHandler, Form, InputText } from "../../UI/Forms";
+import { FakeCaptcha } from "../../trash/FakeCaptcha";
 import { useLazyForgotPasswordQuery } from "./store/authApi";
 
 const forgotPasswordSchema = object({
@@ -20,22 +18,14 @@ const forgotPasswordSchema = object({
 export type ForgotPasswordSchema = InferType<typeof forgotPasswordSchema>;
 
 export const ForgotPasswordPage = () => {
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<ForgotPasswordSchema>({
-        mode: "onBlur",
-        resolver: yupResolver(forgotPasswordSchema),
-    });
-
     const [forgotPassword, { isLoading }] = useLazyForgotPasswordQuery();
 
-    const onSubmit: SubmitHandler<ForgotPasswordSchema> = async (data) => {
-        await forgotPassword(data.email)
-            .unwrap()
-            .then(() => reset());
+    const onSubmit: ExtSubmitHandler<ForgotPasswordSchema> = async (
+        data,
+        reset
+    ) => {
+        await forgotPassword(data.email).unwrap();
+        reset();
         //TODO: Карточка с значком успешно
     };
 
@@ -103,37 +93,20 @@ export const ForgotPasswordPage = () => {
                     >
                         Пожалуйста, введите почту, чтобы восстановить пароль.
                     </Typography>
-                    <form
-                        onSubmit={(...args) =>
-                            void handleSubmit(onSubmit)(...args)
-                        }
+                    <Form<ForgotPasswordSchema>
+                        onSubmit={onSubmit}
+                        schema={forgotPasswordSchema}
                     >
-                        <MyTextField
-                            icon={
-                                <MailOutlineRoundedIcon
-                                    sx={{
-                                        fontSize: 20,
-                                        color: "action.active",
-                                        marginRight: "5px",
-                                        marginBottom: "3px",
-                                    }}
-                                />
-                            }
-                            register={register("email")}
-                            label="Email"
-                            error={!!errors.email}
-                            helperText={
-                                errors.email
-                                    ? errors?.email?.message ?? ""
-                                    : "Ваша почта"
-                            }
+                        <InputText
+                            name="email"
+                            label="Почта"
+                            helperText="Ваша почта"
+                            labelIcon={<MailOutlineRoundedIcon />}
+                            margin="normal"
                         />
-                        <Box
-                            sx={{
-                                marginTop: "10px",
-                            }}
-                        >
-                            <SmartCaptcha sitekey="<ключ_клиента>" />
+                        <Box marginTop="10px">
+                            <FakeCaptcha />
+                            {/* <SmartCaptcha sitekey="<ключ_клиента>" /> */}
                         </Box>
                         <Box
                             sx={{
@@ -150,7 +123,7 @@ export const ForgotPasswordPage = () => {
                                 Отправить письмо
                             </PrimaryLoadingButton>
                         </Box>
-                    </form>
+                    </Form>
                 </CardContent>
             </Card>
         </CenterBox>

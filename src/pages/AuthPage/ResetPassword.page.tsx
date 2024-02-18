@@ -1,12 +1,11 @@
 import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded";
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { useParams } from "react-router";
 import { object, string, ref, InferType } from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import { CenterBox } from "../../UI/CenterBox";
 import { PrimaryLoadingButton } from "../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
-import { PasswordTextField } from "./components/PasswordTextField";
+import { ExtSubmitHandler, Form, InputTextPassword } from "../../UI/Forms";
 import { useResetPasswordMutation } from "./store/authApi";
 
 const resetPasswordSchema = object({
@@ -16,7 +15,7 @@ const resetPasswordSchema = object({
         .max(35, "Пароль должен быть меньше 35 символов"),
     passwordConfirm: string()
         .required("Пожалуйста, подтвердите пароль.")
-        .oneOf([ref("password"), null], "Пароли должны совпадать"),
+        .oneOf([ref("password")], "Пароли должны совпадать"),
 });
 
 export type ResetPasswordSchema = InferType<typeof resetPasswordSchema>;
@@ -24,25 +23,17 @@ export type ResetPasswordSchema = InferType<typeof resetPasswordSchema>;
 export const ResetPasswordPage = () => {
     const { resetToken } = useParams();
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<ResetPasswordSchema>({
-        mode: "onBlur",
-        resolver: yupResolver(resetPasswordSchema),
-    });
-
     const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
-    const onSubmit: SubmitHandler<ResetPasswordSchema> = async (data) => {
+    const onSubmit: ExtSubmitHandler<ResetPasswordSchema> = async (
+        data,
+        reset
+    ) => {
         await resetPassword({
             resetPasswordToken: resetToken ?? "",
             password: data.password,
-        })
-            .unwrap()
-            .then(() => reset());
+        }).unwrap();
+        reset();
         //TODO: Карточка с значком успешно
     };
 
@@ -111,31 +102,21 @@ export const ResetPasswordPage = () => {
                     >
                         Пожалуйста, заполните поля ниже.
                     </Typography>
-
-                    <form
-                        onSubmit={(...args) =>
-                            void handleSubmit(onSubmit)(...args)
-                        }
+                    <Form<ResetPasswordSchema>
+                        onSubmit={onSubmit}
+                        schema={resetPasswordSchema}
                     >
-                        <PasswordTextField
-                            register={register("password")}
+                        <InputTextPassword
+                            name="password"
                             label="Пароль"
-                            error={!!errors.password}
-                            helperText={
-                                errors.password
-                                    ? errors?.password?.message ?? ""
-                                    : "Укажите новый пароль"
-                            }
+                            helperText="Укажите новый пароль"
+                            labelIcon={<LockOpenRoundedIcon />}
                         />
-                        <PasswordTextField
-                            register={register("passwordConfirm")}
+                        <InputTextPassword
+                            name="passwordConfirm"
                             label="Подтвердите пароль"
-                            error={!!errors.passwordConfirm}
-                            helperText={
-                                errors.passwordConfirm
-                                    ? errors?.passwordConfirm?.message ?? ""
-                                    : "Подтвердите новый пароль"
-                            }
+                            helperText="Подтвердите новый пароль"
+                            labelIcon={<LockOpenRoundedIcon />}
                         />
                         <Box
                             sx={{
@@ -152,7 +133,7 @@ export const ResetPasswordPage = () => {
                                 Изменить пароль
                             </PrimaryLoadingButton>
                         </Box>
-                    </form>
+                    </Form>
                 </CardContent>
             </Card>
         </CenterBox>

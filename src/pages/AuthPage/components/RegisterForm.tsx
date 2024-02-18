@@ -7,18 +7,21 @@ import {
     IconButton,
     Typography,
 } from "@mui/material";
+import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { SmartCaptcha } from "@yandex/smart-captcha";
 import { object, string, ref, InferType } from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterMutation } from "../store/authApi";
 import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
 import { toaster } from "../../../lib/Toast";
-import { PasswordTextField } from "./PasswordTextField";
-import { MyTextField } from "./MyTextField";
+import {
+    ExtSubmitHandler,
+    Form,
+    InputText,
+    InputTextPassword,
+} from "../../../UI/Forms";
+import { FakeCaptcha } from "../../../trash/FakeCaptcha";
 
 interface RegisterFormProps {
     toggleLogin: DispatchWithoutAction;
@@ -39,36 +42,22 @@ const registerSchema = object({
         .max(35, "Пароль должен быть меньше 35 символов"),
     passwordConfirm: string()
         .required("Пожалуйста, подтвердите пароль.")
-        .oneOf([ref("password"), null], "Пароли должны совпадать"),
+        .oneOf([ref("password")], "Пароли должны совпадать"),
 });
 
 export type RegisterSchema = InferType<typeof registerSchema>;
 
 export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<RegisterSchema>({
-        mode: "onBlur",
-        resolver: yupResolver(registerSchema),
-    });
+    const [register, { isLoading }] = useRegisterMutation();
 
-    const [registerMut, { isLoading }] = useRegisterMutation();
-
-    const onSubmit: SubmitHandler<RegisterSchema> = async (data) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const onSubmit: ExtSubmitHandler<RegisterSchema> = async (data, reset) => {
         const { passwordConfirm, ...dataReq } = data;
-        await registerMut(dataReq)
-            .unwrap()
-            .then(() => {
-                toaster.success(
-                    `Письмо с подтверждением отправлено на почту: ${dataReq.email}`
-                );
-                toggleLogin();
-                reset();
-            });
+        await register(dataReq).unwrap();
+        toaster.success(
+            `Письмо с подтверждением отправлено на почту: ${dataReq.email}`
+        );
+        toggleLogin();
+        reset();
     };
 
     return (
@@ -174,78 +163,40 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                         </Typography>
                     </Box>
                 </Box>
-                <form
-                    onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}
+                <Form<RegisterSchema>
+                    onSubmit={onSubmit}
+                    schema={registerSchema}
                 >
-                    <MyTextField
-                        icon={
-                            <PersonOutlineRoundedIcon
-                                sx={{
-                                    fontSize: 23,
-                                    color: "action.active",
-                                    marginRight: "2px",
-                                    marginBottom: "4px",
-                                }}
-                            />
-                        }
-                        register={register("username")}
+                    <InputText
+                        name="username"
                         label="Никнейм"
-                        error={!!errors.username}
-                        helperText={
-                            errors?.username
-                                ? errors?.username?.message ?? ""
-                                : "Придумайте никнейм"
-                        }
+                        labelIcon={<PersonOutlineRoundedIcon />}
+                        helperText="Придумайте никнейм"
+                        margin="normal"
                     />
-                    <MyTextField
-                        icon={
-                            <MailOutlineRoundedIcon
-                                sx={{
-                                    fontSize: 20,
-                                    color: "action.active",
-                                    marginRight: "5px",
-                                    marginBottom: "3px",
-                                }}
-                            />
-                        }
-                        register={register("email")}
-                        label="Email"
-                        error={!!errors.email}
-                        helperText={
-                            errors.email
-                                ? errors?.email?.message ?? ""
-                                : "Ваша почта"
-                        }
+                    <InputText
+                        name="email"
+                        label="Почта"
+                        labelIcon={<MailOutlineRoundedIcon />}
+                        helperText="Ваша почта"
+                        margin="normal"
                     />
-                    <PasswordTextField
-                        register={register("password")}
+                    <InputTextPassword
+                        name="password"
                         label="Пароль"
-                        error={!!errors.password}
-                        helperText={
-                            errors.password
-                                ? errors?.password?.message ?? ""
-                                : "Ваш пароль"
-                        }
+                        labelIcon={<LockOpenRoundedIcon />}
+                        helperText="Ваш пароль"
+                        margin="normal"
                     />
-                    <PasswordTextField
-                        register={register("passwordConfirm")}
+                    <InputTextPassword
+                        name="passwordConfirm"
                         label="Пароль"
-                        error={!!errors.passwordConfirm}
-                        helperText={
-                            errors.passwordConfirm
-                                ? errors?.passwordConfirm?.message ?? ""
-                                : "Подтвердите пароль"
-                        }
+                        labelIcon={<LockOpenRoundedIcon />}
+                        helperText="Подтвердите пароль"
+                        margin="normal"
                     />
-                    <Box
-                        sx={{
-                            marginTop: "15px",
-                            display: "flex",
-                            justifyContent: "center",
-                        }}
-                    >
-                        <SmartCaptcha sitekey="<ключ_клиента>" />
-                    </Box>
+                    <FakeCaptcha />
+                    {/* <SmartCaptcha sitekey="<ключ_клиента>" /> */}
                     <Box
                         sx={{
                             marginTop: "30px",
@@ -261,7 +212,7 @@ export const RegisterForm: FC<RegisterFormProps> = ({ toggleLogin }) => {
                             Зарегистрироваться
                         </PrimaryLoadingButton>
                     </Box>
-                </form>
+                </Form>
                 <Box
                     sx={{
                         marginTop: "20px",

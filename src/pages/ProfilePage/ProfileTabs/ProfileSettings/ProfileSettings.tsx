@@ -2,7 +2,6 @@ import { Avatar, Box, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { alpha } from "@mui/material/styles";
-import { MyTextField } from "../../../AuthPage/components/MyTextField";
 
 export const DeleteBtn = () => {
     return (
@@ -143,27 +142,6 @@ export const ProfileSettings = () => {
                             <UpdateBtn />
                         </Box>
                     </Box>
-                    <MyTextField
-                        sx={{
-                            m: 2,
-                            bgcolor: (theme) => theme.palette.bgcolor.tertiary,
-                        }}
-                        label="Текст"
-                    />
-                    <MyTextField
-                        sx={{
-                            m: 2,
-                            bgcolor: (theme) => theme.palette.bgcolor.tertiary,
-                        }}
-                        label="Текст"
-                    />
-                    <MyTextField
-                        sx={{
-                            m: 2,
-                            bgcolor: (theme) => theme.palette.bgcolor.tertiary,
-                        }}
-                        label="Текст"
-                    />
                 </Box>
             </Box>
         </Box>
@@ -179,5 +157,4 @@ export const ProfileSettings = () => {
             >
                 Безопасность
             </Typography>
-            <MyTextField label="Текст" />
             <SettingsSecure /> */
