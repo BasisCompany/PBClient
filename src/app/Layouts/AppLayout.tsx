@@ -1,10 +1,10 @@
 import { BoxProps, Container, styled } from "@mui/material";
 import { Outlet } from "react-router";
-import { FlexBox } from "../../shared/ui/FlexBox";
-import { NavBar } from "../../modules/NavBar/NavBar";
-import { SideBar } from "../../modules/SideBar/SideBar";
-import { useMeQuery } from "../../pages/AuthPage/store/authApi";
-import { LoadingPage } from "../../pages/LoadingPage/Loading.page";
+import { SideBar } from "@/modules/SideBar/SideBar";
+import { useMeQuery } from "@/pages/AuthPage/store/authApi";
+import { LoadingPage } from "@/pages/LoadingPage/Loading.page";
+import { NavBar } from "@/modules/NavBar/NavBar";
+import { FlexBox } from "@/shared/ui/FlexBox";
 
 const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
     flexGrow: 1,

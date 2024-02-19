@@ -3,7 +3,6 @@ import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { useParams } from "react-router";
 import { object, string, ref, InferType } from "yup";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
-import { CenterBox } from "../../shared/ui/CenterBox";
 import { PrimaryLoadingButton } from "../../shared/ui/Buttons/PrimaryButton/PrimaryLoadingButton";
 import {
     ExtSubmitHandler,
@@ -11,6 +10,7 @@ import {
     InputTextPassword,
 } from "../../shared/ui/Forms";
 import { useResetPasswordMutation } from "./store/authApi";
+import { CenterBox } from "@/shared/ui/CenterBox";
 
 const resetPasswordSchema = object({
     password: string()
