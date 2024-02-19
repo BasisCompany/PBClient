@@ -6,8 +6,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Comment } from "../../../../../types/comments.type";
 import { FlexBox } from "../../../../../shared/ui/FlexBox";
 import { useAuth } from "../../../../../shared/hooks/useAuth";
-import { Authorization } from "../../../../../lib/authorization";
-import { POLICIES } from "../../../../../lib/authorization/policies";
+import { Authorization } from "../../../../../shared/lib/authorization";
+import { POLICIES } from "../../../../../shared/lib/authorization/policies";
 import { CommentRating } from "./CommentRating";
 
 const ReplyButton = styled((props: ButtonProps) => (

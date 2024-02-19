@@ -1,5 +1,5 @@
-import { UserDetails } from "../../pages/AuthPage/store/authSlice";
-import { Comment } from "../../types/comments.type";
+import { UserDetails } from "../../../pages/AuthPage/store/authSlice";
+import { Comment } from "../../../types/comments.type";
 import { ROLES } from "./roles.enum";
 
 export const POLICIES = {

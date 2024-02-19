@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { Outlet, useParams } from "react-router";
 import { useAuth } from "../../../shared/hooks/useAuth";
 import { FlexBox } from "../../../shared/ui/FlexBox";
-import { POLICIES } from "../../../lib/authorization/policies";
+import { POLICIES } from "../../../shared/lib/authorization/policies";
 import { UserTabs } from "./UserTabs";
 import { LocalTabs } from "./LocalTabs";
 
