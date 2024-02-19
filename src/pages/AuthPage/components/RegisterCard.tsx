@@ -13,14 +13,14 @@ import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import { object, string, ref, InferType } from "yup";
 import { useRegisterMutation } from "../store/authApi";
-import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
+import { PrimaryLoadingButton } from "../../../shared/ui/Buttons/PrimaryButton/PrimaryLoadingButton";
 import { toaster } from "../../../lib/Toast";
 import {
     ExtSubmitHandler,
     Form,
     InputText,
     InputTextPassword,
-} from "../../../UI/Forms";
+} from "../../../shared/ui/Forms";
 import { FakeCaptcha } from "../../../trash/FakeCaptcha";
 
 interface RegisterCardProps {

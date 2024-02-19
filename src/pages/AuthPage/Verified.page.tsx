@@ -1,7 +1,7 @@
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
-import { CenterBox } from "../../UI/CenterBox";
-import { PrimaryLinkButton } from "../../UI/Buttons/PrimaryButton";
+import { CenterBox } from "../../shared/ui/CenterBox";
+import { PrimaryLinkButton } from "../../shared/ui/Buttons/PrimaryButton";
 
 export const VerifiedPage = () => {
     return (

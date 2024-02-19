@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../shared/hooks/useAuth";
 import { RoleTypes } from "./roles.enum";
 
 export const useAuthorization = () => {

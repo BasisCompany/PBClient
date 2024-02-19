@@ -1,7 +1,7 @@
 import ChatBubbleRoundedIcon from "@mui/icons-material/ChatBubbleRounded";
 import IntegratInstRoundedIcon from "@mui/icons-material/IntegrationInstructionsRounded";
-import { CustomTabs, CustomTab } from "../../../UI/Tabs";
-import { useTabs } from "../../../hooks/useTabs";
+import { CustomTabs, CustomTab } from "../../../shared/ui/Tabs";
+import { useTabs } from "../../../shared/hooks/useTabs";
 
 const userTabs = ["", "comments"];
 

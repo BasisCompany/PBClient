@@ -9,8 +9,8 @@ import {
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { FlexBox } from "../../../UI/FlexBox";
-import { useMobileDevice } from "../../../hooks/useMobileDevice";
+import { FlexBox } from "../../../shared/ui/FlexBox";
+import { useMobileDevice } from "../../../shared/hooks/useMobileDevice";
 import { useCountUnreadNotificationsQuery } from "../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/store/profileNotificationsApi";
 import { AccountPopper } from "./Poppers/AccountPopper";
 import { NotificationsPopper } from "./Poppers/NotificationsPopper/NotificationsPopper";

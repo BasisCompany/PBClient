@@ -1,10 +1,10 @@
 import { FC, useReducer, useState } from "react";
 import { Box, styled, IconButton } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { FlexBox } from "../../../../../UI/FlexBox";
+import { FlexBox } from "../../../../../shared/ui/FlexBox";
 import { Comment } from "../../../../../types/comments.type";
 import { useDeleteCommentMutation } from "../store/profileCommentsApi";
-import { usePopperMenu } from "../../../../../hooks/usePopperMenu";
+import { usePopperMenu } from "../../../../../shared/hooks/usePopperMenu";
 import { toaster } from "../../../../../lib/Toast";
 import { CommentReportDialog } from "./CommentReportDialog";
 import { CommentAuthor } from "./CommentAuthor";

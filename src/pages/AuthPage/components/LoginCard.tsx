@@ -5,14 +5,14 @@ import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
 import { useLoginMutation } from "../store/authApi";
-import { PrimaryLoadingButton } from "../../../UI/Buttons/PrimaryButton";
-import { LinkTypography } from "../../../UI/Links/LinkTypography";
+import { PrimaryLoadingButton } from "../../../shared/ui/Buttons/PrimaryButton";
+import { LinkTypography } from "../../../shared/ui/Links/LinkTypography";
 import {
     ExtSubmitHandler,
     Form,
     InputText,
     InputTextPassword,
-} from "../../../UI/Forms";
+} from "../../../shared/ui/Forms";
 import { FakeCaptcha } from "../../../trash/FakeCaptcha";
 
 interface LoginCardProps {

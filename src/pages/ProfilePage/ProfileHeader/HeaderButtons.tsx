@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-import { ProfileButton } from "../../../UI/ProfileButton";
+import { ProfileButton } from "../../../shared/ui/ProfileButton";
 
 export const HeaderButtons = () => {
     return (

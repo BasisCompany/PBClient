@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Avatar, Box, Typography, Rating } from "@mui/material";
-import { FlexBox } from "../../../../../UI/FlexBox";
+import { FlexBox } from "../../../../../shared/ui/FlexBox";
 import { Comment } from "../../../../../types/comments.type";
 
 interface CommentAuthorProps {

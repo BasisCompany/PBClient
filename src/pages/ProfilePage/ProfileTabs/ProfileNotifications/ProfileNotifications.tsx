@@ -3,7 +3,7 @@ import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
 import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
 import SortRoundedIcon from "@mui/icons-material/SortRounded";
 import { useSearchParams } from "react-router-dom";
-import { useMobileDevice } from "../../../../hooks/useMobileDevice";
+import { useMobileDevice } from "../../../../shared/hooks/useMobileDevice";
 import {
     getPageParamSafe,
     getSortParamSafe,

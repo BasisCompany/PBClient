@@ -4,10 +4,10 @@ import { Button, ButtonProps, styled } from "@mui/material";
 import ReplyIcon from "@mui/icons-material/Reply";
 import CloseIcon from "@mui/icons-material/Close";
 import { Comment } from "../../../../../types/comments.type";
-import { FlexBox } from "../../../../../UI/FlexBox";
-import { useAuth } from "../../../../../hooks/useAuth";
-import { Authorization } from "../../../../../lib/Authorization";
-import { POLICIES } from "../../../../../lib/Authorization/policies";
+import { FlexBox } from "../../../../../shared/ui/FlexBox";
+import { useAuth } from "../../../../../shared/hooks/useAuth";
+import { Authorization } from "../../../../../lib/authorization";
+import { POLICIES } from "../../../../../lib/authorization/policies";
 import { CommentRating } from "./CommentRating";
 
 const ReplyButton = styled((props: ButtonProps) => (

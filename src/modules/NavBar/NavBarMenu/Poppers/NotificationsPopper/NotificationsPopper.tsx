@@ -11,14 +11,14 @@ import {
 import { FC } from "react";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import { LinkButton } from "../../../../../UI/Links/LinkButton";
-import { LinkIconButton } from "../../../../../UI/Links/LinkIconButton";
+import { LinkButton } from "../../../../../shared/ui/Links/LinkButton";
+import { LinkIconButton } from "../../../../../shared/ui/Links/LinkIconButton";
 import {
     useGetNotificationsQuery,
     useReadAllNotificationsMutation,
 } from "../../../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/store/profileNotificationsApi";
 import { CommentsEmpty } from "../../../../../pages/ProfilePage/ProfileTabs/ProfileComments/CommentsEmpty";
-import { FlexBox } from "../../../../../UI/FlexBox";
+import { FlexBox } from "../../../../../shared/ui/FlexBox";
 import { NavbarNotification } from "./NavbarNotification";
 
 interface NotificationsPopperProps {

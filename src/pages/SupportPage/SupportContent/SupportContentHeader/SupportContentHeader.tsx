@@ -7,8 +7,8 @@ import { useLocation } from "react-router";
 import QuizRoundedIcon from "@mui/icons-material/QuizRounded";
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded";
 import LightbulbRoundedIcon from "@mui/icons-material/LightbulbRounded";
-import { useMobileDevice } from "../../../../hooks/useMobileDevice";
-import { CustomTab, CustomTabs } from "../../../../UI/Tabs";
+import { useMobileDevice } from "../../../../shared/hooks/useMobileDevice";
+import { CustomTab, CustomTabs } from "../../../../shared/ui/Tabs";
 
 const supportTabsItems = [
     {

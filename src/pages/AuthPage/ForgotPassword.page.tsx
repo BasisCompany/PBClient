@@ -2,9 +2,9 @@ import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlin
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import { object, string, InferType } from "yup";
-import { CenterBox } from "../../UI/CenterBox";
-import { PrimaryLoadingButton } from "../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
-import { ExtSubmitHandler, Form, InputText } from "../../UI/Forms";
+import { CenterBox } from "../../shared/ui/CenterBox";
+import { PrimaryLoadingButton } from "../../shared/ui/Buttons/PrimaryButton/PrimaryLoadingButton";
+import { ExtSubmitHandler, Form, InputText } from "../../shared/ui/Forms";
 import { FakeCaptcha } from "../../trash/FakeCaptcha";
 import { useLazyForgotPasswordQuery } from "./store/authApi";
 

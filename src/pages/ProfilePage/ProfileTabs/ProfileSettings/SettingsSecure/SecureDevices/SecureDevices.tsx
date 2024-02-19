@@ -1,6 +1,6 @@
 import { Box, Typography, styled } from "@mui/material";
 import { useGetUserDevicesQuery } from "../../store/profileSettingsApi";
-import { useAuth } from "../../../../../../hooks/useAuth";
+import { useAuth } from "../../../../../../shared/hooks/useAuth";
 import { SecureDevice } from "./SecureDevice";
 
 const DeviceBox = styled(Box)(({ theme }) => ({

@@ -3,9 +3,13 @@ import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { useParams } from "react-router";
 import { object, string, ref, InferType } from "yup";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
-import { CenterBox } from "../../UI/CenterBox";
-import { PrimaryLoadingButton } from "../../UI/Buttons/PrimaryButton/PrimaryLoadingButton";
-import { ExtSubmitHandler, Form, InputTextPassword } from "../../UI/Forms";
+import { CenterBox } from "../../shared/ui/CenterBox";
+import { PrimaryLoadingButton } from "../../shared/ui/Buttons/PrimaryButton/PrimaryLoadingButton";
+import {
+    ExtSubmitHandler,
+    Form,
+    InputTextPassword,
+} from "../../shared/ui/Forms";
 import { useResetPasswordMutation } from "./store/authApi";
 
 const resetPasswordSchema = object({

@@ -3,13 +3,13 @@ import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
 import { useParams, useSearchParams } from "react-router-dom";
 import { ProfileSelect } from "../../components/ProfileSelect";
-import { useMobileDevice } from "../../../../hooks/useMobileDevice";
+import { useMobileDevice } from "../../../../shared/hooks/useMobileDevice";
 import {
     getPageParamSafe,
     getSortParamSafe,
 } from "../../../../utils/getParamSafely";
 import { ProfilePagination } from "../../components/ProfilePagination";
-import { FlexBox } from "../../../../UI/FlexBox";
+import { FlexBox } from "../../../../shared/ui/FlexBox";
 import { CommentsLoading } from "./CommentsLoading";
 import { useGetCommentsQuery } from "./store/profileCommentsApi";
 import { CommentsEmpty } from "./CommentsEmpty";

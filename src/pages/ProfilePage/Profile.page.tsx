@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { FlexBox } from "../../UI/FlexBox";
+import { FlexBox } from "../../shared/ui/FlexBox";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileStatistic } from "./ProfileStatistic/ProfileStatistic";
 import { useUserAboutQuery } from "./store/profileApi";

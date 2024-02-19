@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { AppBar, Toolbar } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../shared/hooks/useAuth";
 import { NavBarLogo } from "./NavBarLogo";
 import { NavBarSearch } from "./NavBarSearch";
 import { SideBarButton } from "./SideBarButton";

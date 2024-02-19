@@ -1,11 +1,11 @@
 import { FC, useState } from "react";
 import { Avatar, Box, Divider, IconButton, Typography } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
-import { Spacer } from "../../../../../UI/Spacer";
+import { Spacer } from "../../../../../shared/ui/Spacer";
 import { formatTimeDistanceToNow } from "../../../../../utils/timeFormatter";
 import { Notification } from "../../../../../types/notifications.type";
 import { NotificationMessage } from "../../../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotification/NotificationMessage";
-import { FlexBox } from "../../../../../UI/FlexBox";
+import { FlexBox } from "../../../../../shared/ui/FlexBox";
 import { useReadNotificationMutation } from "../../../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/store/profileNotificationsApi";
 
 interface NavbarNotificationProps {

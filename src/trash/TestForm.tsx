@@ -1,8 +1,8 @@
 import { object, string, InferType } from "yup";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
-import { PrimaryLoadingButton } from "../UI/Buttons/PrimaryButton";
-import { Form, ExtSubmitHandler, InputText } from "../UI/Forms";
-import { InputTextPassword } from "../UI/Forms/inputs/InputTextPassword";
+import { PrimaryLoadingButton } from "../shared/ui/Buttons/PrimaryButton";
+import { Form, ExtSubmitHandler, InputText } from "../shared/ui/Forms";
+import { InputTextPassword } from "../shared/ui/Forms/inputs/InputTextPassword";
 
 const loginSchema = object({
     email: string().required(),

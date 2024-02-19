@@ -4,7 +4,7 @@ import {
     formatTimeDistanceToNow,
     formatTimeFull,
 } from "../../../../../../utils/timeFormatter";
-import { useMobileDevice } from "../../../../../../hooks/useMobileDevice";
+import { useMobileDevice } from "../../../../../../shared/hooks/useMobileDevice";
 
 interface ReplyTimestamp {
     time: string;

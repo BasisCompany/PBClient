@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { PagePagination } from "../../../UI/PagePagination";
-import { FlexBox } from "../../../UI/FlexBox";
+import { PagePagination } from "../../../shared/ui/PagePagination";
+import { FlexBox } from "../../../shared/ui/FlexBox";
 
 interface ProfilePaginationProps {
     isMobile: boolean;

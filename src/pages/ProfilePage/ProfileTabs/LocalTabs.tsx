@@ -4,8 +4,8 @@ import ChatBubbleRoundedIcon from "@mui/icons-material/ChatBubbleRounded";
 import IntegratInstRoundedIcon from "@mui/icons-material/IntegrationInstructionsRounded";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import { CustomTabs, CustomTab } from "../../../UI/Tabs";
-import { useTabs } from "../../../hooks/useTabs";
+import { CustomTabs, CustomTab } from "../../../shared/ui/Tabs";
+import { useTabs } from "../../../shared/hooks/useTabs";
 
 const ProfileTabBadge = styled((props: BadgeProps) => (
     <Badge overlap="circular" color="secondary" max={9} {...props} />

@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { SelectChangeEvent, ListItemIcon } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
-import { CustomSelect } from "../../../UI/Select/CustomSelect";
-import { CustomSelectMenuItem } from "../../../UI/Select/CustomSelectMenuItem";
+import { CustomSelect } from "../../../shared/ui/Select/CustomSelect";
+import { CustomSelectMenuItem } from "../../../shared/ui/Select/CustomSelectMenuItem";
 import { getSortParamSafe } from "../../../utils/getParamSafely";
 
 interface ProfileSelectProps {

@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import { ChangeEvent, FC, useState } from "react";
-import { useMobileDevice } from "../../../../../hooks/useMobileDevice";
+import { useMobileDevice } from "../../../../../shared/hooks/useMobileDevice";
 
 const CustomDialog = styled(Dialog)(({ theme }) => ({
     "& .MuiDialog-paper": {

@@ -11,7 +11,7 @@ import {
     Popper,
     Container,
 } from "@mui/material";
-import { useMobileDevice } from "../../hooks/useMobileDevice";
+import { useMobileDevice } from "../../shared/hooks/useMobileDevice";
 
 interface SearchInputProps extends BoxProps {
     isOpen: boolean;
