@@ -3,9 +3,9 @@ import { LoginSchema } from "../components/LoginCard";
 import { RegisterSchema } from "../components/RegisterCard";
 import { ResetPasswordSchema } from "../ResetPassword.page";
 import {
-    baseQueryWithReAuth,
     baseQueryWithToastErrors,
-} from "./../../../redux/api/baseQuery";
+    baseQueryWithReAuth,
+} from "../../../shared/api";
 import { setInitialState } from "./authSlice";
 
 interface LoginResponse {

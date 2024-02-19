@@ -1,5 +1,5 @@
 import { createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../../app/appStore";
 import { sidebarMode } from "../../../storage";
 import { setSidebarOpen, toggleSidebar } from "./sidebarSlice";
 

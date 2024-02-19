@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { Avatar, Box, Divider, IconButton, Typography } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
 import { Spacer } from "../../../../../shared/ui/Spacer";
-import { formatTimeDistanceToNow } from "../../../../../utils/timeFormatter";
+import { formatTimeDistanceToNow } from "../../../../../shared/utils/timeFormatter";
 import { Notification } from "../../../../../types/notifications.type";
 import { NotificationMessage } from "../../../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotification/NotificationMessage";
 import { FlexBox } from "../../../../../shared/ui/FlexBox";

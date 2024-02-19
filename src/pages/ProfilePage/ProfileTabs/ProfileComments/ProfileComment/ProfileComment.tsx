@@ -5,7 +5,7 @@ import { FlexBox } from "../../../../../shared/ui/FlexBox";
 import { Comment } from "../../../../../types/comments.type";
 import { useDeleteCommentMutation } from "../store/profileCommentsApi";
 import { usePopperMenu } from "../../../../../shared/hooks/usePopperMenu";
-import { toaster } from "../../../../../lib/Toast";
+import { toaster } from "../../../../../app/providers/Toast";
 import { CommentReportDialog } from "./CommentReportDialog";
 import { CommentAuthor } from "./CommentAuthor";
 import { CommentMessage } from "./CommentMessage";

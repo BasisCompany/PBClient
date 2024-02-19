@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { PromptBuyIcon } from "../../assets/PromptBuyIcon";
+import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
 
 export const FallbackError = () => {
     const reloadPage = () => {

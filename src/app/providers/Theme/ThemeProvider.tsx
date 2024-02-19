@@ -1,20 +1,20 @@
 import { FC, ReactNode, useMemo } from "react";
 import {
     CssBaseline,
-    ThemeProvider,
+    ThemeProvider as MuiThemeProvider,
     createTheme,
     useMediaQuery,
 } from "@mui/material";
-import { useLocalStorageState } from "../../storage/hooks/useLocalStorageState";
+import { useLocalStorageState } from "../../../storage/hooks/useLocalStorageState";
 import { ThemeModeContext } from "./ThemeContext/ThemeModeContext";
 import { EThemeMode } from "./enums/themeMode.enum";
 import { getGlobalStyles } from "./globalStyles";
 
-interface IGlobalThemeProps {
+interface ThemeProviderProps {
     children: ReactNode;
 }
 
-export const GlobalTheme: FC<IGlobalThemeProps> = ({ children }) => {
+export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
     const [mode, setMode] = useLocalStorageState<EThemeMode>(
         prefersDarkMode ? EThemeMode.dark : EThemeMode.light,
@@ -40,7 +40,7 @@ export const GlobalTheme: FC<IGlobalThemeProps> = ({ children }) => {
     return (
         <ThemeModeContext.Provider value={setupThemeMode}>
             <CssBaseline />
-            <ThemeProvider theme={theme}>{children}</ThemeProvider>
+            <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
         </ThemeModeContext.Provider>
     );
 };

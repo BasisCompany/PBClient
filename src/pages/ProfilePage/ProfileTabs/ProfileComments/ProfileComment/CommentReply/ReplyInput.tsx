@@ -5,7 +5,7 @@ import { object, string, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FC } from "react";
 import { useAddReplyMutation } from "../../store/profileCommentsApi";
-import { toaster } from "../../../../../../lib/Toast";
+import { toaster } from "../../../../../../app/providers/Toast";
 
 const replySchema = object({
     message: string()

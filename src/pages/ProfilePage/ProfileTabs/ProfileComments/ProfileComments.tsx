@@ -7,7 +7,7 @@ import { useMobileDevice } from "../../../../shared/hooks/useMobileDevice";
 import {
     getPageParamSafe,
     getSortParamSafe,
-} from "../../../../utils/getParamSafely";
+} from "../../../../shared/utils/getParamSafely";
 import { ProfilePagination } from "../../components/ProfilePagination";
 import { FlexBox } from "../../../../shared/ui/FlexBox";
 import { CommentsLoading } from "./CommentsLoading";

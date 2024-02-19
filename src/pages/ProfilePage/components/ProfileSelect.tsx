@@ -3,7 +3,7 @@ import { SelectChangeEvent, ListItemIcon } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import { CustomSelect } from "../../../shared/ui/Select/CustomSelect";
 import { CustomSelectMenuItem } from "../../../shared/ui/Select/CustomSelectMenuItem";
-import { getSortParamSafe } from "../../../utils/getParamSafely";
+import { getSortParamSafe } from "../../../shared/utils/getParamSafely";
 
 interface ProfileSelectProps {
     selectItems: {

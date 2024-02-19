@@ -3,8 +3,8 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import { LinkButton } from "../../shared/ui/Links/LinkButton";
-import { useThemeMode } from "../../app/Theme/ThemeContext/useThemeMode";
-import { EThemeMode } from "../../app/Theme/enums/themeMode.enum";
+import { useThemeMode } from "../../app/providers/Theme/ThemeContext/useThemeMode";
+import { EThemeMode } from "../../app/providers/Theme/enums/themeMode.enum";
 
 export const NavBarLogin = () => {
     const { mode, toggleThemeMode } = useThemeMode();

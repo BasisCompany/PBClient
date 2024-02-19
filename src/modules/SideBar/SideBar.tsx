@@ -2,7 +2,7 @@ import { Drawer, DrawerProps } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { FlexBox } from "../../shared/ui/FlexBox";
 import { useMobileDevice } from "../../shared/hooks/useMobileDevice";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { useAppSelector, useAppDispatch } from "../../app/appStore";
 import { SideBarList } from "./SideBarList";
 import { selectSideBarStatus, setSidebarOpen } from "./store/sidebarSlice";
 

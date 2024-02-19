@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Pagination, PaginationItem, PaginationProps } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
-import { getPageParamSafe } from "../../utils/getParamSafely";
+import { getPageParamSafe } from "../utils/getParamSafely";
 
 export const PagePagination: FC<PaginationProps> = (props) => {
     const [searchParams, setSearchParams] = useSearchParams();

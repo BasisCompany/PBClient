@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../../redux/store";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../../app/appStore";
 import { authApi, initAuthApi } from "./authApi";
 
 export interface UserDetails {

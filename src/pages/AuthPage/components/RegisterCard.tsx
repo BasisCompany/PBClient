@@ -14,7 +14,6 @@ import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import { object, string, ref, InferType } from "yup";
 import { useRegisterMutation } from "../store/authApi";
 import { PrimaryLoadingButton } from "../../../shared/ui/Buttons/PrimaryButton/PrimaryLoadingButton";
-import { toaster } from "../../../lib/Toast";
 import {
     ExtSubmitHandler,
     Form,
@@ -22,6 +21,7 @@ import {
     InputTextPassword,
 } from "../../../shared/ui/Forms";
 import { FakeCaptcha } from "../../../trash/FakeCaptcha";
+import { toaster } from "../../../app/providers/Toast";
 
 interface RegisterCardProps {
     toggleLogin: DispatchWithoutAction;

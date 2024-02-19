@@ -5,13 +5,13 @@ import {
     ListItemText,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useAppSelector } from "../../redux/hooks";
 import { useAuth } from "../../shared/hooks/useAuth";
 import { useMobileDevice } from "../../shared/hooks/useMobileDevice";
 import {
     LinkListItem,
     LinkListItemProps,
 } from "../../shared/ui/Links/LinkListItem";
+import { useAppSelector } from "../../app/appStore";
 import { sideBarItems } from "./sideBarItems";
 import { selectSideBarStatus } from "./store/sidebarSlice";
 

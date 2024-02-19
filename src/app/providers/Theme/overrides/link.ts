@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 import { LinkProps } from "@mui/material/Link";
-import { LinkBehavior } from "../../../shared/ui/Route/LinkBehavior";
+import { LinkBehavior } from "../../../../shared/ui/Route/LinkBehavior";
 
 export const MuiLink = {
     styleOverrides: {

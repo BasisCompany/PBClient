@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import authReducer from "../pages/AuthPage/store/authSlice";
 import { authApi, initAuthApi } from "../pages/AuthPage/store/authApi";
 import { profileApi } from "../pages/ProfilePage/store/profileApi";
@@ -30,3 +31,6 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

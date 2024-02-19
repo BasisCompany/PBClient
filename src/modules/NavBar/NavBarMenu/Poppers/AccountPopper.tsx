@@ -22,10 +22,10 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { useNavigate } from "react-router";
 import { Spacer } from "../../../../shared/ui/Spacer";
-import { useThemeMode } from "../../../../app/Theme/ThemeContext/useThemeMode";
+import { useThemeMode } from "../../../../app/providers/Theme/ThemeContext/useThemeMode";
 import { useMobileDevice } from "../../../../shared/hooks/useMobileDevice";
 import { LinkListItemButton } from "../../../../shared/ui/Links/LinkListItemButton";
-import { EThemeMode } from "../../../../app/Theme/enums/themeMode.enum";
+import { EThemeMode } from "../../../../app/providers/Theme/enums/themeMode.enum";
 import { useLazyLogoutQuery } from "../../../../pages/AuthPage/store/authApi";
 
 interface AccountMenuProps {

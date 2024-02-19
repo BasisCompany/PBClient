@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Box, Typography } from "@mui/material";
 import { Device } from "../../../../../../types/settings.type";
-import { formatTimeDistanceToNow } from "../../../../../../utils/timeFormatter";
+import { formatTimeDistanceToNow } from "../../../../../../shared/utils/timeFormatter";
 
 interface DeviceProps {
     device: Device;

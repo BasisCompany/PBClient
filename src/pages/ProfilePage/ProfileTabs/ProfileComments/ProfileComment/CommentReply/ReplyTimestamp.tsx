@@ -3,7 +3,7 @@ import { Tooltip, Typography } from "@mui/material";
 import {
     formatTimeDistanceToNow,
     formatTimeFull,
-} from "../../../../../../utils/timeFormatter";
+} from "../../../../../../shared/utils/timeFormatter";
 import { useMobileDevice } from "../../../../../../shared/hooks/useMobileDevice";
 
 interface ReplyTimestamp {

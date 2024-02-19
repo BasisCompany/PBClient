@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQueryWithReAuthToastErrors } from "../../../redux/api/baseQuery";
 import { UserAbout } from "../../../types/user.type";
-import { URL_ROOT } from "../../../consts/api";
+import { URL_ROOT } from "../../../shared/api/config";
+import { baseQueryWithReAuthToastErrors } from "../../../shared/api";
 
 export const profileApi = createApi({
     reducerPath: "profileApi",

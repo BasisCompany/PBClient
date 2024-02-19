@@ -3,7 +3,7 @@ import { Box, Tooltip, Typography } from "@mui/material";
 import {
     formatTimeDistanceToNow,
     formatTimeFull,
-} from "../../../../../utils/timeFormatter";
+} from "../../../../../shared/utils/timeFormatter";
 
 interface CommentTimestampProps {
     time: string;
