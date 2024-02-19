@@ -1,25 +1,26 @@
-import { Route, Routes } from "react-router";
-import { ProfilePage } from "../pages/ProfilePage/Profile.page";
-import { SupportPage } from "../pages/SupportPage/Support.page";
+import { Route, createRoutesFromElements } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import { AuthPage } from "../pages/AuthPage/Auth.page";
 import { ExpiredPage } from "../pages/AuthPage/Expired.page";
-import { VerifiedPage } from "../pages/AuthPage/Verified.page";
 import { ForgotPasswordPage } from "../pages/AuthPage/ForgotPassword.page";
 import { ResetPasswordPage } from "../pages/AuthPage/ResetPassword.page";
-import { TestPage } from "../trash/TestPage";
-import { SupportContentMainHelp } from "../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
-import { SupportContentMainQuestions } from "../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/SupportContentMainQuestions";
-import { ProfileNotifications } from "../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotifications";
+import { VerifiedPage } from "../pages/AuthPage/Verified.page";
+import { ProfilePage } from "../pages/ProfilePage/Profile.page";
 import { ProfileComments } from "../pages/ProfilePage/ProfileTabs/ProfileComments/ProfileComments";
+import { ProfileNotifications } from "../pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotifications";
 import { ProfilePrompts } from "../pages/ProfilePage/ProfileTabs/ProfilePrompts/ProfilePrompts";
 import { ProfileSettings } from "../pages/ProfilePage/ProfileTabs/ProfileSettings/ProfileSettings";
+import { SupportPage } from "../pages/SupportPage/Support.page";
+import { SupportContentMainHelp } from "../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
+import { SupportContentMainQuestions } from "../pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/SupportContentMainQuestions";
+import { TestPage } from "../trash/TestPage";
+import { AppLayout } from "./layouts/AppLayout";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { RequireLocal } from "./layouts/RequireLocalProfile";
-import { AppLayout } from "./layouts/AppLayout";
 
-export const AppRouter = () => {
-    return (
-        <Routes>
+export const appRouter = createBrowserRouter(
+    createRoutesFromElements(
+        <Route>
             <Route path="/" element={<AppLayout />}>
                 <Route index element={<TestPage />} />
                 <Route path="user/:id/" element={<ProfilePage />}>
@@ -74,6 +75,6 @@ export const AppRouter = () => {
                 </Route>
             </Route>
             <Route path="*" element={<h1>Not Found</h1>} />
-        </Routes>
-    );
-};
+        </Route>
+    )
+);
