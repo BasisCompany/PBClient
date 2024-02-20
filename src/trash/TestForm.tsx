@@ -14,7 +14,7 @@ export type LoginSchema = InferType<typeof loginSchema>;
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const TestForm = () => {
-    const onSubmit: ExtSubmitHandler<LoginSchema> = async (data, reset) => {
+    const onSubmit: ExtSubmitHandler<LoginSchema> = async (_data, reset) => {
         await sleep(1000);
         reset();
     };

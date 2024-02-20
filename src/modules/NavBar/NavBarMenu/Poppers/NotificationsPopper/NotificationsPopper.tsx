@@ -109,7 +109,7 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                             color="secondary"
                         />
                     </LinkButton>
-                    <IconButton onClick={readAllNotifications}>
+                    <IconButton onClick={() => readAllNotifications()}>
                         <DoneAllIcon />
                     </IconButton>
                 </Box>

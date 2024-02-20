@@ -37,7 +37,7 @@ export const CommentReportDialog: FC<CommentReportDialogProps> = ({
     onClose,
 }) => {
     const isMobile = useMobileDevice();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const [radioValue, setRadioValue] = useState("");
     //React hook form for text field
     const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -101,6 +101,7 @@ export const CommentReportDialog: FC<CommentReportDialogProps> = ({
                         </Typography>
                         <RadioGroup
                             name="radio-buttons-group"
+                            value={radioValue}
                             onChange={handleRadioChange}
                             sx={{
                                 "& .MuiFormControlLabel-label": {

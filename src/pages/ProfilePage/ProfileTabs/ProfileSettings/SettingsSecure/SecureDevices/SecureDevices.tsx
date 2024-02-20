@@ -35,7 +35,7 @@ export const SecureDevices = () => {
                 >
                     Текущий сеанс
                 </Typography>
-                <SecureDevice device={currentDevice} isCurrent />
+                <SecureDevice device={currentDevice!} isCurrent />
             </DeviceBox>
             <DeviceBox
                 sx={{
