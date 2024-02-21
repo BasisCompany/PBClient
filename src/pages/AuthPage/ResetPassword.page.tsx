@@ -24,7 +24,7 @@ const resetPasswordSchema = object({
 
 export type ResetPasswordSchema = InferType<typeof resetPasswordSchema>;
 
-export const ResetPasswordPage = () => {
+const ResetPasswordPage = () => {
     const { resetToken } = useParams();
 
     const [resetPassword, { isLoading }] = useResetPasswordMutation();
@@ -143,3 +143,5 @@ export const ResetPasswordPage = () => {
         </CenterBox>
     );
 };
+
+export default ResetPasswordPage;

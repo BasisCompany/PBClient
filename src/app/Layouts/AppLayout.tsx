@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { BoxProps, Container, styled } from "@mui/material";
 import { Outlet } from "react-router";
 import { SideBar } from "@/modules/SideBar/SideBar";
@@ -42,7 +43,9 @@ export const AppLayout = () => {
                             mb: "15px",
                         }}
                     >
-                        <Outlet />
+                        <Suspense fallback={<h1>Loading...</h1>}>
+                            <Outlet />
+                        </Suspense>
                     </Container>
                 </MainContainer>
             </FlexBox>

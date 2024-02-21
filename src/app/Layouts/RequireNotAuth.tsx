@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router";
 import { useAuth } from "../../shared/hooks/useAuth";
 
-export const AuthLayout = () => {
+export const RequireNotAuth = () => {
     const { isUserAuthenticated } = useAuth();
 
     if (isUserAuthenticated) {

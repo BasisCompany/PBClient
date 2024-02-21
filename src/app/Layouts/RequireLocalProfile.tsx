@@ -1,8 +1,8 @@
-import { useLocation, Navigate, useParams } from "react-router";
+import { useLocation, Navigate, useParams, Outlet } from "react-router";
 import { useAuth } from "../../shared/hooks/useAuth";
 import { POLICIES } from "../../shared/lib/authorization/policies";
 
-export const RequireLocal = ({ children }: { children: JSX.Element }) => {
+export const RequireLocalProfile = () => {
     const { user } = useAuth();
     const { id } = useParams();
     const location = useLocation();
@@ -11,5 +11,5 @@ export const RequireLocal = ({ children }: { children: JSX.Element }) => {
         return <Navigate to="/" state={{ from: location }} replace />;
     }
 
-    return children;
+    return <Outlet />;
 };

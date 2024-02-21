@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Box } from "@mui/material";
 import { Outlet, useParams } from "react-router";
 import { useAuth } from "../../../shared/hooks/useAuth";
@@ -36,7 +37,9 @@ export const ProfileTabs = () => {
                     color: "white",
                 }}
             >
-                <Outlet />
+                <Suspense fallback={<h2>Loading..</h2>}>
+                    <Outlet />
+                </Suspense>
             </Box>
         </FlexBox>
     );

@@ -4,7 +4,7 @@ import { SupportHeader } from "./SupportHeader/SupportHeader";
 import { SupportContentHeader } from "./SupportContent/SupportContentHeader/SupportContentHeader";
 import { SupportContentMain } from "./SupportContent/SupportContentMain/SupportContentMain";
 
-export const SupportPage = () => {
+const SupportPage = () => {
     return (
         <>
             <Box
@@ -21,3 +21,5 @@ export const SupportPage = () => {
         </>
     );
 };
+
+export default SupportPage;

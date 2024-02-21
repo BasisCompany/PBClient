@@ -4,7 +4,7 @@ import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import { CenterBox } from "../../shared/ui/CenterBox";
 import { PrimaryLinkButton } from "../../shared/ui/Buttons/PrimaryButton";
 
-export const ExpiredPage: FC = () => {
+const ExpiredPage: FC = () => {
     return (
         <CenterBox>
             <Card
@@ -95,3 +95,5 @@ export const ExpiredPage: FC = () => {
         </CenterBox>
     );
 };
+
+export default ExpiredPage;

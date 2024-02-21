@@ -3,7 +3,7 @@ import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined
 import { CenterBox } from "../../shared/ui/CenterBox";
 import { PrimaryLinkButton } from "../../shared/ui/Buttons/PrimaryButton";
 
-export const VerifiedPage = () => {
+const VerifiedPage = () => {
     return (
         <CenterBox>
             <Card
@@ -93,3 +93,5 @@ export const VerifiedPage = () => {
         </CenterBox>
     );
 };
+
+export default VerifiedPage;

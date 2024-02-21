@@ -7,7 +7,7 @@ import { PrimaryButton } from "../shared/ui/Buttons/PrimaryButton/PrimaryButton"
 import { useAppDispatch } from "../app/appStore";
 import { TestForm } from "./TestForm";
 
-export const TestPage = () => {
+const TestPage = () => {
     const dispatch = useAppDispatch();
     const { isUserAuthenticated } = useAuth();
 
@@ -55,4 +55,4 @@ export const TestPage = () => {
     );
 };
 
-// (...args) => void handleSubmit(onSubmit)(...args)
+export default TestPage;

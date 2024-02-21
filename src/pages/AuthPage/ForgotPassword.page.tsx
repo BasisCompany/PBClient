@@ -17,7 +17,7 @@ const forgotPasswordSchema = object({
 
 export type ForgotPasswordSchema = InferType<typeof forgotPasswordSchema>;
 
-export const ForgotPasswordPage = () => {
+const ForgotPasswordPage = () => {
     const [forgotPassword, { isLoading }] = useLazyForgotPasswordQuery();
 
     const onSubmit: ExtSubmitHandler<ForgotPasswordSchema> = async (
@@ -129,3 +129,5 @@ export const ForgotPasswordPage = () => {
         </CenterBox>
     );
 };
+
+export default ForgotPasswordPage;

@@ -26,6 +26,11 @@ export const sideBarItems = [
         to: "/support",
     },
     {
+        title: "login",
+        icon: <DeveloperModeIcon sx={{ fontSize: 26 }} />,
+        to: "/login",
+    },
+    {
         title: "expired",
         icon: <DeveloperModeIcon sx={{ fontSize: 26 }} />,
         to: "/expired",

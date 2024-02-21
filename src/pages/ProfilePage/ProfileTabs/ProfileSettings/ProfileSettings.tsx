@@ -59,7 +59,7 @@ export const UpdateBtn = () => {
     );
 };
 
-export const ProfileSettings = () => {
+const ProfileSettings = () => {
     return (
         <Box>
             <Box
@@ -148,6 +148,7 @@ export const ProfileSettings = () => {
     );
 };
 
+export default ProfileSettings;
 /* <Typography
                 color={(theme) => theme.palette.text.primary}
                 fontWeight={500}

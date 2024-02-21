@@ -1,66 +1,54 @@
+import { lazy } from "react";
 import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
+
 import { AppLayout } from "./layouts/AppLayout";
-import { AuthLayout } from "./layouts/AuthLayout";
-import { RequireLocal } from "./layouts/RequireLocalProfile";
-import { AuthPage } from "@/pages/AuthPage/Auth.page";
-import { ExpiredPage } from "@/pages/AuthPage/Expired.page";
-import { ForgotPasswordPage } from "@/pages/AuthPage/ForgotPassword.page";
-import { ResetPasswordPage } from "@/pages/AuthPage/ResetPassword.page";
-import { VerifiedPage } from "@/pages/AuthPage/Verified.page";
-import { ProfilePage } from "@/pages/ProfilePage/Profile.page";
-import { ProfileComments } from "@/pages/ProfilePage/ProfileTabs/ProfileComments/ProfileComments";
-import { ProfileNotifications } from "@/pages/ProfilePage/ProfileTabs/ProfileNotifications/ProfileNotifications";
-import { ProfilePrompts } from "@/pages/ProfilePage/ProfileTabs/ProfilePrompts/ProfilePrompts";
-import { ProfileSettings } from "@/pages/ProfilePage/ProfileTabs/ProfileSettings/ProfileSettings";
-import { SupportPage } from "@/pages/SupportPage/Support.page";
+import { RequireLocalProfile } from "./layouts/RequireLocalProfile";
+import { RequireNotAuth } from "./layouts/RequireNotAuth";
+
+import { ProfilePage } from "@/pages/ProfilePage";
+
 import { SupportContentMainHelp } from "@/pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
 import { SupportContentMainQuestions } from "@/pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/SupportContentMainQuestions";
-import { TestPage } from "@/trash/TestPage";
+
+const TestPage = lazy(() => import("@/trash/TestPage"));
+
+const ProfilePrompts = lazy(
+    () => import("@/pages/ProfilePage/ProfileTabs/ProfilePrompts")
+);
+const ProfileComments = lazy(
+    () => import("@/pages/ProfilePage/ProfileTabs/ProfileComments")
+);
+const ProfileNotifications = lazy(
+    () => import("@/pages/ProfilePage/ProfileTabs/ProfileNotifications")
+);
+const ProfileSettings = lazy(
+    () => import("@/pages/ProfilePage/ProfileTabs/ProfileSettings")
+);
+
+const AuthPage = lazy(() => import("@/pages/AuthPage/Auth.page"));
+const ExpiredPage = lazy(() => import("@/pages/AuthPage/Expired.page"));
+const ForgotPasswordPage = lazy(
+    () => import("@/pages/AuthPage/ForgotPassword.page")
+);
+const ResetPasswordPage = lazy(
+    () => import("@/pages/AuthPage/ResetPassword.page")
+);
+const VerifiedPage = lazy(() => import("@/pages/AuthPage/Verified.page"));
+
+const SupportPage = lazy(() => import("@/pages/SupportPage"));
 
 export const AppRouter = () => (
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<AppLayout />}>
                 <Route index element={<TestPage />} />
-                <Route path="user/:id/" element={<ProfilePage />}>
-                    <Route index element={<ProfilePrompts />} />
-                    <Route path="comments" element={<ProfileComments />} />
-                    <Route
-                        path="notifications"
-                        element={
-                            <RequireLocal>
-                                <ProfileNotifications />
-                            </RequireLocal>
-                        }
-                    />
-                    <Route
-                        path="settings"
-                        element={
-                            <RequireLocal>
-                                <ProfileSettings />
-                            </RequireLocal>
-                        }
-                    />
-                    <Route
-                        path="payments"
-                        element={
-                            <RequireLocal>
-                                <h1>Платежи </h1>
-                            </RequireLocal>
-                        }
-                    />
-                </Route>
-                <Route path="marketplace" element={<AuthPage />} />
-                <Route path="support/" element={<SupportPage />}>
-                    <Route index element={<SupportContentMainHelp />} />
-                    <Route
-                        path="questions/:category"
-                        element={<SupportContentMainQuestions />}
-                    />
-                    <Route path="feedback" element={<h1>Задать вопрос </h1>} />
-                </Route>
-                <Route element={<AuthLayout />}>
+                {profileRoutes}
+                <Route path="marketplace" element={<h1>marketplace </h1>} />
+                {supportRoutes}
+
+                {/* AUTH */}
+                <Route element={<RequireNotAuth />}>
                     <Route path="login" element={<AuthPage />} />
                     <Route path="expired" element={<ExpiredPage />} />
                     <Route path="verified" element={<VerifiedPage />} />
@@ -77,4 +65,27 @@ export const AppRouter = () => (
             <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
     </BrowserRouter>
+);
+
+const profileRoutes = (
+    <Route path="user/:id/" element={<ProfilePage />}>
+        <Route index element={<ProfilePrompts />} />
+        <Route path="comments" element={<ProfileComments />} />
+        <Route element={<RequireLocalProfile />}>
+            <Route path="notifications" element={<ProfileNotifications />} />
+            <Route path="payments" element={<h1>Платежи </h1>} />
+            <Route path="settings" element={<ProfileSettings />} />
+        </Route>
+    </Route>
+);
+
+const supportRoutes = (
+    <Route path="support/" element={<SupportPage />}>
+        <Route index element={<SupportContentMainHelp />} />
+        <Route
+            path="questions/:category"
+            element={<SupportContentMainQuestions />}
+        />
+        <Route path="feedback" element={<h1>Задать вопрос </h1>} />
+    </Route>
 );
