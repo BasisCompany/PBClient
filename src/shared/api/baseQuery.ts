@@ -49,7 +49,7 @@ export const baseQueryWithReAuth: BaseQueryFn<
             const releaseMutex = await reAuthMutex.acquire();
             try {
                 const refreshResult = await baseQueryWithCredentials(
-                    "auth/refresh-token",
+                    "auth/refresh",
                     api,
                     extraOptions
                 );
