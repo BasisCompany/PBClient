@@ -3,9 +3,10 @@ import { ru } from "date-fns/locale";
 
 //2 дня назад
 export function formatTimeDistanceToNow(dateStr: string) {
-    return `${formatDistanceToNow(new Date(dateStr), {
+    return formatDistanceToNow(new Date(dateStr), {
         locale: ru,
-    })} назад`;
+        addSuffix: true,
+    });
 }
 
 // dd.MM.yyyy HH:mm
