@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router";
 
 // TODO[Артём]:
@@ -28,10 +29,11 @@ import { Outlet } from "react-router";
 //     ],
 // };
 
+//TODO: Loading
 export const SupportContentMain = () => {
     return (
-        <>
+        <Suspense fallback={<h1>Loading ... </h1>}>
             <Outlet />
-        </>
+        </Suspense>
     );
 };

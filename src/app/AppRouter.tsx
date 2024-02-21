@@ -6,12 +6,9 @@ import { AppLayout } from "./layouts/AppLayout";
 import { RequireLocalProfile } from "./layouts/RequireLocalProfile";
 import { RequireNotAuth } from "./layouts/RequireNotAuth";
 
-import { ProfilePage } from "@/pages/ProfilePage";
-
-import { SupportContentMainHelp } from "@/pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp/SupportContentMainHelp";
-import { SupportContentMainQuestions } from "@/pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions/SupportContentMainQuestions";
-
 const TestPage = lazy(() => import("@/trash/TestPage"));
+
+const ProfilePage = lazy(() => import("@/pages/ProfilePage"));
 
 const ProfilePrompts = lazy(
     () => import("@/pages/ProfilePage/ProfileTabs/ProfilePrompts")
@@ -37,6 +34,18 @@ const ResetPasswordPage = lazy(
 const VerifiedPage = lazy(() => import("@/pages/AuthPage/Verified.page"));
 
 const SupportPage = lazy(() => import("@/pages/SupportPage"));
+const SupportContentMainHelp = lazy(
+    () =>
+        import(
+            "@/pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainHelp"
+        )
+);
+const SupportContentMainQuestions = lazy(
+    () =>
+        import(
+            "@/pages/SupportPage/SupportContent/SupportContentMain/SupportContentMainQuestions"
+        )
+);
 
 export const AppRouter = () => (
     <BrowserRouter>

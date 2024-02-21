@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { supporHelpListContent } from "./supportListContent";
 
-export const SupportContentMainHelp = () => {
+const SupportContentMainHelp = () => {
     return (
         <Grid
             container
@@ -115,3 +115,5 @@ export const SupportContentMainHelp = () => {
         </Grid>
     );
 };
+
+export default SupportContentMainHelp;

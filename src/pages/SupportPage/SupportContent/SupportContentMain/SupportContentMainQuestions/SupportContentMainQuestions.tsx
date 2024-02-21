@@ -7,7 +7,7 @@ import { sectionListContent } from "./sectionListContent";
 
 const categories = Object.keys(sectionListContent);
 
-export const SupportContentMainQuestions = () => {
+const SupportContentMainQuestions = () => {
     const { category = "general" } = useParams();
     const navigate = useNavigate();
 
@@ -109,3 +109,5 @@ export const SupportContentMainQuestions = () => {
         </Box>
     );
 };
+
+export default SupportContentMainQuestions;
