@@ -16,7 +16,7 @@ import { AccountPopper } from "./Poppers/AccountPopper";
 import { NotificationsPopper } from "./Poppers/NotificationsPopper/NotificationsPopper";
 import { useNavbarPoppers, NavBarPoppers } from "./useNavbarPoppers";
 
-export const NavBarMenu = () => {
+const NavBarMenu = () => {
     const isMobile = useMobileDevice();
     const { popper, closePopper, openPopper, isPopperOpen } =
         useNavbarPoppers();
@@ -103,3 +103,5 @@ export const NavBarMenu = () => {
         </ClickAwayListener>
     );
 };
+
+export default NavBarMenu;
