@@ -1,26 +1,39 @@
 import { Suspense } from "react";
-import { BoxProps, Container, styled } from "@mui/material";
+import {
+    CircularProgress,
+    Container,
+    ContainerProps,
+    styled,
+} from "@mui/material";
 import { Outlet } from "react-router";
 import { SideBar } from "@/modules/SideBar/SideBar";
 import { useMeQuery } from "@/pages/AuthPage/store/authApi";
 import { LoadingPage } from "@/pages/LoadingPage/Loading.page";
-import { NavBar } from "@/modules/NavBar/NavBar";
 import { FlexBox } from "@/shared/ui/FlexBox";
+import { NavBar } from "@/modules/NavBar";
 
-const MainContainer = styled("main")<BoxProps>(({ theme }) => ({
-    flexGrow: 1,
+const BackgroundBox = styled(FlexBox)(({ theme }) => ({
+    justifyContent: "center",
+    minHeight: "100vh",
     backgroundColor: theme.palette.bgcolor.primary.main,
-    paddingTop: "72px",
-    height: "100vh",
-    overflow: "auto",
-    ...theme.scrollbar,
 }));
 
-// const ScrollBox = styled(Box)(({ theme }) => ({
-//     overflow: "auto",
-//     height: "100vh",
-//     ...theme.scrollbar,
-// }));
+const MainContainer = styled((props: ContainerProps) => (
+    <Container component="main" maxWidth="xl" {...props} />
+))({
+    overflow: "auto",
+    margin: "15px 0px 15px",
+});
+
+const LoadingSkeleton = () => (
+    <FlexBox
+        justifyContent="center"
+        alignItems="center"
+        height="calc(100vh - 200px)"
+    >
+        <CircularProgress color="secondary" size={100} />
+    </FlexBox>
+);
 
 export const AppLayout = () => {
     const { isLoading } = useMeQuery();
@@ -33,22 +46,14 @@ export const AppLayout = () => {
     return (
         <>
             <NavBar />
-            <FlexBox>
+            <BackgroundBox>
                 <SideBar />
                 <MainContainer>
-                    <Container
-                        maxWidth="xl"
-                        sx={{
-                            mt: "15px",
-                            mb: "15px",
-                        }}
-                    >
-                        <Suspense fallback={<h1>Loading...</h1>}>
-                            <Outlet />
-                        </Suspense>
-                    </Container>
+                    <Suspense fallback={<LoadingSkeleton />}>
+                        <Outlet />
+                    </Suspense>
                 </MainContainer>
-            </FlexBox>
+            </BackgroundBox>
         </>
     );
 };

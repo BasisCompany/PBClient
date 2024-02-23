@@ -39,8 +39,10 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
 
     return (
         <ThemeModeContext.Provider value={setupThemeMode}>
-            <CssBaseline />
-            <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
+            <MuiThemeProvider theme={theme}>
+                <CssBaseline enableColorScheme />
+                {children}
+            </MuiThemeProvider>
         </ThemeModeContext.Provider>
     );
 };

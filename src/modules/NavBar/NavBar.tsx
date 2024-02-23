@@ -1,5 +1,5 @@
 import { memo, lazy, Suspense } from "react";
-import { AppBar, Toolbar } from "@mui/material";
+import { AppBar, Skeleton, Toolbar } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useAuth } from "../../shared/hooks/useAuth";
 import { NavBarLogo } from "./NavBarLogo";
@@ -20,12 +20,12 @@ export const NavBar = memo(() => {
     const { isUserAuthenticated } = useAuth();
 
     return (
-        <CustomAppBar>
+        <CustomAppBar sx={{ position: "sticky" }}>
             <Toolbar>
                 <SideBarButton />
                 <NavBarLogo />
                 <NavBarSearch />
-                <Suspense fallback={<h2>Loading...</h2>}>
+                <Suspense fallback={<Skeleton width="10%" height="50px" />}>
                     {isUserAuthenticated ? <NavBarMenu /> : <NavBarLogin />}
                 </Suspense>
             </Toolbar>

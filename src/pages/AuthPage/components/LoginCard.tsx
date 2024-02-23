@@ -1,8 +1,9 @@
-import { Box, Card, CardContent, Typography } from "@mui/material";
 import { DispatchWithoutAction, FC } from "react";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import { object, string, InferType } from "yup";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
+import { useNavigate } from "react-router";
 import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
 import { useLoginMutation } from "../store/authApi";
 import { PrimaryLoadingButton } from "../../../shared/ui/Buttons/PrimaryButton";
@@ -33,10 +34,14 @@ const loginSchema = object({
 export type LoginSchema = InferType<typeof loginSchema>;
 
 export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
+    const navigate = useNavigate();
+
     const [login, { isLoading }] = useLoginMutation();
 
     const onSubmit: ExtSubmitHandler<LoginSchema> = async (data, reset) => {
-        await login(data).unwrap().then(reset);
+        await login(data).unwrap();
+        navigate("/");
+        reset();
     };
 
     return (
