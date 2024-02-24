@@ -1,7 +1,7 @@
 import { Box, Typography, styled } from "@mui/material";
-import { useGetUserDevicesQuery } from "../../store/profileSettingsApi";
-import { useAuth } from "../../../../../../shared/hooks/useAuth";
 import { SecureDevice } from "./SecureDevice";
+import { useAuth } from "@/shared/hooks/useAuth";
+import { useGetUserDevicesQuery } from "@/entities/user";
 
 const DeviceBox = styled(Box)(({ theme }) => ({
     borderRadius: "8px",

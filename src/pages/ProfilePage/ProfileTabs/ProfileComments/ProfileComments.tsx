@@ -2,18 +2,18 @@ import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
 import { useParams, useSearchParams } from "react-router-dom";
-import { ProfileSelect } from "../../components/ProfileSelect";
-import { useMobileDevice } from "../../../../shared/hooks/useMobileDevice";
-import {
-    getPageParamSafe,
-    getSortParamSafe,
-} from "../../../../shared/utils/getParamSafely";
 import { ProfilePagination } from "../../components/ProfilePagination";
-import { FlexBox } from "../../../../shared/ui/FlexBox";
+import { ProfileSelect } from "../../components/ProfileSelect";
 import { CommentsLoading } from "./CommentsLoading";
 import { CommentsEmpty } from "./CommentsEmpty";
 import { ProfileComment } from "./ProfileComment/ProfileComment";
 import { useGetCommentsQuery } from "@/entities/comment";
+import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
+import { FlexBox } from "@/shared/ui/FlexBox";
+import {
+    getPageParamSafe,
+    getSortParamSafe,
+} from "@/shared/utils/getParamSafely";
 
 const commentsSelectItems = {
     params: ["popular", "new", "old"],

@@ -2,8 +2,8 @@ import { useParams } from "react-router";
 import { FlexBox } from "../../shared/ui/FlexBox";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileStatistic } from "./ProfileStatistic/ProfileStatistic";
-import { useUserAboutQuery } from "./store/profileApi";
 import { ProfileTabs } from "./ProfileTabs/ProfileTabs";
+import { useUserAboutQuery } from "@/entities/user";
 
 const ProfilePage = () => {
     const { id } = useParams();

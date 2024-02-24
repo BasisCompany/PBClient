@@ -1,4 +1,4 @@
-import { User } from "@/types/user.type";
+import { User } from "@/entities/user";
 
 interface BaseComment {
     id: number;

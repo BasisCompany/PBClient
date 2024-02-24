@@ -1,6 +1,6 @@
 import { Box, Avatar } from "@mui/material";
-import { UserAbout } from "../../../types/user.type";
-import { FlexBox } from "../../../shared/ui/FlexBox";
+import { UserAbout } from "@/entities/user";
+import { FlexBox } from "@/shared/ui/FlexBox";
 
 export interface HeaderAvatarProps {
     userAbout: UserAbout;
