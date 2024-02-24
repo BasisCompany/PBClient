@@ -3,12 +3,12 @@ import { useParams } from "react-router";
 import { Button, ButtonProps, styled } from "@mui/material";
 import ReplyIcon from "@mui/icons-material/Reply";
 import CloseIcon from "@mui/icons-material/Close";
-import { Comment } from "../../../../../types/comments.type";
-import { FlexBox } from "../../../../../shared/ui/FlexBox";
-import { useAuth } from "../../../../../shared/hooks/useAuth";
-import { Authorization } from "../../../../../shared/lib/authorization";
-import { POLICIES } from "../../../../../shared/lib/authorization/policies";
 import { CommentRating } from "./CommentRating";
+import { Comment } from "@/entities/comment";
+import { useAuth } from "@/shared/hooks/useAuth";
+import { Authorization } from "@/shared/lib/authorization";
+import { POLICIES } from "@/shared/lib/authorization/policies";
+import { FlexBox } from "@/shared/ui/FlexBox";
 
 const ReplyButton = styled((props: ButtonProps) => (
     <Button size="small" disableRipple {...props} />

@@ -1,15 +1,14 @@
 import { FC, useState } from "react";
 import { Box, IconButton, Typography, styled } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { FlexBox } from "../../../../../../shared/ui/FlexBox";
-import { Reply, Comment } from "../../../../../../types/comments.type";
-import { useDeleteReplyMutation } from "../../store/profileCommentsApi";
 import { CommentPopperMenu } from "../CommentPopperMenu";
 import { CommentRating } from "../CommentRating";
 import { CommentReportDialog } from "../CommentReportDialog";
-import { usePopperMenu } from "../../../../../../shared/hooks/usePopperMenu";
-import { toaster } from "../../../../../../app/providers/Toast";
 import { ReplyAuthor } from "./ReplyAuthor";
+import { Comment, Reply, useDeleteReplyMutation } from "@/entities/comment";
+import { toaster } from "@/app/providers/Toast";
+import { usePopperMenu } from "@/shared/hooks/usePopperMenu";
+import { FlexBox } from "@/shared/ui/FlexBox";
 
 const ReplyBox = styled(Box)(({ theme }) => ({
     marginTop: "8px",

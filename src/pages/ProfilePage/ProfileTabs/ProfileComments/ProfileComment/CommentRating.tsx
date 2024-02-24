@@ -2,10 +2,10 @@ import { FC } from "react";
 import { Box, IconButton, Theme, Tooltip, Typography } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import {
+    Comment,
     useAddLikeMutation,
     useDeleteLikeMutation,
-} from "../store/profileCommentsApi";
-import { Comment } from "../../../../../types/comments.type";
+} from "@/entities/comment";
 
 function getLikeBgColor(isReply: boolean, theme: Theme) {
     return isReply

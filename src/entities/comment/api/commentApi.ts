@@ -1,25 +1,16 @@
-import { profileApi } from "../../../store/profileApi";
+import { Comment } from "../model/types";
 import {
+    AddReplyRequest,
+    AddLikeRequest,
+    DeleteLikeRequest,
     CommentsRequest,
-    CommentsResponse,
-} from "../../../../../types/comments.type";
-import { ReplySchema } from "../ProfileComment/CommentReply/ReplyInput";
+} from "./types";
+import { PageResponse } from "@/types/page.type";
+import { baseApi } from "@/shared/api";
 
-type AddReplyRequest = ReplySchema & { commentId: number };
-
-interface AddLikeRequest {
-    commentId: number;
-    type: boolean;
-    isReply: boolean;
-}
-interface DeleteLikeRequest {
-    commentId: number;
-    isReply: boolean;
-}
-
-const profileCommentsApi = profileApi.injectEndpoints({
+export const commentApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        getComments: build.query<CommentsResponse, CommentsRequest>({
+        getComments: build.query<PageResponse<Comment>, CommentsRequest>({
             query: ({ id, sort, page, take }) => ({
                 url: `comments/user/${id}`,
                 params: { sort, page, take },
@@ -68,12 +59,12 @@ const profileCommentsApi = profileApi.injectEndpoints({
                 { dispatch, queryFulfilled, getState }
             ) {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                const { originalArgs } =
-                    profileCommentsApi.util.selectInvalidatedBy(getState(), [
-                        { type: "Comment" },
-                    ])[0];
+                const { originalArgs } = commentApi.util.selectInvalidatedBy(
+                    getState(),
+                    [{ type: "Comment" }]
+                )[0];
 
-                const updateCommentLikes = (draft: CommentsResponse) => {
+                const updateCommentLikes = (draft: PageResponse<Comment>) => {
                     const comment = isReply
                         ? draft.data.find(
                               (comment) => comment.replyId === body.commentId
@@ -100,7 +91,7 @@ const profileCommentsApi = profileApi.injectEndpoints({
                 };
 
                 const patchResult = dispatch(
-                    profileCommentsApi.util.updateQueryData(
+                    commentApi.util.updateQueryData(
                         "getComments",
                         originalArgs as CommentsRequest,
                         updateCommentLikes
@@ -119,12 +110,12 @@ const profileCommentsApi = profileApi.injectEndpoints({
                 { dispatch, queryFulfilled, getState }
             ) {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                const { originalArgs } =
-                    profileCommentsApi.util.selectInvalidatedBy(getState(), [
-                        { type: "Comment" },
-                    ])[0];
+                const { originalArgs } = commentApi.util.selectInvalidatedBy(
+                    getState(),
+                    [{ type: "Comment" }]
+                )[0];
 
-                const updateCommentLikes = (draft: CommentsResponse) => {
+                const updateCommentLikes = (draft: PageResponse<Comment>) => {
                     const comment = isReply
                         ? draft.data.find(
                               (comment) => comment.replyId === commentId
@@ -144,7 +135,7 @@ const profileCommentsApi = profileApi.injectEndpoints({
                 };
 
                 const patchResult = dispatch(
-                    profileCommentsApi.util.updateQueryData(
+                    commentApi.util.updateQueryData(
                         "getComments",
                         originalArgs as CommentsRequest,
                         updateCommentLikes
@@ -163,4 +154,4 @@ export const {
     useDeleteReplyMutation,
     useAddLikeMutation,
     useDeleteLikeMutation,
-} = profileCommentsApi;
+} = commentApi;

@@ -1,6 +1,6 @@
-import { UserDetails } from "../../../pages/AuthPage/store/authSlice";
-import { Comment } from "../../../types/comments.type";
 import { ROLES } from "./roles.enum";
+import { Comment } from "@/entities/comment";
+import { UserDetails } from "@/pages/AuthPage/store/authSlice";
 
 export const POLICIES = {
     "comment:delete": (user: UserDetails, comment: Comment) => {

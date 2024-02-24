@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Avatar, Tooltip, Typography } from "@mui/material";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { useMobileDevice } from "../../../../../../shared/hooks/useMobileDevice";
-import { Reply } from "../../../../../../types/comments.type";
-import { FlexBox } from "../../../../../../shared/ui/FlexBox";
 import { ReplyTimestamp } from "./ReplyTimestamp";
+import { Reply } from "@/entities/comment";
+import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
+import { FlexBox } from "@/shared/ui/FlexBox";
 
 interface ReplyAuthorProps {
     reply: Reply;

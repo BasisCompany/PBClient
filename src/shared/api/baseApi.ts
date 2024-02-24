@@ -3,7 +3,7 @@ import { baseQueryWithReAuthToastErrors } from "./baseQuery";
 
 export const baseApi = createApi({
     reducerPath: "api",
-    tagTypes: ["Notification"],
+    tagTypes: ["Notification", "Comment"],
     baseQuery: baseQueryWithReAuthToastErrors,
     endpoints: () => ({}),
 });

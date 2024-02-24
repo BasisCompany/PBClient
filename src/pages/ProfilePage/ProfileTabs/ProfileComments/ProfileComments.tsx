@@ -11,9 +11,9 @@ import {
 import { ProfilePagination } from "../../components/ProfilePagination";
 import { FlexBox } from "../../../../shared/ui/FlexBox";
 import { CommentsLoading } from "./CommentsLoading";
-import { useGetCommentsQuery } from "./store/profileCommentsApi";
 import { CommentsEmpty } from "./CommentsEmpty";
 import { ProfileComment } from "./ProfileComment/ProfileComment";
+import { useGetCommentsQuery } from "@/entities/comment";
 
 const commentsSelectItems = {
     params: ["popular", "new", "old"],

@@ -4,8 +4,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { object, string, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FC } from "react";
-import { useAddReplyMutation } from "../../store/profileCommentsApi";
-import { toaster } from "../../../../../../app/providers/Toast";
+import { toaster } from "@/app/providers/Toast";
+import { useAddReplyMutation } from "@/entities/comment";
 
 const replySchema = object({
     message: string()

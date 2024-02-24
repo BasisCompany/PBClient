@@ -2,8 +2,6 @@ import { FC, useReducer, useState } from "react";
 import { Box, styled, IconButton } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { FlexBox } from "../../../../../shared/ui/FlexBox";
-import { Comment } from "../../../../../types/comments.type";
-import { useDeleteCommentMutation } from "../store/profileCommentsApi";
 import { usePopperMenu } from "../../../../../shared/hooks/usePopperMenu";
 import { toaster } from "../../../../../app/providers/Toast";
 import { CommentReportDialog } from "./CommentReportDialog";
@@ -13,6 +11,7 @@ import { CommentTimestamp } from "./CommentTimestamp";
 import { CommentActions } from "./CommentActions";
 import { CommentPopperMenu } from "./CommentPopperMenu";
 import { CommentReply } from "./CommentReply/CommentReply";
+import { Comment, useDeleteCommentMutation } from "@/entities/comment";
 
 const CommentBox = styled(Box)(({ theme }) => ({
     padding: "10px",

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Comment } from "../../../../../../types/comments.type";
 import { ReplyInput } from "./ReplyInput";
 import { ReplyMessage } from "./ReplyMessage";
+import { Comment } from "@/entities/comment";
 
 interface CommentReplyProps {
     comment: Comment;
