@@ -11,15 +11,16 @@ import {
 import { FC } from "react";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import { LinkButton } from "../../../../../shared/ui/Links/LinkButton";
-import { LinkIconButton } from "../../../../../shared/ui/Links/LinkIconButton";
+import { NavbarNotification } from "./NavbarNotification";
+import { useUserId } from "@/shared/hooks/useUserId";
+import { LinkButton } from "@/shared/ui/Links/LinkButton";
+import { LinkIconButton } from "@/shared/ui/Links/LinkIconButton";
+import { CommentsEmpty } from "@/pages/ProfilePage/ProfileTabs/ProfileComments/CommentsEmpty";
 import {
     useGetNotificationsQuery,
     useReadAllNotificationsMutation,
-} from "../../../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/store/profileNotificationsApi";
-import { CommentsEmpty } from "../../../../../pages/ProfilePage/ProfileTabs/ProfileComments/CommentsEmpty";
-import { FlexBox } from "../../../../../shared/ui/FlexBox";
-import { NavbarNotification } from "./NavbarNotification";
+} from "@/pages/ProfilePage/ProfileTabs/ProfileNotifications/store/profileNotificationsApi";
+import { FlexBox } from "@/shared/ui/FlexBox";
 
 interface NotificationsPopperProps {
     isOpen: boolean;
@@ -39,6 +40,7 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
     anchorEl,
     handleClose,
 }) => {
+    const userId = useUserId();
     const { data, isLoading } = useGetNotificationsQuery({
         sort: "unread",
         page: 1,
@@ -82,13 +84,13 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                     }}
                 >
                     <LinkIconButton
-                        to="profile/notifications"
+                        to={`user/${userId}/settings`}
                         onClick={handleClose}
                     >
                         <SettingsRoundedIcon />
                     </LinkIconButton>
                     <LinkButton
-                        to="profile/notifications"
+                        to={`user/${userId}/notifications`}
                         variant="text"
                         onClick={handleClose}
                     >
@@ -130,6 +132,19 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                         <NavbarNotificationSkeleton />
                     )}
                 </NotificationsBox>
+                <FlexBox
+                    justifyContent="center"
+                    alignItems="center"
+                    paddingBottom="4px"
+                >
+                    <LinkButton
+                        to={`user/${userId}/notifications`}
+                        sx={{ color: "text.primary" }}
+                        onClick={handleClose}
+                    >
+                        Посмотреть все
+                    </LinkButton>
+                </FlexBox>
             </Box>
         </Popper>
     );
