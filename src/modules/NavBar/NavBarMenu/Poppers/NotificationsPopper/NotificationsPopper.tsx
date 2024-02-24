@@ -102,10 +102,10 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                         </Typography>
                         <Badge
                             sx={{
-                                ml: 2,
+                                ml: 2.2,
                             }}
                             badgeContent={totalNotifications}
-                            max={10}
+                            max={99}
                             color="secondary"
                         />
                     </LinkButton>
