@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
-import { formatTimeDistanceToNow } from "../../../../../shared/utils/timeFormatter";
-import { Notification } from "../../../../../types/notifications.type";
-import { FlexBox } from "../../../../../shared/ui/FlexBox";
 import { NotificationMessage } from "./NotificationMessage";
+import { Notification } from "@/entities/notification";
+import { FlexBox } from "@/shared/ui/FlexBox";
+import { formatTimeDistanceToNow } from "@/shared/utils/timeFormatter";
 
 interface NotificationContentProps {
     notification: Notification;

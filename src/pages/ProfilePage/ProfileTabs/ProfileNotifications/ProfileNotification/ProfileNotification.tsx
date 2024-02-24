@@ -2,10 +2,12 @@ import { FC } from "react";
 import { Box, BoxProps, IconButton, Tooltip, styled } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { Spacer } from "../../../../../shared/ui/Spacer";
-import { Notification } from "../../../../../types/notifications.type";
 import { FlexBox } from "../../../../../shared/ui/FlexBox";
-import { useReadNotificationMutation } from "../store/profileNotificationsApi";
 import { NotificationContent } from "./NotificationContent";
+import {
+    Notification,
+    useReadNotificationMutation,
+} from "@/entities/notification";
 
 interface NotificationBoxProps extends BoxProps {
     isUnread: boolean;

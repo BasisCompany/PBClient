@@ -1,14 +1,12 @@
 import { PatchCollection } from "@reduxjs/toolkit/dist/query/core/buildThunks";
-import {
-    NotificationsResponse as NotifResponse,
-    NotificationsRequest as NotifRequest,
-    NotifCount,
-} from "../../../../../types/notifications.type";
-import { profileApi } from "../../../store/profileApi";
+import { Notification } from "../model/types";
+import { NotificationCount } from "./types";
+import { baseApi } from "@/shared/api";
+import { PageRequest, PageResponse } from "@/shared/types/pagination.type";
 
-const profileNotifApi = profileApi.injectEndpoints({
+export const notificationApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        getNotifications: build.query<NotifResponse, NotifRequest>({
+        getNotifications: build.query<PageResponse<Notification>, PageRequest>({
             query: ({ sort, page, take }) => ({
                 url: `notifications/user/`,
                 params: { sort, page, take },
@@ -24,7 +22,7 @@ const profileNotifApi = profileApi.injectEndpoints({
                       ]
                     : [{ type: "Notification", id: "PARTIAL-LIST" }],
         }),
-        countUnreadNotifications: build.query<NotifCount, void>({
+        countUnreadNotifications: build.query<NotificationCount, void>({
             query: () => "notifications/user/count",
             providesTags: [{ type: "Notification", id: "COUNT" }],
         }),
@@ -38,12 +36,15 @@ const profileNotifApi = profileApi.injectEndpoints({
                 { type: "Notification", id: "PARTIAL-LIST" },
             ],
             onQueryStarted(_, { dispatch, queryFulfilled, getState }) {
-                const queryCache = profileNotifApi.util.selectInvalidatedBy(
+                const queryCache = notificationApi.util.selectInvalidatedBy(
                     getState(),
                     [{ type: "Notification" }]
                 );
 
-                const updateNotifs = (draft: NotifResponse, sort: string) => {
+                const updateNotifications = (
+                    draft: PageResponse<Notification>,
+                    sort: string
+                ) => {
                     draft.data.forEach((notification) => {
                         notification.isRead = true;
                         return notification;
@@ -57,14 +58,14 @@ const profileNotifApi = profileApi.injectEndpoints({
                 const patches: PatchCollection[] = [];
 
                 for (const { originalArgs } of queryCache) {
-                    const args = originalArgs as NotifRequest;
+                    const args = originalArgs as PageRequest;
                     patches.push(
                         dispatch(
-                            profileNotifApi.util.updateQueryData(
+                            notificationApi.util.updateQueryData(
                                 "getNotifications",
                                 args,
-                                (draft: NotifResponse) =>
-                                    updateNotifs(draft, args.sort)
+                                (draft: PageResponse<Notification>) =>
+                                    updateNotifications(draft, args.sort)
                             )
                         )
                     );
@@ -88,12 +89,15 @@ const profileNotifApi = profileApi.injectEndpoints({
                 { type: "Notification", id: "PARTIAL-LIST" },
             ],
             onQueryStarted(id, { dispatch, queryFulfilled, getState }) {
-                const queryCache = profileNotifApi.util.selectInvalidatedBy(
+                const queryCache = notificationApi.util.selectInvalidatedBy(
                     getState(),
                     [{ type: "Notification" }]
                 );
 
-                const updateNotif = (draft: NotifResponse, sort: string) => {
+                const updateNotifications = (
+                    draft: PageResponse<Notification>,
+                    sort: string
+                ) => {
                     const notification = draft.data.find(
                         (notification) => notification.id === id
                     );
@@ -111,14 +115,14 @@ const profileNotifApi = profileApi.injectEndpoints({
                 const patches: PatchCollection[] = [];
 
                 for (const { originalArgs } of queryCache) {
-                    const args = originalArgs as NotifRequest;
+                    const args = originalArgs as PageRequest;
                     patches.push(
                         dispatch(
-                            profileNotifApi.util.updateQueryData(
+                            notificationApi.util.updateQueryData(
                                 "getNotifications",
                                 args,
-                                (draft: NotifResponse) =>
-                                    updateNotif(draft, args.sort)
+                                (draft: PageResponse<Notification>) =>
+                                    updateNotifications(draft, args.sort)
                             )
                         )
                     );
@@ -139,4 +143,4 @@ export const {
     useCountUnreadNotificationsQuery,
     useReadAllNotificationsMutation,
     useReadNotificationMutation,
-} = profileNotifApi;
+} = notificationApi;

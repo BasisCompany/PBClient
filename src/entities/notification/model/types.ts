@@ -1,14 +1,4 @@
-import { PageRequest, PageResponse } from "./page.type";
-
-export type NotificationsRequest = PageRequest;
-
-export type NotificationsResponse = PageResponse<Notification>;
-
-export interface NotifCount {
-    count: number;
-}
-
-export enum NotifActivityType {
+export enum NotificationType {
     FRIEND_REQUEST = "FRIEND_REQUEST",
     PROMPT_COMMENT = "PROMPT_COMMENT",
     PROMPT_PURCHASE = "PROMPT_PURCHASE",
@@ -17,7 +7,7 @@ export enum NotifActivityType {
 export interface Notification {
     id: number;
     promptId: number;
-    activityType: NotifActivityType;
+    activityType: NotificationType;
     createdAt: string;
     updatedAt: string;
     isRead: boolean;

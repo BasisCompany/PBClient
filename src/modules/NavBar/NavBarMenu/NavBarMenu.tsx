@@ -11,10 +11,10 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { FlexBox } from "../../../shared/ui/FlexBox";
 import { useMobileDevice } from "../../../shared/hooks/useMobileDevice";
-import { useCountUnreadNotificationsQuery } from "../../../pages/ProfilePage/ProfileTabs/ProfileNotifications/store/profileNotificationsApi";
 import { AccountPopper } from "./Poppers/AccountPopper";
 import { NotificationsPopper } from "./Poppers/NotificationsPopper/NotificationsPopper";
 import { useNavbarPoppers, NavBarPoppers } from "./useNavbarPoppers";
+import { useCountUnreadNotificationsQuery } from "@/entities/notification";
 
 const NavBarMenu = () => {
     const isMobile = useMobileDevice();

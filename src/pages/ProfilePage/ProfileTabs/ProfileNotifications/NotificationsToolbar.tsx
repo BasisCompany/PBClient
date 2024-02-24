@@ -3,7 +3,7 @@ import { Box, Tooltip, IconButton } from "@mui/material";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { ProfileSelect } from "../../components/ProfileSelect";
-import { useReadAllNotificationsMutation } from "./store/profileNotificationsApi";
+import { useReadAllNotificationsMutation } from "@/entities/notification";
 
 interface NotificationsToolbarProps {
     selectItems: {

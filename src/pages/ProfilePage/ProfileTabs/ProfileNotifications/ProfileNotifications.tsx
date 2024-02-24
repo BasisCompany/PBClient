@@ -13,7 +13,7 @@ import { CommentsEmpty } from "../ProfileComments/CommentsEmpty";
 import { ProfilePagination } from "../../components/ProfilePagination";
 import { NotificationsToolbar } from "./NotificationsToolbar";
 import { ProfileNotification } from "./ProfileNotification/ProfileNotification";
-import { useGetNotificationsQuery } from "./store/profileNotificationsApi";
+import { useGetNotificationsQuery } from "@/entities/notification";
 
 const notificationsSelectItems = {
     params: ["unread", "read", "all"],

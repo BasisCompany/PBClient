@@ -16,11 +16,12 @@ import { useUserId } from "@/shared/hooks/useUserId";
 import { LinkButton } from "@/shared/ui/Links/LinkButton";
 import { LinkIconButton } from "@/shared/ui/Links/LinkIconButton";
 import { CommentsEmpty } from "@/pages/ProfilePage/ProfileTabs/ProfileComments/CommentsEmpty";
+
+import { FlexBox } from "@/shared/ui/FlexBox";
 import {
     useGetNotificationsQuery,
     useReadAllNotificationsMutation,
-} from "@/pages/ProfilePage/ProfileTabs/ProfileNotifications/store/profileNotificationsApi";
-import { FlexBox } from "@/shared/ui/FlexBox";
+} from "@/entities/notification";
 
 interface NotificationsPopperProps {
     isOpen: boolean;

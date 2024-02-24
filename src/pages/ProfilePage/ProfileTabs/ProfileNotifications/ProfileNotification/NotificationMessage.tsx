@@ -1,19 +1,16 @@
-import { Typography } from "@mui/material";
 import { FC } from "react";
-import {
-    NotifActivityType,
-    Notification,
-} from "../../../../../types/notifications.type";
+import { Typography } from "@mui/material";
+import { Notification, NotificationType } from "@/entities/notification";
 
 export function getNotificationMessage(notification: Notification) {
     const comment = "Круто"; // TODO: Сделать
 
     switch (notification.activityType) {
-        case NotifActivityType.PROMPT_COMMENT:
+        case NotificationType.PROMPT_COMMENT:
             return `оставил(а) комментарий: "${comment}"`;
-        case NotifActivityType.FRIEND_REQUEST:
+        case NotificationType.FRIEND_REQUEST:
             return "хочет добавить вас в друзья";
-        case NotifActivityType.PROMPT_PURCHASE:
+        case NotificationType.PROMPT_PURCHASE:
             return "купил(а) ваш промпт";
     }
 }
