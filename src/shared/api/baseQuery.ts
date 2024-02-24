@@ -12,7 +12,7 @@ import {
 } from "../../pages/AuthPage/store/authSlice";
 import { toaster } from "../../app/providers/Toast";
 import { URL_ROOT } from "./config";
-import { getUserErrorMessage, ApiError } from "./apiError";
+import { getUserErrorMessage, ApiError } from "./error/apiError";
 
 export const baseQuery = fetchBaseQuery({
     baseUrl: URL_ROOT,

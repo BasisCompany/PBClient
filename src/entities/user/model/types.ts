@@ -16,6 +16,13 @@ export interface UserAbout {
     avatar?: string;
 }
 
+export interface UserDetails {
+    id: number;
+    email: string;
+    username: string;
+    roles: string[];
+}
+
 export interface Device {
     ip: string;
     id: number;

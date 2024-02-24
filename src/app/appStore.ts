@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
-import authReducer from "../pages/AuthPage/store/authSlice";
 import { authApi, initAuthApi } from "../pages/AuthPage/store/authApi";
+import { authSlice } from "../pages/AuthPage/store/authSlice";
 import { sidebarSlice } from "../modules/SideBar/store/sidebarSlice";
 import {
     sidebarInitState,
@@ -17,7 +17,7 @@ export const store = configureStore({
         [authApi.reducerPath]: authApi.reducer,
         [initAuthApi.reducerPath]: initAuthApi.reducer,
         [baseApi.reducerPath]: baseApi.reducer,
-        auth: authReducer,
+        auth: authSlice.reducer,
         sidebar: sidebarSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>

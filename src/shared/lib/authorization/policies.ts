@@ -1,6 +1,6 @@
 import { ROLES } from "./roles.enum";
+import { UserDetails } from "@/entities/user";
 import { Comment } from "@/entities/comment";
-import { UserDetails } from "@/pages/AuthPage/store/authSlice";
 
 export const POLICIES = {
     "comment:delete": (user: UserDetails, comment: Comment) => {
