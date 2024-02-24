@@ -8,6 +8,7 @@ import {
     sidebarInitState,
     sidebarlistenerMiddleware,
 } from "../modules/SideBar/store/sidebarMiddleware";
+import { baseApi } from "@/shared/api";
 
 export const store = configureStore({
     preloadedState: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     reducer: {
         [authApi.reducerPath]: authApi.reducer,
         [initAuthApi.reducerPath]: initAuthApi.reducer,
+        [baseApi.reducerPath]: baseApi.reducer,
         [profileApi.reducerPath]: profileApi.reducer,
         auth: authReducer,
         sidebar: sidebarSlice.reducer,
@@ -24,6 +26,7 @@ export const store = configureStore({
         getDefaultMiddleware().concat([
             authApi.middleware,
             initAuthApi.middleware,
+            baseApi.middleware,
             profileApi.middleware,
             sidebarlistenerMiddleware.middleware,
         ]),
