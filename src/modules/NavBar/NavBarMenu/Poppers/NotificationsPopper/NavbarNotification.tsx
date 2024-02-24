@@ -56,7 +56,7 @@ export const NavbarNotification: FC<NavbarNotificationProps> = ({
                     src="https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg"
                     variant="square"
                 />
-                <Box sx={{ ml: 1 }}>
+                <Box sx={{ ml: 1, maxWidth: "85%" }}>
                     <Typography
                         variant="h6"
                         component="div"

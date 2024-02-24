@@ -29,7 +29,7 @@ export const NotificationMessage: FC<NotificationMessageProps> = ({
 
     return (
         <Typography
-            component="span"
+            variant="text"
             color={(theme) => theme.palette.text.primary}
             fontSize={14}
             fontWeight={400}
