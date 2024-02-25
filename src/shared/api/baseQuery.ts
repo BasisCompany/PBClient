@@ -5,14 +5,11 @@ import {
     fetchBaseQuery,
 } from "@reduxjs/toolkit/query";
 import { Mutex } from "async-mutex";
-import { RootState } from "../../app/appStore";
-import {
-    setInitialState,
-    setUserToken,
-} from "../../pages/AuthPage/store/authSlice";
-import { toaster } from "../../app/providers/Toast";
 import { URL_ROOT } from "./config";
 import { getUserErrorMessage, ApiError } from "./error/apiError";
+import { setUserToken, setInitialState } from "@/entities/auth";
+import { toaster } from "@/app/providers/Toast";
+import { RootState } from "@/app/appStore";
 
 export const baseQuery = fetchBaseQuery({
     baseUrl: URL_ROOT,

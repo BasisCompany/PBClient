@@ -1,35 +1,14 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { LoginSchema } from "../components/LoginCard";
-import { RegisterSchema } from "../components/RegisterCard";
-import { ResetPasswordSchema } from "../ResetPassword.page";
-import {
-    baseQueryWithToastErrors,
-    baseQueryWithReAuth,
-} from "../../../shared/api";
-import { setInitialState } from "./authSlice";
-
-interface LoginResponse {
-    id: number;
-    email: string;
-    token: string;
-    username: string;
-    deviceId: number;
-    roles: string[];
-}
-
-type LoginRequest = LoginSchema;
-
-type RegisterRequest = Omit<RegisterSchema, "passwordConfirm">;
-
-type ResetPasswordRequest = {
-    resetPasswordToken: string;
-} & Omit<ResetPasswordSchema, "passwordConfirm">;
+import { setInitialState } from "../model/authSlice";
+import { LoginResponse, RegisterRequest, ResetPasswordRequest } from "./types";
+import { baseQueryWithToastErrors, baseQueryWithReAuth } from "@/shared/api";
+import { LoginSchema } from "@/pages/AuthPage/components/LoginCard";
 
 export const authApi = createApi({
     reducerPath: "authApi",
     baseQuery: baseQueryWithToastErrors,
     endpoints: (builder) => ({
-        login: builder.mutation<LoginResponse, LoginRequest>({
+        login: builder.mutation<LoginResponse, LoginSchema>({
             query: (body) => ({
                 url: "auth/login",
                 method: "POST",

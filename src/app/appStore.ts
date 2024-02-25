@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
-import { authApi, initAuthApi } from "../pages/AuthPage/store/authApi";
-import { authSlice } from "../pages/AuthPage/store/authSlice";
 import { sidebarSlice } from "../modules/SideBar/store/sidebarSlice";
 import {
     sidebarInitState,
     sidebarlistenerMiddleware,
 } from "../modules/SideBar/store/sidebarMiddleware";
+import { authApi, authSlice, initAuthApi } from "@/entities/auth";
 import { baseApi } from "@/shared/api";
 
 export const store = configureStore({

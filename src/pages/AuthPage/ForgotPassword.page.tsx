@@ -1,12 +1,12 @@
-import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
+import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import { object, string, InferType } from "yup";
-import { CenterBox } from "../../shared/ui/CenterBox";
-import { PrimaryLoadingButton } from "../../shared/ui/Buttons/PrimaryButton/PrimaryLoadingButton";
-import { ExtSubmitHandler, Form, InputText } from "../../shared/ui/Forms";
-import { FakeCaptcha } from "../../trash/FakeCaptcha";
-import { useLazyForgotPasswordQuery } from "./store/authApi";
+import { useLazyForgotPasswordQuery } from "@/entities/auth";
+import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
+import { CenterBox } from "@/shared/ui/CenterBox";
+import { Form, ExtSubmitHandler, InputText } from "@/shared/ui/Forms";
+import { FakeCaptcha } from "@/trash/FakeCaptcha";
 
 const forgotPasswordSchema = object({
     email: string()

@@ -1,11 +1,10 @@
 import { Box, Typography } from "@mui/material";
-import { PromptCard } from "../shared/ui/PromptCard";
-import { toggleIsUserAuthenticated } from "../pages/AuthPage/store/authSlice";
-import { useAuth } from "../shared/hooks/useAuth";
-import { useLazyMeQuery } from "../pages/AuthPage/store/authApi";
-import { PrimaryButton } from "../shared/ui/Buttons/PrimaryButton/PrimaryButton";
-import { useAppDispatch } from "../app/appStore";
 import { TestForm } from "./TestForm";
+import { toggleIsUserAuthenticated, useLazyMeQuery } from "@/entities/auth";
+import { useAppDispatch } from "@/app/appStore";
+import { useAuth } from "@/shared/hooks/useAuth";
+import { PrimaryButton } from "@/shared/ui/Buttons/PrimaryButton";
+import { PromptCard } from "@/shared/ui/PromptCard";
 
 const TestPage = () => {
     const dispatch = useAppDispatch();

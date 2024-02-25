@@ -12,16 +12,16 @@ import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceR
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import { object, string, ref, InferType } from "yup";
-import { useRegisterMutation } from "../store/authApi";
-import { PrimaryLoadingButton } from "../../../shared/ui/Buttons/PrimaryButton/PrimaryLoadingButton";
+import { toaster } from "@/app/providers/Toast";
+import { useRegisterMutation } from "@/entities/auth";
+import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import {
-    ExtSubmitHandler,
     Form,
+    ExtSubmitHandler,
     InputText,
     InputTextPassword,
-} from "../../../shared/ui/Forms";
-import { FakeCaptcha } from "../../../trash/FakeCaptcha";
-import { toaster } from "../../../app/providers/Toast";
+} from "@/shared/ui/Forms";
+import { FakeCaptcha } from "@/trash/FakeCaptcha";
 
 interface RegisterCardProps {
     toggleLogin: DispatchWithoutAction;

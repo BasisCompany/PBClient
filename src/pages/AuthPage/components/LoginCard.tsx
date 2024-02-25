@@ -4,17 +4,17 @@ import { object, string, InferType } from "yup";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import { useNavigate } from "react-router";
-import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
-import { useLoginMutation } from "../store/authApi";
-import { PrimaryLoadingButton } from "../../../shared/ui/Buttons/PrimaryButton";
-import { LinkTypography } from "../../../shared/ui/Links/LinkTypography";
+import { useLoginMutation } from "@/entities/auth";
+import { PromptBuyIcon } from "@/assets/PromptBuyIcon";
+import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import {
-    ExtSubmitHandler,
     Form,
+    ExtSubmitHandler,
     InputText,
     InputTextPassword,
-} from "../../../shared/ui/Forms";
-import { FakeCaptcha } from "../../../trash/FakeCaptcha";
+} from "@/shared/ui/Forms";
+import { LinkTypography } from "@/shared/ui/Links/LinkTypography";
+import { FakeCaptcha } from "@/trash/FakeCaptcha";
 
 interface LoginCardProps {
     toggleLogin: DispatchWithoutAction;

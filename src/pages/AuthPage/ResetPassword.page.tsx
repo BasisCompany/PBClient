@@ -1,16 +1,12 @@
-import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded";
-import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { useParams } from "react-router";
 import { object, string, ref, InferType } from "yup";
+import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
+import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
-import { PrimaryLoadingButton } from "../../shared/ui/Buttons/PrimaryButton/PrimaryLoadingButton";
-import {
-    ExtSubmitHandler,
-    Form,
-    InputTextPassword,
-} from "../../shared/ui/Forms";
-import { useResetPasswordMutation } from "./store/authApi";
 import { CenterBox } from "@/shared/ui/CenterBox";
+import { useResetPasswordMutation } from "@/entities/auth";
+import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
+import { Form, ExtSubmitHandler, InputTextPassword } from "@/shared/ui/Forms";
 
 const resetPasswordSchema = object({
     password: string()

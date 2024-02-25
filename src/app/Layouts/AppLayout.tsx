@@ -7,10 +7,10 @@ import {
 } from "@mui/material";
 import { Outlet } from "react-router";
 import { SideBar } from "@/modules/SideBar/SideBar";
-import { useMeQuery } from "@/pages/AuthPage/store/authApi";
 import { LoadingPage } from "@/pages/LoadingPage/Loading.page";
 import { FlexBox } from "@/shared/ui/FlexBox";
 import { NavBar } from "@/modules/NavBar";
+import { useMeQuery } from "@/entities/auth";
 
 const BackgroundBox = styled(FlexBox)(({ theme }) => ({
     justifyContent: "center",
