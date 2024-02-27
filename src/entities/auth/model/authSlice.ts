@@ -55,7 +55,6 @@ export const authSlice = createSlice({
             initAuthApi.endpoints.me.matchFulfilled,
             (state, { payload }) => {
                 state.isUserAuthenticated = true;
-                state.deviceId = payload.deviceId;
                 state.user = {
                     id: payload.id,
                     email: payload.email,
