@@ -25,7 +25,7 @@ const notificationsSelectItems = {
     labels: ["Непрочитанные", "Прочитанные", "Все уведомления"],
 };
 
-const ProfileNotifications = () => {
+export const ProfileNotifications = () => {
     const isMobile = useMobileDevice();
 
     const [searchParams] = useSearchParams();
@@ -77,5 +77,3 @@ const ProfileNotifications = () => {
         </>
     );
 };
-
-export default ProfileNotifications;

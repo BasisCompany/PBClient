@@ -25,7 +25,7 @@ const commentsSelectItems = {
     labels: ["Популярные", "Новые", "Старые"],
 };
 
-const ProfileComments = () => {
+export const ProfileComments = () => {
     const { id } = useParams();
     const isMobile = useMobileDevice();
 
@@ -75,5 +75,3 @@ const ProfileComments = () => {
         </>
     );
 };
-
-export default ProfileComments;

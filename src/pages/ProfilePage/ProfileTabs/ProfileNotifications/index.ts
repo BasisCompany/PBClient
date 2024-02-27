@@ -1,1 +1,1 @@
-export { default } from "./ProfileNotifications";
+export * from "./ProfileNotifications";

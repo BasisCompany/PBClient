@@ -5,7 +5,7 @@ import { ProfileStatistic } from "./ProfileStatistic/ProfileStatistic";
 import { ProfileTabs } from "./ProfileTabs/ProfileTabs";
 import { useUserAboutQuery } from "@/entities/user";
 
-const ProfilePage = () => {
+export const ProfilePage = () => {
     const { id } = useParams();
 
     const { data, isLoading } = useUserAboutQuery(id!);
@@ -29,5 +29,3 @@ const ProfilePage = () => {
         </>
     );
 };
-
-export default ProfilePage;

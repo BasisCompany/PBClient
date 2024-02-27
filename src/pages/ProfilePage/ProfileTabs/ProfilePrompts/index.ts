@@ -1,1 +1,1 @@
-export { default } from "./ProfilePrompts";
+export * from "./ProfilePrompts";

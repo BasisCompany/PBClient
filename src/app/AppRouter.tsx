@@ -5,23 +5,15 @@ import { BrowserRouter } from "react-router-dom";
 import { AppLayout } from "./layouts/AppLayout";
 import { RequireLocalProfile } from "./layouts/RequireLocalProfile";
 import { RequireNotAuth } from "./layouts/RequireNotAuth";
+import {
+    ProfilePage,
+    ProfilePrompts,
+    ProfileComments,
+    ProfileNotifications,
+    ProfileSettings,
+} from "@/pages/ProfilePage";
 
 const TestPage = lazy(() => import("@/trash/TestPage"));
-
-const ProfilePage = lazy(() => import("@/pages/ProfilePage"));
-
-const ProfilePrompts = lazy(
-    () => import("@/pages/ProfilePage/ProfileTabs/ProfilePrompts")
-);
-const ProfileComments = lazy(
-    () => import("@/pages/ProfilePage/ProfileTabs/ProfileComments")
-);
-const ProfileNotifications = lazy(
-    () => import("@/pages/ProfilePage/ProfileTabs/ProfileNotifications")
-);
-const ProfileSettings = lazy(
-    () => import("@/pages/ProfilePage/ProfileTabs/ProfileSettings")
-);
 
 const AuthPage = lazy(() => import("@/pages/AuthPage/Auth.page"));
 const ExpiredPage = lazy(() => import("@/pages/AuthPage/Expired.page"));

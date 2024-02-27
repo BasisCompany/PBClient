@@ -20,7 +20,7 @@ const promptsSelectItems = {
     labels: ["Новые", "Высокий рейтинг", "Много лайков", "Популярные"],
 };
 
-const ProfilePrompts = () => {
+export const ProfilePrompts = () => {
     const [model, setModel] = useState(() => [
         "ChatGPT",
         "Midjourney",
@@ -70,5 +70,3 @@ const ProfilePrompts = () => {
         </>
     );
 };
-
-export default ProfilePrompts;
