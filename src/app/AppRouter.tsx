@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AppLayout } from "./layouts/AppLayout";
 import { RequireLocalProfile } from "./layouts/RequireLocalProfile";
 import { RequireNotAuth } from "./layouts/RequireNotAuth";
+
 import {
     ProfilePage,
     ProfilePrompts,
@@ -13,17 +14,15 @@ import {
     ProfileSettings,
 } from "@/pages/ProfilePage";
 
-const TestPage = lazy(() => import("@/trash/TestPage"));
+import {
+    AuthPage,
+    ExpiredPage,
+    VerifiedPage,
+    ResetPasswordPage,
+    ForgotPasswordPage,
+} from "@/pages/AuthPage";
 
-const AuthPage = lazy(() => import("@/pages/AuthPage/Auth.page"));
-const ExpiredPage = lazy(() => import("@/pages/AuthPage/Expired.page"));
-const ForgotPasswordPage = lazy(
-    () => import("@/pages/AuthPage/ForgotPassword.page")
-);
-const ResetPasswordPage = lazy(
-    () => import("@/pages/AuthPage/ResetPassword.page")
-);
-const VerifiedPage = lazy(() => import("@/pages/AuthPage/Verified.page"));
+const TestPage = lazy(() => import("@/trash/TestPage"));
 
 const SupportPage = lazy(() => import("@/pages/SupportPage"));
 const SupportContentMainHelp = lazy(

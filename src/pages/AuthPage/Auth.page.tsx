@@ -4,7 +4,7 @@ import { AuthAbout } from "./components/AuthAbout";
 import { LoginCard } from "./components/LoginCard";
 import { RegisterCard } from "./components/RegisterCard";
 
-const AuthPage = () => {
+export const AuthPage = () => {
     const [showLogin, toggleLogin] = useReducer((show) => !show, true);
 
     return (
@@ -28,5 +28,3 @@ const AuthPage = () => {
         </Card>
     );
 };
-
-export default AuthPage;
