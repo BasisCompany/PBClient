@@ -6,7 +6,7 @@ import { ExtSubmitHandler } from "./types";
 interface FormProps<TFormValues extends FieldValues> {
     onSubmit: ExtSubmitHandler<TFormValues>;
     schema: ObjectSchema<TFormValues>;
-    children: JSX.Element[];
+    children: JSX.Element[] | JSX.Element;
 }
 
 export const Form = <TFormValues extends FieldValues>({
