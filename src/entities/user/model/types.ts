@@ -27,7 +27,7 @@ export interface Device {
     ip: string;
     id: number;
     city: string;
-    device: string;
+    device: "desktop" | "smartphone" | "tablet";
     client: string;
     platform: string;
     lastLogin: string;

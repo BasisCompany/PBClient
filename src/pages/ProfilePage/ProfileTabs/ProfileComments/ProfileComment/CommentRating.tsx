@@ -47,7 +47,7 @@ export const CommentRating: FC<CommentRatingProps> = ({
             >
                 <KeyboardArrowUpIcon
                     sx={{
-                        color: "lime",
+                        color: "rgba(76,175,80,1)",
                         fontSize: "20px",
                     }}
                 />
@@ -82,7 +82,7 @@ export const CommentRating: FC<CommentRatingProps> = ({
             >
                 <KeyboardArrowUpIcon
                     sx={{
-                        color: "red",
+                        color: "rgba(233,30,99,1)",
                         fontSize: "20px",
                         rotate: "180deg",
                     }}
