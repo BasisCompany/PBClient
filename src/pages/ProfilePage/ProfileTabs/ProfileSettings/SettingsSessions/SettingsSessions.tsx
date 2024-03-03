@@ -51,7 +51,7 @@ export const SettingsSessions = () => {
                     fontSize={18}
                     fontWeight={400}
                     color="rgba(233,30,99,1)"
-                    lineHeight={2}
+                    lineHeight={{ xs: 1, sm: 2 }}
                 >
                     Выйти на всех устройствах, кроме этого
                 </Typography>
