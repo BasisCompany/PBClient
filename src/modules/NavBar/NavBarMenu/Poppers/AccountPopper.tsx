@@ -27,6 +27,7 @@ import { useLazyLogoutQuery } from "@/entities/auth";
 import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
 import { LinkListItemButton } from "@/shared/ui/Links/LinkListItemButton";
 import { Spacer } from "@/shared/ui/Spacer";
+import { useUserId } from "@/shared/hooks/useUserId";
 
 interface AccountMenuProps {
     isOpen: boolean;
@@ -58,6 +59,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
     onClose,
 }) => {
     const isMobile = useMobileDevice();
+    const userId = useUserId();
     const navigate = useNavigate();
 
     const { mode, toggleThemeMode } = useThemeMode();
@@ -199,7 +201,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                             Корзина
                         </ListItemButton>
                         <LinkListItemButton
-                            to={`user/id/notifications`}
+                            to={`user/${userId}/notifications`}
                             onClick={onClose}
                         >
                             <ListItemIcon>
@@ -221,13 +223,16 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                     </ListItemIcon>
                     {mode === EThemeMode.light ? "Тёмная тема" : "Светлая тема"}
                 </ListItemButton>
-                <LinkListItemButton to="/faq" onClick={onClose}>
+                <LinkListItemButton to="/support" onClick={onClose}>
                     <ListItemIcon>
                         <HelpOutlineIcon />
                     </ListItemIcon>
                     Помощь
                 </LinkListItemButton>
-                <LinkListItemButton to="profile/settings" onClick={onClose}>
+                <LinkListItemButton
+                    to={`user/${userId}/settings`}
+                    onClick={onClose}
+                >
                     <ListItemIcon>
                         <Settings />
                     </ListItemIcon>

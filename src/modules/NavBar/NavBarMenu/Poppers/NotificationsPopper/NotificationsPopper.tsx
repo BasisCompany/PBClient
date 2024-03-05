@@ -85,7 +85,7 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
                     }}
                 >
                     <LinkIconButton
-                        to={`user/${userId}/settings`}
+                        to={`user/${userId}/settings/notifications`}
                         onClick={handleClose}
                     >
                         <SettingsRoundedIcon />

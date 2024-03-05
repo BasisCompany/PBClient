@@ -47,6 +47,7 @@ export const SettingsNotifications = () => {
                             sx={{
                                 "& td, & th": {
                                     pl: 0,
+                                    pr: 1.5,
                                     border: 0,
                                 },
                             }}
@@ -78,24 +79,3 @@ export const SettingsNotifications = () => {
         </Box>
     );
 };
-
-/* <FlexBox justifyContent="flex-end" gap={5} mr={1}>
-    <Typography variant="text">Сайт</Typography>
-    <Typography variant="text">Email</Typography>
-</FlexBox>
-<FlexBox justifyContent="space-between">
-    <Box>
-        <Typography variant="text">Оставили комментарий</Typography>
-        <Typography
-            variant="text"
-            fontSize={14}
-            color={(theme) => theme.palette.text.secondary}
-        >
-            Оставили комментарий
-        </Typography>
-    </Box>
-    <FlexBox gap={2}>
-        <Switch color="secondary" />
-        <Switch color="secondary" />
-    </FlexBox>
-</FlexBox> */

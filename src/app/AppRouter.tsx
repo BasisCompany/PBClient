@@ -74,7 +74,7 @@ const profileRoutes = (
         <Route element={<RequireLocalProfile />}>
             <Route path="notifications" element={<ProfileNotifications />} />
             <Route path="payments" element={<h1>Платежи </h1>} />
-            <Route path="settings" element={<ProfileSettings />} />
+            <Route path="settings/:block?" element={<ProfileSettings />} />
         </Route>
     </Route>
 );
