@@ -2,7 +2,7 @@ import { useState, useEffect, SyntheticEvent } from "react";
 import { useLocation } from "react-router";
 
 const getPathId = (path: string, tabs: string[]): number => {
-    const lastUrlSegment = path.split("/").pop();
+    const lastUrlSegment = path.split("/")[3] ?? "";
     const index = tabs.findIndex((url) => url === lastUrlSegment);
     return index === -1 ? 0 : index;
 };
