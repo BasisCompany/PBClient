@@ -67,6 +67,7 @@ export const SessionDevice: FC<DeviceProps> = ({
                         >
                             {isCurrent ? (
                                 <Typography
+                                    component="span"
                                     color="rgba(76, 175, 80, 1)"
                                     fontSize={14}
                                 >
