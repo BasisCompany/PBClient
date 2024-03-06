@@ -1,7 +1,11 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { setInitialState } from "../model/authSlice";
 import { LoginResponse, RegisterRequest, ResetPasswordRequest } from "./types";
-import { baseQueryWithToastErrors, baseQueryWithReAuth } from "@/shared/api";
+import {
+    baseQueryWithToastErrors,
+    baseQueryWithReAuth,
+    baseApi,
+} from "@/shared/api";
 import { LoginSchema } from "@/pages/AuthPage/components/LoginCard";
 
 export const authApi = createApi({
@@ -15,6 +19,14 @@ export const authApi = createApi({
                 body,
                 credentials: "include",
             }),
+            async onQueryStarted(_, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    dispatch(baseApi.util.resetApiState());
+                } catch (error) {
+                    /* empty */
+                }
+            },
         }),
         register: builder.mutation<void, RegisterRequest>({
             query: (body) => ({
@@ -40,6 +52,7 @@ export const authApi = createApi({
             }),
             onQueryStarted(_, { dispatch }) {
                 dispatch(setInitialState());
+                dispatch(baseApi.util.resetApiState());
             },
         }),
     }),
