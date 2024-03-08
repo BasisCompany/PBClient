@@ -1,16 +1,10 @@
-import { FC } from "react";
 import { Box, Card } from "@mui/material";
 import { HeaderCover } from "./HeaderCover";
 import { HeaderAvatar } from "./HeaderAvatar";
 import { HeaderAbout } from "./HeaderAbout";
 import { HeaderButtons } from "./HeaderButtons";
-import { UserAbout } from "@/entities/user";
 
-interface ProfileHeaderProps {
-    userAbout: UserAbout;
-}
-
-export const ProfileHeader: FC<ProfileHeaderProps> = ({ userAbout }) => {
+export const ProfileHeader = () => {
     return (
         <Card
             sx={{
@@ -24,7 +18,7 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({ userAbout }) => {
                 mb: "15px",
             }}
         >
-            <HeaderCover urlCoverImage={userAbout.avatar} />
+            <HeaderCover />
             <Box
                 sx={{
                     //bgcolor: "#651",
@@ -39,8 +33,8 @@ export const ProfileHeader: FC<ProfileHeaderProps> = ({ userAbout }) => {
                     flexDirection: { xs: "column", md: "row" },
                 }}
             >
-                <HeaderAvatar userAbout={userAbout} />
-                <HeaderAbout name={userAbout.username} status={"Flex"} />
+                <HeaderAvatar />
+                <HeaderAbout />
                 <HeaderButtons />
             </Box>
         </Card>

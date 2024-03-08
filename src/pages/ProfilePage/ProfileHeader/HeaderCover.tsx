@@ -1,12 +1,11 @@
 import { Box, CardMedia } from "@mui/material";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { ProfileButton } from "../../../shared/ui/ProfileButton";
+import { useProfileUser } from "@/entities/user";
 
-export interface HeaderCoverProps {
-    urlCoverImage?: string;
-}
 //TODO[Артем]: Убрать CardMedia и переписать на  Box
-export const HeaderCover: React.FC<HeaderCoverProps> = ({ urlCoverImage }) => {
+export const HeaderCover = () => {
+    const { avatar } = useProfileUser();
     return (
         <Box
             sx={{
@@ -18,7 +17,7 @@ export const HeaderCover: React.FC<HeaderCoverProps> = ({ urlCoverImage }) => {
             <CardMedia
                 component="img"
                 height="100%"
-                image={urlCoverImage}
+                image={avatar}
                 alt="Paella dish"
             />
             <ProfileButton

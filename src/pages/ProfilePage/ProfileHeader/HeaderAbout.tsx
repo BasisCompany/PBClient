@@ -1,14 +1,9 @@
 import { Box, Typography, Chip } from "@mui/material";
-
 import FaceIcon from "@mui/icons-material/Face";
-import { FC } from "react";
+import { useProfileUser } from "@/entities/user";
 
-export interface HeaderAboutProps {
-    name: string;
-    status: string;
-}
-
-export const HeaderAbout: FC<HeaderAboutProps> = ({ name, status }) => {
+export const HeaderAbout = () => {
+    const { username } = useProfileUser();
     return (
         <Box
             sx={{
@@ -42,7 +37,7 @@ export const HeaderAbout: FC<HeaderAboutProps> = ({ name, status }) => {
                         WebkitLineClamp: "1",
                     }}
                 >
-                    {name}
+                    {username}
                 </Typography>
             </Box>
             <Box
@@ -72,7 +67,7 @@ export const HeaderAbout: FC<HeaderAboutProps> = ({ name, status }) => {
                         WebkitLineClamp: "1",
                     }}
                 >
-                    {status}
+                    Flex
                 </Typography>
             </Box>
             <Box

@@ -3,7 +3,7 @@ import { FlexBox } from "../../shared/ui/FlexBox";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileStatistic } from "./ProfileStatistic/ProfileStatistic";
 import { ProfileTabs } from "./ProfileTabs/ProfileTabs";
-import { useUserAboutQuery } from "@/entities/user";
+import { ProfileProvider, useUserAboutQuery } from "@/entities/user";
 
 export const ProfilePage = () => {
     const { id } = useParams();
@@ -20,12 +20,12 @@ export const ProfilePage = () => {
     }
 
     return (
-        <>
-            <ProfileHeader userAbout={data} />
+        <ProfileProvider userAbout={data}>
+            <ProfileHeader />
             <FlexBox sx={{ flexDirection: { xs: "column", lg: "row" } }}>
                 <ProfileStatistic />
                 <ProfileTabs />
             </FlexBox>
-        </>
+        </ProfileProvider>
     );
 };

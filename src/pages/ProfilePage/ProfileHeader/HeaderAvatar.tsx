@@ -1,12 +1,9 @@
 import { Box, Avatar } from "@mui/material";
-import { UserAbout } from "@/entities/user";
+import { useProfileUser } from "@/entities/user";
 import { FlexBox } from "@/shared/ui/FlexBox";
 
-export interface HeaderAvatarProps {
-    userAbout: UserAbout;
-}
-
-export const HeaderAvatar: React.FC<HeaderAvatarProps> = ({ userAbout }) => {
+export const HeaderAvatar = () => {
+    const { username, avatar } = useProfileUser();
     return (
         <FlexBox
             sx={{
@@ -24,8 +21,8 @@ export const HeaderAvatar: React.FC<HeaderAvatarProps> = ({ userAbout }) => {
                 }}
             >
                 <Avatar
-                    alt={userAbout.username}
-                    src={userAbout.avatar}
+                    alt={username}
+                    src={avatar}
                     sx={{
                         border: "5px solid",
                         borderColor: (theme) =>
