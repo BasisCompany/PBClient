@@ -1,14 +1,36 @@
-import { ImgButtonsBox } from "./ImgButtonsBox";
+import { Box } from "@mui/material";
+import { EditButtons } from "./EditButtons";
 import { Image } from "@/shared/ui/Image";
 import { FlexBox } from "@/shared/ui/FlexBox";
+import {
+    useDeleteAvatarMutation,
+    useDeleteBannerMutation,
+    useProfileUser,
+    useUpdateAvatarMutation,
+    useUpdateBannerMutation,
+} from "@/entities/user";
+import DefaultAvatar from "@/assets/DefaultAvatar.webp";
 
 export const UserImages = () => {
+    const { username, avatar, banner } = useProfileUser();
+
+    const [updateAvatar] = useUpdateAvatarMutation();
+    const [updateBanner] = useUpdateBannerMutation();
+    const [deleteAvatar] = useDeleteAvatarMutation();
+    const [deleteBanner] = useDeleteBannerMutation();
+
     return (
         <FlexBox mb={2}>
-            <ImgButtonsBox mr={1}>
+            <EditButtons
+                mr={1}
+                isAvatar
+                showDelete={!!avatar}
+                updateImg={updateAvatar}
+                deleteImg={deleteAvatar}
+            >
                 <Image
-                    src="https://styles.redditmedia.com/t5_2ewfae/styles/profileIcon_ilzhrv7d81nb1.png?width=256&height=256&crop=256:256,smart&s=844ae838ed01e71c9b990bc8760853abd290f6b4"
-                    alt="backgroundImg"
+                    src={avatar ?? DefaultAvatar}
+                    alt={username}
                     width={{
                         xs: "100px",
                         md: "125px",
@@ -21,20 +43,54 @@ export const UserImages = () => {
                     }}
                     borderRadius="15px"
                 />
-            </ImgButtonsBox>
-            <ImgButtonsBox flexBasis="85%">
-                <Image
-                    src="https://styles.redditmedia.com/t5_2ewfae/styles/profileBanner_geaz0lw3ghic1.jpg?width=1280&height=384&crop=1280:384,smart&s=0f9489c666767cfbcebde4008248eb0956961970"
-                    alt="backgroundImg"
-                    width="100%"
-                    height={{
-                        xs: "100px",
-                        md: "125px",
-                        lg: "150px",
-                    }}
-                    borderRadius="15px"
-                />
-            </ImgButtonsBox>
+            </EditButtons>
+            <EditButtons
+                flexBasis="85%"
+                showDelete={!!banner}
+                updateImg={updateBanner}
+                deleteImg={deleteBanner}
+            >
+                {banner ? (
+                    <Image
+                        src={banner}
+                        alt={username}
+                        showError={false}
+                        width="100%"
+                        height={{
+                            xs: "100px",
+                            md: "125px",
+                            lg: "150px",
+                        }}
+                        borderRadius="15px"
+                    />
+                ) : (
+                    <Box
+                        width="100%"
+                        height="100%"
+                        bgcolor={(theme) => theme.palette.secondary.main}
+                        borderRadius="15px"
+                    />
+                )}
+            </EditButtons>
         </FlexBox>
     );
 };
+
+/* <Avatar
+    src={avatar ?? DefaultAvatar}
+    alt={username}
+    sx={{
+        width: {
+            xs: "100px",
+            md: "125px",
+            lg: "150px",
+        },
+        height: {
+            xs: "100px",
+            md: "125px",
+            lg: "150px",
+        },
+        borderRadius: "15px",
+    }}
+/> 
+*/

@@ -14,6 +14,7 @@ export interface UserAbout {
     username: string;
     gender: Gender | null;
     avatar?: string;
+    banner?: string;
 }
 
 export interface UserDetails {

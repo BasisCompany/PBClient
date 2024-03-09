@@ -1,11 +1,11 @@
-import { Box, CardMedia } from "@mui/material";
+import { Box } from "@mui/material";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import { ProfileButton } from "../../../shared/ui/ProfileButton";
 import { useProfileUser } from "@/entities/user";
+import { Image } from "@/shared/ui/Image";
+import { ProfileButton } from "@/shared/ui/ProfileButton";
 
-//TODO[Артем]: Убрать CardMedia и переписать на  Box
 export const HeaderCover = () => {
-    const { avatar } = useProfileUser();
+    const { banner, username } = useProfileUser();
     return (
         <Box
             sx={{
@@ -14,12 +14,21 @@ export const HeaderCover = () => {
                 position: "absolute",
             }}
         >
-            <CardMedia
-                component="img"
-                height="100%"
-                image={avatar}
-                alt="Paella dish"
-            />
+            {banner ? (
+                <Image
+                    src={banner}
+                    alt={username}
+                    showError={false}
+                    height="100%"
+                    borderRadius="15px"
+                />
+            ) : (
+                <Box
+                    height="100%"
+                    bgcolor={(theme) => theme.palette.secondary.main}
+                    borderRadius="15px"
+                />
+            )}
             <ProfileButton
                 sx={{
                     width: { xs: "57px", md: "255px" },
