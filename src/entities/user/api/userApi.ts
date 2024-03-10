@@ -1,6 +1,7 @@
 import { Device, UserAbout } from "../model/types";
 import { URL_ROOT } from "@/shared/api/config";
 import { baseApi } from "@/shared/api";
+import { toaster } from "@/app/providers/Toast";
 
 export const userApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
@@ -26,6 +27,14 @@ export const userApi = baseApi.injectEndpoints({
                 method: "POST",
                 body,
             }),
+            async onQueryStarted(_, { queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    toaster.success("Аватарка изменена!");
+                } catch (error) {
+                    console.error(error);
+                }
+            },
             invalidatesTags: ["User"],
         }),
         deleteAvatar: build.mutation<void, void>({
@@ -33,6 +42,14 @@ export const userApi = baseApi.injectEndpoints({
                 url: "user/avatar",
                 method: "DELETE",
             }),
+            async onQueryStarted(_, { queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    toaster.success("Аватарка удалена!");
+                } catch (error) {
+                    console.error(error);
+                }
+            },
             invalidatesTags: ["User"],
         }),
         updateBanner: build.mutation<void, FormData>({
@@ -41,6 +58,14 @@ export const userApi = baseApi.injectEndpoints({
                 method: "POST",
                 body,
             }),
+            async onQueryStarted(_, { queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    toaster.success("Баннер изменен!");
+                } catch (error) {
+                    console.error(error);
+                }
+            },
             invalidatesTags: ["User"],
         }),
         deleteBanner: build.mutation<void, void>({
@@ -48,6 +73,14 @@ export const userApi = baseApi.injectEndpoints({
                 url: "user/banner",
                 method: "DELETE",
             }),
+            async onQueryStarted(_, { queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    toaster.success("Баннер удален!");
+                } catch (error) {
+                    console.error(error);
+                }
+            },
             invalidatesTags: ["User"],
         }),
     }),

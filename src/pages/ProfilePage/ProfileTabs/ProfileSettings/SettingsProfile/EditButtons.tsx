@@ -10,7 +10,6 @@ import {
     FetchBaseQueryError,
 } from "@reduxjs/toolkit/dist/query";
 import { MutationTrigger } from "@reduxjs/toolkit/dist/query/react/buildHooks";
-import { toaster } from "@/app/providers/Toast";
 
 const buttonStyles = {
     position: "absolute",
@@ -63,10 +62,7 @@ export const EditButtons: FC<EditButtonsProps> = ({
 
             const formData = new FormData();
             formData.append(isAvatar ? "avatar" : "banner", files[0]);
-            updateImg(formData)
-                .unwrap()
-                .then(() => toaster.success("Аватарка изменена!"))
-                .catch(console.error);
+            void updateImg(formData);
         },
         [isAvatar, updateImg]
     );
