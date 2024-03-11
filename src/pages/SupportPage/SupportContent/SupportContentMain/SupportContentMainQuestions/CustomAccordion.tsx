@@ -38,9 +38,6 @@ export const CustomAccordion: FC<CustomAccordionProps> = ({
             }}
         >
             <AccordionSummary
-                sx={{
-                    height: "65px",
-                }}
                 expandIcon={<ExpandMoreIcon sx={{ fontSize: 30 }} />}
             >
                 <Typography

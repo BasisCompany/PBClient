@@ -6,12 +6,8 @@ import {
     InputBase,
     Box,
     BoxProps,
-    Backdrop,
     Typography,
-    Popper,
-    Container,
 } from "@mui/material";
-import { useMobileDevice } from "../../../shared/hooks/useMobileDevice";
 
 interface SearchInputProps extends BoxProps {
     isOpen: boolean;
@@ -19,11 +15,13 @@ interface SearchInputProps extends BoxProps {
 
 const SearchInput = styled(({ ...props }: SearchInputProps) => (
     <Box {...props} />
-))(({ theme, isOpen }) => ({
+))(({ theme }) => ({
     position: "relative",
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: "15px",
     backgroundColor: alpha(theme.palette.common.white, 0.15),
+    transition: "all 0.1s ease-out",
     "&:hover": {
+        transition: "all 0.1s ease-in",
         backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     display: "flex",
@@ -31,12 +29,13 @@ const SearchInput = styled(({ ...props }: SearchInputProps) => (
     width: "100%",
     height: "60px",
     color: theme.palette.text.primary,
-    zIndex: isOpen ? 1300 : 1,
+    zIndex: 1,
     [theme.breakpoints.up("xs")]: {
-        width: isOpen ? "100%" : "100%",
+        height: "55px",
+        width: "100%",
     },
-    [theme.breakpoints.up("md")]: {
-        width: isOpen ? "550px" : "550px",
+    [theme.breakpoints.up("sm")]: {
+        width: "550px",
     },
 }));
 
@@ -71,15 +70,8 @@ export const SupportHeader = () => {
         setPopperAnchor(event.currentTarget);
     };
 
-    const handleSearchClose = () => {
-        setPopperAnchor(null);
-    };
-
     const searchOpen = Boolean(popperAnchor);
 
-    const id = searchOpen ? "simple-popover" : undefined;
-
-    const isMobile = useMobileDevice();
     return (
         <Box
             sx={{
@@ -106,22 +98,32 @@ export const SupportHeader = () => {
             >
                 <Typography
                     variant="title"
+                    color="text.primary"
                     sx={{
-                        fontWeight: 300,
-                        lineHeight: 1.167,
-                        letterSpacing: "-0.01562em",
-                        fontSize: { xs: "44px", md: "52px" },
+                        fontSize: { xs: "24px", sm: "38px", md: "52px" },
+                        fontWeight: { xs: "500", sm: "400", md: "300" },
+                        textAlign: "center",
+                        mb: "4px",
+                        cursor: "default",
+                    }}
+                >
+                    Привет!
+                </Typography>
+                <Typography
+                    variant="title"
+                    color="text.primary"
+                    sx={{
+                        fontSize: { xs: "24px", sm: "38px", md: "52px" },
+                        fontWeight: { xs: "500", sm: "400", md: "300" },
                         textAlign: "center",
                         cursor: "default",
                     }}
                 >
-                    Привет! Чем тебе помочь?
+                    Чем тебе помочь?
                 </Typography>
             </Box>
             <Box
                 sx={{
-                    //p: "15px",
-                    //bgcolor: "#62A",
                     display: "flex",
                     justifyContent: "center",
                     alignContent: "center",
@@ -143,54 +145,6 @@ export const SupportHeader = () => {
                             inputProps={{ "aria-label": "search" }}
                         />
                     </SearchInput>
-                    <Popper
-                        id={id}
-                        open={searchOpen}
-                        anchorEl={popperAnchor}
-                        onClick={isMobile ? handleSearchClose : undefined}
-                        placement="bottom"
-                        sx={{
-                            zIndex: 1250,
-                            backgroundColor: "primary.main",
-                            borderRadius: "5px",
-                            maxWidth: "550px",
-                            width: isMobile ? "100%" : "100%",
-                        }}
-                        modifiers={[
-                            {
-                                name: "offset",
-                                options: {
-                                    offset: [0, 10],
-                                },
-                            },
-                        ]}
-                    >
-                        <Container
-                            maxWidth="md"
-                            sx={{
-                                height: "50px",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    color: "text.primary",
-                                }}
-                            >
-                                Что вас заинтересовало?
-                            </Typography>
-                        </Container>
-                    </Popper>
-                    <Backdrop
-                        sx={{
-                            color: "#fff",
-                            zIndex: 1200,
-                        }}
-                        open={searchOpen}
-                        onClick={handleSearchClose}
-                    />
                 </Box>
             </Box>
         </Box>

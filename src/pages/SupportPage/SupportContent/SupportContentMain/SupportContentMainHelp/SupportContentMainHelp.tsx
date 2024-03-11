@@ -1,4 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import { supporHelpListContent } from "./supportListContent";
 
 const SupportContentMainHelp = () => {
@@ -18,6 +19,8 @@ const SupportContentMainHelp = () => {
             {supporHelpListContent.map(({ id, ...items }) => (
                 <Grid key={id} item xs={12} sm={6} md={4}>
                     <Box
+                        component={RouterLink}
+                        to={`questions/${items.to}`}
                         sx={{
                             transition: "all 0.1s ease-out",
                             height: {
@@ -32,6 +35,7 @@ const SupportContentMainHelp = () => {
                             alignItems: "center",
                             flexDirection: "column",
                             borderRadius: "15px",
+                            textDecoration: "none",
                             "&:hover": {
                                 cursor: "pointer",
                                 bgcolor: (theme) =>

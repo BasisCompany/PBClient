@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { PromptBuyIcon } from "../../../assets/PromptBuyIcon";
+import { PromptBuyIcon } from "@/assets/PromptBuyIcon";
 
 export const FallbackError = () => {
     const reloadPage = () => {
@@ -26,35 +26,25 @@ export const FallbackError = () => {
                     alignItems: "center",
                 }}
             >
-                <Typography
-                    variant="title"
-                    sx={{
-                        fontWeight: 300,
-                        fontSize: { xs: "8vw", md: "8vh" },
-                        overflow: "hidden",
-                        cursor: "default",
-                    }}
-                >
-                    Упс!
-                </Typography>
-                <Typography
-                    variant="subtitle"
-                    color="text.secondary"
-                    sx={{
-                        fontWeight: 300,
-                        fontSize: { xs: "6vw", md: "6vh" },
-                        overflow: "hidden",
-                        cursor: "default",
-                    }}
-                >
-                    Что-то пошло не так!
-                </Typography>
                 <PromptBuyIcon
                     sx={{
                         fontSize: { xs: "50vw", md: "50vh" },
                         height: { xs: "30vw", md: "30vh" },
                     }}
                 />
+                <Typography
+                    variant="title"
+                    color="text.secondary"
+                    sx={{
+                        fontSize: { xs: "6vw", md: "6vh" },
+                        overflow: "hidden",
+                        cursor: "default",
+                        mb: { xs: "4vw", md: "4vh" },
+                    }}
+                >
+                    Что-то пошло не так!
+                </Typography>
+
                 <Button
                     onClick={reloadPage}
                     sx={{
