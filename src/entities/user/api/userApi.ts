@@ -18,9 +18,6 @@ export const userApi = baseApi.injectEndpoints({
             },
             providesTags: ["User"],
         }),
-        getUserDevices: build.query<Device[], void>({
-            query: () => "device/user",
-        }),
         updateAvatar: build.mutation<void, FormData>({
             query: (body) => ({
                 url: "user/avatar",
@@ -82,6 +79,9 @@ export const userApi = baseApi.injectEndpoints({
                 }
             },
             invalidatesTags: ["User"],
+        }),
+        getUserDevices: build.query<Device[], void>({
+            query: () => "device/user",
         }),
     }),
 });
