@@ -1,8 +1,10 @@
 import { DispatchWithoutAction, FC } from "react";
-import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography, styled } from "@mui/material";
 import { object, string, InferType } from "yup";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
+import ButtonBase from "@mui/material/ButtonBase";
+import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router";
 import { useLoginMutation } from "@/entities/auth";
 import { PromptBuyIcon } from "@/assets/PromptBuyIcon";
@@ -14,6 +16,8 @@ import {
     InputTextPassword,
 } from "@/shared/ui/Forms";
 import { LinkTypography } from "@/shared/ui/Links/LinkTypography";
+import { GoogleIcon } from "@/assets/GoogleIcon";
+import { VKIcon } from "@/assets/VKIcon";
 import { FakeCaptcha } from "@/trash/FakeCaptcha";
 
 interface LoginCardProps {
@@ -32,6 +36,18 @@ const loginSchema = object({
 });
 
 export type LoginSchema = InferType<typeof loginSchema>;
+
+export const SocialButton = styled(ButtonBase)(({ theme }) => ({
+    fontSize: 15,
+    width: "100%",
+    minHeight: "50px",
+    borderRadius: "15px",
+    color: theme.palette.text.primary,
+    backgroundColor: theme.palette.bgcolor.tertiary.main,
+    "&:hover": {
+        backgroundColor: theme.palette.bgcolor.tertiary.main,
+    },
+}));
 
 export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
     const navigate = useNavigate();
@@ -63,7 +79,7 @@ export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
             >
                 <Box
                     sx={{
-                        height: "135px",
+                        height: "125px",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
@@ -78,7 +94,7 @@ export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
                 </Box>
             </Box>
             <CardContent>
-                <Box sx={{ mb: "50px", mt: "20px" }}>
+                <Box sx={{ mb: 5 }}>
                     <Box sx={{ textAlign: "center" }}>
                         <Typography
                             component="span"
@@ -115,6 +131,42 @@ export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
                         </Typography>
                     </Box>
                 </Box>
+                <Box
+                    sx={{
+                        mb: 3,
+                        width: "100%",
+                        minWidth: "100px",
+                    }}
+                >
+                    <SocialButton sx={{ mb: 2 }}>
+                        <GoogleIcon />
+                        <Box sx={{ width: "83%" }}>
+                            <Typography variant="text">
+                                Войти через Google
+                            </Typography>
+                        </Box>
+                    </SocialButton>
+                    <SocialButton sx={{ mb: 3 }}>
+                        <VKIcon />
+                        <Box sx={{ width: "83%" }}>
+                            <Typography variant="text">
+                                Войти через ВКонтакте
+                            </Typography>
+                        </Box>
+                    </SocialButton>
+                    <Divider>
+                        <Typography
+                            variant="text"
+                            sx={{
+                                color: (theme) => theme.palette.text.secondary,
+                            }}
+                        >
+                            ИЛИ
+                        </Typography>
+                    </Divider>
+                    {/* <FakeCaptcha /> */}
+                    {/* <SmartCaptcha sitekey="<ключ_клиента>" /> */}
+                </Box>
                 <Form<LoginSchema> onSubmit={onSubmit} schema={loginSchema}>
                     <InputText
                         name="email"
@@ -129,16 +181,6 @@ export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
                         helperText="Ваш пароль"
                         labelIcon={<LockOpenRoundedIcon />}
                     />
-                    <Box
-                        sx={{
-                            marginTop: "15px",
-                            width: "100%",
-                            minWidth: "100px",
-                        }}
-                    >
-                        <FakeCaptcha />
-                        {/* <SmartCaptcha sitekey="<ключ_клиента>" /> */}
-                    </Box>
                     <Box
                         sx={{
                             marginTop: "30px",

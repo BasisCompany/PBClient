@@ -28,6 +28,14 @@ const CssTextField = styled(TextField)(({ theme }) => ({
             borderColor: theme.palette.text.primary,
         },
     },
+    "& .MuiOutlinedInput-input:-webkit-autofill": {
+        WebkitBoxShadow: `0 0 0 100px ${theme.palette.bgcolor.tertiary.main} inset`,
+        WebkitTextFillColor: theme.palette.text.primary,
+    },
+    "& .MuiOutlinedInput-input:-autofill": {
+        BoxShadow: `0 0 0 100px ${theme.palette.bgcolor.tertiary.main} inset`,
+        TextFillColor: theme.palette.text.primary,
+    },
 }));
 
 export type InputTextProps = Omit<TextFieldProps, "helperText"> & {

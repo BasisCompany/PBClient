@@ -6,11 +6,14 @@ import {
     CardHeader,
     IconButton,
     Typography,
+    styled,
 } from "@mui/material";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
+import ButtonBase from "@mui/material/ButtonBase";
+import Divider from "@mui/material/Divider";
 import { object, string, ref, InferType } from "yup";
 import { toaster } from "@/app/providers/Toast";
 import { useRegisterMutation } from "@/entities/auth";
@@ -21,7 +24,8 @@ import {
     InputText,
     InputTextPassword,
 } from "@/shared/ui/Forms";
-import { FakeCaptcha } from "@/trash/FakeCaptcha";
+import { GoogleIcon } from "@/assets/GoogleIcon";
+import { VKIcon } from "@/assets/VKIcon";
 
 interface RegisterCardProps {
     toggleLogin: DispatchWithoutAction;
@@ -46,6 +50,18 @@ const registerSchema = object({
 });
 
 export type RegisterSchema = InferType<typeof registerSchema>;
+
+export const SocialButton = styled(ButtonBase)(({ theme }) => ({
+    fontSize: 15,
+    width: "100%",
+    minHeight: "50px",
+    borderRadius: "15px",
+    color: theme.palette.text.primary,
+    backgroundColor: theme.palette.bgcolor.tertiary.main,
+    "&:hover": {
+        backgroundColor: theme.palette.bgcolor.tertiary.main,
+    },
+}));
 
 export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
     const [register, { isLoading }] = useRegisterMutation();
@@ -72,14 +88,15 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
             <Box
                 sx={{
                     display: "flex",
-                    height: "40px",
+                    height: "30px",
                     justifyContent: "flex-start",
                 }}
             >
                 <CardHeader
                     sx={{
-                        height: "40px",
-                        paddingLeft: "5px",
+                        height: "220px",
+                        pt: 1,
+                        paddingLeft: 1,
                     }}
                     action={
                         <IconButton aria-label="back" onClick={toggleLogin}>
@@ -98,6 +115,7 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
                         sx={{
                             display: { xs: "none", sm: "none", md: "flex" },
                             justifyContent: "center",
+                            mb: 1,
                         }}
                     >
                         <Typography
@@ -116,7 +134,7 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
                             Создайте аккаунт
                         </Typography>
                     </Box>
-                    <Box
+                    {/* <Box
                         sx={{
                             display: { xs: "flex", sm: "flex", md: "none" },
                             justifyContent: "center",
@@ -137,8 +155,8 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
                         >
                             Регистрация
                         </Typography>
-                    </Box>
-                    <Box
+                    </Box> */}
+                    {/* <Box
                         sx={{
                             textAlign: "center",
                         }}
@@ -161,7 +179,40 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
                         >
                             Для регистрации заполните поля ниже.
                         </Typography>
-                    </Box>
+                    </Box> */}
+                </Box>
+                <Box
+                    sx={{
+                        width: "100%",
+                        minWidth: "100px",
+                    }}
+                >
+                    <SocialButton sx={{ mb: 2 }}>
+                        <GoogleIcon />
+                        <Box sx={{ width: "83%" }}>
+                            <Typography variant="text">
+                                Войти через Google
+                            </Typography>
+                        </Box>
+                    </SocialButton>
+                    <SocialButton sx={{ mb: 2 }}>
+                        <VKIcon />
+                        <Box sx={{ width: "83%" }}>
+                            <Typography variant="text">
+                                Войти через ВКонтакте
+                            </Typography>
+                        </Box>
+                    </SocialButton>
+                    <Divider>
+                        <Typography
+                            variant="text"
+                            sx={{
+                                color: (theme) => theme.palette.text.secondary,
+                            }}
+                        >
+                            ИЛИ
+                        </Typography>
+                    </Divider>
                 </Box>
                 <Form<RegisterSchema>
                     onSubmit={onSubmit}
@@ -195,11 +246,12 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
                         helperText="Подтвердите пароль"
                         margin="normal"
                     />
-                    <FakeCaptcha />
+
+                    {/* <FakeCaptcha /> */}
                     {/* <SmartCaptcha sitekey="<ключ_клиента>" /> */}
                     <Box
                         sx={{
-                            marginTop: "30px",
+                            marginTop: 2,
                             display: "flex",
                             justifyContent: "end",
                         }}
