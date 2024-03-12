@@ -18,7 +18,6 @@ import {
 import { LinkTypography } from "@/shared/ui/Links/LinkTypography";
 import { GoogleIcon } from "@/assets/GoogleIcon";
 import { VKIcon } from "@/assets/VKIcon";
-import { FakeCaptcha } from "@/trash/FakeCaptcha";
 
 interface LoginCardProps {
     toggleLogin: DispatchWithoutAction;
