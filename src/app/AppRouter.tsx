@@ -22,6 +22,8 @@ import {
     ForgotPasswordPage,
 } from "@/pages/AuthPage";
 
+import { MarketplacePage } from "@/pages/MarketplacePage";
+
 const TestPage = lazy(() => import("@/trash/TestPage"));
 
 const SupportPage = lazy(() => import("@/pages/SupportPage"));
@@ -44,7 +46,7 @@ export const AppRouter = () => (
             <Route path="/" element={<AppLayout />}>
                 <Route index element={<TestPage />} />
                 {profileRoutes}
-                <Route path="marketplace" element={<h1>marketplace </h1>} />
+                <Route path="marketplace" element={<MarketplacePage />} />
                 {supportRoutes}
 
                 {/* AUTH */}
