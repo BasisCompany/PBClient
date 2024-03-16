@@ -23,8 +23,9 @@ import {
 } from "@/pages/AuthPage";
 
 import { MarketplacePage } from "@/pages/MarketplacePage";
+import { HomePage } from "@/pages/HomePage";
 
-const TestPage = lazy(() => import("@/trash/TestPage"));
+// const TestPage = lazy(() => import("@/trash/TestPage"));
 
 const SupportPage = lazy(() => import("@/pages/SupportPage"));
 const SupportContentMainHelp = lazy(
@@ -44,7 +45,7 @@ export const AppRouter = () => (
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<AppLayout />}>
-                <Route index element={<TestPage />} />
+                <Route index element={<HomePage />} />
                 {profileRoutes}
                 <Route path="marketplace" element={<MarketplacePage />} />
                 {supportRoutes}

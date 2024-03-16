@@ -12,8 +12,8 @@ export const MarketplaceGrid = () => {
             <Grid container spacing={4}>
                 {[...cardListContent, ...cardListContent, ...cardListContent]
                     .sort(() => Math.random() - 0.5)
-                    .map(({ id, ...item }) => (
-                        <Grid item key={id}>
+                    .map((item, index) => (
+                        <Grid item key={index}>
                             <PromptCard {...item} />
                         </Grid>
                     ))}
