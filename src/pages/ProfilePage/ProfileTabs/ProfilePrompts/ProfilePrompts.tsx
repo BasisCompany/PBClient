@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import UpdateRoundedIcon from "@mui/icons-material/UpdateRounded";
 import GradeRoundedIcon from "@mui/icons-material/GradeRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
@@ -8,6 +8,8 @@ import { ProfileSelect } from "../../components/ProfileSelect";
 import { ProfilePromptsModels } from "./ProfilePromptsModels";
 import { ProfilePromptsToggleMode } from "./ProfilePromptsToggleMode";
 import { ProfilePromptsLine } from "./ProfilePromptsLine";
+import { cardListContent } from "@/pages/MarketplacePage/components/MarketplaceGrid/cardListContent";
+import { PromptCard } from "@/shared/ui/PromptCard";
 
 const promptsSelectItems = {
     params: ["new", "rating", "like", "shop"],
@@ -60,12 +62,25 @@ export const ProfilePrompts = () => {
                 <ProfilePromptsLine model={model} boxModel={boxModel} />
                 <ProfilePromptsModels model={model} handleModel={handleModel} />
             </Box>
-            <Box>
-                {model.map((item, i) => (
+            <Box sx={{ mt: 5 }}>
+                <Grid container spacing={4}>
+                    {[
+                        ...cardListContent,
+                        ...cardListContent,
+                        ...cardListContent,
+                    ]
+                        .sort(() => Math.random() - 0.5)
+                        .map(({ id, ...item }) => (
+                            <Grid item key={id}>
+                                <PromptCard {...item} />
+                            </Grid>
+                        ))}
+                </Grid>
+                {/* {model.map((item, i) => (
                     <Box key={i} sx={{ height: "100px" }}>
                         {item}
                     </Box>
-                ))}
+                ))} */}
             </Box>
         </>
     );

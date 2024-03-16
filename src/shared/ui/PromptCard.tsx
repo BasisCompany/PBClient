@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
     Badge,
     Box,
@@ -5,7 +6,6 @@ import {
     CardActionArea,
     CardContent,
     CardMedia,
-    SvgIcon,
     Typography,
     styled,
 } from "@mui/material";
@@ -20,7 +20,29 @@ const CardBadge = styled(Badge)(() => ({
     },
 }));
 
-export const PromptCard = () => {
+export interface PromptCardProps {
+    image: string;
+    icon: React.ReactNode;
+    iconName: string;
+    title: string;
+    description: string;
+    views: number;
+    purchases: number;
+    rating: string;
+    price: string;
+}
+
+export const PromptCard: FC<PromptCardProps> = ({
+    image,
+    icon,
+    iconName,
+    title,
+    description,
+    views,
+    purchases,
+    rating,
+    price,
+}) => {
     return (
         <Card
             sx={{
@@ -39,24 +61,23 @@ export const PromptCard = () => {
                     <CardMedia
                         component="img"
                         height="135px"
-                        image="https://i.pinimg.com/originals/47/0a/19/470a19a36904fe200610cc1f41eb00d9.jpg"
+                        image={image}
                         alt="Paella dish"
                     />
                     <Box
                         sx={{
                             position: "absolute",
                             padding: "3px",
-                            marginTop: "3px",
-                            top: "9px",
+                            pr: 1,
+                            top: "13px",
                             borderRadius: "0px 10px 10px 0px",
-                            left: "23%",
-                            transform: "translateX(-50%)",
                             cursor: "pointer",
-                            bgcolor: "secondary.main",
+                            bgcolor: "#272727",
                             display: "flex",
                         }}
                     >
-                        <SvgIcon
+                        {icon}
+                        {/* <SvgIcon
                             sx={{
                                 marginTop: "2px",
                             }}
@@ -79,7 +100,7 @@ export const PromptCard = () => {
                                 stroke="text.primary"
                                 strokeWidth="0.5"
                             />
-                        </SvgIcon>
+                        </SvgIcon> */}
                         <Typography
                             variant="h6"
                             sx={{
@@ -88,7 +109,7 @@ export const PromptCard = () => {
                                 cursor: "pointer",
                             }}
                         >
-                            Midjourney
+                            {iconName}
                         </Typography>
                     </Box>
                 </Box>
@@ -105,7 +126,7 @@ export const PromptCard = () => {
                             cursor: "pointer",
                         }}
                     >
-                        Asian Art T-shirt Designs
+                        {title}
                     </Typography>
                     <Typography
                         color="text.secondary"
@@ -122,12 +143,7 @@ export const PromptCard = () => {
                             cursor: "pointer",
                         }}
                     >
-                        This impressive paella is a perfect party dish and a fun
-                        meal to cook together with your guests. Add 1 cup of
-                        frozen peas along with the mussels, if you like.This
-                        impressive paella is a perfect party dish and a fun meal
-                        to cook together with your guests. Add 1 cup of frozen
-                        peas along with the mussels, if you like.
+                        {description}
                     </Typography>
                     <Box
                         sx={{
@@ -147,7 +163,7 @@ export const PromptCard = () => {
                             }}
                         >
                             <CardBadge
-                                badgeContent={700}
+                                badgeContent={views}
                                 color="secondary"
                                 max={999}
                             >
@@ -158,7 +174,7 @@ export const PromptCard = () => {
                                 />
                             </CardBadge>
                             <CardBadge
-                                badgeContent={145}
+                                badgeContent={purchases}
                                 color="secondary"
                                 max={999}
                             >
@@ -169,7 +185,7 @@ export const PromptCard = () => {
                                 />
                             </CardBadge>
                             <CardBadge
-                                badgeContent={4.3}
+                                badgeContent={rating}
                                 color="secondary"
                                 max={5}
                             >
@@ -187,7 +203,7 @@ export const PromptCard = () => {
                                 fontSize: "15px",
                             }}
                         >
-                            1 500 ₽
+                            {price} ₽
                         </Typography>
                     </Box>
                 </CardContent>
