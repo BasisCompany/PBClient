@@ -17,7 +17,7 @@ import {
 } from "@/shared/ui/Forms";
 import { LinkTypography } from "@/shared/ui/Links/LinkTypography";
 import { GoogleIcon } from "@/assets/GoogleIcon";
-import { VKIcon } from "@/assets/VKIcon";
+import { YandexIcon } from "@/assets/YandexIcon";
 
 interface LoginCardProps {
     toggleLogin: DispatchWithoutAction;
@@ -57,6 +57,14 @@ export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
         await login(data).unwrap();
         navigate("/");
         reset();
+    };
+
+    const handleGoogleLogin = () => {
+        location.href = "http://localhost:3345/auth/google";
+    };
+
+    const handleYandexLogin = () => {
+        location.href = "http://localhost:3345/auth/yandex";
     };
 
     return (
@@ -137,7 +145,7 @@ export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
                         minWidth: "100px",
                     }}
                 >
-                    <SocialButton sx={{ mb: 2 }}>
+                    <SocialButton sx={{ mb: 2 }} onClick={handleGoogleLogin}>
                         <GoogleIcon />
                         <Box sx={{ width: "83%" }}>
                             <Typography variant="text">
@@ -146,10 +154,10 @@ export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
                         </Box>
                     </SocialButton>
                     <SocialButton sx={{ mb: 3 }}>
-                        <VKIcon />
-                        <Box sx={{ width: "83%" }}>
+                        <YandexIcon />
+                        <Box sx={{ width: "83%" }} onClick={handleYandexLogin}>
                             <Typography variant="text">
-                                Войти через ВКонтакте
+                                Войти через Yandex
                             </Typography>
                         </Box>
                     </SocialButton>
