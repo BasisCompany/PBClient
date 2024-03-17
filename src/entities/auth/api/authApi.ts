@@ -7,6 +7,7 @@ import {
     baseApi,
 } from "@/shared/api";
 import { LoginSchema } from "@/pages/AuthPage/components/LoginCard";
+import { URL_ROOT } from "@/shared/api/config";
 
 export const authApi = createApi({
     reducerPath: "authApi",
@@ -19,6 +20,13 @@ export const authApi = createApi({
                 body,
                 credentials: "include",
             }),
+            transformResponse: (response: LoginResponse) => {
+                response.thumb = response.thumb
+                    ? `${URL_ROOT}/${response.thumb}`
+                    : undefined;
+
+                return response;
+            },
             async onQueryStarted(_, { dispatch, queryFulfilled }) {
                 try {
                     await queryFulfilled;
@@ -68,6 +76,13 @@ export const initAuthApi = createApi({
             query: () => ({
                 url: "auth/me",
             }),
+            transformResponse: (response: MeResponse) => {
+                response.thumb = response.thumb
+                    ? `${URL_ROOT}/${response.thumb}`
+                    : undefined;
+
+                return response;
+            },
         }),
     }),
 });

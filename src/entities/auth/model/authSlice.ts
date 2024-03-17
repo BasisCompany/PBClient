@@ -48,6 +48,7 @@ export const authSlice = createSlice({
                     email: payload.email,
                     username: payload.username,
                     roles: payload.roles,
+                    thumb: payload.thumb,
                 } as UserDetails;
             }
         );
@@ -60,6 +61,7 @@ export const authSlice = createSlice({
                     email: payload.email,
                     username: payload.username,
                     roles: payload.roles,
+                    thumb: payload.thumb,
                 } as UserDetails;
             }
         );

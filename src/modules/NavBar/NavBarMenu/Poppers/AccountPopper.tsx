@@ -1,6 +1,5 @@
 import { FC } from "react";
 import {
-    Avatar,
     Badge,
     Box,
     List,
@@ -28,6 +27,9 @@ import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
 import { LinkListItemButton } from "@/shared/ui/Links/LinkListItemButton";
 import { Spacer } from "@/shared/ui/Spacer";
 import { useUserId } from "@/shared/hooks/useUserId";
+import { useAuth } from "@/shared/hooks/useAuth";
+import DefaultAvatar from "@/assets/DefaultAvatar.webp";
+import { Image } from "@/shared/ui/Image";
 
 interface AccountMenuProps {
     isOpen: boolean;
@@ -63,6 +65,8 @@ export const AccountPopper: FC<AccountMenuProps> = ({
     const navigate = useNavigate();
 
     const { mode, toggleThemeMode } = useThemeMode();
+
+    const { user } = useAuth();
 
     const [logout] = useLazyLogoutQuery();
 
@@ -105,7 +109,8 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                     borderRadius: "10px",
                 }}
             >
-                <ListItemButton
+                <LinkListItemButton
+                    to={`user/${userId}`}
                     onClick={onClose}
                     sx={{
                         borderRadius: "10px 10px 0px 0px",
@@ -124,13 +129,16 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                             paddingLeft: 1,
                         }}
                     >
-                        <Avatar
-                            alt="Remy Sharp"
-                            src="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg"
+                        <Image
+                            src={user?.thumb ?? DefaultAvatar}
+                            alt={user?.username}
+                            width="40px"
+                            height="40px"
+                            borderRadius="50%"
                         />
                         <Box sx={{ ml: 2 }}>
-                            <Typography>Stormpero</Typography>
-                            <Typography>staroselsky.S@yandex.ru</Typography>
+                            <Typography>{user?.username}</Typography>
+                            <Typography>{user?.email}</Typography>
                         </Box>
                     </Box>
                     <ChevronRightIcon
@@ -138,8 +146,9 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                             color: "text.primary",
                         }}
                     />
-                </ListItemButton>
-                <ListItemButton
+                </LinkListItemButton>
+                <LinkListItemButton
+                    to={`user/${userId}/payments`}
                     onClick={onClose}
                     sx={{
                         display: "flex",
@@ -181,7 +190,7 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                             color: "text.primary",
                         }}
                     />
-                </ListItemButton>
+                </LinkListItemButton>
             </Box>
             <StyledList>
                 {isMobile && (

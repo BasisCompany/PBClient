@@ -22,6 +22,7 @@ export interface UserDetails {
     email: string;
     username: string;
     roles: string[];
+    thumb?: string;
 }
 
 export interface Device {

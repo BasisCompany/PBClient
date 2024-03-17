@@ -8,6 +8,7 @@ export interface LoginResponse {
     username: string;
     deviceId: number;
     roles: string[];
+    thumb?: string;
 }
 
 export type RegisterRequest = Omit<RegisterSchema, "passwordConfirm">;

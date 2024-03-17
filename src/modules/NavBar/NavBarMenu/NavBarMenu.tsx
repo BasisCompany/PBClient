@@ -1,11 +1,5 @@
 import { MouseEvent } from "react";
-import {
-    Avatar,
-    Badge,
-    ClickAwayListener,
-    IconButton,
-    Tooltip,
-} from "@mui/material";
+import { Badge, ClickAwayListener, IconButton, Tooltip } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
@@ -15,11 +9,16 @@ import { AccountPopper } from "./Poppers/AccountPopper";
 import { NotificationsPopper } from "./Poppers/NotificationsPopper/NotificationsPopper";
 import { useNavbarPoppers, NavBarPoppers } from "./useNavbarPoppers";
 import { useCountUnreadNotificationsQuery } from "@/entities/notification";
+import { useAuth } from "@/shared/hooks/useAuth";
+import { Image } from "@/shared/ui/Image";
+import DefaultAvatar from "@/assets/DefaultAvatar.webp";
 
 const NavBarMenu = () => {
     const isMobile = useMobileDevice();
     const { popper, closePopper, openPopper, isPopperOpen } =
         useNavbarPoppers();
+
+    const { user } = useAuth();
 
     const { data } = useCountUnreadNotificationsQuery(undefined, {
         //pollingInterval: 10000, //TODO: delete comment
@@ -88,9 +87,12 @@ const NavBarMenu = () => {
                             )
                         }
                     >
-                        <Avatar
-                            alt="Remy Sharp"
-                            src="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg"
+                        <Image
+                            src={user?.thumb ?? DefaultAvatar}
+                            alt={user?.username}
+                            width="40px"
+                            height="40px"
+                            borderRadius="50%"
                         />
                     </IconButton>
                 </Tooltip>
