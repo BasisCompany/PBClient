@@ -10,8 +10,7 @@ import { NotificationsPopper } from "./Poppers/NotificationsPopper/Notifications
 import { useNavbarPoppers, NavBarPoppers } from "./useNavbarPoppers";
 import { useCountUnreadNotificationsQuery } from "@/entities/notification";
 import { useAuth } from "@/shared/hooks/useAuth";
-import { Image } from "@/shared/ui/Image";
-import DefaultAvatar from "@/assets/DefaultAvatar.webp";
+import { Avatar } from "@/shared/ui/Image/Avatar";
 
 const NavBarMenu = () => {
     const isMobile = useMobileDevice();
@@ -87,8 +86,8 @@ const NavBarMenu = () => {
                             )
                         }
                     >
-                        <Image
-                            src={user?.thumb ?? DefaultAvatar}
+                        <Avatar
+                            src={user?.thumb}
                             alt={user?.username}
                             width="40px"
                             height="40px"

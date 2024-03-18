@@ -28,8 +28,7 @@ import { LinkListItemButton } from "@/shared/ui/Links/LinkListItemButton";
 import { Spacer } from "@/shared/ui/Spacer";
 import { useUserId } from "@/shared/hooks/useUserId";
 import { useAuth } from "@/shared/hooks/useAuth";
-import DefaultAvatar from "@/assets/DefaultAvatar.webp";
-import { Image } from "@/shared/ui/Image";
+import { Avatar } from "@/shared/ui/Image/Avatar";
 
 interface AccountMenuProps {
     isOpen: boolean;
@@ -129,8 +128,8 @@ export const AccountPopper: FC<AccountMenuProps> = ({
                             paddingLeft: 1,
                         }}
                     >
-                        <Image
-                            src={user?.thumb ?? DefaultAvatar}
+                        <Avatar
+                            src={user?.thumb}
                             alt={user?.username}
                             width="40px"
                             height="40px"

@@ -9,7 +9,7 @@ import {
     useUpdateAvatarMutation,
     useUpdateBannerMutation,
 } from "@/entities/user";
-import DefaultAvatar from "@/assets/DefaultAvatar.webp";
+import { Avatar } from "@/shared/ui/Image/Avatar";
 
 export const UserImages = () => {
     const { username, avatar, banner } = useProfileUser();
@@ -28,8 +28,8 @@ export const UserImages = () => {
                 updateImg={updateAvatar}
                 deleteImg={deleteAvatar}
             >
-                <Image
-                    src={avatar ?? DefaultAvatar}
+                <Avatar
+                    src={avatar}
                     alt={username}
                     width={{
                         xs: "100px",

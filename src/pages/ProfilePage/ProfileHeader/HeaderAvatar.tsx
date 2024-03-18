@@ -1,7 +1,7 @@
-import { Box, Avatar } from "@mui/material";
+import { Box } from "@mui/material";
 import { useProfileUser } from "@/entities/user";
 import { FlexBox } from "@/shared/ui/FlexBox";
-import DefaultAvatar from "@/assets/DefaultAvatar.webp";
+import { Avatar } from "@/shared/ui/Image/Avatar";
 
 export const HeaderAvatar = () => {
     const { username, avatar } = useProfileUser();
@@ -22,14 +22,15 @@ export const HeaderAvatar = () => {
                 }}
             >
                 <Avatar
+                    src={avatar}
                     alt={username}
-                    src={avatar ?? DefaultAvatar}
                     sx={{
                         border: "5px solid",
                         borderColor: (theme) =>
                             theme.palette.bgcolor.secondary.main,
                         width: "100%",
                         height: "100%",
+                        borderRadius: "50%",
                     }}
                 />
             </Box>
