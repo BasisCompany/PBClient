@@ -1,17 +1,11 @@
 import { FC } from "react";
-import { Box, IconButton, Theme, Tooltip, Typography } from "@mui/material";
+import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import {
     Comment,
     useAddLikeMutation,
     useDeleteLikeMutation,
 } from "@/entities/comment";
-
-function getLikeBgColor(isReply: boolean, theme: Theme) {
-    return isReply
-        ? theme.palette.bgcolor.secondary.hover
-        : theme.palette.bgcolor.primary.hover;
-}
 
 interface CommentRatingProps {
     comment: Comment;
@@ -41,8 +35,7 @@ export const CommentRating: FC<CommentRatingProps> = ({
             <IconButton
                 onClick={() => void handleClickLike(true)}
                 sx={{
-                    bgcolor: (theme) =>
-                        current_mark ? getLikeBgColor(isReply, theme) : "none",
+                    bgcolor: current_mark ? "rgba(76,175,80,0.1)" : "none",
                 }}
             >
                 <KeyboardArrowUpIcon
@@ -74,10 +67,8 @@ export const CommentRating: FC<CommentRatingProps> = ({
             <IconButton
                 onClick={() => void handleClickLike(false)}
                 sx={{
-                    bgcolor: (theme) =>
-                        current_mark === false
-                            ? getLikeBgColor(isReply, theme)
-                            : "none",
+                    bgcolor:
+                        current_mark === false ? "rgba(233,30,99,0.1)" : "none",
                 }}
             >
                 <KeyboardArrowUpIcon
