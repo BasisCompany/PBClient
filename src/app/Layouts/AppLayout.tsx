@@ -10,7 +10,7 @@ import { SideBar } from "@/modules/SideBar/SideBar";
 import { LoadingPage } from "@/pages/LoadingPage/Loading.page";
 import { FlexBox } from "@/shared/ui/FlexBox";
 import { NavBar } from "@/modules/NavBar";
-import { useMeQuery } from "@/entities/auth";
+import { useUserQuery } from "@/entities/user";
 
 const BackgroundBox = styled(FlexBox)(({ theme }) => ({
     justifyContent: "center",
@@ -36,7 +36,7 @@ const LoadingSkeleton = () => (
 );
 
 export const AppLayout = () => {
-    const { isLoading } = useMeQuery();
+    const { isLoading } = useUserQuery();
 
     //TODO[Артем]: Стилизовать
     if (isLoading) {

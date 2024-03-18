@@ -1,10 +1,33 @@
 import { Device, UserAbout } from "../model/types";
+import { UserResponse } from "./types";
 import { URL_ROOT } from "@/shared/api/config";
-import { baseApi } from "@/shared/api";
+import { baseApi, baseQueryWithReAuth } from "@/shared/api";
 import { toaster } from "@/app/providers/Toast";
 
 export const userApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
+        user: build.query<UserResponse, void>({
+            queryFn: async (_arg, queryApi, extraOptions) => {
+                const result = await baseQueryWithReAuth(
+                    "user",
+                    queryApi,
+                    extraOptions
+                );
+
+                if (result?.error) {
+                    return { error: result.error };
+                }
+
+                const userResponse = result?.data as UserResponse;
+
+                if (result?.data) {
+                    (result.data as UserResponse).thumb = userResponse.thumb
+                        ? `${URL_ROOT}/${userResponse.thumb}`
+                        : undefined;
+                }
+                return { data: userResponse };
+            },
+        }),
         userAbout: build.query<UserAbout, string>({
             query: (id) => `user/about/${id}`,
             transformResponse: (response: UserAbout) => {
@@ -87,6 +110,7 @@ export const userApi = baseApi.injectEndpoints({
 });
 
 export const {
+    useUserQuery,
     useGetUserDevicesQuery,
     useUserAboutQuery,
     useUpdateAvatarMutation,

@@ -5,7 +5,7 @@ import {
     sidebarInitState,
     sidebarlistenerMiddleware,
 } from "../modules/SideBar/store/sidebarMiddleware";
-import { authApi, authSlice, initAuthApi } from "@/entities/auth";
+import { authApi, authSlice } from "@/entities/auth";
 import { baseApi } from "@/shared/api";
 
 export const store = configureStore({
@@ -14,7 +14,6 @@ export const store = configureStore({
     },
     reducer: {
         [authApi.reducerPath]: authApi.reducer,
-        [initAuthApi.reducerPath]: initAuthApi.reducer,
         [baseApi.reducerPath]: baseApi.reducer,
         auth: authSlice.reducer,
         sidebar: sidebarSlice.reducer,
@@ -22,7 +21,6 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat([
             authApi.middleware,
-            initAuthApi.middleware,
             baseApi.middleware,
             sidebarlistenerMiddleware.middleware,
         ]),

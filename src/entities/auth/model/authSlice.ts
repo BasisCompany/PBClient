@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { authApi, initAuthApi } from "../api/authApi";
+import { authApi } from "../api/authApi";
 import { RootState } from "@/app/appStore";
-import { UserDetails } from "@/entities/user";
+import { userApi, UserDetails } from "@/entities/user";
 
 export interface AuthState {
     isUserAuthenticated: boolean;
@@ -41,28 +41,17 @@ export const authSlice = createSlice({
             authApi.endpoints.login.matchFulfilled,
             (state, { payload }) => {
                 state.isUserAuthenticated = true;
-                state.token = payload.token;
-                state.deviceId = payload.deviceId;
-                state.user = {
-                    id: payload.id,
-                    email: payload.email,
-                    username: payload.username,
-                    roles: payload.roles,
-                    thumb: payload.thumb,
-                } as UserDetails;
+                const { token, deviceId, ...user } = payload;
+                state.token = token;
+                state.deviceId = deviceId;
+                state.user = user;
             }
         );
         builder.addMatcher(
-            initAuthApi.endpoints.me.matchFulfilled,
+            userApi.endpoints.user.matchFulfilled,
             (state, { payload }) => {
                 state.isUserAuthenticated = true;
-                state.user = {
-                    id: payload.id,
-                    email: payload.email,
-                    username: payload.username,
-                    roles: payload.roles,
-                    thumb: payload.thumb,
-                } as UserDetails;
+                state.user = payload;
             }
         );
     },

@@ -1,11 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { setInitialState } from "../model/authSlice";
 import { LoginResponse, RegisterRequest, ResetPasswordRequest } from "./types";
-import {
-    baseQueryWithToastErrors,
-    baseQueryWithReAuth,
-    baseApi,
-} from "@/shared/api";
+import { baseQueryWithToastErrors, baseApi } from "@/shared/api";
 import { LoginSchema } from "@/pages/AuthPage/components/LoginCard";
 import { URL_ROOT } from "@/shared/api/config";
 
@@ -66,27 +62,6 @@ export const authApi = createApi({
     }),
 });
 
-type MeResponse = Omit<LoginResponse, "token">;
-
-export const initAuthApi = createApi({
-    reducerPath: "initAuthApi",
-    baseQuery: baseQueryWithReAuth,
-    endpoints: (builder) => ({
-        me: builder.query<MeResponse, void>({
-            query: () => ({
-                url: "auth/me",
-            }),
-            transformResponse: (response: MeResponse) => {
-                response.thumb = response.thumb
-                    ? `${URL_ROOT}/${response.thumb}`
-                    : undefined;
-
-                return response;
-            },
-        }),
-    }),
-});
-
 export const {
     useLoginMutation,
     useRegisterMutation,
@@ -94,5 +69,3 @@ export const {
     useResetPasswordMutation,
     useLazyLogoutQuery,
 } = authApi;
-
-export const { useLazyMeQuery, useMeQuery } = initAuthApi;
