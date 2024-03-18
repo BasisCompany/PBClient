@@ -35,7 +35,7 @@ export const CommentRating: FC<CommentRatingProps> = ({
             <IconButton
                 onClick={() => void handleClickLike(true)}
                 sx={{
-                    bgcolor: current_mark ? "rgba(76,175,80,0.1)" : "none",
+                    bgcolor: current_mark ? "rgba(76,175,80,0.15)" : "none",
                 }}
             >
                 <KeyboardArrowUpIcon
@@ -68,7 +68,9 @@ export const CommentRating: FC<CommentRatingProps> = ({
                 onClick={() => void handleClickLike(false)}
                 sx={{
                     bgcolor:
-                        current_mark === false ? "rgba(233,30,99,0.1)" : "none",
+                        current_mark === false
+                            ? "rgba(233,30,99,0.15)"
+                            : "none",
                 }}
             >
                 <KeyboardArrowUpIcon
