@@ -3,7 +3,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { object, string, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FC } from "react";
+import { FC, KeyboardEvent } from "react";
 import { toaster } from "@/app/providers/Toast";
 import { useAddReplyMutation } from "@/entities/comment";
 
@@ -26,12 +26,19 @@ export const ReplyInput: FC<ReplyInputProps> = ({ commentId }) => {
         formState: { errors },
     } = useForm<ReplySchema>({
         mode: "onSubmit",
+
         resolver: yupResolver(replySchema),
     });
 
     if (errors?.message?.message) {
         toaster.error(errors?.message?.message);
     }
+
+    const handleUserKeyPress = async (e: KeyboardEvent) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            await handleSubmit(onSubmit)();
+        }
+    };
 
     const [addReply, { isLoading }] = useAddReplyMutation();
 
@@ -51,6 +58,7 @@ export const ReplyInput: FC<ReplyInputProps> = ({ commentId }) => {
                 <InputBase
                     autoFocus
                     multiline
+                    onKeyDown={handleUserKeyPress}
                     disabled={isLoading}
                     fullWidth
                     placeholder="Введите ответ"
