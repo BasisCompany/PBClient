@@ -3,12 +3,12 @@ import { FlexBox } from "../../shared/ui/FlexBox";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileStatistic } from "./ProfileStatistic/ProfileStatistic";
 import { ProfileTabs } from "./ProfileTabs/ProfileTabs";
-import { ProfileProvider, useUserAboutQuery } from "@/entities/user";
+import { ProfileProvider, useUserProfileQuery } from "@/entities/user";
 
 export const ProfilePage = () => {
     const { id } = useParams();
 
-    const { data, isLoading } = useUserAboutQuery(id!);
+    const { data, isLoading } = useUserProfileQuery(id!);
 
     //TODO: Загрузка & 404 Профиль
     if (isLoading) {

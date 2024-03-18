@@ -1,4 +1,4 @@
-import { Device, UserAbout } from "../model/types";
+import { Device, UserProfile } from "../model/types";
 import { UserResponse } from "./types";
 import { URL_ROOT } from "@/shared/api/config";
 import { baseApi, baseQueryWithReAuth } from "@/shared/api";
@@ -27,10 +27,11 @@ export const userApi = baseApi.injectEndpoints({
                 }
                 return { data: userResponse };
             },
+            providesTags: ["User"],
         }),
-        userAbout: build.query<UserAbout, string>({
-            query: (id) => `user/about/${id}`,
-            transformResponse: (response: UserAbout) => {
+        userProfile: build.query<UserProfile, string>({
+            query: (id) => `user/profile/${id}`,
+            transformResponse: (response: UserProfile) => {
                 response.avatar = response.avatar
                     ? `${URL_ROOT}/${response.avatar}`
                     : undefined;
@@ -112,7 +113,7 @@ export const userApi = baseApi.injectEndpoints({
 export const {
     useUserQuery,
     useGetUserDevicesQuery,
-    useUserAboutQuery,
+    useUserProfileQuery,
     useUpdateAvatarMutation,
     useDeleteAvatarMutation,
     useUpdateBannerMutation,

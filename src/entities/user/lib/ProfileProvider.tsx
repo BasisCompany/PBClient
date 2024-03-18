@@ -1,10 +1,10 @@
 import { FC, ReactNode, createContext } from "react";
-import { UserAbout } from "../model/types";
+import { UserProfile } from "../model/types";
 
-export const ProfileContext = createContext<UserAbout | null>(null);
+export const ProfileContext = createContext<UserProfile | null>(null);
 
 interface ProfileProviderProps {
-    userAbout: UserAbout;
+    userAbout: UserProfile;
     children: ReactNode;
 }
 

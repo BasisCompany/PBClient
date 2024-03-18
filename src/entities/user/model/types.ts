@@ -9,7 +9,7 @@ export interface User {
     username: string;
 }
 
-export interface UserAbout {
+export interface UserProfile {
     id: number;
     username: string;
     gender: Gender | null;
