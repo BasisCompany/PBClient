@@ -49,6 +49,7 @@ export const ReplyInput: FC<ReplyInputProps> = ({ commentId }) => {
         <form onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}>
             <Box sx={{ mt: 1, ml: 6, display: "flex" }}>
                 <InputBase
+                    autoFocus
                     multiline
                     disabled={isLoading}
                     fullWidth
