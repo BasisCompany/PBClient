@@ -3,31 +3,23 @@ import {
     Box,
     Divider,
     IconButton,
-    Popper,
     Skeleton,
     Typography,
     styled,
 } from "@mui/material";
-import { FC } from "react";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import { usePopper } from "../../ui/NavbarPopper";
 import { NavbarNotification } from "./NavbarNotification";
 import { useUserId } from "@/shared/hooks/useUserId";
 import { LinkButton } from "@/shared/ui/Links/LinkButton";
 import { LinkIconButton } from "@/shared/ui/Links/LinkIconButton";
 import { CommentsEmpty } from "@/pages/ProfilePage/ProfileTabs/ProfileComments/CommentsEmpty";
-
 import { FlexBox } from "@/shared/ui/FlexBox";
 import {
     useGetNotificationsQuery,
     useReadAllNotificationsMutation,
 } from "@/entities/notification";
-
-interface NotificationsPopperProps {
-    isOpen: boolean;
-    anchorEl: HTMLElement | null;
-    handleClose: () => void;
-}
 
 const NotificationsBox = styled(Box)(({ theme }) => ({
     maxHeight: "300px",
@@ -36,11 +28,8 @@ const NotificationsBox = styled(Box)(({ theme }) => ({
     ...theme.scrollbar,
 }));
 
-export const NotificationsPopper: FC<NotificationsPopperProps> = ({
-    isOpen,
-    anchorEl,
-    handleClose,
-}) => {
+export const NotificationsPopper = () => {
+    const { closePopper } = usePopper();
     const userId = useUserId();
     const { data, isLoading } = useGetNotificationsQuery({
         sort: "unread",
@@ -55,99 +44,78 @@ export const NotificationsPopper: FC<NotificationsPopperProps> = ({
     const hasNotifications = notifications.length > 0;
 
     return (
-        <Popper
-            id="notifications-popover"
-            open={isOpen}
-            anchorEl={anchorEl}
-            placement="bottom-end"
-            sx={{
-                zIndex: 1250,
-                backgroundColor: (theme) =>
-                    theme.palette.bgcolor.modal.primary.main,
-                borderRadius: "5px",
-            }}
-            modifiers={[
-                {
-                    name: "offset",
-                    options: {
-                        offset: [0, 10],
-                    },
-                },
-            ]}
-        >
-            <Box sx={{ width: "500px" }}>
-                <Box
-                    sx={{
-                        display: "flex",
-                        width: "100%",
-                        justifyContent: "space-between",
-                        p: 1,
-                    }}
+        <Box sx={{ width: "500px" }}>
+            <Box
+                sx={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                    p: 1,
+                }}
+            >
+                <LinkIconButton
+                    to={`user/${userId}/settings/notifications`}
+                    onClick={closePopper}
                 >
-                    <LinkIconButton
-                        to={`user/${userId}/settings/notifications`}
-                        onClick={handleClose}
-                    >
-                        <SettingsRoundedIcon />
-                    </LinkIconButton>
-                    <LinkButton
-                        to={`user/${userId}/notifications`}
-                        variant="text"
-                        onClick={handleClose}
-                    >
-                        <Typography
-                            sx={{
-                                color: "text.primary",
-                                textTransform: "none",
-                            }}
-                        >
-                            Уведомления
-                        </Typography>
-                        <Badge
-                            sx={{
-                                ml: 2.2,
-                            }}
-                            badgeContent={totalNotifications}
-                            max={99}
-                            color="secondary"
-                        />
-                    </LinkButton>
-                    <IconButton onClick={() => readAllNotifications()}>
-                        <DoneAllIcon />
-                    </IconButton>
-                </Box>
-                <Divider />
-                <NotificationsBox>
-                    {!isLoading ? (
-                        hasNotifications ? (
-                            notifications.map((notification) => (
-                                <NavbarNotification
-                                    key={notification.id}
-                                    notification={notification}
-                                />
-                            ))
-                        ) : (
-                            <CommentsEmpty />
-                        )
-                    ) : (
-                        <NavbarNotificationSkeleton />
-                    )}
-                </NotificationsBox>
-                <FlexBox
-                    justifyContent="center"
-                    alignItems="center"
-                    paddingBottom="4px"
+                    <SettingsRoundedIcon />
+                </LinkIconButton>
+                <LinkButton
+                    to={`user/${userId}/notifications`}
+                    variant="text"
+                    onClick={closePopper}
                 >
-                    <LinkButton
-                        to={`user/${userId}/notifications`}
-                        sx={{ color: "text.primary" }}
-                        onClick={handleClose}
+                    <Typography
+                        sx={{
+                            color: "text.primary",
+                            textTransform: "none",
+                        }}
                     >
-                        Посмотреть все
-                    </LinkButton>
-                </FlexBox>
+                        Уведомления
+                    </Typography>
+                    <Badge
+                        sx={{
+                            ml: 2.2,
+                        }}
+                        badgeContent={totalNotifications}
+                        max={99}
+                        color="secondary"
+                    />
+                </LinkButton>
+                <IconButton onClick={() => readAllNotifications()}>
+                    <DoneAllIcon />
+                </IconButton>
             </Box>
-        </Popper>
+            <Divider />
+            <NotificationsBox>
+                {!isLoading ? (
+                    hasNotifications ? (
+                        notifications.map((notification) => (
+                            <NavbarNotification
+                                key={notification.id}
+                                notification={notification}
+                            />
+                        ))
+                    ) : (
+                        <CommentsEmpty />
+                    )
+                ) : (
+                    <NavbarNotificationSkeleton />
+                )}
+            </NotificationsBox>
+            <FlexBox
+                justifyContent="center"
+                alignItems="center"
+                paddingBottom="4px"
+            >
+                <LinkButton
+                    to={`user/${userId}/notifications`}
+                    sx={{ color: "text.primary" }}
+                    onClick={closePopper}
+                >
+                    Посмотреть все
+                </LinkButton>
+            </FlexBox>
+        </Box>
     );
 };
 

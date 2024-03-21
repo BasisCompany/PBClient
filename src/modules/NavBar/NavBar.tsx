@@ -1,4 +1,4 @@
-import { memo, lazy, Suspense } from "react";
+import { memo, Suspense } from "react";
 import { AppBar, Skeleton, Toolbar } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useAuth } from "../../shared/hooks/useAuth";
@@ -6,21 +6,21 @@ import { NavBarLogo } from "./NavBarLogo";
 import { NavBarSearch } from "./NavBarSearch";
 import { SideBarButton } from "./SideBarButton";
 import { NavBarLogin } from "./NavBarLogin";
+import { NavBarMenu } from "./NavBarMenu";
 
-const NavBarMenu = lazy(() => import("./NavBarMenu/NavBarMenu"));
-
-const CustomAppBar = styled(AppBar)(({ theme }) => ({
+const NavBarBox = styled(AppBar)(({ theme }) => ({
     zIndex: theme.zIndex.drawer + 1,
     boxShadow: "none",
     backgroundImage: "none",
     backgroundColor: theme.palette.bgcolor.primary.main,
+    position: "sticky",
 }));
 
 export const NavBar = memo(() => {
     const { isUserAuthenticated } = useAuth();
 
     return (
-        <CustomAppBar sx={{ position: "sticky" }}>
+        <NavBarBox>
             <Toolbar>
                 <SideBarButton />
                 <NavBarLogo />
@@ -29,6 +29,6 @@ export const NavBar = memo(() => {
                     {isUserAuthenticated ? <NavBarMenu /> : <NavBarLogin />}
                 </Suspense>
             </Toolbar>
-        </CustomAppBar>
+        </NavBarBox>
     );
 });
