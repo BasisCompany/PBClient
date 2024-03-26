@@ -89,13 +89,15 @@ export const baseQueryWithToastErrors: BaseQueryFn<
     return result;
 };
 
+const endpointsExceptions = ["user", "userProfile"];
+
 export const baseQueryWithReAuthToastErrors: BaseQueryFn<
     string | FetchArgs,
     unknown,
     FetchBaseQueryError
 > = async (args, api, extraOptions) => {
     const result = await baseQueryWithReAuth(args, api, extraOptions);
-    if (result?.error) {
+    if (result?.error && !endpointsExceptions.includes(api.endpoint)) {
         toaster.error(getUserErrorMessage(result.error as ApiError));
     }
 

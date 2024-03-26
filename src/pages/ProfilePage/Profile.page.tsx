@@ -14,9 +14,9 @@ export const ProfilePage = () => {
     if (isLoading) {
         return <h1>Загрузка</h1>;
     }
-
+    //TODO: Иконку по центру экрана > Профиль не найден :(
     if (!data) {
-        return <h1>Страница не найдена ;(</h1>;
+        return <h1>Профиль не найден</h1>;
     }
 
     return (

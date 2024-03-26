@@ -1,45 +1,26 @@
 import { Device, UserProfile } from "../model/types";
 import { UserResponse } from "./types";
-import { URL_ROOT } from "@/shared/api/config";
-import { baseApi, baseQueryWithReAuth } from "@/shared/api";
+import { baseApi } from "@/shared/api";
 import { toaster } from "@/app/providers/Toast";
+import { getUrlRoot } from "@/shared/utils/getUrlRoot";
 
 export const userApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
         user: build.query<UserResponse, void>({
-            queryFn: async (_arg, queryApi, extraOptions) => {
-                const result = await baseQueryWithReAuth(
-                    "user",
-                    queryApi,
-                    extraOptions
-                );
-
-                if (result?.error) {
-                    return { error: result.error };
-                }
-
-                const userResponse = result?.data as UserResponse;
-
-                if (result?.data) {
-                    (result.data as UserResponse).thumb = userResponse.thumb
-                        ? `${URL_ROOT}/${userResponse.thumb}`
-                        : undefined;
-                }
-                return { data: userResponse };
-            },
+            query: () => "user",
+            transformResponse: (response: UserResponse) => ({
+                ...response,
+                thumb: getUrlRoot(response.thumb),
+            }),
             providesTags: ["User"],
         }),
         userProfile: build.query<UserProfile, string>({
             query: (id) => `user/profile/${id}`,
-            transformResponse: (response: UserProfile) => {
-                response.avatar = response.avatar
-                    ? `${URL_ROOT}/${response.avatar}`
-                    : undefined;
-                response.banner = response.banner
-                    ? `${URL_ROOT}/${response.banner}`
-                    : undefined;
-                return response;
-            },
+            transformResponse: (response: UserProfile) => ({
+                ...response,
+                avatar: getUrlRoot(response.avatar),
+                banner: getUrlRoot(response.banner),
+            }),
             providesTags: ["User"],
         }),
         updateAvatar: build.mutation<void, FormData>({

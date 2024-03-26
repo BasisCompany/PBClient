@@ -3,7 +3,7 @@ import { setInitialState } from "../model/authSlice";
 import { LoginResponse, RegisterRequest, ResetPasswordRequest } from "./types";
 import { baseQueryWithToastErrors, baseApi } from "@/shared/api";
 import { LoginSchema } from "@/pages/AuthPage/components/LoginCard";
-import { URL_ROOT } from "@/shared/api/config";
+import { getUrlRoot } from "@/shared/utils/getUrlRoot";
 
 export const authApi = createApi({
     reducerPath: "authApi",
@@ -16,13 +16,10 @@ export const authApi = createApi({
                 body,
                 credentials: "include",
             }),
-            transformResponse: (response: LoginResponse) => {
-                response.thumb = response.thumb
-                    ? `${URL_ROOT}/${response.thumb}`
-                    : undefined;
-
-                return response;
-            },
+            transformResponse: (response: LoginResponse) => ({
+                ...response,
+                thumb: getUrlRoot(response.thumb),
+            }),
             async onQueryStarted(_, { dispatch, queryFulfilled }) {
                 try {
                     await queryFulfilled;
