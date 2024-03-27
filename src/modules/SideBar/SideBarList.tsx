@@ -3,91 +3,66 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    styled,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { useAuth } from "../../shared/hooks/useAuth";
-import { useMobileDevice } from "../../shared/hooks/useMobileDevice";
-import {
-    LinkListItem,
-    LinkListItemProps,
-} from "../../shared/ui/Links/LinkListItem";
-import { useAppSelector } from "../../app/appStore";
-import { sideBarItems } from "./sideBarItems";
-import { selectSideBarStatus } from "./store/sidebarSlice";
+import { sideBarAuthItems, sideBarPublicItems } from "./sideBarItems";
+import { useAuth } from "@/shared/hooks/useAuth";
+import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
+import { LinkListItem } from "@/shared/ui/Links";
 
-const SideBarItem = styled((props: LinkListItemProps) => (
-    <LinkListItem disablePadding {...props} />
-))(({ theme }) => ({
-    textDecoration: "none",
-    color: theme.palette.text.primary,
-    display: "block",
-    "& :hover": {
-        borderRadius: "15px",
-    },
-}));
-
-const SideBarItemButton = styled(ListItemButton)({
-    justifyContent: "initial",
-    transition: "none !important",
-    minHeight: 48,
-    marginRight: "4px",
-    marginLeft: "4px",
-    paddingLeft: "20px",
-    paddingRight: "20px",
-});
-
-const commonIconStyles = {
+const DesktopIcon = styled(ListItemIcon)({
     minWidth: 0,
     justifyContent: "center",
-};
+});
 
-const SideBarItemIcon = styled(ListItemIcon)({
-    ...commonIconStyles,
+const MobileIcon = styled(DesktopIcon)({
     marginRight: "24px",
 });
 
-const SideBarItemMinIcon = styled(ListItemIcon)(commonIconStyles);
-
-const SideBarItemMinButton = styled(ListItemButton)(({ theme }) => ({
-    display: "flex",
-    flexDirection: "column",
-    borderRadius: "15px",
-    paddingTop: "10px",
-    transition: "none !important",
+const SideBarListItemButton = styled(ListItemButton)({
     minHeight: 48,
-    ":hover": {
-        borderRadius: "15px",
-        bgcolor: theme.palette.bgcolor.primary.hover,
-    },
-}));
+    transition: "none !important",
+    borderRadius: "15px",
+});
+
+const MobileButton = styled(SideBarListItemButton)({
+    margin: "0px 4px 0px",
+    padding: "0px 20px 0px",
+});
+
+const DesktopButton = styled(SideBarListItemButton)({
+    flexDirection: "column",
+    paddingTop: "10px",
+});
 
 export const SideBarList = () => {
     const isMobile = useMobileDevice();
-    const isOpen = useAppSelector(selectSideBarStatus);
     const { user } = useAuth();
 
-    const ButtonComponent =
-        isMobile || isOpen ? SideBarItemButton : SideBarItemMinButton;
-    const IconComponent =
-        isMobile || isOpen ? SideBarItemIcon : SideBarItemMinIcon;
+    const ButtonComponent = isMobile ? MobileButton : DesktopButton;
+    const IconComponent = isMobile ? MobileIcon : DesktopIcon;
 
-    const renderSideBarItem = (item: (typeof sideBarItems)[number]) => {
-        if (item.title === "Профиль" && !user) {
-            return null;
-        }
-        const to = item.title === "Профиль" ? `${item.to}${user!.id}` : item.to;
-        return (
-            <SideBarItem key={item.title} to={to}>
-                <ButtonComponent>
-                    <IconComponent>{item.icon}</IconComponent>
-                    <ListItemText
-                        primary={isOpen ? item.title : undefined}
-                        secondary={isOpen ? undefined : item.title}
-                    />
-                </ButtonComponent>
-            </SideBarItem>
-        );
-    };
+    const sideBarItems = user ? sideBarAuthItems : sideBarPublicItems;
 
-    return <List>{sideBarItems.map(renderSideBarItem)}</List>;
+    return (
+        <List>
+            {sideBarItems.map((item) => {
+                const to =
+                    item.title === "Профиль"
+                        ? `${item.to}${user!.id}`
+                        : item.to;
+                return (
+                    <LinkListItem key={item.title} to={to} disablePadding>
+                        <ButtonComponent>
+                            <IconComponent>{item.icon}</IconComponent>
+                            <ListItemText
+                                primary={isMobile ? item.title : undefined}
+                                secondary={!isMobile ? item.title : undefined}
+                            />
+                        </ButtonComponent>
+                    </LinkListItem>
+                );
+            })}
+        </List>
+    );
 };

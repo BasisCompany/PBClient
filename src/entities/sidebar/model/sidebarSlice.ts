@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../../app/appStore";
+import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "@/app/appStore";
 
 interface NavBarState {
     open: boolean;
@@ -13,15 +13,15 @@ export const sidebarSlice = createSlice({
     name: "sidebar",
     initialState,
     reducers: {
-        setSidebarOpen: (state, action: PayloadAction<boolean>) => {
-            state.open = action.payload;
-        },
         toggleSidebar: (state) => {
             state.open = !state.open;
+        },
+        closeSidebar: (state) => {
+            state.open = false;
         },
     },
 });
 
-export const { setSidebarOpen, toggleSidebar } = sidebarSlice.actions;
+export const { toggleSidebar, closeSidebar } = sidebarSlice.actions;
 
 export const selectSideBarStatus = (state: RootState) => state.sidebar.open;

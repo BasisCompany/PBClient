@@ -7,6 +7,7 @@ import { NavBarSearch } from "./NavBarSearch";
 import { SideBarButton } from "./SideBarButton";
 import { NavBarLogin } from "./NavBarLogin";
 import { NavBarMenu } from "./NavBarMenu";
+import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
 
 const NavBarBox = styled(AppBar)(({ theme }) => ({
     zIndex: theme.zIndex.drawer + 1,
@@ -18,11 +19,12 @@ const NavBarBox = styled(AppBar)(({ theme }) => ({
 
 export const NavBar = memo(() => {
     const { isUserAuthenticated } = useAuth();
+    const isMobile = useMobileDevice();
 
     return (
         <NavBarBox>
             <Toolbar>
-                <SideBarButton />
+                {isMobile && <SideBarButton />}
                 <NavBarLogo />
                 <NavBarSearch />
                 <Suspense fallback={<Skeleton width="10%" height="50px" />}>

@@ -1,17 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
-import { sidebarSlice } from "../modules/SideBar/store/sidebarSlice";
-import {
-    sidebarInitState,
-    sidebarlistenerMiddleware,
-} from "../modules/SideBar/store/sidebarMiddleware";
+import { sidebarSlice } from "../entities/sidebar/model/sidebarSlice";
+
 import { authApi, authSlice } from "@/entities/auth";
 import { baseApi } from "@/shared/api";
 
 export const store = configureStore({
-    preloadedState: {
-        sidebar: sidebarInitState(),
-    },
     reducer: {
         [authApi.reducerPath]: authApi.reducer,
         [baseApi.reducerPath]: baseApi.reducer,
@@ -19,11 +13,7 @@ export const store = configureStore({
         sidebar: sidebarSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat([
-            authApi.middleware,
-            baseApi.middleware,
-            sidebarlistenerMiddleware.middleware,
-        ]),
+        getDefaultMiddleware().concat([authApi.middleware, baseApi.middleware]),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

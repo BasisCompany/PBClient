@@ -4,7 +4,7 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import QuizRoundedIcon from "@mui/icons-material/QuizRounded";
 import DeveloperModeIcon from "@mui/icons-material/DeveloperMode";
 
-export const sideBarItems = [
+export const sideBarAuthItems = [
     {
         title: "Главная",
         icon: <HomeRoundedIcon sx={{ fontSize: 28 }} />,
@@ -51,3 +51,7 @@ export const sideBarItems = [
         to: "/reset-password/testtoken",
     },
 ];
+
+export const sideBarPublicItems = sideBarAuthItems.filter(
+    (item) => item.title !== "Профиль"
+);

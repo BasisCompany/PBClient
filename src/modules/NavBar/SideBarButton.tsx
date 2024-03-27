@@ -1,6 +1,6 @@
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { toggleSidebar } from "../SideBar/store/sidebarSlice";
+import { toggleSidebar } from "../../entities/sidebar/model/sidebarSlice";
 import { useAppDispatch } from "../../app/appStore";
 
 export const SideBarButton = () => {
@@ -9,6 +9,7 @@ export const SideBarButton = () => {
     const handleButtonClick = () => {
         dispatch(toggleSidebar());
     };
+
     return (
         <IconButton
             size="large"

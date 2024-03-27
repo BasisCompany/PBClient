@@ -1,51 +1,23 @@
-import { Drawer, DrawerProps } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { FlexBox } from "../../shared/ui/FlexBox";
-import { useMobileDevice } from "../../shared/hooks/useMobileDevice";
-import { useAppSelector, useAppDispatch } from "../../app/appStore";
+import { useCallback } from "react";
+import { Drawer, Toolbar, styled } from "@mui/material";
 import { SideBarList } from "./SideBarList";
-import { selectSideBarStatus, setSidebarOpen } from "./store/sidebarSlice";
-
-const drawerWidth = "240px";
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-}));
-
-const DesktopDrawer = styled(
-    (props: DrawerProps) => <Drawer variant="permanent" {...props} />,
-    {
-        shouldForwardProp: (prop) => prop !== "open",
-    }
-)(({ theme, open }) => ({
-    width: open ? drawerWidth : `calc(${theme.spacing(7)} + 12px)`,
-    flexShrink: 0,
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
-    overflowX: "hidden",
-    borderRight: "0px",
-    [theme.breakpoints.up("sm")]: {
-        width: open ? drawerWidth : `calc(${theme.spacing(8)} + 12px)`,
-    },
-    "& .MuiDrawer-paper": {
-        backgroundColor: theme.palette.bgcolor.primary.main,
-        width: open ? drawerWidth : `calc(${theme.spacing(7)} + 12px)`,
-        overflowX: "hidden",
-        borderRight: "0px",
-        [theme.breakpoints.up("sm")]: {
-            width: open ? drawerWidth : `calc(${theme.spacing(8)} + 12px)`,
-        },
-    },
-}));
+import { closeSidebar, selectSideBarStatus } from "@/entities/sidebar";
+import { useAppSelector, useAppDispatch } from "@/app/appStore";
+import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
+import { FlexBox } from "@/shared/ui/FlexBox";
 
 const MobileDrawer = styled(Drawer)({
     "& .MuiDrawer-paper": {
         backgroundImage: "none",
         width: "240px",
+    },
+});
+
+const DesktopDrawer = styled(Drawer)({
+    width: "80px",
+    "& .MuiDrawer-paper": {
+        borderRight: "0px",
+        width: "80px",
     },
 });
 
@@ -55,25 +27,32 @@ export const SideBar = () => {
     const isOpen = useAppSelector(selectSideBarStatus);
     const dispatch = useAppDispatch();
 
-    const closeDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
-        if (
-            event.type === "keydown" &&
-            ((event as React.KeyboardEvent).key === "Tab" ||
-                (event as React.KeyboardEvent).key === "Shift")
-        ) {
-            return;
-        }
-        dispatch(setSidebarOpen(false));
-    };
-
-    const DrawerComponent = isMobile ? MobileDrawer : DesktopDrawer;
+    const closeDrawer = useCallback(
+        (event: React.KeyboardEvent | React.MouseEvent) => {
+            if (
+                event.type === "keydown" &&
+                ["Tab", "Shift"].includes((event as React.KeyboardEvent).key)
+            ) {
+                return;
+            }
+            dispatch(closeSidebar());
+        },
+        [dispatch]
+    );
 
     return (
         <FlexBox onKeyDown={closeDrawer}>
-            <DrawerComponent open={isOpen} onClose={closeDrawer}>
-                <DrawerHeader />
-                <SideBarList />
-            </DrawerComponent>
+            {isMobile ? (
+                <MobileDrawer open={isOpen} onClose={closeDrawer}>
+                    <Toolbar />
+                    <SideBarList />
+                </MobileDrawer>
+            ) : (
+                <DesktopDrawer variant="permanent">
+                    <Toolbar />
+                    <SideBarList />
+                </DesktopDrawer>
+            )}
         </FlexBox>
     );
 };
