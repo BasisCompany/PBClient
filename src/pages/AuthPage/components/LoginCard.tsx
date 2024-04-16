@@ -53,7 +53,7 @@ export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
 
     const [login, { isLoading }] = useLoginMutation();
 
-    const onSubmit: ExtSubmitHandler<LoginSchema> = async (data, reset) => {
+    const onSubmit: ExtSubmitHandler<LoginSchema> = async (data, { reset }) => {
         await login(data).unwrap();
         navigate("/");
         reset();

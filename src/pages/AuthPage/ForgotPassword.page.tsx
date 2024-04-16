@@ -22,7 +22,7 @@ export const ForgotPasswordPage = () => {
 
     const onSubmit: ExtSubmitHandler<ForgotPasswordSchema> = async (
         data,
-        reset
+        { reset }
     ) => {
         await forgotPassword(data.email).unwrap();
         reset();

@@ -27,7 +27,7 @@ export const ResetPasswordPage = () => {
 
     const onSubmit: ExtSubmitHandler<ResetPasswordSchema> = async (
         data,
-        reset
+        { reset }
     ) => {
         await resetPassword({
             resetPasswordToken: resetToken ?? "",

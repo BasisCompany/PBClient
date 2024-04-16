@@ -66,7 +66,10 @@ export const SocialButton = styled(ButtonBase)(({ theme }) => ({
 export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
     const [register, { isLoading }] = useRegisterMutation();
 
-    const onSubmit: ExtSubmitHandler<RegisterSchema> = async (data, reset) => {
+    const onSubmit: ExtSubmitHandler<RegisterSchema> = async (
+        data,
+        { reset }
+    ) => {
         const { passwordConfirm, ...dataReq } = data;
         await register(dataReq).unwrap();
         toaster.success(
