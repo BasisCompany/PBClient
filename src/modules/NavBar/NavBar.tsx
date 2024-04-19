@@ -15,6 +15,7 @@ const NavBarBox = styled(AppBar)(({ theme }) => ({
     backgroundImage: "none",
     backgroundColor: theme.palette.bgcolor.primary.main,
     position: "sticky",
+    paddingRight: "0px !important",
 }));
 
 export const NavBar = memo(() => {
