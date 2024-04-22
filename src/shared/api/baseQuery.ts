@@ -89,7 +89,7 @@ export const baseQueryWithToastErrors: BaseQueryFn<
     return result;
 };
 
-const endpointsExceptions = ["user", "userProfile"];
+const endpointsExceptions = ["user", "userProfile", "updateProfile"];
 
 export const baseQueryWithReAuthToastErrors: BaseQueryFn<
     string | FetchArgs,

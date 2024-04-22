@@ -1,5 +1,5 @@
 import { UserImages } from "./UserImages";
-import { UserInformation } from "./UserInformation";
+import { UserInformation } from "./UserInformation/UserInformation";
 
 export const SettingsProfile = () => {
     return (

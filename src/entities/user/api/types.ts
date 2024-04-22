@@ -1,3 +1,5 @@
+import { Gender } from "../model/types";
+
 export interface UserResponse {
     id: number;
     email: string;
@@ -5,4 +7,10 @@ export interface UserResponse {
     deviceId: number;
     roles: string[];
     thumb?: string;
+}
+
+export interface UpdateProfileRequest {
+    email?: string;
+    gender?: Gender;
+    about?: string | null;
 }

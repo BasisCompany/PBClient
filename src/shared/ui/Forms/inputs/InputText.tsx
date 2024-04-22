@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, memo, useState } from "react";
 import {
     TextFieldProps,
     TextField,
@@ -7,9 +7,9 @@ import {
     InputAdornment,
     Box,
 } from "@mui/material";
-import { useController, useFormContext } from "react-hook-form";
+import { useController } from "react-hook-form";
+import { FlexBox } from "../../FlexBox";
 
-//TODO[Артем]: Исправить синий фон при автоподстановке полей ввода
 const CssTextField = styled(TextField)(({ theme }) => ({
     "& label.Mui-focused": {
         color: theme.palette.text.primary,
@@ -41,30 +41,40 @@ const CssTextField = styled(TextField)(({ theme }) => ({
 export type InputTextProps = Omit<TextFieldProps, "helperText"> & {
     name: string;
     label: string;
+    counter?: boolean;
     helperText?: string;
     labelIcon?: ReactNode;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
 };
 
-export const InputText: FC<InputTextProps> = ({
-    name,
-    label,
-    helperText,
-    labelIcon,
-    startIcon,
-    endIcon,
-    InputProps,
-    ...props
-}) => {
-    const { control } = useFormContext();
+export const InputText: FC<InputTextProps> = memo((props) => {
+    const {
+        name,
+        label,
+        counter = false,
+        helperText,
+        labelIcon,
+        startIcon,
+        endIcon,
+        InputProps,
+        onFocus,
+        onBlur,
+        ...otherProps
+    } = props;
+
+    if (counter && !props.inputProps?.maxLength) {
+        throw new Error("counter needs maxLength to be set ");
+    }
+
+    const [visible, setVisible] = useState(false);
+
     const {
         field,
         fieldState: { error },
     } = useController({
-        defaultValue: "",
         name,
-        control,
+        defaultValue: "",
     });
 
     const startAdornment = startIcon && (
@@ -83,6 +93,7 @@ export const InputText: FC<InputTextProps> = ({
     ) : (
         label
     );
+
     return (
         <CssTextField
             {...field}
@@ -91,22 +102,41 @@ export const InputText: FC<InputTextProps> = ({
             fullWidth
             error={!!error}
             helperText={
-                <Typography
+                <FlexBox
                     component="span"
-                    sx={{
-                        marginLeft: "-14px",
-                        fontSize: "14px",
-                    }}
+                    justifyContent="space-between"
+                    height="22px"
                 >
-                    {error ? error?.message : helperText}
-                </Typography>
+                    <Typography
+                        component="span"
+                        sx={{
+                            marginLeft: "-14px",
+                            fontSize: "12px",
+                        }}
+                    >
+                        {error ? error?.message : helperText}
+                    </Typography>
+                    {visible && counter && (
+                        <Typography fontSize={14} component="span">
+                            {`${(field.value as string).length} / ${props.inputProps?.maxLength}`}
+                        </Typography>
+                    )}
+                </FlexBox>
             }
             InputProps={{
                 startAdornment,
                 endAdornment,
                 ...InputProps,
             }}
-            {...props}
+            onFocus={(event) => {
+                setVisible(true);
+                onFocus && onFocus(event);
+            }}
+            onBlur={(event) => {
+                setVisible(false);
+                onBlur && onBlur(event);
+            }}
+            {...otherProps}
         />
     );
-};
+});

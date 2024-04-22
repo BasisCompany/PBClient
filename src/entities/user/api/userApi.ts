@@ -1,5 +1,5 @@
 import { Device, UserProfile } from "../model/types";
-import { UserResponse } from "./types";
+import { UpdateProfileRequest, UserResponse } from "./types";
 import { baseApi } from "@/shared/api";
 import { toaster } from "@/app/providers/Toast";
 import { getUrlRoot } from "@/shared/utils/getUrlRoot";
@@ -85,6 +85,14 @@ export const userApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ["User"],
         }),
+        updateProfile: build.mutation<void, UpdateProfileRequest>({
+            query: (body) => ({
+                url: "user/profile",
+                method: "PATCH",
+                body,
+            }),
+            invalidatesTags: ["User"],
+        }),
         getUserDevices: build.query<Device[], void>({
             query: () => "device/user",
         }),
@@ -99,4 +107,5 @@ export const {
     useDeleteAvatarMutation,
     useUpdateBannerMutation,
     useDeleteBannerMutation,
+    useUpdateProfileMutation,
 } = userApi;

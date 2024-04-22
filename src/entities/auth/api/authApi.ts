@@ -1,6 +1,11 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { setInitialState } from "../model/authSlice";
-import { LoginResponse, RegisterRequest, ResetPasswordRequest } from "./types";
+import {
+    CheckResponse,
+    LoginResponse,
+    RegisterRequest,
+    ResetPasswordRequest,
+} from "./types";
 import { baseQueryWithToastErrors, baseApi } from "@/shared/api";
 import { LoginSchema } from "@/pages/AuthPage/components/LoginCard";
 import { getUrlRoot } from "@/shared/utils/getUrlRoot";
@@ -56,6 +61,12 @@ export const authApi = createApi({
                 dispatch(baseApi.util.resetApiState());
             },
         }),
+        checkEmail: builder.query<CheckResponse, string>({
+            query: (email) => `auth/check-email?email=${email}`,
+        }),
+        checkUsername: builder.query<CheckResponse, string>({
+            query: (email) => `auth/check-username?username=${email}`,
+        }),
     }),
 });
 
@@ -65,4 +76,6 @@ export const {
     useLazyForgotPasswordQuery,
     useResetPasswordMutation,
     useLazyLogoutQuery,
+    useLazyCheckEmailQuery,
+    useLazyCheckUsernameQuery,
 } = authApi;

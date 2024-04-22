@@ -1,4 +1,5 @@
 export enum Gender {
+    NOT_SPECIFIED = "NOT_SPECIFIED",
     MALE = "MALE",
     FEMALE = "FEMALE",
 }
@@ -12,7 +13,8 @@ export interface User {
 export interface UserProfile {
     id: number;
     username: string;
-    gender: Gender | null;
+    gender: Gender;
+    about: string | null;
     avatar?: string;
     banner?: string;
 }

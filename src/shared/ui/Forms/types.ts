@@ -1,7 +1,7 @@
-import { FieldValues, UseFormReset } from "react-hook-form";
+import { FieldValues, UseFormReturn } from "react-hook-form";
 
 export type ExtSubmitHandler<TFieldValues extends FieldValues> = (
     data: TFieldValues,
-    reset: UseFormReset<TFieldValues>,
+    reset: UseFormReturn<TFieldValues, unknown, TFieldValues>,
     event?: React.BaseSyntheticEvent
 ) => unknown;

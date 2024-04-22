@@ -16,3 +16,7 @@ export type RegisterRequest = Omit<RegisterSchema, "passwordConfirm">;
 export type ResetPasswordRequest = {
     resetPasswordToken: string;
 } & Omit<ResetPasswordSchema, "passwordConfirm">;
+
+export interface CheckResponse {
+    available: boolean;
+}

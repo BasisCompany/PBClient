@@ -10,7 +10,7 @@ export const PrimaryLoadingButton: FC<
     PrimaryLoadingButtonProps & ButtonProps
 > = ({ isLoading, children, ...props }) => {
     return (
-        <PrimaryButton {...props} disabled={isLoading}>
+        <PrimaryButton disabled={isLoading} {...props}>
             {isLoading ? (
                 <CircularProgress color="inherit" size={30} />
             ) : (
