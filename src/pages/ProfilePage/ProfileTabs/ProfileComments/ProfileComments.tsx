@@ -4,7 +4,7 @@ import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
 import { useParams, useSearchParams } from "react-router-dom";
 import { ProfilePagination } from "../../components/ProfilePagination";
 import { ProfileSelect } from "../../components/ProfileSelect";
-import { CommentsLoading } from "./CommentsLoading";
+import { TabLoading } from "../TabLoading";
 import { CommentsEmpty } from "./CommentsEmpty";
 import { ProfileComment } from "./ProfileComment/ProfileComment";
 import { useGetCommentsQuery } from "@/entities/comment";
@@ -47,7 +47,7 @@ export const ProfileComments = () => {
     const hasComments = comments.length > 0;
 
     return isLoading ? (
-        <CommentsLoading />
+        <TabLoading />
     ) : (
         <>
             <FlexBox

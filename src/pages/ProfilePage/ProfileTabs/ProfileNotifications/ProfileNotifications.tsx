@@ -8,9 +8,9 @@ import {
     getPageParamSafe,
     getSortParamSafe,
 } from "../../../../shared/utils/getParamSafely";
-import { CommentsLoading } from "../ProfileComments/CommentsLoading";
 import { CommentsEmpty } from "../ProfileComments/CommentsEmpty";
 import { ProfilePagination } from "../../components/ProfilePagination";
+import { TabLoading } from "../TabLoading";
 import { NotificationsToolbar } from "./NotificationsToolbar";
 import { ProfileNotification } from "./ProfileNotification/ProfileNotification";
 import { useGetNotificationsQuery } from "@/entities/notification";
@@ -52,7 +52,7 @@ export const ProfileNotifications = () => {
 
     //TODO: Notifications Loading & Empty
     return isLoading ? (
-        <CommentsLoading />
+        <TabLoading />
     ) : (
         <>
             <NotificationsToolbar selectItems={notificationsSelectItems} />

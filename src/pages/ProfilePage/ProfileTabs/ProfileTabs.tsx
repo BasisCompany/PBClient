@@ -6,6 +6,7 @@ import { FlexBox } from "../../../shared/ui/FlexBox";
 import { POLICIES } from "../../../shared/lib/authorization/policies";
 import { UserTabs } from "./UserTabs";
 import { LocalTabs } from "./LocalTabs";
+import { TabLoading } from "./TabLoading";
 
 export const ProfileTabs = () => {
     const { id } = useParams();
@@ -37,7 +38,7 @@ export const ProfileTabs = () => {
                     color: "white",
                 }}
             >
-                <Suspense fallback={<h2>Loading..</h2>}>
+                <Suspense fallback={<TabLoading />}>
                     <Outlet />
                 </Suspense>
             </Box>
