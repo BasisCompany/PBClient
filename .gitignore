@@ -28,4 +28,4 @@ dist-ssr
 stats.html
 
 # Obsidian
-.obsidian/workspace
+PBClientDocs/.obsidian/workspace*
