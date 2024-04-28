@@ -2,5 +2,6 @@
   "attachmentFolderPath": "assets",
   "showLineNumber": false,
   "rightToLeft": false,
-  "livePreview": true
+  "livePreview": true,
+  "alwaysUpdateLinks": true
 }
