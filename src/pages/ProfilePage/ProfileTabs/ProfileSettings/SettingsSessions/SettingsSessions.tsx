@@ -1,17 +1,32 @@
 import { Box, ButtonBase, Skeleton, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { SessionDevice } from "./SessionDevice";
+import { Session } from "./Session";
 import { useAuth } from "@/shared/hooks/useAuth";
-import { useGetUserDevicesQuery } from "@/entities/user";
+import {
+    useDeleteUserSessionsExceptMutation,
+    useGetUserSessionsQuery,
+} from "@/entities/user";
 import { FlexBox } from "@/shared/ui/FlexBox";
+import { toaster } from "@/app/providers/Toast";
 
 export const SettingsSessions = () => {
     const { deviceId } = useAuth();
-    const { data, isLoading } = useGetUserDevicesQuery();
+    const { data, isLoading } = useGetUserSessionsQuery();
 
-    const currentDevice = data?.find((el) => el.id === deviceId);
-    const otherDevices = data?.filter((el) => el.id !== deviceId) ?? [];
-    const isOtherDevices = otherDevices.length > 0;
+    const [deleteUserSessionsExcept] = useDeleteUserSessionsExceptMutation();
+
+    const deleteUserSessions = async () => {
+        try {
+            await deleteUserSessionsExcept(deviceId!);
+            toaster.success("Вы вышли на всех устройствах");
+        } catch (error) {
+            /* empty */
+        }
+    };
+
+    const currentSession = data?.find((el) => el.id === deviceId);
+    const otherSessions = data?.filter((el) => el.id !== deviceId) ?? [];
+    const isOtherSessions = otherSessions.length > 0;
 
     return isLoading ? (
         <Skeleton />
@@ -21,11 +36,12 @@ export const SettingsSessions = () => {
                 <Typography variant="text" fontSize={20}>
                     Текущее устройство
                 </Typography>
-                <SessionDevice device={currentDevice!} isCurrent />
+                <Session device={currentSession!} isCurrent />
             </Box>
-            {isOtherDevices && (
+            {isOtherSessions && (
                 <>
                     <ButtonBase
+                        onClick={deleteUserSessions}
                         sx={{
                             mt: 2,
                             mb: 2,
@@ -65,11 +81,11 @@ export const SettingsSessions = () => {
                     </ButtonBase>
                     <Box>
                         <Typography variant="text" fontSize={20}>
-                            Активные сеансы
+                            Активные сессии
                         </Typography>
 
-                        {otherDevices.map((device) => (
-                            <SessionDevice key={device.id} device={device} />
+                        {otherSessions.map((device) => (
+                            <Session key={device.id} device={device} />
                         ))}
                     </Box>
                 </>

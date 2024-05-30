@@ -54,9 +54,13 @@ export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
     const [login, { isLoading }] = useLoginMutation();
 
     const onSubmit: ExtSubmitHandler<LoginSchema> = async (data, { reset }) => {
-        await login(data).unwrap();
-        navigate("/");
-        reset();
+        try {
+            await login(data).unwrap();
+            navigate("/");
+            reset();
+        } catch (error) {
+            /* empty */
+        }
     };
 
     const handleGoogleLogin = () => {

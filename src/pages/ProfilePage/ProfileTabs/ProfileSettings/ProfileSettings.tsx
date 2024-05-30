@@ -1,6 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Tooltip, Typography } from "@mui/material";
 import { ReactNode, forwardRef, useEffect, useRef } from "react";
 import { useParams } from "react-router";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { SettingsSite } from "./SettingsSite";
 import { SettingsNotifications } from "./SettingsNotifications";
 import { SettingsProfile } from "./SettingsProfile";
@@ -10,11 +11,15 @@ import { FlexBox } from "@/shared/ui/FlexBox";
 
 interface SettingsBoxProps {
     title: string;
+    tooltip?: string;
     children: ReactNode;
 }
 
+const tooltipSessionText =
+    "Сессии - это устройства, которые вы используете или которые использовали вашу учетную запись. Здесь показаны активные сессии в данный момент. Вы можете завершить все сессии разом, кроме текущей.";
+
 const SettingsBox = forwardRef<HTMLDivElement, SettingsBoxProps>(
-    ({ title, children }, forwardedRef) => {
+    ({ title, tooltip, children }, forwardedRef) => {
         return (
             <Box
                 ref={forwardedRef}
@@ -26,14 +31,21 @@ const SettingsBox = forwardRef<HTMLDivElement, SettingsBoxProps>(
                     mb: 2,
                 }}
             >
-                <Typography
-                    variant="title"
-                    fontWeight={500}
-                    fontSize={{ xs: 19, sm: 24, lg: 26 }}
-                    mb={2}
-                >
-                    {title}
-                </Typography>
+                <FlexBox alignItems="center" mb={2}>
+                    <Typography
+                        variant="title"
+                        fontWeight={500}
+                        fontSize={{ xs: 19, sm: 24, lg: 26 }}
+                    >
+                        {title}
+                    </Typography>
+                    {tooltip && (
+                        <Tooltip title={tooltip} sx={{ ml: 0.5 }}>
+                            <HelpOutlineIcon />
+                        </Tooltip>
+                    )}
+                </FlexBox>
+
                 <FlexBox justifyContent="center">
                     <Box width="500px">{children}</Box>
                 </FlexBox>
@@ -96,7 +108,8 @@ export const ProfileSettings = () => {
                 <SettingsChangePassword />
             </SettingsBox>
             <SettingsBox
-                title="Активные сеансы"
+                title="Активные сессии"
+                tooltip={tooltipSessionText}
                 ref={(node) => (blocksRef.current.sessions = node)}
             >
                 <SettingsSessions />

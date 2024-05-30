@@ -93,15 +93,24 @@ export const userApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["User"],
         }),
-        getUserDevices: build.query<Device[], void>({
-            query: () => "device/user",
+        getUserSessions: build.query<Device[], void>({
+            query: () => "session/user",
+            providesTags: ["Session"],
+        }),
+        deleteUserSessionsExcept: build.mutation<void, number>({
+            query: (sessionId) => ({
+                url: `session/user/${sessionId}/except`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Session"],
         }),
     }),
 });
 
 export const {
     useUserQuery,
-    useGetUserDevicesQuery,
+    useGetUserSessionsQuery,
+    useDeleteUserSessionsExceptMutation,
     useUserProfileQuery,
     useUpdateAvatarMutation,
     useDeleteAvatarMutation,

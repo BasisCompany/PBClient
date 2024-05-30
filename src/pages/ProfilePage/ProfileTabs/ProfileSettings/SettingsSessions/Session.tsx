@@ -18,10 +18,7 @@ const deviceMap = {
     tablet: <TabletAndroidIcon />,
 };
 
-export const SessionDevice: FC<DeviceProps> = ({
-    device,
-    isCurrent = false,
-}) => {
+export const Session: FC<DeviceProps> = ({ device, isCurrent = false }) => {
     return (
         <FlexBox
             alignItems="center"
