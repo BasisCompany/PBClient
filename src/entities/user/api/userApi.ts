@@ -1,5 +1,10 @@
 import { Device, UserProfile } from "../model/types";
-import { UpdateProfileRequest, UserResponse } from "./types";
+import {
+    NotificationSettingResponse,
+    UpdateNotificationSettingsRequest,
+    UpdateProfileRequest,
+    UserResponse,
+} from "./types";
 import { baseApi } from "@/shared/api";
 import { toaster } from "@/app/providers/Toast";
 import { getUrlRoot } from "@/shared/utils/getUrlRoot";
@@ -93,6 +98,22 @@ export const userApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["User"],
         }),
+        getUserNotificationSettings: build.query<
+            NotificationSettingResponse[],
+            void
+        >({
+            query: () => "notifications/user/settings",
+        }),
+        updateUserNotificationSettings: build.mutation<
+            void,
+            UpdateNotificationSettingsRequest
+        >({
+            query: (body) => ({
+                url: `notifications/user/settings`,
+                method: "POST",
+                body,
+            }),
+        }),
         getUserSessions: build.query<Device[], void>({
             query: () => "session/user",
             providesTags: ["Session"],
@@ -109,6 +130,8 @@ export const userApi = baseApi.injectEndpoints({
 
 export const {
     useUserQuery,
+    useGetUserNotificationSettingsQuery,
+    useUpdateUserNotificationSettingsMutation,
     useGetUserSessionsQuery,
     useDeleteUserSessionsExceptMutation,
     useUserProfileQuery,

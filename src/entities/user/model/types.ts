@@ -27,6 +27,21 @@ export interface UserDetails {
     thumb?: string;
 }
 
+export enum NotificationType {
+    PROMPT_COMMENT = "PROMPT_COMMENT",
+    PROMPT_PURCHASE = "PROMPT_PURCHASE",
+    PROMPT_FAVORITE = "PROMPT_FAVORITE",
+    COMMENT_REPLY = "COMMENT_REPLY",
+}
+
+export interface NotificationSetting {
+    type: NotificationType;
+    site: boolean;
+    email: boolean;
+    label: string;
+    description: string;
+}
+
 export interface Device {
     ip: string;
     id: number;

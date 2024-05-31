@@ -1,4 +1,4 @@
-import { Gender } from "../model/types";
+import { Gender, NotificationType } from "../model/types";
 
 export interface UserResponse {
     id: number;
@@ -13,4 +13,16 @@ export interface UpdateProfileRequest {
     email?: string;
     gender?: Gender;
     about?: string | null;
+}
+
+export interface NotificationSettingResponse {
+    type: NotificationType;
+    site: boolean;
+    email: boolean;
+}
+
+export interface UpdateNotificationSettingsRequest {
+    notificationType: NotificationType;
+    siteEnabled?: boolean;
+    emailEnabled?: boolean;
 }

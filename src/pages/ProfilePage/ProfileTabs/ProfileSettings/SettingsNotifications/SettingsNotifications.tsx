@@ -1,35 +1,59 @@
+import { useMemo } from "react";
 import {
     Box,
-    Switch,
     Table,
     TableBody,
     TableCell,
     TableHead,
     TableRow,
-    Typography,
 } from "@mui/material";
-
-function createNotificationData(name: string, subName: string) {
-    return { name, subName };
-}
+import { NotificationRow } from "./NotificationRow";
+import {
+    NotificationType,
+    useGetUserNotificationSettingsQuery,
+} from "@/entities/user";
 
 const notificationRows = [
-    createNotificationData(
-        "Новый комментарий",
-        "На ваш промпт оставили комментарий"
-    ),
-    createNotificationData(
-        "Ответ на комментарий",
-        "На ваш комментарий ответили"
-    ),
-    createNotificationData("Покупка промпта", "Ваш промпт купили"),
-    createNotificationData(
-        "Промпт добавлен в избранное",
-        "Ваш промпт добавили в избранное"
-    ),
+    {
+        type: NotificationType.PROMPT_COMMENT,
+        label: "Новый комментарий",
+        description: "На ваш промпт оставили комментарий",
+    },
+    {
+        type: NotificationType.COMMENT_REPLY,
+        label: "Ответ на комментарий",
+        description: "На ваш комментарий ответили",
+    },
+    {
+        type: NotificationType.PROMPT_PURCHASE,
+        label: "Покупка промпта",
+        description: "Ваш промпт купили",
+    },
+    {
+        type: NotificationType.PROMPT_FAVORITE,
+        label: "Промпт добавлен в избранное",
+        description: "Ваш промпт добавили в избранное",
+    },
 ];
 
 export const SettingsNotifications = () => {
+    const { data, isLoading } = useGetUserNotificationSettingsQuery();
+
+    const userNotificationSettings = useMemo(() => {
+        if (!data) return [];
+        return notificationRows.map((row) => {
+            const server = data?.find((el) => el.type === row.type);
+            return {
+                ...row,
+                ...server!,
+            };
+        });
+    }, [data]);
+
+    if (isLoading || !userNotificationSettings.length) {
+        return null;
+    }
+
     return (
         <Box>
             <Table size="small">
@@ -41,38 +65,8 @@ export const SettingsNotifications = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {notificationRows.map((row) => (
-                        <TableRow
-                            key={row.name}
-                            sx={{
-                                "& td, & th": {
-                                    pl: 0,
-                                    pr: 1.5,
-                                    border: 0,
-                                },
-                            }}
-                        >
-                            <TableCell component="th" scope="row">
-                                <Typography variant="text">
-                                    {row.name}
-                                </Typography>
-                                <Typography
-                                    variant="text"
-                                    fontSize={14}
-                                    color={(theme) =>
-                                        theme.palette.text.secondary
-                                    }
-                                >
-                                    {row.subName}
-                                </Typography>
-                            </TableCell>
-                            <TableCell align="right">
-                                <Switch size="small" color="secondary" />
-                            </TableCell>
-                            <TableCell align="right">
-                                <Switch size="small" color="secondary" />
-                            </TableCell>
-                        </TableRow>
+                    {userNotificationSettings.map((row) => (
+                        <NotificationRow key={row.type} row={row} />
                     ))}
                 </TableBody>
             </Table>
