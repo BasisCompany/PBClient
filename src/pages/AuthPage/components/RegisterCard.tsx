@@ -62,7 +62,7 @@ export const SocialButton = styled(ButtonBase)(({ theme }) => ({
         backgroundColor: theme.palette.bgcolor.tertiary.main,
     },
 }));
-
+//TODO: Handle error & add nickname check
 export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
     const [register, { isLoading }] = useRegisterMutation();
 
