@@ -1,6 +1,8 @@
 import { object, string, ref, InferType } from "yup";
 import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { Form, ExtSubmitHandler, InputTextPassword } from "@/shared/ui/Forms";
+import { toaster } from "@/app/providers/Toast";
+import { useUpdatePasswordMutation } from "@/entities/user";
 
 const changePasswordSchema = object({
     oldPassword: string()
@@ -19,8 +21,22 @@ const changePasswordSchema = object({
 export type ChangePasswordSchema = InferType<typeof changePasswordSchema>;
 
 export const SettingsChangePassword = () => {
-    const onSubmit: ExtSubmitHandler<ChangePasswordSchema> = () => {
-        //TODO: Отправка данных & Карточка с значком успешно
+    const [updatePassword] = useUpdatePasswordMutation();
+
+    const onSubmit: ExtSubmitHandler<ChangePasswordSchema> = async (
+        data,
+        { reset }
+    ) => {
+        try {
+            await updatePassword({
+                oldPassword: data.oldPassword,
+                newPassword: data.newPassword,
+            }).unwrap();
+            reset();
+            toaster.success("Пароль успешно обновлен!");
+        } catch (error) {
+            /* empty */
+        }
     };
 
     return (

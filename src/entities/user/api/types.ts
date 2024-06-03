@@ -26,3 +26,8 @@ export interface UpdateNotificationSettingsRequest {
     siteEnabled?: boolean;
     emailEnabled?: boolean;
 }
+
+export interface ChangePasswordRequest {
+    oldPassword: string;
+    newPassword: string;
+}

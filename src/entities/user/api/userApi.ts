@@ -1,5 +1,6 @@
 import { Device, UserProfile } from "../model/types";
 import {
+    ChangePasswordRequest,
     NotificationSettingResponse,
     UpdateNotificationSettingsRequest,
     UpdateProfileRequest,
@@ -114,6 +115,13 @@ export const userApi = baseApi.injectEndpoints({
                 body,
             }),
         }),
+        updatePassword: build.mutation<void, ChangePasswordRequest>({
+            query: (body) => ({
+                url: "auth/change-password",
+                method: "POST",
+                body,
+            }),
+        }),
         getUserSessions: build.query<Device[], void>({
             query: () => "session/user",
             providesTags: ["Session"],
@@ -140,4 +148,5 @@ export const {
     useUpdateBannerMutation,
     useDeleteBannerMutation,
     useUpdateProfileMutation,
+    useUpdatePasswordMutation,
 } = userApi;
