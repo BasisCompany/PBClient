@@ -21,7 +21,7 @@ const BackgroundBox = styled(FlexBox)(({ theme }) => ({
 const MainContainer = styled((props: ContainerProps) => (
     <Container component="main" maxWidth="xl" {...props} />
 ))({
-    overflow: "auto",
+    //overflow: "auto", //TODO: TEst Зачем нужно??
     margin: "15px 0px 15px",
 });
 
