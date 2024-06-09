@@ -2,6 +2,7 @@ import { Box, Checkbox, Typography } from "@mui/material";
 import { CartPromptItem } from "./CartPromptItem";
 import { FlexBox } from "@/shared/ui/FlexBox";
 import { useAddAllToOrderMutation, useGetCartQuery } from "@/entities/cart";
+import { SecondaryBox } from "@/shared/ui/Box/SecondaryBox";
 
 export const CartContent = () => {
     const { data } = useGetCartQuery();
@@ -12,7 +13,7 @@ export const CartContent = () => {
     const [addAllToOrder] = useAddAllToOrderMutation();
 
     const cartCountIncluded = cartItems.reduce(
-        (count, item) => count + Number(item.includeInOrder),
+        (count, { includeInOrder }) => count + (includeInOrder ? 1 : 0),
         0
     );
     const isAllIncludeInOrder = cartCount === cartCountIncluded;
@@ -24,15 +25,7 @@ export const CartContent = () => {
     };
 
     return (
-        <Box
-            sx={{
-                flex: 1,
-                alignSelf: "start",
-                borderRadius: "5px",
-                bgcolor: (theme) => theme.palette.bgcolor.secondary.main,
-                p: 3,
-            }}
-        >
+        <SecondaryBox flex={1} alignSelf="start" p={3}>
             <FlexBox alignItems="center" gap="8px">
                 <Typography variant="title">Корзина</Typography>
                 <Typography
@@ -76,6 +69,6 @@ export const CartContent = () => {
                     />
                 ))}
             </Box>
-        </Box>
+        </SecondaryBox>
     );
 };

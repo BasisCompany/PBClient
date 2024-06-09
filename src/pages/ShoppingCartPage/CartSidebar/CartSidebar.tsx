@@ -1,27 +1,9 @@
 import { Box, Typography, Divider } from "@mui/material";
+import { PaymentMethod } from "./PaymentMethod";
 import { PrimaryButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { FlexBox } from "@/shared/ui/FlexBox";
 import { useGetCartQuery } from "@/entities/cart";
 
-const PayCard = () => {
-    return (
-        <Box
-            sx={{
-                mt: 2,
-                p: 2,
-                height: "60px",
-                width: "104px",
-                borderRadius: "5px",
-                bgcolor: (theme) => theme.palette.bgcolor.tertiary.main,
-                textAlign: "center",
-            }}
-        >
-            Карта
-        </Box>
-    );
-};
-
-//TODO: Вывод чисел с разделителями тысяч
 export const CartSidebar = () => {
     const { data } = useGetCartQuery();
 
@@ -37,8 +19,9 @@ export const CartSidebar = () => {
             includeInOrder ? sum + prompt.price : sum,
         0
     );
-
     const discount = 0;
+
+    const totalPrice = price - discount;
     return (
         <Box
             sx={{
@@ -46,37 +29,30 @@ export const CartSidebar = () => {
                 position: "sticky",
                 top: 80,
                 alignSelf: "start",
-                borderRadius: "5px",
+                borderRadius: "15px",
                 bgcolor: (theme) => theme.palette.bgcolor.secondary.main,
                 p: 3,
             }}
         >
-            <Box>
-                <Typography variant="subtitle">Способ оплаты</Typography>
-                <FlexBox
-                    sx={{
-                        gap: "15px",
-                        overflow: "hidden",
-                    }}
-                >
-                    <PayCard />
-                    <PayCard />
-                </FlexBox>
-            </Box>
+            <PaymentMethod />
             <Box mt={4}>
                 <Typography variant="subtitle">Ваш заказ</Typography>
                 <FlexBox justifyContent="space-between" mt={2}>
                     <Typography variant="text">
                         Промпты ({cartCountIncluded})
                     </Typography>
-                    <Typography variant="text">{price} ₽</Typography>
-                </FlexBox>
-                {/* <FlexBox justifyContent="space-between" mt={2}>
-                    <Typography variant="text">Скидка</Typography>
-                    <Typography variant="text" color="rgba(233,30,99,1)">
-                        - {discount} ₽
+                    <Typography variant="text">
+                        {price.toLocaleString()} ₽
                     </Typography>
-                </FlexBox> */}
+                </FlexBox>
+                {discount > 0 && (
+                    <FlexBox justifyContent="space-between" mt={2}>
+                        <Typography variant="text">Скидка</Typography>
+                        <Typography variant="text" color="rgba(233,30,99,1)">
+                            - {discount} ₽
+                        </Typography>
+                    </FlexBox>
+                )}
             </Box>
             <Divider sx={{ my: 2 }} />
             <FlexBox justifyContent="space-between">
@@ -84,7 +60,7 @@ export const CartSidebar = () => {
                     Итого
                 </Typography>
                 <Typography variant="text" fontSize="26px" fontWeight="600">
-                    {price - discount} ₽
+                    {totalPrice.toLocaleString()} ₽
                 </Typography>
             </FlexBox>
             <PrimaryButton sx={{ my: 2 }}>Оплатить</PrimaryButton>

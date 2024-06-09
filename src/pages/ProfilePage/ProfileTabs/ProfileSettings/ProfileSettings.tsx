@@ -8,6 +8,7 @@ import { SettingsProfile } from "./SettingsProfile";
 import { SettingsSessions } from "./SettingsSessions/SettingsSessions";
 import { SettingsChangePassword } from "./SettingsChangePassword/SettingsChangePassword";
 import { FlexBox } from "@/shared/ui/FlexBox";
+import { SecondaryBox } from "@/shared/ui/Box/SecondaryBox";
 
 interface SettingsBoxProps {
     title: string;
@@ -21,11 +22,9 @@ const tooltipSessionText =
 const SettingsBox = forwardRef<HTMLDivElement, SettingsBoxProps>(
     ({ title, tooltip, children }, forwardedRef) => {
         return (
-            <Box
+            <SecondaryBox
                 ref={forwardedRef}
-                bgcolor={(theme) => theme.palette.bgcolor.secondary.main}
                 sx={{
-                    borderRadius: "15px",
                     p: 3,
                     pb: 5,
                     mb: 2,
@@ -49,7 +48,7 @@ const SettingsBox = forwardRef<HTMLDivElement, SettingsBoxProps>(
                 <FlexBox justifyContent="center">
                     <Box width="500px">{children}</Box>
                 </FlexBox>
-            </Box>
+            </SecondaryBox>
         );
     }
 );
