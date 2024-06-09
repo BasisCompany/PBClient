@@ -23,6 +23,8 @@ import {
 } from "@/pages/AuthPage";
 
 import { MarketplacePage } from "@/pages/MarketplacePage";
+import { ShoppingCartPage } from "@/pages/ShoppingCartPage";
+import { PromptPage } from "@/pages/PromptPage";
 
 const TestPage = lazy(() => import("@/trash/TestPage"));
 
@@ -47,7 +49,10 @@ export const AppRouter = () => (
                 <Route index element={<TestPage />} />
                 {profileRoutes}
                 <Route path="marketplace" element={<MarketplacePage />} />
+                <Route path="prompt/:url" element={<PromptPage />} />
                 {supportRoutes}
+
+                <Route path="cart" element={<ShoppingCartPage />} />
 
                 {/* AUTH */}
                 <Route element={<RequireNotAuth />}>

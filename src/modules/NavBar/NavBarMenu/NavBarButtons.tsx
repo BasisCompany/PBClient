@@ -7,6 +7,8 @@ import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
 import { useCountUnreadNotificationsQuery } from "@/entities/notification";
 import { Avatar } from "@/shared/ui/Image/Avatar";
 import { useAuth } from "@/shared/hooks/useAuth";
+import { LinkIconButton } from "@/shared/ui/Links";
+import { useCountCartQuery } from "@/entities/cart";
 
 export const NavBarButtons = () => {
     const isMobile = useMobileDevice();
@@ -15,11 +17,14 @@ export const NavBarButtons = () => {
 
     const { togglePopper } = usePopper();
 
-    const { data } = useCountUnreadNotificationsQuery(undefined, {
+    const { data: notification } = useCountUnreadNotificationsQuery(undefined, {
         //pollingInterval: 10000, //TODO: delete comment
     });
 
-    const notificationsCount = data?.count ?? null;
+    const { data: cart } = useCountCartQuery();
+
+    const notificationsCount = notification?.count ?? null;
+    const cartCount = cart?.count ?? null;
 
     return (
         <>
@@ -31,11 +36,11 @@ export const NavBarButtons = () => {
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Корзина" disableInteractive>
-                        <IconButton size="large" color="inherit">
-                            <Badge badgeContent={4} color="secondary">
+                        <LinkIconButton size="large" color="inherit" to="cart">
+                            <Badge badgeContent={cartCount} color="secondary">
                                 <ShoppingBasketIcon />
                             </Badge>
-                        </IconButton>
+                        </LinkIconButton>
                     </Tooltip>
                     <Tooltip title="Уведомления" disableInteractive>
                         <IconButton
