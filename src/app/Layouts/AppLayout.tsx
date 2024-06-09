@@ -1,16 +1,12 @@
 import { Suspense } from "react";
-import {
-    CircularProgress,
-    Container,
-    ContainerProps,
-    styled,
-} from "@mui/material";
+import { Container, ContainerProps, styled } from "@mui/material";
 import { Outlet } from "react-router";
 import { SideBar } from "@/modules/SideBar/SideBar";
 import { LoadingPage } from "@/pages/LoadingPage/Loading.page";
 import { FlexBox } from "@/shared/ui/FlexBox";
 import { NavBar } from "@/modules/NavBar";
 import { useUserQuery } from "@/entities/user";
+import { LoadingCircular } from "@/shared/ui/Loading";
 
 const BackgroundBox = styled(FlexBox)(({ theme }) => ({
     justifyContent: "center",
@@ -24,16 +20,6 @@ const MainContainer = styled((props: ContainerProps) => (
     //overflow: "auto", //TODO: TEst Зачем нужно??
     margin: "15px 0px 15px",
 });
-
-const LoadingSkeleton = () => (
-    <FlexBox
-        justifyContent="center"
-        alignItems="center"
-        height="calc(100vh - 200px)"
-    >
-        <CircularProgress color="secondary" size={100} />
-    </FlexBox>
-);
 
 export const AppLayout = () => {
     const { isLoading } = useUserQuery();
@@ -49,7 +35,7 @@ export const AppLayout = () => {
             <BackgroundBox>
                 <SideBar />
                 <MainContainer>
-                    <Suspense fallback={<LoadingSkeleton />}>
+                    <Suspense fallback={<LoadingCircular />}>
                         <Outlet />
                     </Suspense>
                 </MainContainer>
