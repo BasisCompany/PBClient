@@ -15,7 +15,7 @@ export const NavBarButtons = () => {
 
     const { user } = useAuth();
 
-    const { togglePopper } = usePopper();
+    const { togglePopper, closePopper } = usePopper();
 
     const { data: notification } = useCountUnreadNotificationsQuery(undefined, {
         //pollingInterval: 10000, //TODO: delete comment
@@ -32,15 +32,21 @@ export const NavBarButtons = () => {
                 <>
                     <Tooltip title="Избранное" disableInteractive>
                         <LinkIconButton
+                            to="favorites"
                             size="large"
                             color="inherit"
-                            to="favorites"
+                            onClick={closePopper}
                         >
                             <FavoriteIcon />
                         </LinkIconButton>
                     </Tooltip>
                     <Tooltip title="Корзина" disableInteractive>
-                        <LinkIconButton size="large" color="inherit" to="cart">
+                        <LinkIconButton
+                            to="cart"
+                            size="large"
+                            color="inherit"
+                            onClick={closePopper}
+                        >
                             <Badge badgeContent={cartCount} color="secondary">
                                 <ShoppingBasketIcon />
                             </Badge>
