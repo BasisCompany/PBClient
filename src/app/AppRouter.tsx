@@ -25,6 +25,7 @@ import {
 import { MarketplacePage } from "@/pages/MarketplacePage";
 import { ShoppingCartPage } from "@/pages/ShoppingCartPage";
 import { PromptPage } from "@/pages/PromptPage";
+import { FavoritesPage } from "@/pages/FavoritesPage";
 
 const TestPage = lazy(() => import("@/trash/TestPage"));
 
@@ -52,6 +53,7 @@ export const AppRouter = () => (
                 <Route path="prompt/:url" element={<PromptPage />} />
                 {supportRoutes}
 
+                <Route path="favorites" element={<FavoritesPage />} />
                 <Route path="cart" element={<ShoppingCartPage />} />
 
                 {/* AUTH */}

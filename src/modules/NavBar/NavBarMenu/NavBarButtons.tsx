@@ -1,5 +1,5 @@
 import { Tooltip, IconButton, Badge } from "@mui/material";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { usePopper } from "./ui/NavbarPopper";
@@ -31,9 +31,13 @@ export const NavBarButtons = () => {
             {!isMobile && (
                 <>
                     <Tooltip title="Избранное" disableInteractive>
-                        <IconButton size="large" color="inherit">
-                            <BookmarkIcon />
-                        </IconButton>
+                        <LinkIconButton
+                            size="large"
+                            color="inherit"
+                            to="favorites"
+                        >
+                            <FavoriteIcon />
+                        </LinkIconButton>
                     </Tooltip>
                     <Tooltip title="Корзина" disableInteractive>
                         <LinkIconButton size="large" color="inherit" to="cart">
