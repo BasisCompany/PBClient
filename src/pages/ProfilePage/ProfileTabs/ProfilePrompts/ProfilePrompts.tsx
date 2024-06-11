@@ -8,8 +8,14 @@ import { ProfileSelect } from "../../components/ProfileSelect";
 import { ProfilePromptsModels } from "./ProfilePromptsModels";
 import { ProfilePromptsToggleMode } from "./ProfilePromptsToggleMode";
 import { ProfilePromptsLine } from "./ProfilePromptsLine";
-import { cardListContent } from "@/pages/MarketplacePage/components/MarketplaceGrid/cardListContent";
 import { PromptCard } from "@/shared/ui/PromptCard";
+import { useGetCartQuery } from "@/entities/cart";
+import { useGetFavoritesQuery } from "@/entities/favorites";
+import { useGetAllPromptsQuery } from "@/entities/prompt";
+import {
+    getRandomImage,
+    getRandomModel,
+} from "@/pages/MarketplacePage/components/MarketplaceGrid/promptTest";
 
 const promptsSelectItems = {
     params: ["new", "rating", "like", "shop"],
@@ -45,6 +51,27 @@ export const ProfilePrompts = () => {
         });
     };
 
+    const { data: prompts = [] } = useGetAllPromptsQuery();
+
+    const { data: cart } = useGetCartQuery();
+    const cartItems = cart?.cartItems ?? [];
+
+    const { data: favorites } = useGetFavoritesQuery({
+        sort: "new",
+    });
+
+    const favoritesItems = favorites?.favoritesItems ?? [];
+
+    const updatedPrompts = prompts.map((prompt) => ({
+        ...prompt,
+        isInCart: cartItems.some(
+            (cartItem) => cartItem.prompt.id === prompt.id
+        ),
+        isFavorite: favoritesItems.some(
+            (favoritesItem) => favoritesItem.prompt.id === prompt.id
+        ),
+    }));
+
     return (
         <>
             <Box
@@ -64,23 +91,24 @@ export const ProfilePrompts = () => {
             </Box>
             <Box sx={{ mt: 5 }}>
                 <Grid container spacing={4}>
-                    {[
-                        ...cardListContent,
-                        ...cardListContent,
-                        ...cardListContent,
-                    ]
-                        .sort(() => Math.random() - 0.5)
-                        .map(({ id, ...item }) => (
-                            <Grid item key={id}>
-                                <PromptCard {...item} />
-                            </Grid>
-                        ))}
+                    {updatedPrompts.map((item) => (
+                        <Grid item key={item.id}>
+                            <PromptCard
+                                id={item.id}
+                                title={item.title}
+                                price={item.price}
+                                isInCart={item.isInCart}
+                                isFavorite={item.isFavorite}
+                                image={getRandomImage(item.id)}
+                                model={getRandomModel(item.id)}
+                                views={1}
+                                purchases={15}
+                                rating="2"
+                                description="Lorem ipsum, or lipsum as it is sometimes known, is dummy text"
+                            />
+                        </Grid>
+                    ))}
                 </Grid>
-                {/* {model.map((item, i) => (
-                    <Box key={i} sx={{ height: "100px" }}>
-                        {item}
-                    </Box>
-                ))} */}
             </Box>
         </>
     );
