@@ -4,3 +4,4 @@ export * from "./forgotPassword.schema";
 export * from "./resetPassword.schema";
 export * from "./reply.schema";
 export * from "./changePassword.schema";
+export * from "./changeUserInformation.schema";

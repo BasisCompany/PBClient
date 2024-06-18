@@ -1,4 +1,3 @@
-import { InferType, mixed, object, string } from "yup";
 import {
     ExtSubmitHandler,
     Form,
@@ -12,32 +11,10 @@ import {
     PrimaryButton,
     PrimaryLoadingButton,
 } from "@/shared/ui/Buttons/PrimaryButton";
-import {
-    Gender,
-    useProfileUser,
-    useUpdateProfileMutation,
-} from "@/entities/user";
+import { useProfileUser, useUpdateProfileMutation } from "@/entities/user";
 import { toaster } from "@/app/providers/Toast";
 import { FlexBox } from "@/shared/ui/FlexBox";
-
-const changeUserInformation = object({
-    username: string()
-        .required("Пожалуйста, укажите свой никнейм.")
-        .min(3, "Никнейм должен быть больше 3 символов")
-        .max(20, "Никнейм должен быть меньше 20 символов")
-        .matches(
-            /^[a-zA-Z0-9_-]*$/,
-            "Вы можете использовать только a-z, 0-9 и нижнее подчёркивание"
-        ),
-
-    gender: mixed<Gender>().oneOf(Object.values(Gender)).required(),
-    about: string()
-        .nullable()
-        .default("")
-        .max(500, "Превышено количество символов"),
-});
-
-export type ChangeUserInformation = InferType<typeof changeUserInformation>;
+import { ChangeUserInformation, changeUserInformation } from "@/shared/schema";
 
 const genderOptions = [
     { value: "NOT_SPECIFIED", label: "Не указан" },
