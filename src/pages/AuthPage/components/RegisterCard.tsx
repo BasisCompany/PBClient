@@ -20,12 +20,14 @@ import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import {
     Form,
     ExtSubmitHandler,
-    InputText,
     InputTextPassword,
+    InputUsername,
+    InputEmail,
 } from "@/shared/ui/Forms";
 import { GoogleIcon } from "@/assets/GoogleIcon";
-import { VKIcon } from "@/assets/VKIcon";
+import { YandexIcon } from "@/assets/YandexIcon";
 import { RegisterSchema, registerSchema } from "@/shared/schema";
+import { URL_ROOT } from "@/shared/api/config";
 
 interface RegisterCardProps {
     toggleLogin: DispatchWithoutAction;
@@ -57,6 +59,14 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
         );
         toggleLogin();
         reset();
+    };
+
+    const handleGoogleLogin = () => {
+        location.href = `${URL_ROOT}/auth/google`;
+    };
+
+    const handleYandexLogin = () => {
+        location.href = `${URL_ROOT}/auth/yandex`;
     };
 
     return (
@@ -117,52 +127,6 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
                             Создайте аккаунт
                         </Typography>
                     </Box>
-                    {/* <Box
-                        sx={{
-                            display: { xs: "flex", sm: "flex", md: "none" },
-                            justifyContent: "center",
-                        }}
-                    >
-                        <Typography
-                            component={"span"}
-                            variant="h6"
-                            color="text.primary"
-                            sx={{
-                                marginBottom: "4px",
-                                fontSize: 30,
-                                whiteSpace: "nowrap",
-                                textOverflow: "ellipsis",
-                                overflow: "hidden",
-                                cursor: "default",
-                            }}
-                        >
-                            Регистрация
-                        </Typography>
-                    </Box> */}
-                    {/* <Box
-                        sx={{
-                            textAlign: "center",
-                        }}
-                    >
-                        <Typography
-                            color="text.secondary"
-                            sx={{
-                                margin: 0,
-                                fontSize: 14,
-                                visibility: "visible",
-                                maxHeight: "150px",
-                                WebkitLineClamp: "2",
-                                display: "-webkit-box",
-                                WebkitBoxOrient: "vertical",
-                                textOverflow: "ellipsis",
-                                overflow: "hidden",
-                                cursor: "default",
-                                width: "100%",
-                            }}
-                        >
-                            Для регистрации заполните поля ниже.
-                        </Typography>
-                    </Box> */}
                 </Box>
                 <Box
                     sx={{
@@ -170,7 +134,7 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
                         minWidth: "100px",
                     }}
                 >
-                    <SocialButton sx={{ mb: 2 }}>
+                    <SocialButton sx={{ mb: 2 }} onClick={handleGoogleLogin}>
                         <GoogleIcon />
                         <Box sx={{ width: "83%" }}>
                             <Typography variant="text">
@@ -178,11 +142,11 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
                             </Typography>
                         </Box>
                     </SocialButton>
-                    <SocialButton sx={{ mb: 2 }}>
-                        <VKIcon />
-                        <Box sx={{ width: "83%" }}>
+                    <SocialButton sx={{ mb: 3 }}>
+                        <YandexIcon />
+                        <Box sx={{ width: "83%" }} onClick={handleYandexLogin}>
                             <Typography variant="text">
-                                Войти через ВКонтакте
+                                Войти через Yandex
                             </Typography>
                         </Box>
                     </SocialButton>
@@ -201,15 +165,15 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
                     onSubmit={onSubmit}
                     schema={registerSchema}
                 >
-                    <InputText
-                        name="username"
+                    <InputUsername
                         label="Никнейм"
-                        labelIcon={<PersonOutlineRoundedIcon />}
                         helperText="Придумайте никнейм"
+                        counter
+                        labelIcon={<PersonOutlineRoundedIcon />}
+                        inputProps={{ maxLength: 20 }}
                         margin="normal"
                     />
-                    <InputText
-                        name="email"
+                    <InputEmail
                         label="Почта"
                         labelIcon={<MailOutlineRoundedIcon />}
                         helperText="Ваша почта"
