@@ -5,7 +5,7 @@ import { useUpdatePasswordMutation } from "@/entities/user";
 import { ChangePasswordSchema, changePasswordSchema } from "@/shared/schema";
 
 export const SettingsChangePassword = () => {
-    const [updatePassword] = useUpdatePasswordMutation();
+    const [updatePassword, { isLoading }] = useUpdatePasswordMutation();
 
     const onSubmit: ExtSubmitHandler<ChangePasswordSchema> = async (
         data,
@@ -18,7 +18,7 @@ export const SettingsChangePassword = () => {
             }).unwrap();
             reset();
             toaster.success("Пароль успешно обновлен!");
-        } catch (error) {
+        } catch (e) {
             /* empty */
         }
     };
@@ -34,7 +34,7 @@ export const SettingsChangePassword = () => {
                 name="newPasswordConfirm"
                 label="Подтвердите пароль"
             />
-            <PrimaryLoadingButton type="submit" isLoading={false}>
+            <PrimaryLoadingButton type="submit" isLoading={isLoading}>
                 Сохранить
             </PrimaryLoadingButton>
         </Form>

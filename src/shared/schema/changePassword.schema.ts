@@ -8,7 +8,11 @@ export const changePasswordSchema = object({
     newPassword: string()
         .required("Пожалуйста, укажите новый пароль.")
         .min(8, "Пароль должен быть больше 8 символов")
-        .max(35, "Пароль должен быть меньше 35 символов"),
+        .max(35, "Пароль должен быть меньше 35 символов")
+        .notOneOf(
+            [ref("oldPassword")],
+            "Новый пароль не должен совпадать с старым паролем"
+        ),
     newPasswordConfirm: string()
         .required("Пожалуйста, подтвердите новый пароль.")
         .oneOf([ref("newPassword")], "Пароли должны совпадать"),
