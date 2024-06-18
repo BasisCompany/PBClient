@@ -98,6 +98,7 @@ export const UserInformation = () => {
                 multiline
                 counter
                 inputProps={{ maxLength: 500 }}
+                sx={{ mb: 2 }}
             />
             <FormButton
                 renderButton={({ reset, formState: { isDirty, isValid } }) => (

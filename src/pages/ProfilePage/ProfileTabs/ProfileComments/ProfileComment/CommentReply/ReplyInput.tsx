@@ -1,76 +1,61 @@
-import { Box, CircularProgress, IconButton, InputBase } from "@mui/material";
+import { FC } from "react";
+import { Box, CircularProgress, IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { FC, KeyboardEvent } from "react";
-import { toaster } from "@/app/providers/Toast";
 import { useAddReplyMutation } from "@/entities/comment";
 import { ReplySchema, replySchema } from "@/shared/schema";
+import { ExtSubmitHandler, Form, InputText } from "@/shared/ui/Forms";
 
 interface ReplyInputProps {
     commentId: number;
 }
 
 export const ReplyInput: FC<ReplyInputProps> = ({ commentId }) => {
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<ReplySchema>({
-        mode: "onSubmit",
+    const [addReply, { isLoading }] = useAddReplyMutation();
 
-        resolver: yupResolver(replySchema),
-    });
-
-    if (errors?.message?.message) {
-        toaster.error(errors?.message?.message);
-    }
-
-    const handleUserKeyPress = async (e: KeyboardEvent) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-            await handleSubmit(onSubmit)();
+    const onSubmit: ExtSubmitHandler<ReplySchema> = async (data, { reset }) => {
+        try {
+            await addReply({
+                commentId,
+                message: data.message,
+            }).unwrap();
+            reset();
+        } catch (e) {
+            /* empty */
         }
     };
 
-    const [addReply, { isLoading }] = useAddReplyMutation();
-
-    const onSubmit: SubmitHandler<ReplySchema> = async (data) => {
-        const body = {
-            commentId,
-            message: data.message,
-        };
-        await addReply(body)
-            .unwrap()
-            .then(() => reset);
-    };
-
     return (
-        <form onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}>
+        <Form<ReplySchema> onSubmit={onSubmit} schema={replySchema}>
             <Box sx={{ mt: 1, ml: 6, display: "flex" }}>
-                <InputBase
+                <InputText
+                    name="message"
+                    placeholder="Введите ответ"
+                    counter
+                    inputProps={{ maxLength: 800 }}
                     autoFocus
                     multiline
-                    onKeyDown={handleUserKeyPress}
+                    helperText="none"
+                    margin="none"
                     disabled={isLoading}
-                    fullWidth
-                    placeholder="Введите ответ"
-                    {...register("message")}
-                    error={!!errors.message}
                     sx={{
                         mr: 1,
-                        p: 2,
                         borderRadius: "5px",
-                        color: (theme) => theme.palette.text.secondary,
                         bgcolor: (theme) =>
                             theme.palette.bgcolor.secondary.main,
                         transition: "all 0.1s ease-in",
-                        ".MuiInputBase-input::placeholder": {
-                            opacity: 1,
-                            transition: "all 0.1s ease-out",
-                        },
-                        ".MuiInputBase-input:focus": {
-                            color: (theme) => theme.palette.text.primary,
+                        "& .MuiOutlinedInput-root": {
+                            "& fieldset": {
+                                borderColor: (theme) =>
+                                    theme.palette.bgcolor.secondary.main,
+                            },
+                            "&:hover fieldset": {
+                                borderColor: (theme) =>
+                                    theme.palette.bgcolor.secondary.hover,
+                            },
+                            "&.Mui-focused fieldset": {
+                                borderColor: (theme) =>
+                                    theme.palette.bgcolor.secondary.active,
+                            },
                         },
                     }}
                 />
@@ -94,6 +79,6 @@ export const ReplyInput: FC<ReplyInputProps> = ({ commentId }) => {
                     )}
                 </IconButton>
             </Box>
-        </form>
+        </Form>
     );
 };

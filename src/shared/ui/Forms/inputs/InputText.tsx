@@ -40,7 +40,7 @@ const CssTextField = styled(TextField)(({ theme }) => ({
 
 export type InputTextProps = Omit<TextFieldProps, "helperText"> & {
     name: string;
-    label: string;
+    label?: string;
     counter?: boolean;
     helperText?: string;
     labelIcon?: ReactNode;
@@ -94,6 +94,12 @@ export const InputText: FC<InputTextProps> = memo((props) => {
         label
     );
 
+    const inputCounter = visible && counter && (
+        <Typography fontSize={14} component="span">
+            {`${(field.value as string).length} / ${props.inputProps?.maxLength}`}
+        </Typography>
+    );
+
     return (
         <CssTextField
             {...field}
@@ -102,26 +108,32 @@ export const InputText: FC<InputTextProps> = memo((props) => {
             fullWidth
             error={!!error}
             helperText={
-                <FlexBox
-                    component="span"
-                    justifyContent="space-between"
-                    height="22px"
-                >
-                    <Typography
+                helperText !== "none" ? (
+                    <FlexBox
                         component="span"
-                        sx={{
-                            marginLeft: "-14px",
-                            fontSize: "12px",
-                        }}
+                        justifyContent="space-between"
+                        height="12px"
                     >
-                        {error ? error?.message : helperText}
-                    </Typography>
-                    {visible && counter && (
-                        <Typography fontSize={14} component="span">
-                            {`${(field.value as string).length} / ${props.inputProps?.maxLength}`}
+                        <Typography
+                            component="span"
+                            sx={{
+                                marginLeft: "-14px",
+                                fontSize: "12px",
+                            }}
+                        >
+                            {error ? error?.message : helperText}
                         </Typography>
-                    )}
-                </FlexBox>
+                        {inputCounter}
+                    </FlexBox>
+                ) : (
+                    <FlexBox
+                        component="span"
+                        justifyContent="flex-end"
+                        mt="-26px"
+                    >
+                        {inputCounter}
+                    </FlexBox>
+                )
             }
             InputProps={{
                 startAdornment,
