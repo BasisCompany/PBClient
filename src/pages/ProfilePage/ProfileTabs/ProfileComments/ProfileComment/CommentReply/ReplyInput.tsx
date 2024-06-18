@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FC, KeyboardEvent } from "react";
 import { toaster } from "@/app/providers/Toast";
 import { useAddReplyMutation } from "@/entities/comment";
-import { ReplySchema, replySchema } from "@/shared/schema/reply.schema";
+import { ReplySchema, replySchema } from "@/shared/schema";
 
 interface ReplyInputProps {
     commentId: number;

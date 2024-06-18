@@ -7,8 +7,8 @@ import {
     ResetPasswordRequest,
 } from "./types";
 import { baseQueryWithToastErrors, baseApi } from "@/shared/api";
-import { LoginSchema } from "@/pages/AuthPage/components/LoginCard";
 import { getUrlRoot } from "@/shared/utils/getUrlRoot";
+import { LoginSchema } from "@/shared/schema";
 
 export const authApi = createApi({
     reducerPath: "authApi",

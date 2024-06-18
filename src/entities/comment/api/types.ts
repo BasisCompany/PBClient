@@ -1,6 +1,6 @@
 import { Comment } from "../model/types";
+import { ReplySchema } from "@/shared/schema";
 import { PageRequest, PageResponse } from "@/shared/types/pagination.type";
-import { ReplySchema } from "@/pages/ProfilePage/ProfileTabs/ProfileComments/ProfileComment/CommentReply/ReplyInput";
 
 export type AddReplyRequest = ReplySchema & { commentId: number };
 

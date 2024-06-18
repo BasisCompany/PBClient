@@ -6,10 +6,7 @@ import { CenterBox } from "@/shared/ui/CenterBox";
 import { useResetPasswordMutation } from "@/entities/auth";
 import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { Form, ExtSubmitHandler, InputTextPassword } from "@/shared/ui/Forms";
-import {
-    ResetPasswordSchema,
-    resetPasswordSchema,
-} from "@/shared/schema/resetPassword.schema";
+import { ResetPasswordSchema, resetPasswordSchema } from "@/shared/schema";
 
 export const ResetPasswordPage = () => {
     const { resetToken } = useParams();
