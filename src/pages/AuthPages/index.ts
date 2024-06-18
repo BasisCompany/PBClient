@@ -1,7 +1,5 @@
 import { lazyImport } from "@/shared/utils/lazyImport";
 
-export const { AuthPage } = lazyImport(() => import("./Auth.page"), "AuthPage");
-
 export const { ExpiredPage } = lazyImport(
     () => import("./Expired.page"),
     "ExpiredPage"

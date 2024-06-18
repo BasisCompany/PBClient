@@ -1,5 +1,5 @@
-import { ResetPasswordSchema } from "@/pages/AuthPage/ResetPassword.page";
-import { RegisterSchema } from "@/pages/AuthPage/components/RegisterCard";
+import { ResetPasswordSchema } from "@/pages/AuthPages/ResetPassword.page";
+import { RegisterSchema } from "@/pages/LoginPage/RegisterCard/RegisterCard";
 
 export interface LoginResponse {
     id: number;

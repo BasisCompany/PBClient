@@ -15,12 +15,13 @@ import {
 } from "@/pages/ProfilePage";
 
 import {
-    AuthPage,
     ExpiredPage,
     VerifiedPage,
     ResetPasswordPage,
     ForgotPasswordPage,
-} from "@/pages/AuthPage";
+} from "@/pages/AuthPages";
+
+import { LoginPage } from "@/pages/LoginPage";
 
 import { MarketplacePage } from "@/pages/MarketplacePage";
 import { ShoppingCartPage } from "@/pages/ShoppingCartPage";
@@ -58,7 +59,7 @@ export const AppRouter = () => (
 
                 {/* AUTH */}
                 <Route element={<RequireNotAuth />}>
-                    <Route path="login" element={<AuthPage />} />
+                    <Route path="login" element={<LoginPage />} />
                     <Route path="expired" element={<ExpiredPage />} />
                     <Route path="verified" element={<VerifiedPage />} />
                     <Route
