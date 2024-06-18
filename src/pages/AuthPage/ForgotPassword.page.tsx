@@ -1,21 +1,12 @@
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
 import { Box, Card, CardContent, Typography } from "@mui/material";
-import { object, string, InferType } from "yup";
 import { useLazyForgotPasswordQuery } from "@/entities/auth";
 import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { CenterBox } from "@/shared/ui/CenterBox";
 import { Form, ExtSubmitHandler, InputText } from "@/shared/ui/Forms";
 import { FakeCaptcha } from "@/trash/FakeCaptcha";
-
-const forgotPasswordSchema = object({
-    email: string()
-        .required("Пожалуйста, укажите свою почту.")
-        .email("Пожалуйста, укажите верную почту")
-        .min(3, "Почта должна содержать больше 3 символов"),
-});
-
-export type ForgotPasswordSchema = InferType<typeof forgotPasswordSchema>;
+import { ForgotPasswordSchema, forgotPasswordSchema } from "@/shared/schema";
 
 export const ForgotPasswordPage = () => {
     const [forgotPassword, { isLoading }] = useLazyForgotPasswordQuery();

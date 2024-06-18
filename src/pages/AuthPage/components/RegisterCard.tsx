@@ -14,7 +14,6 @@ import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import ButtonBase from "@mui/material/ButtonBase";
 import Divider from "@mui/material/Divider";
-import { object, string, ref, InferType } from "yup";
 import { toaster } from "@/app/providers/Toast";
 import { useRegisterMutation } from "@/entities/auth";
 import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
@@ -26,30 +25,11 @@ import {
 } from "@/shared/ui/Forms";
 import { GoogleIcon } from "@/assets/GoogleIcon";
 import { VKIcon } from "@/assets/VKIcon";
+import { RegisterSchema, registerSchema } from "@/shared/schema";
 
 interface RegisterCardProps {
     toggleLogin: DispatchWithoutAction;
 }
-
-const registerSchema = object({
-    username: string()
-        .required("Пожалуйста, укажите свой никнейм.")
-        .min(3, "Никнейм должен быть больше 3 символов")
-        .max(20, "Никнейм должен быть меньше 20 символов"),
-    email: string()
-        .required("Пожалуйста, укажите свою почту.")
-        .email("Пожалуйста, укажите верную почту")
-        .min(3, "Почта должна содержать больше 3 символов"),
-    password: string()
-        .required("Пожалуйста, укажите свой пароль.")
-        .min(8, "Пароль должен быть больше 8 символов")
-        .max(35, "Пароль должен быть меньше 35 символов"),
-    passwordConfirm: string()
-        .required("Пожалуйста, подтвердите пароль.")
-        .oneOf([ref("password")], "Пароли должны совпадать"),
-});
-
-export type RegisterSchema = InferType<typeof registerSchema>;
 
 export const SocialButton = styled(ButtonBase)(({ theme }) => ({
     fontSize: 15,

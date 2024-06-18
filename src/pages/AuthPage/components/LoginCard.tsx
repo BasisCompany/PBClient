@@ -1,6 +1,5 @@
 import { DispatchWithoutAction, FC } from "react";
 import { Box, Card, CardContent, Typography, styled } from "@mui/material";
-import { object, string, InferType } from "yup";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import ButtonBase from "@mui/material/ButtonBase";
@@ -18,23 +17,11 @@ import {
 import { LinkTypography } from "@/shared/ui/Links/LinkTypography";
 import { GoogleIcon } from "@/assets/GoogleIcon";
 import { YandexIcon } from "@/assets/YandexIcon";
+import { LoginSchema, loginSchema } from "@/shared/schema";
 
 interface LoginCardProps {
     toggleLogin: DispatchWithoutAction;
 }
-
-const loginSchema = object({
-    email: string()
-        .required("Пожалуйста, укажите свою почту.")
-        .email("Пожалуйста, укажите верную почту")
-        .min(3, "Почта должна содержать больше 3 символов"),
-    password: string()
-        .required("Пожалуйста, укажите свой пароль.")
-        .min(8, "Пароль должен быть больше 8 символов")
-        .max(35, "Пароль должен быть меньше 35 символов"),
-});
-
-export type LoginSchema = InferType<typeof loginSchema>;
 
 export const SocialButton = styled(ButtonBase)(({ theme }) => ({
     fontSize: 15,

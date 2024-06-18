@@ -1,18 +1,11 @@
 import { Box, CircularProgress, IconButton, InputBase } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { object, string, InferType } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FC, KeyboardEvent } from "react";
 import { toaster } from "@/app/providers/Toast";
 import { useAddReplyMutation } from "@/entities/comment";
-
-const replySchema = object({
-    message: string()
-        .required("Пожалуйста, укажите комментарий")
-        .max(800, "Комментарий должен содержать менее 800 символов."),
-});
-export type ReplySchema = InferType<typeof replySchema>;
+import { ReplySchema, replySchema } from "@/shared/schema/reply.schema";
 
 interface ReplyInputProps {
     commentId: number;

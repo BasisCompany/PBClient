@@ -1,5 +1,4 @@
 import { useParams } from "react-router";
-import { object, string, ref, InferType } from "yup";
 import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
@@ -7,18 +6,10 @@ import { CenterBox } from "@/shared/ui/CenterBox";
 import { useResetPasswordMutation } from "@/entities/auth";
 import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { Form, ExtSubmitHandler, InputTextPassword } from "@/shared/ui/Forms";
-
-const resetPasswordSchema = object({
-    password: string()
-        .required("Пожалуйста, укажите свой пароль.")
-        .min(8, "Пароль должен быть больше 8 символов")
-        .max(35, "Пароль должен быть меньше 35 символов"),
-    passwordConfirm: string()
-        .required("Пожалуйста, подтвердите пароль.")
-        .oneOf([ref("password")], "Пароли должны совпадать"),
-});
-
-export type ResetPasswordSchema = InferType<typeof resetPasswordSchema>;
+import {
+    ResetPasswordSchema,
+    resetPasswordSchema,
+} from "@/shared/schema/resetPassword.schema";
 
 export const ResetPasswordPage = () => {
     const { resetToken } = useParams();
