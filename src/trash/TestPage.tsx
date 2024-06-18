@@ -1,5 +1,4 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { TestForm } from "./TestForm";
 import { useAuth } from "@/shared/hooks/useAuth";
 import { PrimaryButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { useAddToCartMutation } from "@/entities/cart";
@@ -49,9 +48,6 @@ const TestPage = () => {
                 </Grid>
             </Box>
 
-            <Box sx={{ width: "400px" }}>
-                <TestForm />
-            </Box>
             <Box sx={{ width: "200px", m: 5, textAlign: "center" }}>
                 {isUserAuthenticated ? (
                     <Typography color="green">Авторизация выполнена</Typography>
