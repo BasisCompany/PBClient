@@ -18,6 +18,7 @@ import { LinkTypography } from "@/shared/ui/Links/LinkTypography";
 import { GoogleIcon } from "@/assets/GoogleIcon";
 import { YandexIcon } from "@/assets/YandexIcon";
 import { LoginSchema, loginSchema } from "@/shared/schema";
+import { URL_ROOT } from "@/shared/api/config";
 
 interface LoginCardProps {
     toggleLogin: DispatchWithoutAction;
@@ -51,11 +52,11 @@ export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
     };
 
     const handleGoogleLogin = () => {
-        location.href = "http://localhost:3345/auth/google";
+        location.href = `${URL_ROOT}/auth/google`;
     };
 
     const handleYandexLogin = () => {
-        location.href = "http://localhost:3345/auth/yandex";
+        location.href = `${URL_ROOT}/auth/yandex`;
     };
 
     return (
