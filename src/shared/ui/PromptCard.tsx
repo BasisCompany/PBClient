@@ -193,21 +193,19 @@ export const PromptCard: FC<PromptCardProps> = ({
                     <Box
                         sx={{
                             marginTop: "26px",
-                            cursor: "default",
+                            cursor: "pointer",
                             display: "flex",
                             justifyContent: "space-between",
                         }}
                     >
                         <Box
                             sx={{
-                                cursor: "default",
                                 display: "flex",
                                 justifyContent: "space-between",
                             }}
                         >
                             <Box
                                 sx={{
-                                    cursor: "default",
                                     width: "97px",
                                     display: "flex",
                                     justifyContent: "space-between",
@@ -250,11 +248,9 @@ export const PromptCard: FC<PromptCardProps> = ({
                             </Box>
                         </Box>
                         <Typography
-                            variant="h6"
-                            color="text.primary"
-                            sx={{
-                                fontSize: "15px",
-                            }}
+                            variant="text"
+                            fontSize="16px"
+                            fontWeight="500"
                         >
                             {price} ₽
                         </Typography>
