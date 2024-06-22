@@ -12,7 +12,8 @@ import {
     styled,
 } from "@mui/material";
 import GradeRoundedIcon from "@mui/icons-material/GradeRounded";
-import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
 import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -24,6 +25,7 @@ import {
     useDeleteFromFavoritesMutation,
 } from "@/entities/favorites";
 import { Image } from "./Image";
+import { LinkIconButton } from "./Links";
 
 const CardBadge = styled(Badge)(() => ({
     "& .MuiBadge-badge": {
@@ -157,6 +159,24 @@ export const PromptCard: FC<PromptCardProps> = ({
                             )}
                         </IconButton>
                     </Box>
+                    {Math.random() > 0.5 && (
+                        <Box
+                            sx={{
+                                position: "absolute",
+                                top: "40px",
+                                left: "160px",
+                            }}
+                        >
+                            <LinkIconButton to="/cart">
+                                <ShoppingCartTwoToneIcon
+                                    sx={{
+                                        fontSize: "25px",
+                                        color: "white",
+                                    }}
+                                />
+                            </LinkIconButton>
+                        </Box>
+                    )}
                 </Box>
                 <Box sx={{ p: 1 }}>
                     <Typography
@@ -228,7 +248,7 @@ export const PromptCard: FC<PromptCardProps> = ({
                                     color="secondary"
                                     max={999}
                                 >
-                                    <LocalOfferRoundedIcon
+                                    <ShoppingCartRoundedIcon
                                         sx={{
                                             fontSize: 19,
                                         }}

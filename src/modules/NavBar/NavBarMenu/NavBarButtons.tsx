@@ -1,7 +1,7 @@
 import { Tooltip, IconButton, Badge } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { usePopper } from "./ui/NavbarPopper";
 import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
 import { useCountUnreadNotificationsQuery } from "@/entities/notification";
@@ -48,7 +48,7 @@ export const NavBarButtons = () => {
                             onClick={closePopper}
                         >
                             <Badge badgeContent={cartCount} color="secondary">
-                                <ShoppingBasketIcon />
+                                <ShoppingCartRoundedIcon />
                             </Badge>
                         </LinkIconButton>
                     </Tooltip>
