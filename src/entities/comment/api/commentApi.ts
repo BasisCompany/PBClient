@@ -32,7 +32,9 @@ export const commentApi = baseApi.injectEndpoints({
                 method: "POST",
                 body,
             }),
-            invalidatesTags: ["Comment"],
+            invalidatesTags: (_, __, { commentId }) => [
+                { type: "Comment", id: commentId },
+            ],
         }),
         deleteComment: build.mutation<void, number>({
             query: (id) => ({
@@ -55,26 +57,25 @@ export const commentApi = baseApi.injectEndpoints({
                 body,
             }),
             onQueryStarted(
-                { isReply, ...body },
+                { isReply, commentId, type },
                 { dispatch, queryFulfilled, getState }
             ) {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                const { originalArgs } = commentApi.util.selectInvalidatedBy(
+                const commentEntry = commentApi.util.selectInvalidatedBy(
                     getState(),
-                    [{ type: "Comment" }]
+                    [{ type: "Comment", id: commentId }]
                 )[0];
 
                 const updateCommentLikes = (draft: PageResponse<Comment>) => {
                     const comment = isReply
                         ? draft.data.find(
-                              (comment) => comment.replyId === body.commentId
+                              (comment) => comment.replyId === commentId
                           )?.reply
                         : draft.data.find(
-                              (comment) => comment.id === body.commentId
+                              (comment) => comment.id === commentId
                           );
 
                     if (comment) {
-                        if (body.type) {
+                        if (type) {
                             comment.likes += 1;
                             if (comment.current_mark !== null) {
                                 comment.dislikes -= 1;
@@ -93,7 +94,7 @@ export const commentApi = baseApi.injectEndpoints({
                 const patchResult = dispatch(
                     commentApi.util.updateQueryData(
                         "getComments",
-                        originalArgs as CommentsRequest,
+                        commentEntry.originalArgs as CommentsRequest,
                         updateCommentLikes
                     )
                 );
@@ -109,10 +110,9 @@ export const commentApi = baseApi.injectEndpoints({
                 { commentId, isReply },
                 { dispatch, queryFulfilled, getState }
             ) {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                const { originalArgs } = commentApi.util.selectInvalidatedBy(
+                const commentEntry = commentApi.util.selectInvalidatedBy(
                     getState(),
-                    [{ type: "Comment" }]
+                    [{ type: "Comment", id: commentId }]
                 )[0];
 
                 const updateCommentLikes = (draft: PageResponse<Comment>) => {
@@ -137,7 +137,7 @@ export const commentApi = baseApi.injectEndpoints({
                 const patchResult = dispatch(
                     commentApi.util.updateQueryData(
                         "getComments",
-                        originalArgs as CommentsRequest,
+                        commentEntry.originalArgs as CommentsRequest,
                         updateCommentLikes
                     )
                 );
