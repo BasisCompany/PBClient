@@ -10,6 +10,7 @@ export const promptApi = baseApi.injectEndpoints({
                 url: `prompt`,
                 params: { sort, page, take, ...filters },
             }),
+            providesTags: ["Prompt"],
         }),
     }),
 });

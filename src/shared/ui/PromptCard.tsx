@@ -1,38 +1,17 @@
 import { FC } from "react";
-import {
-    Badge,
-    Box,
-    Card,
-    CardActionArea,
-    CardActions,
-    CardContent,
-    CardMedia,
-    IconButton,
-    Typography,
-    styled,
-} from "@mui/material";
+import { Badge, Box, IconButton, Typography } from "@mui/material";
 import GradeRoundedIcon from "@mui/icons-material/GradeRounded";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
 import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
-import { PrimaryButton } from "./Buttons/PrimaryButton";
-import { useAddToCartMutation } from "@/entities/cart";
+import { Image } from "./Image";
+import { LinkIconButton } from "./Links";
 import {
     useAddToFavoritesMutation,
     useDeleteFromFavoritesMutation,
 } from "@/entities/favorites";
-import { Image } from "./Image";
-import { LinkIconButton } from "./Links";
-
-const CardBadge = styled(Badge)(() => ({
-    "& .MuiBadge-badge": {
-        fontSize: "0.55rem",
-        padding: 0,
-    },
-}));
 
 export interface PromptCardProps {
     id: number;
@@ -64,17 +43,8 @@ export const PromptCard: FC<PromptCardProps> = ({
     isInCart,
     isFavorite,
 }) => {
-    const [addToCart] = useAddToCartMutation();
     const [addToFavorites] = useAddToFavoritesMutation();
     const [deleteFromFavorites] = useDeleteFromFavoritesMutation();
-
-    const handleAddToCart = async () => {
-        try {
-            await addToCart(id);
-        } catch (error) {
-            /* empty */
-        }
-    };
 
     const toggleFavorites = async () => {
         try {
@@ -159,7 +129,7 @@ export const PromptCard: FC<PromptCardProps> = ({
                             )}
                         </IconButton>
                     </Box>
-                    {Math.random() > 0.5 && (
+                    {isInCart && (
                         <Box
                             sx={{
                                 position: "absolute",
