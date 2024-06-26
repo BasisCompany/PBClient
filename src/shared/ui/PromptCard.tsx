@@ -12,16 +12,20 @@ import {
     styled,
 } from "@mui/material";
 import GradeRoundedIcon from "@mui/icons-material/GradeRounded";
-import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
 import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
 import { PrimaryButton } from "./Buttons/PrimaryButton";
 import { useAddToCartMutation } from "@/entities/cart";
 import {
     useAddToFavoritesMutation,
     useDeleteFromFavoritesMutation,
 } from "@/entities/favorites";
+import { Image } from "./Image";
+import { LinkIconButton } from "./Links";
 
 const CardBadge = styled(Badge)(() => ({
     "& .MuiBadge-badge": {
@@ -85,25 +89,26 @@ export const PromptCard: FC<PromptCardProps> = ({
     };
 
     return (
-        <Card
+        <Box
+            component="article"
             sx={{
                 maxWidth: "203px",
-                height: "355px", //285
+                height: "360px", //285
                 borderRadius: "15px",
-                bgcolor: "primary.dark",
+                //bgcolor: "primary.dark",
                 ":hover": {
                     cursor: "pointer",
                     boxShadow: "action.hover 0px 0px 0px 3px",
                 },
             }}
         >
-            <CardActionArea>
-                <Box sx={{ position: "relative" }}>
-                    <CardMedia
-                        component="img"
-                        height="135px"
-                        image={image}
-                        alt="Paella dish"
+            <Box>
+                <Box sx={{ position: "relative", mb: 1 }}>
+                    <Image
+                        src={image}
+                        height="200px"
+                        width="203px"
+                        sx={{ borderRadius: "10px 10px 10px 10px" }}
                     />
                     <Box
                         sx={{
@@ -129,8 +134,51 @@ export const PromptCard: FC<PromptCardProps> = ({
                             {iconName}
                         </Typography>
                     </Box>
+                    <Box
+                        sx={{
+                            position: "absolute",
+                            top: "6px",
+                            left: "160px",
+                        }}
+                    >
+                        <IconButton onClick={toggleFavorites}>
+                            {isFavorite ? (
+                                <FavoriteIcon
+                                    sx={{
+                                        fontSize: "25px",
+                                        color: "red",
+                                    }}
+                                />
+                            ) : (
+                                <FavoriteTwoToneIcon
+                                    sx={{
+                                        fontSize: "25px",
+                                        color: "white",
+                                    }}
+                                />
+                            )}
+                        </IconButton>
+                    </Box>
+                    {Math.random() > 0.5 && (
+                        <Box
+                            sx={{
+                                position: "absolute",
+                                top: "40px",
+                                left: "160px",
+                            }}
+                        >
+                            <LinkIconButton to="/cart">
+                                <ShoppingCartTwoToneIcon
+                                    sx={{
+                                        fontSize: "25px",
+                                        color: "white",
+                                    }}
+                                />
+                            </LinkIconButton>
+                        </Box>
+                    )}
                 </Box>
-                <CardContent>
+                <Box sx={{ p: 1 }}>
                     <Typography
                         variant="h6"
                         color="text.primary"
@@ -165,101 +213,70 @@ export const PromptCard: FC<PromptCardProps> = ({
                     <Box
                         sx={{
                             marginTop: "26px",
-                            cursor: "default",
+                            cursor: "pointer",
                             display: "flex",
                             justifyContent: "space-between",
                         }}
                     >
                         <Box
                             sx={{
-                                cursor: "default",
-                                width: "97px",
                                 display: "flex",
                                 justifyContent: "space-between",
-                                paddingTop: "2px",
                             }}
                         >
-                            <CardBadge
-                                badgeContent={views}
-                                color="secondary"
-                                max={999}
+                            <Box
+                                sx={{
+                                    width: "97px",
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    paddingTop: "2px",
+                                }}
                             >
-                                <RemoveRedEyeRoundedIcon
-                                    sx={{
-                                        fontSize: 19,
-                                    }}
-                                />
-                            </CardBadge>
-                            <CardBadge
-                                badgeContent={purchases}
-                                color="secondary"
-                                max={999}
-                            >
-                                <LocalOfferRoundedIcon
-                                    sx={{
-                                        fontSize: 19,
-                                    }}
-                                />
-                            </CardBadge>
-                            <CardBadge
-                                badgeContent={rating}
-                                color="secondary"
-                                max={5}
-                            >
-                                <GradeRoundedIcon
-                                    sx={{
-                                        fontSize: 19,
-                                    }}
-                                />
-                            </CardBadge>
+                                <Badge
+                                    badgeContent={views}
+                                    color="secondary"
+                                    max={999}
+                                >
+                                    <RemoveRedEyeRoundedIcon
+                                        sx={{
+                                            fontSize: 19,
+                                        }}
+                                    />
+                                </Badge>
+                                <Badge
+                                    badgeContent={purchases}
+                                    color="secondary"
+                                    max={999}
+                                >
+                                    <ShoppingCartRoundedIcon
+                                        sx={{
+                                            fontSize: 19,
+                                        }}
+                                    />
+                                </Badge>
+                                <Badge
+                                    badgeContent={rating}
+                                    color="secondary"
+                                    max={5}
+                                >
+                                    <GradeRoundedIcon
+                                        sx={{
+                                            fontSize: 19,
+                                        }}
+                                    />
+                                </Badge>
+                            </Box>
                         </Box>
                         <Typography
-                            variant="h6"
-                            color="text.primary"
-                            sx={{
-                                fontSize: "15px",
-                            }}
+                            variant="text"
+                            fontSize="16px"
+                            fontWeight="500"
                         >
                             {price} ₽
                         </Typography>
                     </Box>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <PrimaryButton
-                    onClick={handleAddToCart}
-                    disabled={isInCart}
-                    sx={{
-                        bgcolor: isInCart ? "darkred" : undefined,
-                        fontSize: "14px",
-                        lineHeight: 1.2,
-                    }}
-                >
-                    {isInCart ? "В корзине" : "Добавить в корзину"}
-                </PrimaryButton>
-                <Box
-                    sx={{
-                        padding: "3px",
-                        pr: 1,
-                        top: "10px",
-                        right: 0,
-                        cursor: "pointer",
-                    }}
-                >
-                    <IconButton onClick={toggleFavorites}>
-                        {isFavorite ? (
-                            <FavoriteIcon
-                                sx={{
-                                    fontSize: "30px",
-                                    color: "red",
-                                }}
-                            />
-                        ) : (
-                            <FavoriteBorderIcon sx={{ fontSize: "30px" }} />
-                        )}
-                    </IconButton>
                 </Box>
-            </CardActions>
-        </Card>
+            </Box>
+        </Box>
     );
 };

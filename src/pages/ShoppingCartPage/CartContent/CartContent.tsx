@@ -26,7 +26,7 @@ export const CartContent = () => {
 
     return (
         <SecondaryBox flex={1} alignSelf="start" p={3}>
-            <FlexBox alignItems="center" gap="8px">
+            <FlexBox alignItems="center" gap="8px" p={1}>
                 <Typography variant="title">Корзина</Typography>
                 <Typography
                     variant="text"
@@ -38,7 +38,7 @@ export const CartContent = () => {
                 </Typography>
             </FlexBox>
 
-            <FlexBox alignItems="center" ml={1}>
+            <FlexBox alignItems="center" mb={2}>
                 <Checkbox
                     checked={isAllIncludeInOrder}
                     color="secondary"
