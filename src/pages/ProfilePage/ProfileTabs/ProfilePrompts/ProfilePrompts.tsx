@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import UpdateRoundedIcon from "@mui/icons-material/UpdateRounded";
 import GradeRoundedIcon from "@mui/icons-material/GradeRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
@@ -8,14 +8,6 @@ import { ProfileSelect } from "../../components/ProfileSelect";
 import { ProfilePromptsModels } from "./ProfilePromptsModels";
 import { ProfilePromptsToggleMode } from "./ProfilePromptsToggleMode";
 import { ProfilePromptsLine } from "./ProfilePromptsLine";
-import { PromptCard } from "@/shared/ui/PromptCard";
-import { useGetCartQuery } from "@/entities/cart";
-import { useGetFavoritesQuery } from "@/entities/favorites";
-import { useGetAllPromptsQuery } from "@/entities/prompt";
-import {
-    getRandomImage,
-    getRandomModel,
-} from "@/pages/MarketplacePage/components/MarketplaceGrid/promptTest";
 
 const promptsSelectItems = {
     params: ["new", "rating", "like", "shop"],
@@ -51,26 +43,7 @@ export const ProfilePrompts = () => {
         });
     };
 
-    const { data: prompts = [] } = useGetAllPromptsQuery();
-
-    const { data: cart } = useGetCartQuery();
-    const cartItems = cart?.cartItems ?? [];
-
-    const { data: favorites } = useGetFavoritesQuery({
-        sort: "new",
-    });
-
-    const favoritesItems = favorites?.favoritesItems ?? [];
-
-    const updatedPrompts = prompts.map((prompt) => ({
-        ...prompt,
-        isInCart: cartItems.some(
-            (cartItem) => cartItem.prompt.id === prompt.id
-        ),
-        isFavorite: favoritesItems.some(
-            (favoritesItem) => favoritesItem.prompt.id === prompt.id
-        ),
-    }));
+    //const { data: prompts = [] } = useGetAllPromptsQuery();
 
     return (
         <>
@@ -90,8 +63,8 @@ export const ProfilePrompts = () => {
                 <ProfilePromptsModels model={model} handleModel={handleModel} />
             </Box>
             <Box sx={{ mt: 5 }}>
-                <Grid container spacing={4}>
-                    {updatedPrompts.map((item) => (
+                {/* <Grid container spacing={4}>
+                    {prompts.map((item) => (
                         <Grid item key={item.id}>
                             <PromptCard
                                 id={item.id}
@@ -108,7 +81,7 @@ export const ProfilePrompts = () => {
                             />
                         </Grid>
                     ))}
-                </Grid>
+                </Grid> */}
             </Box>
         </>
     );

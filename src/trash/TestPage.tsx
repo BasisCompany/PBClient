@@ -1,13 +1,19 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useAuth } from "@/shared/hooks/useAuth";
-import { PrimaryButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { useAddToCartMutation } from "@/entities/cart";
-import { useGetAllPromptsQuery } from "@/entities/prompt";
+import { useGetPromptsQuery } from "@/entities/prompt";
+import { PrimaryButton } from "@/shared/ui/Buttons/PrimaryButton";
 
 const TestPage = () => {
     const { isUserAuthenticated } = useAuth();
 
-    const { data = [] } = useGetAllPromptsQuery();
+    const { data } = useGetPromptsQuery({
+        sort: "1",
+        page: 1,
+        take: 20,
+        model: "",
+        price: "",
+    });
     const [addToCart] = useAddToCartMutation();
 
     const handleAddToCart = async (id: number) => {
@@ -18,16 +24,18 @@ const TestPage = () => {
         }
     };
 
+    const prompts = data?.data ?? [];
+
     return (
         <Box sx={{ display: "flex" }}>
             <Box>
                 <Typography variant="title">Промпты</Typography>
 
                 <Grid container sx={{ m: 2, gap: "10px" }}>
-                    {data.map((el) => (
+                    {prompts.map((el) => (
                         <Box
                             width="200px"
-                            height="150px"
+                            height="250px"
                             sx={{ border: "2px solid white", p: 1 }}
                             key={el.id}
                         >

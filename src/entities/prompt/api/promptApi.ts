@@ -1,12 +1,17 @@
+import { PromptsRequest } from "./types";
 import { Prompt } from "@/entities/prompt";
 import { baseApi } from "@/shared/api";
+import { PageResponse } from "@/shared/types";
 
 export const promptApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        getAllPrompts: build.query<Prompt[], void>({
-            query: () => "prompt",
+        getPrompts: build.query<PageResponse<Prompt>, PromptsRequest>({
+            query: ({ sort, page, take, ...filters }) => ({
+                url: `prompt`,
+                params: { sort, page, take, ...filters },
+            }),
         }),
     }),
 });
 
-export const { useGetAllPromptsQuery } = promptApi;
+export const { useGetPromptsQuery } = promptApi;
