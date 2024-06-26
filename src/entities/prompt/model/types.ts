@@ -3,4 +3,6 @@ export interface Prompt {
     title: string;
     url: string;
     price: number;
+    isFavorite?: boolean;
+    isInCart?: boolean;
 }

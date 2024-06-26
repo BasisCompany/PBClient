@@ -17,7 +17,7 @@ export const favoritesApi = baseApi.injectEndpoints({
                 method: "PATCH",
             }),
             //TOOD: Optimistic update
-            invalidatesTags: ["Favorites"],
+            invalidatesTags: ["Favorites", "Prompt"],
         }),
         deleteFromFavorites: build.mutation<void, number>({
             query: (id) => ({
@@ -25,7 +25,7 @@ export const favoritesApi = baseApi.injectEndpoints({
                 method: "DELETE",
             }),
             //TOOD: Optimistic update
-            invalidatesTags: ["Favorites"],
+            invalidatesTags: ["Favorites", "Prompt"],
         }),
     }),
 });

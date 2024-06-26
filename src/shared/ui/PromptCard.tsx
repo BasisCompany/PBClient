@@ -43,8 +43,8 @@ export interface PromptCardProps {
     purchases: number;
     rating: string;
     price: number;
-    isInCart: boolean;
-    isFavorite: boolean;
+    isInCart?: boolean;
+    isFavorite?: boolean;
 }
 
 export const PromptCard: FC<PromptCardProps> = ({

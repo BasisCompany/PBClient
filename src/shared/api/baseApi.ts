@@ -8,6 +8,7 @@ export const baseApi = createApi({
         "Comment",
         "User",
         "Session",
+        "Prompt",
         "Cart",
         "Favorites",
     ],

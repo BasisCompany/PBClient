@@ -5,8 +5,8 @@ import {
     DeleteLikeRequest,
     CommentsRequest,
 } from "./types";
-import { PageResponse } from "@/shared/types/pagination.type";
 import { baseApi } from "@/shared/api";
+import { PageResponse } from "@/shared/types";
 
 export const commentApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
