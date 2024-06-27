@@ -28,7 +28,7 @@ export const commentApi = baseApi.injectEndpoints({
         }),
         addReply: build.mutation<void, AddReplyRequest>({
             query: (body) => ({
-                url: "comments/add/reply",
+                url: "comments/reply",
                 method: "POST",
                 body,
             }),
@@ -38,21 +38,21 @@ export const commentApi = baseApi.injectEndpoints({
         }),
         deleteComment: build.mutation<void, number>({
             query: (id) => ({
-                url: `comments/delete/comment/${id}`,
+                url: `comments/${id}`,
                 method: "DELETE",
             }),
             invalidatesTags: ["Comment"],
         }),
         deleteReply: build.mutation<void, number>({
             query: (id) => ({
-                url: `comments/delete/reply/${id}`,
+                url: `comments/reply/${id}`,
                 method: "DELETE",
             }),
             invalidatesTags: ["Comment"],
         }),
         addLike: build.mutation<void, AddLikeRequest>({
             query: ({ isReply: _, ...body }) => ({
-                url: "comments/add/like",
+                url: "comments/like",
                 method: "POST",
                 body,
             }),
@@ -62,7 +62,7 @@ export const commentApi = baseApi.injectEndpoints({
             ) {
                 const commentEntry = commentApi.util.selectInvalidatedBy(
                     getState(),
-                    [{ type: "Comment", id: commentId }]
+                    [{ type: "Comment" }]
                 )[0];
 
                 const updateCommentLikes = (draft: PageResponse<Comment>) => {
@@ -103,7 +103,7 @@ export const commentApi = baseApi.injectEndpoints({
         }),
         deleteLike: build.mutation<void, DeleteLikeRequest>({
             query: ({ commentId }) => ({
-                url: `comments/delete/like/${commentId}`,
+                url: `comments/like/${commentId}`,
                 method: "DELETE",
             }),
             onQueryStarted(
@@ -112,7 +112,7 @@ export const commentApi = baseApi.injectEndpoints({
             ) {
                 const commentEntry = commentApi.util.selectInvalidatedBy(
                     getState(),
-                    [{ type: "Comment", id: commentId }]
+                    [{ type: "Comment" }]
                 )[0];
 
                 const updateCommentLikes = (draft: PageResponse<Comment>) => {
