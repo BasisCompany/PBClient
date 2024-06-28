@@ -20,6 +20,7 @@ export const MarketplaceGrid: FC<MarketplaceGridProps> = ({ prompts }) => {
                     <Grid item key={item.id}>
                         <PromptCard
                             id={item.id}
+                            url={item.url}
                             title={item.title}
                             price={item.price}
                             isInCart={item.isInCart}

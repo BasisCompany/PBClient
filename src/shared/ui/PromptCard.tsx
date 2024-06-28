@@ -7,7 +7,7 @@ import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
 import { Image } from "./Image";
-import { LinkIconButton } from "./Links";
+import { LinkBox, LinkIconButton } from "./Links";
 import {
     useAddToFavoritesMutation,
     useDeleteFromFavoritesMutation,
@@ -20,6 +20,7 @@ export interface PromptCardProps {
         icon: React.ReactNode;
         iconName: string;
     };
+    url?: string;
     title: string;
     description: string;
     views: number;
@@ -34,6 +35,7 @@ export const PromptCard: FC<PromptCardProps> = ({
     id,
     image,
     model: { icon, iconName },
+    url,
     title,
     description,
     views,
@@ -63,9 +65,9 @@ export const PromptCard: FC<PromptCardProps> = ({
             component="article"
             sx={{
                 maxWidth: "203px",
-                height: "360px", //285
+                height: "360px",
                 borderRadius: "15px",
-                //bgcolor: "primary.dark",
+                position: "relative",
                 ":hover": {
                     cursor: "pointer",
                     boxShadow: "action.hover 0px 0px 0px 3px",
@@ -78,7 +80,7 @@ export const PromptCard: FC<PromptCardProps> = ({
                         src={image}
                         height="200px"
                         width="203px"
-                        sx={{ borderRadius: "10px 10px 10px 10px" }}
+                        borderRadius="10px"
                     />
                     <Box
                         sx={{
@@ -106,6 +108,7 @@ export const PromptCard: FC<PromptCardProps> = ({
                     </Box>
                     <Box
                         sx={{
+                            zIndex: 1,
                             position: "absolute",
                             top: "6px",
                             left: "160px",
@@ -132,6 +135,7 @@ export const PromptCard: FC<PromptCardProps> = ({
                     {isInCart && (
                         <Box
                             sx={{
+                                zIndex: 1,
                                 position: "absolute",
                                 top: "40px",
                                 left: "160px",
@@ -247,6 +251,7 @@ export const PromptCard: FC<PromptCardProps> = ({
                     </Box>
                 </Box>
             </Box>
+            <LinkBox to={`../prompt/${url}`} />
         </Box>
     );
 };
