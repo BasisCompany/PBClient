@@ -1,14 +1,23 @@
 import { FC, memo } from "react";
 import { Box, Checkbox, IconButton, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { FlexBox } from "@/shared/ui/FlexBox";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
 import {
     useAddToOrderMutation,
     useDeleteFromCartMutation,
 } from "@/entities/cart";
+import {
+    useAddToFavoritesMutation,
+    useDeleteFromFavoritesMutation,
+} from "@/entities/favorites";
+
 import { CartItem } from "@/entities/cart/model/types";
-import { getRandomImage } from "@/pages/MarketplacePage/components/MarketplaceGrid/promptTest";
+import {
+    getRandomImage,
+    getRandomModel,
+} from "@/pages/MarketplacePage/components/MarketplaceGrid/promptTest";
 import { Image } from "@/shared/ui/Image";
 
 interface CartPromptItemProps {
@@ -16,6 +25,9 @@ interface CartPromptItemProps {
 }
 
 export const CartPromptItem: FC<CartPromptItemProps> = memo(({ cartItem }) => {
+    const model = getRandomModel(cartItem.prompt.id);
+    const [addToFavorites] = useAddToFavoritesMutation();
+    const [deleteFromFavorites] = useDeleteFromFavoritesMutation();
     const [addToOrder] = useAddToOrderMutation();
     const [deleteFromCart] = useDeleteFromCartMutation();
 
@@ -33,6 +45,18 @@ export const CartPromptItem: FC<CartPromptItemProps> = memo(({ cartItem }) => {
     const handleDeleteFromCart = async () => {
         try {
             await deleteFromCart(cartItem.prompt.id).unwrap();
+        } catch (error) {
+            /* empty */
+        }
+    };
+
+    const toggleFavorites = async () => {
+        try {
+            if (cartItem.prompt.isFavorite) {
+                await deleteFromFavorites(cartItem.prompt.id);
+            } else {
+                await addToFavorites(cartItem.prompt.id);
+            }
         } catch (error) {
             /* empty */
         }
@@ -56,12 +80,38 @@ export const CartPromptItem: FC<CartPromptItemProps> = memo(({ cartItem }) => {
                 checked={cartItem.includeInOrder}
                 onChange={handleAddToOrder}
             />
-            <Image
-                src={getRandomImage(cartItem.prompt.id)}
-                height="128px"
-                width="300px"
-                sx={{ borderRadius: "10px 10px 10px 10px" }}
-            />
+            <Box sx={{ position: "relative" }}>
+                <Image
+                    src={getRandomImage(cartItem.prompt.id)}
+                    height="128px"
+                    width="300px"
+                    sx={{ borderRadius: "10px 10px 10px 10px" }}
+                />
+                <Box
+                    sx={{
+                        position: "absolute",
+                        padding: "3px",
+                        pr: 1,
+                        top: "13px",
+                        borderRadius: "0px 10px 10px 0px",
+                        cursor: "pointer",
+                        bgcolor: "#272727",
+                        display: "flex",
+                    }}
+                >
+                    {model.icon}
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            fontSize: 13,
+                            marginTop: "2px",
+                            cursor: "pointer",
+                        }}
+                    >
+                        {model.iconName}
+                    </Typography>
+                </Box>
+            </Box>
 
             <FlexBox
                 sx={{
@@ -118,8 +168,22 @@ export const CartPromptItem: FC<CartPromptItemProps> = memo(({ cartItem }) => {
                     {cartItem.prompt.price} ₽
                 </Box>
                 <FlexBox sx={{ alignItems: "center", height: "70%" }}>
-                    <IconButton>
-                        <BookmarkIcon />
+                    <IconButton onClick={toggleFavorites}>
+                        {cartItem.prompt.isFavorite ? (
+                            <FavoriteIcon
+                                sx={{
+                                    fontSize: "25px",
+                                    color: "red",
+                                }}
+                            />
+                        ) : (
+                            <FavoriteTwoToneIcon
+                                sx={{
+                                    fontSize: "25px",
+                                    color: "white",
+                                }}
+                            />
+                        )}
                     </IconButton>
                     <IconButton onClick={handleDeleteFromCart}>
                         <DeleteIcon />
