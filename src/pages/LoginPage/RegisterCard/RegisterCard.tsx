@@ -1,5 +1,5 @@
 import { DispatchWithoutAction, FC } from "react";
-import { Card, CardContent } from "@mui/material";
+import { Box } from "@mui/material";
 import { SocialSection } from "../components/SocialSection";
 import { RegisterForm } from "./RegisterForm";
 import { LoginButton } from "./LoginButton";
@@ -14,7 +14,7 @@ interface RegisterCardProps {
 //TODO[Артем]: Replace Card with Box
 export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
     return (
-        <Card
+        <Box
             sx={{
                 width: { xs: "100%", sm: "100%", md: "350px" },
                 height: "810px",
@@ -23,12 +23,12 @@ export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
             }}
         >
             <RegisterHeader toggleLogin={toggleLogin} />
-            <CardContent>
+            <Box p={2}>
                 <RegisterTitle />
                 <SocialSection />
                 <RegisterForm toggleLogin={toggleLogin} />
                 <LoginButton toggleLogin={toggleLogin} />
-            </CardContent>
-        </Card>
+            </Box>
+        </Box>
     );
 };
