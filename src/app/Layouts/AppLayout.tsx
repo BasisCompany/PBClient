@@ -24,7 +24,6 @@ const MainContainer = styled((props: ContainerProps) => (
 export const AppLayout = () => {
     const { isLoading } = useUserQuery();
 
-    //TODO[Артем]: Стилизовать
     if (isLoading) {
         return <LoadingPage />;
     }

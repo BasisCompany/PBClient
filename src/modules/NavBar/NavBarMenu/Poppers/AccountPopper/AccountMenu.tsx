@@ -29,6 +29,12 @@ const StyledList = styled(List)(({ theme }) => ({
             backgroundColor: theme.palette.bgcolor.modal.primary.hover,
         },
     },
+    "& .MuiListItemButton-root:last-child": {
+        "&:hover": {
+            transition: "all 0.2s ease-in",
+            backgroundColor: "rgba(233,30,99,0.2)",
+        },
+    },
     "& .MuiListItemIcon-root": {
         minWidth: 0,
         marginRight: 16,
@@ -37,8 +43,6 @@ const StyledList = styled(List)(({ theme }) => ({
         fontSize: 20,
     },
 }));
-
-//TODO[Артем]: Размеры каждого эл-та
 
 export const AccountMenu = () => {
     const { closePopper } = usePopper();
