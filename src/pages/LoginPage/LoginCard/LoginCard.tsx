@@ -11,7 +11,6 @@ interface LoginCardProps {
     toggleLogin: DispatchWithoutAction;
 }
 
-//TODO[Артем]: Replace Card with Box
 export const LoginCard: FC<LoginCardProps> = ({ toggleLogin }) => {
     return (
         <Box
