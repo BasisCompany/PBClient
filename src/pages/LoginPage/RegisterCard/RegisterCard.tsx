@@ -11,7 +11,6 @@ interface RegisterCardProps {
 }
 
 //TODO: Handle error
-//TODO[Артем]: Replace Card with Box
 export const RegisterCard: FC<RegisterCardProps> = ({ toggleLogin }) => {
     return (
         <Box

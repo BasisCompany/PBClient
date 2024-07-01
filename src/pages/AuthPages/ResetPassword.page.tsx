@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import { CenterBox } from "@/shared/ui/CenterBox";
@@ -7,6 +7,7 @@ import { useResetPasswordMutation } from "@/entities/auth";
 import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { Form, ExtSubmitHandler, InputTextPassword } from "@/shared/ui/Forms";
 import { ResetPasswordSchema, resetPasswordSchema } from "@/shared/schema";
+import { toaster } from "@/app/providers/Toast";
 
 export const ResetPasswordPage = () => {
     const { resetToken } = useParams();
@@ -22,12 +23,12 @@ export const ResetPasswordPage = () => {
             password: data.password,
         }).unwrap();
         reset();
-        //TODO: Карточка с значком успешно
+        toaster.success(`Пароль успешно обновлен`);
     };
 
     return (
         <CenterBox>
-            <Card
+            <Box
                 sx={{
                     width: "350px",
                     height: "500px",
@@ -42,23 +43,23 @@ export const ResetPasswordPage = () => {
                         marginBottom: "40px",
                     }}
                 >
-                    <CardHeader
+                    <Box
                         sx={{
                             height: "40px",
                             paddingLeft: "5px",
+                            paddingTop: "5px",
                             marginTop: "7px",
                         }}
-                        action={
-                            <LockResetRoundedIcon
-                                sx={{
-                                    color: "#00FF00",
-                                    fontSize: 70,
-                                }}
-                            />
-                        }
-                    />
+                    >
+                        <LockResetRoundedIcon
+                            sx={{
+                                color: "rgba(76,175,80,1)",
+                                fontSize: 70,
+                            }}
+                        />
+                    </Box>
                 </Box>
-                <CardContent>
+                <Box p={2}>
                     <Typography
                         variant="h6"
                         color="text.primary"
@@ -95,12 +96,14 @@ export const ResetPasswordPage = () => {
                         schema={resetPasswordSchema}
                     >
                         <InputTextPassword
+                            sx={{ mt: 3 }}
                             name="password"
                             label="Пароль"
                             helperText="Укажите новый пароль"
                             labelIcon={<LockOpenRoundedIcon />}
                         />
                         <InputTextPassword
+                            sx={{ mt: 3 }}
                             name="passwordConfirm"
                             label="Подтвердите пароль"
                             helperText="Подтвердите новый пароль"
@@ -122,8 +125,8 @@ export const ResetPasswordPage = () => {
                             </PrimaryLoadingButton>
                         </Box>
                     </Form>
-                </CardContent>
-            </Card>
+                </Box>
+            </Box>
         </CenterBox>
     );
 };

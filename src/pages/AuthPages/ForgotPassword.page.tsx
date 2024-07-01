@@ -1,12 +1,13 @@
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
-import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useLazyForgotPasswordQuery } from "@/entities/auth";
 import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { CenterBox } from "@/shared/ui/CenterBox";
 import { Form, ExtSubmitHandler, InputText } from "@/shared/ui/Forms";
 import { FakeCaptcha } from "@/trash/FakeCaptcha";
 import { ForgotPasswordSchema, forgotPasswordSchema } from "@/shared/schema";
+import { toaster } from "@/app/providers/Toast";
 
 export const ForgotPasswordPage = () => {
     const [forgotPassword, { isLoading }] = useLazyForgotPasswordQuery();
@@ -17,12 +18,12 @@ export const ForgotPasswordPage = () => {
     ) => {
         await forgotPassword(data.email).unwrap();
         reset();
-        //TODO: Карточка с значком успешно
+        toaster.success(`Сообщение отправлено на почту ${data.email}`);
     };
 
     return (
         <CenterBox>
-            <Card
+            <Box
                 sx={{
                     maxWidth: "400px",
                     minHeight: "390px",
@@ -46,13 +47,13 @@ export const ForgotPasswordPage = () => {
                     >
                         <ForwardToInboxOutlinedIcon
                             sx={{
-                                color: "#00FF00",
+                                color: "rgba(76,175,80,1)",
                                 fontSize: 70,
                             }}
                         />
                     </Box>
                 </Box>
-                <CardContent>
+                <Box p={2}>
                     <Typography
                         variant="h6"
                         color="text.primary"
@@ -115,8 +116,8 @@ export const ForgotPasswordPage = () => {
                             </PrimaryLoadingButton>
                         </Box>
                     </Form>
-                </CardContent>
-            </Card>
+                </Box>
+            </Box>
         </CenterBox>
     );
 };
