@@ -9,9 +9,20 @@ import {
 } from "@mui/material";
 import { useController } from "react-hook-form";
 
-//TODO: Custom Select
 const CssMuiSelect = styled(MuiSelect)(({ theme }) => ({
-    "& label.Mui-focused": {
+    "& .MuiOutlinedInput-notchedOutline": {
+        border: `1px solid ${theme.palette.text.secondary}`,
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+        border: `1px solid ${theme.palette.text.primary}`,
+    },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        border: `2px solid ${theme.palette.text.primary}`,
+    },
+}));
+
+const CssInputLabel = styled(InputLabel)(({ theme }) => ({
+    "&.MuiInputLabel-outlined.Mui-focused": {
         color: theme.palette.text.primary,
     },
 }));
@@ -29,7 +40,7 @@ export const Select: FC<SelectProps> = ({ name, options, label, ...props }) => {
 
     return (
         <FormControl>
-            <InputLabel>{label}</InputLabel>
+            <CssInputLabel>{label}</CssInputLabel>
             <CssMuiSelect {...field} label={label} {...props}>
                 {options.map(({ value, label }) => (
                     <MenuItem key={value} value={value}>
