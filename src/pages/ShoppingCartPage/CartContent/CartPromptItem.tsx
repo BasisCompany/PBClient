@@ -1,9 +1,9 @@
 import { FC, memo } from "react";
 import { Box, Checkbox, IconButton, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { FlexBox } from "@/shared/ui/FlexBox";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
+import { FlexBox } from "@/shared/ui/FlexBox";
 import {
     useAddToOrderMutation,
     useDeleteFromCartMutation,
