@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Box, Grid, Divider, Typography } from "@mui/material";
-import { PromptCard } from "@/shared/ui/PromptCard";
 import { Prompt } from "@/entities/prompt";
+import { PromptCard } from "@/shared/ui/PromptCard";
 
 interface MarketplaceGridProps {
     prompts: Prompt[];
