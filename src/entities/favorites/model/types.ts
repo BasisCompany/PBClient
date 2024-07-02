@@ -7,4 +7,5 @@ export interface FavoritesItem {
 
 export interface Favorites {
     favoritesItems: FavoritesItem[];
+    itemsCount: number;
 }
