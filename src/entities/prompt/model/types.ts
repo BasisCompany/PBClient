@@ -3,6 +3,13 @@ export interface Prompt {
     title: string;
     url: string;
     price: number;
+    createdAt: Date;
+    updatedAt: Date;
+    hasImages: boolean;
+    aIModel: {
+        name: string;
+        logo: string;
+    };
     isFavorite?: boolean;
     isInCart?: boolean;
 }

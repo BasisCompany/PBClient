@@ -6,45 +6,33 @@ import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
 import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
+import { getUrlRoot } from "../utils/getUrlRoot";
+import { formatAiModel } from "../utils/promptFormatter";
 import { Image } from "./Image";
 import { LinkBox, LinkIconButton } from "./Links";
 import {
     useAddToFavoritesMutation,
     useDeleteFromFavoritesMutation,
 } from "@/entities/favorites";
+import { Prompt } from "@/entities/prompt";
+import { getRandomImage } from "@/pages/MarketplacePage/components/MarketplaceGrid/promptTest";
 
 export interface PromptCardProps {
-    id: number;
-    image: string;
-    model: {
-        icon: React.ReactNode;
-        iconName: string;
-    };
-    url?: string;
-    title: string;
-    description: string;
-    views: number;
-    purchases: number;
-    rating: string;
-    price: number;
-    isInCart?: boolean;
-    isFavorite?: boolean;
+    prompt: Prompt;
 }
 
-export const PromptCard: FC<PromptCardProps> = ({
-    id,
-    image,
-    model: { icon, iconName },
-    url,
-    title,
-    description,
-    views,
-    purchases,
-    rating,
-    price,
-    isInCart,
-    isFavorite,
-}) => {
+export const PromptCard: FC<PromptCardProps> = ({ prompt }) => {
+    const { id, url, title, price, aIModel, isFavorite, isInCart } = prompt;
+
+    //TODO: prompt fields
+    const image = getRandomImage(id);
+    const description =
+        "Lorem ipsum, or lipsum as it is sometimes known, is dummy text";
+
+    const views = 1;
+    const purchases = 15;
+    const rating = 2;
+
     const [addToFavorites] = useAddToFavoritesMutation();
     const [deleteFromFavorites] = useDeleteFromFavoritesMutation();
 
@@ -94,7 +82,11 @@ export const PromptCard: FC<PromptCardProps> = ({
                             display: "flex",
                         }}
                     >
-                        {icon}
+                        <Image
+                            src={getUrlRoot(aIModel.logo)}
+                            height="24px"
+                            width="24px"
+                        />
                         <Typography
                             variant="h6"
                             sx={{
@@ -103,7 +95,7 @@ export const PromptCard: FC<PromptCardProps> = ({
                                 cursor: "pointer",
                             }}
                         >
-                            {iconName}
+                            {formatAiModel(aIModel.name)}
                         </Typography>
                     </Box>
                     <Box

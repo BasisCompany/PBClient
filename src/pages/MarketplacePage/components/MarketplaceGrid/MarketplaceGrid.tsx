@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Box, Grid, Divider, Typography } from "@mui/material";
-import { getRandomImage, getRandomModel } from "./promptTest";
 import { PromptCard } from "@/shared/ui/PromptCard";
 import { Prompt } from "@/entities/prompt";
 
@@ -16,22 +15,9 @@ export const MarketplaceGrid: FC<MarketplaceGridProps> = ({ prompts }) => {
             </Typography>
             <Divider sx={{ mb: 4, bgcolor: "#fff" }} />
             <Grid container spacing={4}>
-                {prompts.map((item) => (
-                    <Grid item key={item.id}>
-                        <PromptCard
-                            id={item.id}
-                            url={item.url}
-                            title={item.title}
-                            price={item.price}
-                            isInCart={item.isInCart}
-                            isFavorite={item.isFavorite}
-                            image={getRandomImage(item.id)}
-                            model={getRandomModel(item.id)}
-                            views={1}
-                            purchases={15}
-                            rating="2"
-                            description="Lorem ipsum, or lipsum as it is sometimes known, is dummy text"
-                        />
+                {prompts.map((prompt) => (
+                    <Grid item key={prompt.id}>
+                        <PromptCard prompt={prompt} />
                     </Grid>
                 ))}
             </Grid>
