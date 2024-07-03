@@ -17,14 +17,24 @@ export const cartApi = baseApi.injectEndpoints({
                 url: `cart/${id}`,
                 method: "PATCH",
             }),
-            invalidatesTags: ["Cart", { type: "Cart", id: "COUNT" }, "Prompt"],
+            invalidatesTags: [
+                "Cart",
+                { type: "Cart", id: "COUNT" },
+                "Prompt",
+                "Favorites",
+            ],
         }),
         deleteFromCart: build.mutation<void, number>({
             query: (id) => ({
                 url: `cart/${id}`,
                 method: "DELETE",
             }),
-            invalidatesTags: ["Cart", { type: "Cart", id: "COUNT" }, "Prompt"],
+            invalidatesTags: [
+                "Cart",
+                { type: "Cart", id: "COUNT" },
+                "Prompt",
+                "Favorites",
+            ],
         }),
 
         addToOrder: build.mutation<void, AddToOrderRequest>({
