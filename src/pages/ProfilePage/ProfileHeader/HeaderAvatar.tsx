@@ -22,14 +22,12 @@ export const HeaderAvatar = () => {
                 <Avatar
                     src={avatar}
                     alt={username}
+                    width={{ xs: "180px", md: "220px" }}
+                    height={{ xs: "180px", md: "220px" }}
                     sx={{
-                        objectFit: "cover",
                         border: "5px solid",
-                        display: "block",
                         borderColor: (theme) =>
                             theme.palette.bgcolor.secondary.main,
-                        width: { xs: "180px", md: "220px" },
-                        height: { xs: "180px", md: "220px" },
                         borderRadius: "50%",
                     }}
                 />
