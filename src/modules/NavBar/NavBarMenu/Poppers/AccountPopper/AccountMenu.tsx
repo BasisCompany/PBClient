@@ -65,20 +65,20 @@ export const AccountMenu = () => {
         <StyledList>
             {isMobile && (
                 <>
-                    <ListItemButton onClick={closePopper}>
+                    <LinkListItemButton to="favorites" onClick={closePopper}>
                         <ListItemIcon>
                             <BookmarkIcon />
                         </ListItemIcon>
                         Избранное
-                    </ListItemButton>
-                    <ListItemButton onClick={closePopper}>
+                    </LinkListItemButton>
+                    <LinkListItemButton to="cart" onClick={closePopper}>
                         <ListItemIcon>
                             <Badge badgeContent={4} color="secondary">
                                 <ShoppingBasketIcon />
                             </Badge>
                         </ListItemIcon>
                         Корзина
-                    </ListItemButton>
+                    </LinkListItemButton>
                     <LinkListItemButton
                         to={`user/${userId}/notifications`}
                         onClick={closePopper}
