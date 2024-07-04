@@ -17,19 +17,17 @@ export const HeaderAvatar = () => {
                 sx={{
                     position: "absolute",
                     transform: "translateY(-60%)",
-                    width: { xs: "180px", md: "220px" },
-                    height: { xs: "180px", md: "220px" },
                 }}
             >
                 <Avatar
                     src={avatar}
                     alt={username}
+                    width={{ xs: "180px", md: "220px" }}
+                    height={{ xs: "180px", md: "220px" }}
                     sx={{
                         border: "5px solid",
                         borderColor: (theme) =>
                             theme.palette.bgcolor.secondary.main,
-                        width: "100%",
-                        height: "100%",
                         borderRadius: "50%",
                     }}
                 />
