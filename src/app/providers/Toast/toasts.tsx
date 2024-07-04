@@ -1,10 +1,12 @@
 import { Id, toast } from "react-toastify";
+import { alpha } from "@mui/material";
+import { pbColors } from "../Theme";
 
 export const toaster = (message: string): Id => toast(message);
 
 toaster.success = (message: string): Id =>
     toast.success(message, {
-        style: { backgroundColor: "rgba(76,175,80,1)" },
+        style: { backgroundColor: alpha(pbColors.green, 1) },
     });
 
 toaster.error = (message: string): Id => toast.error(message);

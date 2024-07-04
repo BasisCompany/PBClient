@@ -1,4 +1,5 @@
 import {
+    alpha,
     Badge,
     List,
     ListItemButton,
@@ -20,6 +21,7 @@ import { useLazyLogoutQuery } from "@/entities/auth";
 import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
 import { LinkListItemButton } from "@/shared/ui/Links/LinkListItemButton";
 import { useUserId } from "@/shared/hooks/useUserId";
+import { pbColors } from "@/app/providers/Theme";
 
 const StyledList = styled(List)(({ theme }) => ({
     "& .MuiListItemButton-root": {
@@ -32,7 +34,7 @@ const StyledList = styled(List)(({ theme }) => ({
     "& .MuiListItemButton-root:last-child": {
         "&:hover": {
             transition: "all 0.2s ease-in",
-            backgroundColor: "rgba(233,30,99,0.2)",
+            backgroundColor: alpha(pbColors.red, 0.2),
         },
     },
     "& .MuiListItemIcon-root": {

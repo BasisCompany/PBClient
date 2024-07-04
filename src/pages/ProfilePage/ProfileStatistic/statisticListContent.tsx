@@ -1,13 +1,15 @@
+import { alpha } from "@mui/material";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import IntegrationInstructionsRoundedIcon from "@mui/icons-material/IntegrationInstructionsRounded";
 import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
+import { pbColors } from "@/app/providers/Theme";
 
 export const statisticListContent = [
     {
         id: 0,
-        borderColor: "rgba(233,30,99,0.5)",
-        iconColor: "rgba(233,30,99,1)",
+        borderColor: alpha(pbColors.red, 0.5),
+        iconColor: alpha(pbColors.red, 1),
         icon: (
             <FavoriteRoundedIcon
                 sx={{
@@ -48,8 +50,8 @@ export const statisticListContent = [
     },
     {
         id: 3,
-        borderColor: "rgba(76,175,80,0.5)",
-        iconColor: "rgba(76,175,80,1)",
+        borderColor: alpha(pbColors.green, 0.5),
+        iconColor: alpha(pbColors.green, 1),
         icon: (
             <RemoveRedEyeRoundedIcon
                 sx={{

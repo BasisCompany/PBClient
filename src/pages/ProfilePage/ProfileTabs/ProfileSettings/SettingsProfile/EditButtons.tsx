@@ -10,6 +10,7 @@ import {
     FetchBaseQueryError,
 } from "@reduxjs/toolkit/dist/query";
 import { MutationTrigger } from "@reduxjs/toolkit/dist/query/react/buildHooks";
+import { pbColors } from "@/app/providers/Theme";
 
 const buttonStyles = {
     position: "absolute",
@@ -102,7 +103,7 @@ export const EditButtons: FC<EditButtonsProps> = ({
                         ":hover": {
                             cursor: "pointer",
                             transition: "all 0.2s ease-in",
-                            bgcolor: "rgba(233,30,99,0.9)",
+                            bgcolor: alpha(pbColors.red, 0.9),
                         },
                     }}
                 >

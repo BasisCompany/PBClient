@@ -1,8 +1,9 @@
-import { Box, Typography, Divider } from "@mui/material";
+import { Box, Typography, Divider, alpha } from "@mui/material";
 import { PaymentMethod } from "./PaymentMethod";
 import { PrimaryButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { FlexBox } from "@/shared/ui/FlexBox";
 import { useGetCartQuery } from "@/entities/cart";
+import { pbColors } from "@/app/providers/Theme";
 
 export const CartSidebar = () => {
     const { data } = useGetCartQuery();
@@ -48,7 +49,10 @@ export const CartSidebar = () => {
                 {discount > 0 && (
                     <FlexBox justifyContent="space-between" mt={2}>
                         <Typography variant="text">Скидка</Typography>
-                        <Typography variant="text" color="rgba(233,30,99,1)">
+                        <Typography
+                            variant="text"
+                            color={alpha(pbColors.red, 1)}
+                        >
                             - {discount} ₽
                         </Typography>
                     </FlexBox>

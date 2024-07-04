@@ -1,11 +1,12 @@
 import { FC } from "react";
-import { Box, Typography } from "@mui/material";
+import { alpha, Box, Typography } from "@mui/material";
 import ComputerIcon from "@mui/icons-material/Computer";
 import SmartphoneIcon from "@mui/icons-material/Smartphone";
 import TabletAndroidIcon from "@mui/icons-material/TabletAndroid";
 import { Device } from "@/entities/user";
 import { formatTimeDistanceToNow } from "@/shared/utils/timeFormatter";
 import { FlexBox } from "@/shared/ui/FlexBox";
+import { pbColors } from "@/app/providers/Theme";
 
 interface DeviceProps {
     device: Device;
@@ -65,7 +66,7 @@ export const Session: FC<DeviceProps> = ({ device, isCurrent = false }) => {
                             {isCurrent ? (
                                 <Typography
                                     component="span"
-                                    color="rgba(76, 175, 80, 1)"
+                                    color={alpha(pbColors.green, 1)}
                                     fontSize={14}
                                 >
                                     Активный

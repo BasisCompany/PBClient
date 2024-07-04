@@ -1,11 +1,12 @@
 import { FC } from "react";
-import { Box, IconButton, Tooltip, Typography } from "@mui/material";
+import { alpha, Box, IconButton, Tooltip, Typography } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import {
     Comment,
     useAddLikeMutation,
     useDeleteLikeMutation,
 } from "@/entities/comment";
+import { pbColors } from "@/app/providers/Theme";
 
 interface CommentRatingProps {
     comment: Comment;
@@ -35,12 +36,14 @@ export const CommentRating: FC<CommentRatingProps> = ({
             <IconButton
                 onClick={() => void handleClickLike(true)}
                 sx={{
-                    bgcolor: current_mark ? "rgba(76,175,80,0.15)" : "none",
+                    bgcolor: current_mark
+                        ? alpha(pbColors.green, 0.15)
+                        : "none",
                 }}
             >
                 <KeyboardArrowUpIcon
                     sx={{
-                        color: "rgba(76,175,80,1)",
+                        color: alpha(pbColors.green, 1),
                         fontSize: "20px",
                     }}
                 />
@@ -69,13 +72,13 @@ export const CommentRating: FC<CommentRatingProps> = ({
                 sx={{
                     bgcolor:
                         current_mark === false
-                            ? "rgba(233,30,99,0.15)"
+                            ? alpha(pbColors.red, 0.15)
                             : "none",
                 }}
             >
                 <KeyboardArrowUpIcon
                     sx={{
-                        color: "rgba(233,30,99,1)",
+                        color: alpha(pbColors.red, 1),
                         fontSize: "20px",
                         rotate: "180deg",
                     }}

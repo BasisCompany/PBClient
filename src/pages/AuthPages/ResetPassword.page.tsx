@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { Box, Typography } from "@mui/material";
+import { alpha, Box, Typography } from "@mui/material";
 import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded";
 import LockOpenRoundedIcon from "@mui/icons-material/LockOpenRounded";
 import { CenterBox } from "@/shared/ui/CenterBox";
@@ -8,6 +8,7 @@ import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { Form, ExtSubmitHandler, InputTextPassword } from "@/shared/ui/Forms";
 import { ResetPasswordSchema, resetPasswordSchema } from "@/shared/schema";
 import { toaster } from "@/app/providers/Toast";
+import { pbColors } from "@/app/providers/Theme";
 
 export const ResetPasswordPage = () => {
     const { resetToken } = useParams();
@@ -53,7 +54,7 @@ export const ResetPasswordPage = () => {
                     >
                         <LockResetRoundedIcon
                             sx={{
-                                color: "rgba(76,175,80,1)",
+                                color: alpha(pbColors.green, 1),
                                 fontSize: 70,
                             }}
                         />

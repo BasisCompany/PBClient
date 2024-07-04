@@ -1,4 +1,4 @@
-import { Box, ButtonBase, Skeleton, Typography } from "@mui/material";
+import { alpha, Box, ButtonBase, Skeleton, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Session } from "./Session";
 import { useAuth } from "@/shared/hooks/useAuth";
@@ -8,6 +8,7 @@ import {
 } from "@/entities/user";
 import { FlexBox } from "@/shared/ui/FlexBox";
 import { toaster } from "@/app/providers/Toast";
+import { pbColors } from "@/app/providers/Theme";
 
 export const SettingsSessions = () => {
     const { deviceId } = useAuth();
@@ -67,13 +68,13 @@ export const SettingsSessions = () => {
                             }}
                         >
                             <LogoutIcon
-                                sx={{ color: "rgba(233,30,99,1)", ml: 0.5 }}
+                                sx={{ color: alpha(pbColors.red, 1), ml: 0.5 }}
                             />
                         </FlexBox>
                         <Typography
                             fontSize={18}
                             fontWeight={400}
-                            color="rgba(233,30,99,1)"
+                            color={alpha(pbColors.red, 1)}
                             lineHeight={{ xs: 1, sm: 2 }}
                         >
                             Выйти на всех устройствах, кроме этого

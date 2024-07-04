@@ -1,6 +1,6 @@
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import ForwardToInboxOutlinedIcon from "@mui/icons-material/ForwardToInboxOutlined";
-import { Box, Typography } from "@mui/material";
+import { alpha, Box, Typography } from "@mui/material";
 import { useLazyForgotPasswordQuery } from "@/entities/auth";
 import { PrimaryLoadingButton } from "@/shared/ui/Buttons/PrimaryButton";
 import { CenterBox } from "@/shared/ui/CenterBox";
@@ -8,6 +8,7 @@ import { Form, ExtSubmitHandler, InputText } from "@/shared/ui/Forms";
 import { FakeCaptcha } from "@/trash/FakeCaptcha";
 import { ForgotPasswordSchema, forgotPasswordSchema } from "@/shared/schema";
 import { toaster } from "@/app/providers/Toast";
+import { pbColors } from "@/app/providers/Theme";
 
 export const ForgotPasswordPage = () => {
     const [forgotPassword, { isLoading }] = useLazyForgotPasswordQuery();
@@ -47,7 +48,7 @@ export const ForgotPasswordPage = () => {
                     >
                         <ForwardToInboxOutlinedIcon
                             sx={{
-                                color: "rgba(76,175,80,1)",
+                                color: alpha(pbColors.green, 1),
                                 fontSize: 70,
                             }}
                         />

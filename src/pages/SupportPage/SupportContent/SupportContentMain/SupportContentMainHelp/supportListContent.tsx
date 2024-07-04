@@ -4,13 +4,15 @@ import CurrencyRubleRoundedIcon from "@mui/icons-material/CurrencyRubleRounded";
 import FaceRoundedIcon from "@mui/icons-material/FaceRounded";
 import CreditCardRoundedIcon from "@mui/icons-material/CreditCardRounded";
 import ForumRoundedIcon from "@mui/icons-material/ForumRounded";
+import { alpha } from "@mui/material";
+import { pbColors } from "@/app/providers/Theme";
 
 export const supporHelpListContent = [
     {
         id: 0,
         to: "general",
-        borderColor: "rgba(233,30,99,0.5)",
-        iconColor: "rgba(233,30,99,1)",
+        borderColor: alpha(pbColors.red, 0.5),
+        iconColor: alpha(pbColors.red, 1),
         icon: (
             <StarRateRoundedIcon
                 sx={{
@@ -72,8 +74,8 @@ export const supporHelpListContent = [
     {
         id: 3,
         to: "profile",
-        borderColor: "rgba(76,175,80,0.5)",
-        iconColor: "rgba(76,175,80,1)",
+        borderColor: alpha(pbColors.green, 0.5),
+        iconColor: alpha(pbColors.green, 1),
         icon: (
             <FaceRoundedIcon
                 sx={{
