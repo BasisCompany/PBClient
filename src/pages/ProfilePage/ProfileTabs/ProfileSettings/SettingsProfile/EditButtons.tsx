@@ -3,13 +3,6 @@ import { Box, BoxProps, alpha } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useDropzone } from "react-dropzone";
-import {
-    MutationDefinition,
-    BaseQueryFn,
-    FetchArgs,
-    FetchBaseQueryError,
-} from "@reduxjs/toolkit/dist/query";
-import { MutationTrigger } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 import { pbColors } from "@/app/providers/Theme";
 
 const buttonStyles = {
@@ -25,32 +18,16 @@ const buttonStyles = {
 
 interface EditButtonsProps extends BoxProps {
     children: ReactNode;
-    updateImg: MutationTrigger<
-        MutationDefinition<
-            FormData,
-            BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError>,
-            "Notification" | "Comment" | "User",
-            void,
-            "api"
-        >
-    >;
-    deleteImg: MutationTrigger<
-        MutationDefinition<
-            void,
-            BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError>,
-            "Notification" | "Comment" | "User",
-            void,
-            "api"
-        >
-    >;
+    onUpdate: (formData: FormData) => void;
+    onDelete: () => void;
     isAvatar?: boolean;
     showDelete?: boolean;
 }
 
 export const EditButtons: FC<EditButtonsProps> = ({
     children,
-    updateImg,
-    deleteImg,
+    onUpdate,
+    onDelete,
     isAvatar = false,
     showDelete = true,
     ...props
@@ -63,9 +40,9 @@ export const EditButtons: FC<EditButtonsProps> = ({
 
             const formData = new FormData();
             formData.append(isAvatar ? "avatar" : "banner", files[0]);
-            void updateImg(formData);
+            onUpdate(formData);
         },
-        [isAvatar, updateImg]
+        [isAvatar, onUpdate]
     );
 
     const { getRootProps, getInputProps, open, isDragAccept } = useDropzone({
@@ -93,7 +70,7 @@ export const EditButtons: FC<EditButtonsProps> = ({
             {children}
             {showDelete && (
                 <Box
-                    onClick={() => deleteImg()}
+                    onClick={onDelete}
                     sx={{
                         ...buttonStyles,
                         top: 0,

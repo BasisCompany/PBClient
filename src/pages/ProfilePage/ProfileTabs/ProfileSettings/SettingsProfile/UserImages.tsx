@@ -19,14 +19,19 @@ export const UserImages = () => {
     const [deleteAvatar] = useDeleteAvatarMutation();
     const [deleteBanner] = useDeleteBannerMutation();
 
+    const handleUpdateAvatar = (formData: FormData) => updateAvatar(formData);
+    const handleUpdateBanner = (formData: FormData) => updateBanner(formData);
+    const handleDeleteAvatar = () => deleteAvatar();
+    const handleDeleteBanner = () => deleteBanner();
+
     return (
         <FlexBox mb={2}>
             <EditButtons
                 mr={1}
                 isAvatar
                 showDelete={!!avatar}
-                updateImg={updateAvatar}
-                deleteImg={deleteAvatar}
+                onUpdate={handleUpdateAvatar}
+                onDelete={handleDeleteAvatar}
             >
                 <Avatar
                     src={avatar}
@@ -47,8 +52,8 @@ export const UserImages = () => {
             <EditButtons
                 flexBasis="85%"
                 showDelete={!!banner}
-                updateImg={updateBanner}
-                deleteImg={deleteBanner}
+                onUpdate={handleUpdateBanner}
+                onDelete={handleDeleteBanner}
             >
                 {banner ? (
                     <Image
@@ -75,22 +80,3 @@ export const UserImages = () => {
         </FlexBox>
     );
 };
-
-/* <Avatar
-    src={avatar ?? DefaultAvatar}
-    alt={username}
-    sx={{
-        width: {
-            xs: "100px",
-            md: "125px",
-            lg: "150px",
-        },
-        height: {
-            xs: "100px",
-            md: "125px",
-            lg: "150px",
-        },
-        borderRadius: "15px",
-    }}
-/> 
-*/
