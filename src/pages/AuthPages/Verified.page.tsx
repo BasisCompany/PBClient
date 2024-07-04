@@ -3,6 +3,7 @@ import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined
 import { CenterBox } from "../../shared/ui/CenterBox";
 import { PrimaryLinkButton } from "../../shared/ui/Buttons/PrimaryButton";
 
+//TODO[Артем]: Убрать Card, CardHeader, CardContent
 export const VerifiedPage = () => {
     return (
         <CenterBox>

@@ -4,6 +4,7 @@ import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import { CenterBox } from "../../shared/ui/CenterBox";
 import { PrimaryLinkButton } from "../../shared/ui/Buttons/PrimaryButton";
 
+//TODO[Артем]: Убрать Card, CardHeader, CardContent
 export const ExpiredPage: FC = () => {
     return (
         <CenterBox>

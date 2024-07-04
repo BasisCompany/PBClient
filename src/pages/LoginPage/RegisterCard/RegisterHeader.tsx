@@ -7,6 +7,7 @@ interface RegisterHeaderProps {
     toggleLogin: DispatchWithoutAction;
 }
 
+//TODO[Артем]: CardHeader
 export const RegisterHeader: FC<RegisterHeaderProps> = ({ toggleLogin }) => {
     return (
         <FlexBox justifyContent="flex-start" height="30px">
