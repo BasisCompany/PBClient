@@ -1,31 +1,33 @@
 import { FC } from "react";
-import { Avatar, Box, Typography, Rating } from "@mui/material";
+import { Box, Rating } from "@mui/material";
 import { Comment } from "@/entities/comment";
 import { FlexBox } from "@/shared/ui/FlexBox";
+import { Avatar } from "@/shared/ui/Image/Avatar";
+import { getUrlRoot } from "@/shared/utils/getUrlRoot";
+import { LinkTypography } from "@/shared/ui/Links";
 
 interface CommentAuthorProps {
     comment: Comment;
 }
 
 export const CommentAuthor: FC<CommentAuthorProps> = ({ comment }) => {
+    const { user } = comment;
     return (
         <FlexBox sx={{ alignItems: "center" }}>
-            <Avatar
-                alt="Remy Sharp"
-                src="https://distribution.faceit-cdn.net/images/173415c2-b6c3-4ece-8495-766cffa9d710.jpeg"
-                sx={{
-                    width: 52,
-                    height: 52,
-                    cursor: "pointer",
-                    mb: 1,
-                }}
-            />
-            <Box sx={{ ml: 2 }}>
+            <LinkTypography to={`/user/${user.id}`}>
+                <Avatar
+                    src={getUrlRoot(user.avatar)}
+                    alt={user.username}
+                    width="52px"
+                    height="52px"
+                    sx={{ borderRadius: "50%", cursor: "pointer", mb: 1 }}
+                />
+            </LinkTypography>
+            <Box ml={2}>
                 <Box>
-                    <Typography
+                    <LinkTypography
+                        to={`/user/${user.id}`}
                         variant="text"
-                        component="span"
-                        color={(theme) => theme.palette.text.primary}
                         fontSize={15}
                         fontWeight={500}
                         letterSpacing="0.4px"
@@ -36,31 +38,28 @@ export const CommentAuthor: FC<CommentAuthorProps> = ({ comment }) => {
                             transition: "all 0.1s ease-in",
                             ":hover": {
                                 color: (theme) => theme.palette.text.secondary,
-                                transition: "all 0.1s ease-out",
                             },
                         }}
                     >
-                        {comment.user.username}
-                    </Typography>
+                        {user.username}
+                    </LinkTypography>
                 </Box>
                 <Box>
-                    <Typography
-                        variant="h6"
-                        component="span"
-                        color={(theme) => theme.palette.text.secondary}
+                    <LinkTypography
+                        to={`/prompt/${comment.prompt.url}`}
                         fontSize={14}
                         fontWeight={400}
                         sx={{
                             cursor: "pointer",
                             transition: "all 0.1s ease-in",
+                            color: (theme) => theme.palette.text.secondary,
                             ":hover": {
                                 color: (theme) => theme.palette.text.primary,
-                                transition: "all 0.1s ease-out",
                             },
                         }}
                     >
-                        Prompt url name test
-                    </Typography>
+                        {comment.prompt.title}
+                    </LinkTypography>
                 </Box>
                 <Box sx={{ mt: 0.25, ml: -0.2 }}>
                     <Rating name="read-only" value={comment.rating} readOnly />

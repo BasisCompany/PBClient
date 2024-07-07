@@ -1,3 +1,4 @@
+import { PromptTitle } from "@/entities/prompt";
 import { User } from "@/entities/user";
 
 interface BaseComment {
@@ -12,6 +13,7 @@ interface BaseComment {
     userId: number;
     current_mark: boolean | null;
     user: User;
+    prompt: PromptTitle;
 }
 
 export interface Comment extends BaseComment {

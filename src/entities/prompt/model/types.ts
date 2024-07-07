@@ -13,3 +13,5 @@ export interface Prompt {
     isFavorite?: boolean;
     isInCart?: boolean;
 }
+
+export type PromptTitle = Pick<Prompt, "id" | "title" | "url">;

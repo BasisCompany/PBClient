@@ -8,14 +8,14 @@ import { ProfileProvider, useUserProfileQuery } from "@/entities/user";
 export const ProfilePage = () => {
     const { id } = useParams();
 
-    const { data, isLoading } = useUserProfileQuery(id!);
+    const { data, isLoading, isError } = useUserProfileQuery(id!);
 
     //TODO: Загрузка & 404 Профиль
     if (isLoading) {
         return <h1>Загрузка</h1>;
     }
     //TODO: Иконку по центру экрана > Профиль не найден :(
-    if (!data) {
+    if (!data || isError) {
         return <h1>Профиль не найден</h1>;
     }
 

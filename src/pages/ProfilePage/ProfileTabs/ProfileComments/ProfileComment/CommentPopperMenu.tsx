@@ -18,7 +18,7 @@ import { useAuth } from "@/shared/hooks/useAuth";
 import { Authorization } from "@/shared/lib/authorization";
 import { POLICIES } from "@/shared/lib/authorization/policies";
 
-const PooperMenuList = styled(MenuList, {
+const PopperMenuList = styled(MenuList, {
     shouldForwardProp: (prop) => prop !== "bgcolorSecondary",
 })<MenuListProps & { bgcolorSecondary: boolean }>(
     ({ theme, bgcolorSecondary }) => ({
@@ -85,7 +85,7 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                 <Grow {...TransitionProps}>
                     <Box>
                         <ClickAwayListener onClickAway={onMenuClose}>
-                            <PooperMenuList bgcolorSecondary={bgcolorSecondary}>
+                            <PopperMenuList bgcolorSecondary={bgcolorSecondary}>
                                 <Authorization
                                     policyCheck={
                                         !POLICIES["comment:delete"](
@@ -116,7 +116,7 @@ export const CommentPopperMenu: FC<CommentPopperMenuProps> = ({
                                         <ListItemText>Удалить</ListItemText>
                                     </MenuItem>
                                 </Authorization>
-                            </PooperMenuList>
+                            </PopperMenuList>
                         </ClickAwayListener>
                     </Box>
                 </Grow>
