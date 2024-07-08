@@ -18,7 +18,7 @@ export const NavBarButtons = () => {
     const { togglePopper, closePopper } = usePopper();
 
     const { data: notification } = useCountUnreadNotificationsQuery(undefined, {
-        //pollingInterval: 10000, //TODO: delete comment
+        //pollingInterval: 10000, //TODO[PROD]: delete comment
     });
 
     const { data: cart } = useCountCartQuery();
