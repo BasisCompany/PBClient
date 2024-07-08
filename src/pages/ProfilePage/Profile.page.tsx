@@ -3,20 +3,21 @@ import { FlexBox } from "../../shared/ui/FlexBox";
 import { ProfileHeader } from "./ProfileHeader/ProfileHeader";
 import { ProfileStatistic } from "./ProfileStatistic/ProfileStatistic";
 import { ProfileTabs } from "./ProfileTabs/ProfileTabs";
+import { NotFoundProfile } from "./NotFoundProfile";
 import { ProfileProvider, useUserProfileQuery } from "@/entities/user";
+import { LoadingCircular } from "@/shared/ui/Loading";
 
 export const ProfilePage = () => {
     const { id } = useParams();
 
     const { data, isLoading, isError } = useUserProfileQuery(id!);
 
-    //TODO: Загрузка & 404 Профиль
     if (isLoading) {
-        return <h1>Загрузка</h1>;
+        return <LoadingCircular />;
     }
-    //TODO: Иконку по центру экрана > Профиль не найден :(
+
     if (!data || isError) {
-        return <h1>Профиль не найден</h1>;
+        return <NotFoundProfile />;
     }
 
     return (
