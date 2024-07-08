@@ -14,12 +14,12 @@ import { NavbarNotification } from "./NavbarNotification";
 import { useUserId } from "@/shared/hooks/useUserId";
 import { LinkButton } from "@/shared/ui/Links/LinkButton";
 import { LinkIconButton } from "@/shared/ui/Links/LinkIconButton";
-import { CommentsEmpty } from "@/pages/ProfilePage/ProfileTabs/ProfileComments/CommentsEmpty";
 import { FlexBox } from "@/shared/ui/FlexBox";
 import {
     useGetNotificationsQuery,
     useReadAllNotificationsMutation,
 } from "@/entities/notification";
+import { NotificationEmpty } from "@/pages/ProfilePage/ProfileTabs/ProfileNotifications/NotificationEmpty";
 
 const NotificationsBox = styled(Box)(({ theme }) => ({
     maxHeight: "300px",
@@ -96,7 +96,7 @@ export const NotificationsPopper = () => {
                             />
                         ))
                     ) : (
-                        <CommentsEmpty />
+                        <NotificationEmpty />
                     )
                 ) : (
                     <NavbarNotificationSkeleton />
