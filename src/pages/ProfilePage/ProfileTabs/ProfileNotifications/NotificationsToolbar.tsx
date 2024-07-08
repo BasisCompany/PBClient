@@ -7,6 +7,8 @@ import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { ProfileSelect } from "../../components/ProfileSelect";
 import { useReadAllNotificationsMutation } from "@/entities/notification";
 import { FlexBox } from "@/shared/ui/FlexBox";
+import { useUserId } from "@/shared/hooks";
+import { LinkIconButton } from "@/shared/ui/Links";
 
 const notificationsSelectItems = {
     params: ["unread", "read", "all"],
@@ -19,6 +21,8 @@ const notificationsSelectItems = {
 };
 
 export const NotificationsToolbar = () => {
+    const userId = useUserId();
+
     const [readAllNotifications] = useReadAllNotificationsMutation();
 
     const handleReadAllNotifications = async () => {
@@ -36,7 +40,8 @@ export const NotificationsToolbar = () => {
             <ProfileSelect selectItems={notificationsSelectItems} />
             <Box borderRadius="4px">
                 <Tooltip title="Настройки" disableInteractive>
-                    <IconButton
+                    <LinkIconButton
+                        to={`/user/${userId}/settings/notifications`}
                         sx={{
                             height: "33px",
                             width: "33px",
@@ -47,7 +52,7 @@ export const NotificationsToolbar = () => {
                         }}
                     >
                         <SettingsRoundedIcon sx={{ width: "23px" }} />
-                    </IconButton>
+                    </LinkIconButton>
                 </Tooltip>
                 <Tooltip title="Прочитать всё" disableInteractive>
                     <IconButton
