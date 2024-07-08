@@ -1,21 +1,24 @@
-import { FC } from "react";
 import { Box, Tooltip, IconButton } from "@mui/material";
+import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
+import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
+import SortRoundedIcon from "@mui/icons-material/SortRounded";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { ProfileSelect } from "../../components/ProfileSelect";
 import { useReadAllNotificationsMutation } from "@/entities/notification";
+import { FlexBox } from "@/shared/ui/FlexBox";
 
-interface NotificationsToolbarProps {
-    selectItems: {
-        params: string[];
-        icons: JSX.Element[];
-        labels: string[];
-    };
-}
+const notificationsSelectItems = {
+    params: ["unread", "read", "all"],
+    icons: [
+        <DoneRoundedIcon key="unread" sx={{ fontSize: "19px" }} />,
+        <DoneAllRoundedIcon key="read" sx={{ fontSize: "19px" }} />,
+        <SortRoundedIcon key="all" sx={{ fontSize: "19px" }} />,
+    ],
+    labels: ["Непрочитанные", "Прочитанные", "Все уведомления"],
+};
 
-export const NotificationsToolbar: FC<NotificationsToolbarProps> = ({
-    selectItems,
-}) => {
+export const NotificationsToolbar = () => {
     const [readAllNotifications] = useReadAllNotificationsMutation();
 
     const handleReadAllNotifications = async () => {
@@ -23,20 +26,15 @@ export const NotificationsToolbar: FC<NotificationsToolbarProps> = ({
     };
 
     return (
-        <Box
+        <FlexBox
             sx={{
-                display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
                 mb: "15px",
             }}
         >
-            <ProfileSelect selectItems={selectItems} />
-            <Box
-                sx={{
-                    borderRadius: "4px",
-                }}
-            >
+            <ProfileSelect selectItems={notificationsSelectItems} />
+            <Box borderRadius="4px">
                 <Tooltip title="Настройки" disableInteractive>
                     <IconButton
                         sx={{
@@ -67,6 +65,6 @@ export const NotificationsToolbar: FC<NotificationsToolbarProps> = ({
                     </IconButton>
                 </Tooltip>
             </Box>
-        </Box>
+        </FlexBox>
     );
 };

@@ -1,16 +1,16 @@
 import { FC } from "react";
-import { PagePagination } from "../../../shared/ui/PagePagination";
-import { FlexBox } from "../../../shared/ui/FlexBox";
+import { useMobileDevice } from "@/shared/hooks";
+import { FlexBox } from "@/shared/ui/FlexBox";
+import { PagePagination } from "@/shared/ui/PagePagination";
 
 interface ProfilePaginationProps {
-    isMobile: boolean;
     totalPages: number | undefined;
 }
 
 export const ProfilePagination: FC<ProfilePaginationProps> = ({
-    isMobile,
     totalPages,
 }) => {
+    const isMobile = useMobileDevice();
     return (
         <FlexBox sx={{ justifyContent: isMobile ? "center" : "end", mt: 2 }}>
             <PagePagination

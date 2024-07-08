@@ -1,40 +1,20 @@
 import { Box } from "@mui/material";
-import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
-import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
-import SortRoundedIcon from "@mui/icons-material/SortRounded";
 import { useSearchParams } from "react-router-dom";
-import { useMobileDevice } from "../../../../shared/hooks/useMobileDevice";
-import {
-    getPageParamSafe,
-    getSortParamSafe,
-} from "../../../../shared/utils/getParamSafely";
-import { CommentsEmpty } from "../ProfileComments/CommentsEmpty";
 import { ProfilePagination } from "../../components/ProfilePagination";
 import { TabLoading } from "../TabLoading";
 import { NotificationsToolbar } from "./NotificationsToolbar";
 import { ProfileNotification } from "./ProfileNotification/ProfileNotification";
+import { NotificationEmpty } from "./NotificationEmpty";
 import { useGetNotificationsQuery } from "@/entities/notification";
+import { getPageParamSafe, getSortParamSafe } from "@/shared/utils";
 
-const notificationsSelectItems = {
-    params: ["unread", "read", "all"],
-    icons: [
-        <DoneRoundedIcon key="unread" sx={{ fontSize: "19px" }} />,
-        <DoneAllRoundedIcon key="read" sx={{ fontSize: "19px" }} />,
-        <SortRoundedIcon key="all" sx={{ fontSize: "19px" }} />,
-    ],
-    labels: ["Непрочитанные", "Прочитанные", "Все уведомления"],
-};
+const sortParams = ["unread", "read", "all"];
 
 export const ProfileNotifications = () => {
-    const isMobile = useMobileDevice();
-
     const [searchParams] = useSearchParams();
     const currentPage = getPageParamSafe(searchParams, 1);
 
-    const currentSort = getSortParamSafe(
-        searchParams,
-        notificationsSelectItems.params
-    );
+    const currentSort = getSortParamSafe(searchParams, sortParams);
 
     const { data, isLoading } = useGetNotificationsQuery({
         sort: currentSort,
@@ -50,12 +30,13 @@ export const ProfileNotifications = () => {
         searchParams.set("page", "1");
     }
 
-    //TODO: Notifications Loading & Empty
-    return isLoading ? (
-        <TabLoading />
-    ) : (
+    if (isLoading) {
+        return <TabLoading />;
+    }
+
+    return (
         <>
-            <NotificationsToolbar selectItems={notificationsSelectItems} />
+            <NotificationsToolbar />
             <Box>
                 {hasNotifications ? (
                     <>
@@ -66,12 +47,11 @@ export const ProfileNotifications = () => {
                             />
                         ))}
                         <ProfilePagination
-                            isMobile={isMobile}
                             totalPages={data?.meta?.totalPages}
                         />
                     </>
                 ) : (
-                    <CommentsEmpty />
+                    <NotificationEmpty />
                 )}
             </Box>
         </>

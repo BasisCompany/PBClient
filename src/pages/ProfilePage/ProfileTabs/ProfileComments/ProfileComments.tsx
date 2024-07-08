@@ -8,15 +8,16 @@ import { TabLoading } from "../TabLoading";
 import { CommentsEmpty } from "./CommentsEmpty";
 import { ProfileComment } from "./ProfileComment/ProfileComment";
 import { useGetCommentsQuery } from "@/entities/comment";
-import { useMobileDevice } from "@/shared/hooks/useMobileDevice";
 import { FlexBox } from "@/shared/ui/FlexBox";
 import {
     getPageParamSafe,
     getSortParamSafe,
 } from "@/shared/utils/getParamSafely";
 
+const sortParams = ["popular", "new", "old"];
+
 const commentsSelectItems = {
-    params: ["popular", "new", "old"],
+    params: sortParams,
     icons: [
         <LocalFireDepartmentIcon key="popular" sx={{ fontSize: "19px" }} />,
         <MarkChatUnreadIcon key="new" sx={{ fontSize: "19px" }} />,
@@ -27,14 +28,10 @@ const commentsSelectItems = {
 
 export const ProfileComments = () => {
     const { id } = useParams();
-    const isMobile = useMobileDevice();
 
     const [searchParams] = useSearchParams();
     const currentPage = getPageParamSafe(searchParams, 1);
-    const currentSort = getSortParamSafe(
-        searchParams,
-        commentsSelectItems.params
-    );
+    const currentSort = getSortParamSafe(searchParams, sortParams);
 
     const { data, isLoading } = useGetCommentsQuery({
         id: id!,
@@ -64,10 +61,7 @@ export const ProfileComments = () => {
                     {comments.map((comment) => (
                         <ProfileComment key={comment.id} comment={comment} />
                     ))}
-                    <ProfilePagination
-                        isMobile={isMobile}
-                        totalPages={data?.meta?.totalPages}
-                    />
+                    <ProfilePagination totalPages={data?.meta?.totalPages} />
                 </>
             ) : (
                 <CommentsEmpty />
