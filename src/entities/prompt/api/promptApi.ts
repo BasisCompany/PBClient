@@ -5,6 +5,10 @@ import { PageResponse } from "@/shared/types";
 
 export const promptApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
+        getPrompt: build.query<Prompt, number>({
+            query: (id) => `prompt/${id}`,
+            providesTags: ["Prompt"],
+        }),
         getPrompts: build.query<PageResponse<Prompt>, PromptsRequest>({
             query: ({ sort, page, take, ...filters }) => ({
                 url: `prompt`,
@@ -15,4 +19,4 @@ export const promptApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useGetPromptsQuery } = promptApi;
+export const { useGetPromptQuery, useGetPromptsQuery } = promptApi;

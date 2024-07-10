@@ -24,7 +24,7 @@ export const PromptBadges: FC<PromptBadgesProps> = ({
                 paddingTop: "2px",
             }}
         >
-            <Badge badgeContent={views} color="secondary" max={999}>
+            <Badge badgeContent={views} color="secondary" max={999} showZero>
                 <RemoveRedEyeRoundedIcon sx={{ fontSize: 19 }} />
             </Badge>
             <Badge badgeContent={purchases} color="secondary" max={999}>

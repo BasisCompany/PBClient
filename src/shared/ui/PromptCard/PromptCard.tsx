@@ -15,14 +15,14 @@ export interface PromptCardProps {
 }
 
 export const PromptCard: FC<PromptCardProps> = ({ prompt }) => {
-    const { id, url, title, price, aIModel, isFavorite, isInCart } = prompt;
+    const { id, url, title, price, views, aIModel, isFavorite, isInCart } =
+        prompt;
 
     //TODO: prompt fields
     const image = getRandomImage(id);
     const description =
         "Lorem ipsum, or lipsum as it is sometimes known, is dummy text";
 
-    const views = 1;
     const purchases = 15;
     const rating = 2;
 

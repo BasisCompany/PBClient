@@ -3,6 +3,7 @@ export interface Prompt {
     title: string;
     url: string;
     price: number;
+    views: number;
     createdAt: Date;
     updatedAt: Date;
     hasImages: boolean;
