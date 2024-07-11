@@ -25,6 +25,7 @@ export const PromptPage = () => {
             <FlexBox justifyContent="center">
                 <PromptCard prompt={data} />
             </FlexBox>
+            <FlexBox fontSize={26}>Кол-во лайков: {data.favorites}</FlexBox>
         </>
     );
 };

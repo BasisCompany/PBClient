@@ -30,7 +30,7 @@ export const PromptBadges: FC<PromptBadgesProps> = ({
             <Badge badgeContent={purchases} color="secondary" max={999}>
                 <ShoppingCartRoundedIcon sx={{ fontSize: 19 }} />
             </Badge>
-            <Badge badgeContent={rating} color="secondary" max={5}>
+            <Badge badgeContent={rating.toFixed(1)} color="secondary" max={5}>
                 <GradeRoundedIcon sx={{ fontSize: 19 }} />
             </Badge>
         </FlexBox>

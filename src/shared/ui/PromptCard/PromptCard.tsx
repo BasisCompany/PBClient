@@ -15,8 +15,17 @@ export interface PromptCardProps {
 }
 
 export const PromptCard: FC<PromptCardProps> = ({ prompt }) => {
-    const { id, url, title, price, views, aIModel, isFavorite, isInCart } =
-        prompt;
+    const {
+        id,
+        url,
+        title,
+        price,
+        views,
+        rating,
+        aIModel,
+        isFavorite,
+        isInCart,
+    } = prompt;
 
     //TODO: prompt fields
     const image = getRandomImage(id);
@@ -24,7 +33,6 @@ export const PromptCard: FC<PromptCardProps> = ({ prompt }) => {
         "Lorem ipsum, or lipsum as it is sometimes known, is dummy text";
 
     const purchases = 15;
-    const rating = 2;
 
     return (
         <Box

@@ -4,6 +4,8 @@ export interface Prompt {
     url: string;
     price: number;
     views: number;
+    rating: number;
+    favorites: number;
     createdAt: Date;
     updatedAt: Date;
     hasImages: boolean;
