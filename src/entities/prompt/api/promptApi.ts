@@ -6,7 +6,10 @@ import { PageResponse } from "@/shared/types";
 export const promptApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
         getPrompt: build.query<Prompt, number>({
-            query: (id) => `prompt/${id}`,
+            query: (id) => ({
+                url: `prompt/${id}`,
+                credentials: "include",
+            }),
             providesTags: ["Prompt"],
         }),
         getPrompts: build.query<PageResponse<Prompt>, PromptsRequest>({
